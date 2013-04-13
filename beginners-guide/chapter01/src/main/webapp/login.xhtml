@@ -1,0 +1,32 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>Login</title>
+</h:head> 
+<body> 
+	<h:form id="loginForm">
+	<p:panel header="Login Form" style="width: 500px;">	
+		<h:panelGrid columns="2">
+			<p:outputLabel value="UserName"/>
+			<p:inputText value="#{userController.loginUser.userName}"/>
+			
+			<p:outputLabel value="Password"/>
+			<p:password value="#{userController.loginUser.password}"/>
+			
+			<p:commandButton action="#{userController.login}" value="Login" update="loginStatusMsg"/>
+			<p:commandButton type="reset" value="Reset"/>
+			
+			<p:outputLabel value="#{userController.loginStatus}" id="loginStatusMsg"/>
+		</h:panelGrid>
+	</p:panel>
+	
+	<p><h:link value="Back" outcome="welcome.jsf?faces-redirect=true"/></p>
+</h:form>
+
+</body> 
+</html>

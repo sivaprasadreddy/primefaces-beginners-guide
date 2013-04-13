@@ -2,8 +2,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.primefaces</groupId>
-  <artifactId>beginners-guide</artifactId>
+  <groupId>com.packtpub</groupId>
+  <artifactId>primefaces-beginners-guide</artifactId>
   <version>0.0.1</version>
   <packaging>pom</packaging>
 
@@ -21,6 +21,7 @@
 	
   <modules>
     <module>techbuzz</module>
+    <module>chapter01</module>
   </modules>
   
 	<repositories>
@@ -55,6 +56,13 @@
     <dependencyManagement>
     
   <dependencies>
+    	
+    	<dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>4.8.2</version>
+	      <scope>test</scope>
+	    </dependency>
     
     	<dependency>
             <groupId>org.apache.commons</groupId>
@@ -65,23 +73,23 @@
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-api</artifactId>
             <version>${jsf.version}</version>
-            <exclusions>
+            <!-- <exclusions>
                 <exclusion>
                     <groupId>jstl</groupId>
                     <artifactId>jstl</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions> -->
         </dependency>
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-impl</artifactId>
             <version>${jsf.version}</version>
-            <exclusions>
+            <!-- <exclusions>
                 <exclusion>
                     <groupId>jstl</groupId>
                     <artifactId>jstl</artifactId>
                 </exclusion>
-            </exclusions>
+            </exclusions> -->
         </dependency>
         
     	<dependency>
@@ -149,7 +157,7 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>3.4.2</version>
+            <version>${primefaces.version}</version>
         </dependency>
         <dependency>
             <groupId>org.primefaces.extensions</groupId>

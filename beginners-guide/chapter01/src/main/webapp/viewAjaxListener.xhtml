@@ -1,0 +1,40 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>View Update using Ajax Listener</title>
+</h:head> 
+<body> 
+	<h:form id="registrationForm">
+	<p:panel header="Registration Form" style="width: 800px;">
+	<h:panelGrid columns="3">
+		<p:outputLabel value="UserName:*"/>
+		<p:inputText id="userName" value="#{userController.registrationUser.userName}" required="true" label="UserName">
+			<p:ajax event="keyup" listener="#{userController.checkUserNamesExists()}" update="userNameMsg"/>
+		</p:inputText>
+		<p:message id="userNameMsg" for="userName"/>
+		
+		<p:outputLabel value="Password:*"/>
+		<p:password id="password" value="#{userController.registrationUser.password}" required="true" label="Password"/>				
+		<p:message id="passwordMsg" for="password"/>
+		
+		<p:outputLabel value="FirstName:*"/>
+		<p:inputText id="firstName" value="#{userController.registrationUser.firstName}" required="true" label="FirstName"/>
+		<p:message id="firstNameMsg" for="firstName"/>		
+		
+		<p:commandButton action="#{userController.register}" value="Register" update="registrationForm"/>		
+		
+	</h:panelGrid>
+	</p:panel>
+	
+	<p><h:link value="Back" outcome="welcome.jsf?faces-redirect=true"/></p>
+	
+</h:form>
+
+
+</body> 
+</html>

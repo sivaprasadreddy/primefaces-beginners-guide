@@ -1,0 +1,85 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>PPR</title>
+	<script>
+		/*
+		function validateEmail() 
+		{
+			var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			var email = $.trim($("#userForm\\:email").val());
+			if(email ==''){
+				$("#userForm\\:emailMsg").text("");
+				$("#userForm\\:emailMsg").attr("class", "");
+				return;
+			}
+		    if( emailReg.test( email ) ) {
+			   $("#userForm\\:emailMsg").text("Valid Email");		
+			   $("#userForm\\:emailMsg").attr("class", "ui-messages-info ui-widget ui-corner-all ui-messages-info-summary");		   
+			} else {
+			    $("#userForm\\:emailMsg").text("Invalid Email");
+			    $("#userForm\\:emailMsg").attr("class", "ui-message-error ui-widget ui-corner-all ui-message-error-detail");
+		   }
+		}
+		*/
+
+		function validateEmail() 
+		{
+			var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			var email = $.trim($(PrimeFaces.escapeClientId("userForm:email")).val());
+			if(email ==''){
+				$(PrimeFaces.escapeClientId("userForm:emailMsg")).text("");
+				$(PrimeFaces.escapeClientId("userForm:emailMsg")).attr("class", "");
+				return;
+			}
+			if( emailReg.test( email ) ) {
+			   $(PrimeFaces.escapeClientId("userForm:emailMsg")).text("Valid Email");		
+			   $(PrimeFaces.escapeClientId("userForm:emailMsg")).attr("class", "ui-messages-info ui-widget ui-corner-all ui-messages-info-summary");		   
+			} else {
+				$(PrimeFaces.escapeClientId("userForm:emailMsg")).text("Invalid Email");
+				$(PrimeFaces.escapeClientId("userForm:emailMsg")).attr("class", "ui-message-error ui-widget ui-corner-all ui-message-error-detail");
+		   }
+		}
+		
+	</script>
+</h:head> 
+<body>
+
+<h:form id="userDetailsForm">
+	<p:panel header="User Details Form" style="width: 800px;">
+		<p:messages/>
+		<h:panelGrid columns="3">
+		
+			<p:outputLabel value="UserId:*"/>
+			<p:inputText id="userId" value="#{userController.loginUser.id}" required="true" label="UserId" />
+			<p:message id="userIdMsg" for="userId"/>
+			
+			<p:outputLabel value="UserName:*"/>
+			<p:inputText id="userName" value="#{userController.loginUser.userName}" required="true" label="UserName" />			
+			<p:message id="userNameMsg" for="userName"/>
+			
+			<p:outputLabel value="Password:*"/>
+			<p:password id="password" value="#{userController.loginUser.password}" required="true" label="Password"/>
+			<p:message id="passwordMsg" for="password"/>
+			
+			<p:outputLabel value="FirstName:*"/>
+			<p:inputText id="firstName" value="#{userController.loginUser.firstName}" required="true" label="FirstName"/>
+			<p:message id="firstNameMsg" for="firstName"/>
+			
+			<p:commandButton value="Update" action="#{userController.updateUser()}" update="userDetailsForm"/>		
+			<p:commandButton value="Delete" process="@this,userId" action="#{userController.deleteUser()}" update="userDetailsForm"/>
+						
+		</h:panelGrid>
+	</p:panel>
+	<p>
+			<h:link value="Back" outcome="welcome.jsf?faces-redirect=true" />
+		</p>
+</h:form>
+
+</body> 
+</html>

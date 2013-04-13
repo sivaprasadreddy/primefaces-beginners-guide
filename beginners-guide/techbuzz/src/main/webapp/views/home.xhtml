@@ -6,9 +6,28 @@
                 template="/templates/masterLayout.xhtml">
 
 	<ui:define name="bodyContent">
-		<h:form>
-			<p:outputLabel value="#{msg['app.title']}"></p:outputLabel>
-			<p:editor></p:editor>
-		</h:form>
+			
+			<p:layout fullPage="true">
+            <p:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="Layout content for North" />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="Layout content for South" />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
+                <h:outputText value="Layout content for West" />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="fade">
+                <h:outputText value="Layout content for Right" />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <h:outputText value="Layout content for Center" />
+            </p:layoutUnit>
+        </p:layout>
+                        
 	</ui:define>
 </ui:composition>

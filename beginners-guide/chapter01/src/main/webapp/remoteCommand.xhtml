@@ -1,0 +1,56 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>RemoteCommand</title>
+	<script>
+
+		function validateEmail() 
+		{
+			var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			var email = $.trim($(PrimeFaces.escapeClientId("registrationForm:email")).val());
+			if(email ==''){
+				$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).text("");
+				$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).attr("class", "");
+				return;
+			}
+			if( emailReg.test( email ) ) {
+				checkDuplicateEmail();
+			   //$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).text("Valid Email");		
+			   //$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).attr("class", "ui-messages-info ui-widget ui-corner-all ui-messages-info-summary");		   
+			} else {
+				$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).text("Invalid Email");
+				$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).attr("class", "ui-message-error ui-widget ui-corner-all ui-message-error-detail");
+		   }
+		}
+		
+	</script>
+</h:head> 
+<body>
+	
+	<h:form id="registrationForm">
+		<p:panel header="RegistrationForm Form" style="width: 800px;">		
+			<h:panelGrid columns="3">
+			
+				<p:outputLabel value="Email:"/>
+				<p:inputText id="email" value="#{userController.registrationUser.email}" onblur="validateEmail();" />
+				<p:message id="emailMsg" for="email"/>
+				
+				<p:commandButton action="#{userController.register}" value="Register" update="registrationForm"/>			
+				
+			</h:panelGrid>
+		</p:panel>
+		<p:remoteCommand name="checkDuplicateEmail" actionListener="#{userController.checkEmailExists()}" update="emailMsg"/>
+		
+		<p>
+			<h:link value="Back" outcome="welcome.jsf?faces-redirect=true" />
+		</p>
+		
+	</h:form>
+	
+</body> 
+</html>
