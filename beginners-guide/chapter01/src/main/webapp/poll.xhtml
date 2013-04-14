@@ -10,6 +10,7 @@
 </h:head>
 <body>
 	<h:form id="form1">
+		<h2>This is to demonstrate how to perform tasks periodically using Poll component</h2>
 		<p:outputLabel value="Current Time:" />
 		<p:outputLabel id="currentTime" value="#{serverTimeBean.time}" />
 		<p:poll interval="1" listener="#{serverTimeBean.updateTime()}"
@@ -17,9 +18,10 @@
 		
 	</h:form>
 	
-	<br/><br/>
+	<br/>
 	
 	<h:form id="form2">
+		<h2>This is to demonstrate how to Start/Stop Poll component manually</h2>
 		<p:outputLabel value="Current Time:" /> <p:outputLabel id="currentTime1" value="#{serverTimeBean.time}"/>
 		<p:poll interval="1"  listener="#{serverTimeBean.updateTime()}" update="currentTime1" widgetVar="currentTimePoller" autoStart="false"/> <br/>
 		<p:button value="Start" onclick="currentTimePoller.start()"  href="#" />

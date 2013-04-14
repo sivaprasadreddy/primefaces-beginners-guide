@@ -33,6 +33,11 @@
 <body>
 	
 	<h:form id="registrationForm">
+		<h2>This is to demonstrate how to invoke Server side logic from JavaScript using RemoteCommand component</h2>
+		<p>When you change the email value then first it will be validated by client side javascript function. 
+			If it is in valid format then invokes server side logic to check for whether email is already in use or not.
+		</p>
+		<p>Sample emails are <b>admin@gmail.com</b> and <b>test@gmail.com</b></p>
 		<p:panel header="RegistrationForm Form" style="width: 800px;">		
 			<h:panelGrid columns="3">
 			

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.packtpub.pfbg.controllers;
 
 import javax.faces.application.FacesMessage;
@@ -22,61 +19,47 @@ public class UserController
 	private User registrationUser;
 	private String loginStatus;
 	
-	public UserController() {
+	public UserController() 
+	{
 		this.loginUser = new User();
 		this.registrationUser = new User();
 	}
 
-	public User getLoginUser() {
+	public User getLoginUser() 
+	{
 		return loginUser;
 	}
 
-	public void setLoginUser(User loginUser) {
+	public void setLoginUser(User loginUser) 
+	{
 		this.loginUser = loginUser;
 	}
 
-	public User getRegistrationUser() {
+	public User getRegistrationUser() 
+	{
 		return registrationUser;
 	}
 
-	public void setRegistrationUser(User registrationUser) {
+	public void setRegistrationUser(User registrationUser) 
+	{
 		this.registrationUser = registrationUser;
 	}
-	public String getLoginStatus() {
+	public String getLoginStatus() 
+	{
 		return loginStatus;
 	}
 	
-	public void setLoginStatus(String loginStatus) {
+	public void setLoginStatus(String loginStatus) 
+	{
 		this.loginStatus = loginStatus;
 	}
 	
-	public String login() {
+	public String login() 
+	{
 		boolean validCredentials = "admin".equals(loginUser.getUserName()) && "admin".equals(loginUser.getPassword());
 		this.loginStatus  = validCredentials? "Login Successful" : "Login failed";
 		return null;
 	}
-	
-	/*
-	public String login() {
-		boolean validCredentials = false;
-		//boolean validCredentials = "admin".equals(loginUser.getUserName()) && "admin".equals(loginUser.getPassword());
-		List<User> allUsers = UserRepository.findAllUsers();
-		for (User user : allUsers) {
-			if(user.getUserName().equals(loginUser.getUserName()) && user.getPassword().equals(loginUser.getPassword())){
-				validCredentials = true;
-				break;
-			}
-		}
-		if(validCredentials){
-			return "home.jsf?faces-redirect=true";
-		} else {
-			JSFUtils.addErrorMsg("Invalid Credentials. Please try again.");
-			return "login.jsf";
-		}
-		
-	}
-	
-	*/
 	
 	public String register() 
 	{
@@ -86,27 +69,6 @@ public class UserController
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 		return "registration.jsf?faces-redirect=true";	
 	}
-	/*
-	public String register() 
-	{
-		boolean success = true;
-		System.err.println("Register User :"+ this.registrationUser);
-		String userName = this.registrationUser.getUserName();
-		if(isUserNamesExists(userName)){
-			JSFUtils.addErrorMsg("registrationForm:userName","UserName ["+userName+"] already in use.");
-			success = false;
-		}
-		
-		if(success){
-			JSFUtils.addInfoMsg("User Registered Successfully");
-			FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-			return "login.jsf?faces-redirect=true";
-		} else {
-			JSFUtils.addErrorMsg("User Registration Failed. Please try again.");
-			return "registration.jsf";
-		}		
-	}
-	*/
 	
 	public void checkUserNamesExists()
 	{
@@ -119,55 +81,24 @@ public class UserController
 		}
 	}
 
-	/*public void checkUserNamesExists(){
-		String userName = this.registrationUser.getUserName();
-		if(isUserNamesExists(userName)){
-				JSFUtils.addErrorMsg("registrationForm:userName","UserName ["+userName+"] already in use.");
-		}
-	}
-	*/
-	
-	/*public boolean isUserNamesExists(){
-		System.out.println("--------isUserNamesExists-------");
-		String userName = this.registrationUser.getUserName();
-		System.out.println(userName);
-		boolean userNamesExists = isUserNamesExists(userName);
-		System.out.println("userNamesExists:"+userNamesExists);
-		if(userNamesExists){
-			System.err.println("errr");
-			JSFUtils.addErrorMsg("registrationForm:userName","UserName ["+userName+"] already in use.");
-		}
-		return userNamesExists;
-	}*/
-	
-/*	public boolean isUserNamesExists(String userName){
-		if(userName == null || userName.trim().length()==0){
-			return false;
-		}
-		List<User> allUsers = UserRepository.findAllUsers();
-		for (User user : allUsers) {
-			if(user.getUserName().equals(userName)){
-				return true;
-			}
-		}
-		return false;
-	}*/
-	
-	public String  updateUser() {
+	public String  updateUser() 
+	{
 		System.out.println("Updating User Id: "+this.loginUser.getId());
 		String msg = "User updated Successfully";
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
 		return "userDetails.jsf";
 	}
 	
-	public String  deleteUser() {
+	public String  deleteUser() 
+	{
 		System.out.println("deleting User Id: "+this.loginUser.getId());
 		String msg = "User deleted Successfully";
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
 		return "userDetails.jsf";
 	}
 	
-	public void checkEmailExists(){
+	public void checkEmailExists()
+	{
 		String email = this.registrationUser.getEmail();
 		if("admin@gmail.com".equals(email) || "test@gmail.com".equals(email))
 		{

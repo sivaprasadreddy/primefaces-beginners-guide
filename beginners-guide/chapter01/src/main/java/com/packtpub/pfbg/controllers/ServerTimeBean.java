@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.packtpub.pfbg.controllers;
 
 import java.text.SimpleDateFormat;

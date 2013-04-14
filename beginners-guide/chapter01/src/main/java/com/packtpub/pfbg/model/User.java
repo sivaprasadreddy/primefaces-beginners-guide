@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.packtpub.pfbg.model;
 
 import java.util.Date;
