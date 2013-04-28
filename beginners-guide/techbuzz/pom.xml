@@ -11,8 +11,8 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-        <java.version>1.6</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java.version>1.6</java.version>
         <primefaces.version>3.5</primefaces.version>
         <primefaces.theme.version>1.0.9</primefaces.theme.version>
         <jsf.version>2.1.13</jsf.version>
@@ -58,11 +58,6 @@
 			<scope>test</scope>
 		</dependency>
 		
-    	<dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.1</version>
-        </dependency>
         <dependency>
             <groupId>com.sun.faces</groupId>
             <artifactId>jsf-api</artifactId>
@@ -73,41 +68,47 @@
             <artifactId>jsf-impl</artifactId>
             <version>${jsf.version}</version>
         </dependency>
-        
+        <!-- 
     	<dependency>
             <groupId>javax.el</groupId>
             <artifactId>el-api</artifactId>
             <version>2.2</version>
             <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>el-impl</artifactId>
             <version>2.2</version>
         </dependency>
+        
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>jsr250-api</artifactId>
             <version>1.0</version>
             <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
+        
         <dependency>
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
             <version>2.1</version>
             <scope>provided</scope>
         </dependency>
+         -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>servlet-api</artifactId>
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>rome</groupId>
             <artifactId>rome</artifactId>
@@ -119,6 +120,7 @@
             <artifactId>poi</artifactId>
             <version>3.7</version>
         </dependency>
+        
         <dependency>
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
@@ -130,6 +132,13 @@
             <artifactId>commons-fileupload</artifactId>
             <version>1.2.2</version>
         </dependency>
+        
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.1</version>
+        </dependency>
+        
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -139,20 +148,9 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>3.5</version>
+            <version>${primefaces.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>primefaces-extensions</artifactId>
-            <version>0.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.primefaces.extensions</groupId>
-            <artifactId>resources-codemirror</artifactId>
-            <version>0.6.2</version>
-        </dependency>
-
-        
+                
         <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>afterwork</artifactId>
