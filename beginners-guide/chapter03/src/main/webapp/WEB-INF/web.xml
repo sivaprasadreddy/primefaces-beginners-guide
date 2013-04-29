@@ -45,7 +45,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
-   
+
     <!-- Session timeout -->
     <session-config>
         <session-timeout>60</session-timeout>
