@@ -3,8 +3,6 @@
  */
 package com.packtpub.techbuzz.controlers;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -35,10 +33,6 @@ public class UserController
 		registerUser = new User();
 	}
 	
-	@PostConstruct
-	public void init() {
-	}
-	
 	public User getLoginUser() {
 		return loginUser;
 	}
@@ -54,7 +48,7 @@ public class UserController
 	public void setRegisterUser(User registerUser) {
 		this.registerUser = registerUser;
 	}
-		
+	
 	public String doLogin() 
 	{
 		User user = userService.login(loginUser.getUserName(), loginUser.getPassword());
@@ -77,4 +71,5 @@ public class UserController
 		}
 		return null;
 	}
+
 }
