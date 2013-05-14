@@ -30,7 +30,7 @@ public class UserServiceTest
 		User user = userService.login("invalid", "invalid");
 		Assert.assertNull(user);
 		
-		user = userService.login("admin", "admin");
+		user = userService.login("admin@gmail.com", "admin");
 		Assert.assertNotNull(user);
 		
 	}
@@ -56,7 +56,7 @@ public class UserServiceTest
 	@Test
 	public void changePassword()
 	{
-		boolean success = userService.changePassword("test","test","testtest");
+		boolean success = userService.changePassword("test@gmail.com","test","testtest");
 		Assert.assertTrue(success);
 	}
 }

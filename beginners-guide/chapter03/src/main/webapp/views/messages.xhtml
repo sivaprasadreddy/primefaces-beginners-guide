@@ -10,11 +10,11 @@
 		<h2>Message and Messages Component</h2>
 		
 		<h:form>
-			<b><h:commandLink action="welcome.jsf" value="Back" /> </b><br/><br/>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
 		</h:form>
-			
-		<h:form id="userRegForm">
-		<p:panel header="Messages - Using 'display' modes">
+		
+		<h:form id="userRegForm" style="width: 500px; padding-left: 10px;">
+		<p:panel header="Messages - Using 'display' modes" >
 			<h:panelGrid columns="3">
 				<p:outputLabel value="EmailId"/>
 				<p:inputText id="emailId" value="#{messagesController.user.emailId}" required="true" requiredMessage="Enter EmailId"/>
@@ -34,7 +34,7 @@
 		</h:form>
 		<br/><br/>
 		
-		<h:form id="form1">
+		<h:form id="form1" style="width: 500px; padding-left: 10px;">
 			<p:panel header="Messages with HTML content - Using 'escape' attribute">
 			<h:panelGrid columns="3">
 				<h:outputText value="FirstName" />
@@ -45,14 +45,14 @@
 				<p:inputText id="lName" value="#{messagesController.user.lastName}"/> 
 				<p:message for="lName" escape="true" />
 				
-				<p:commandButton value="Submit" actionListener="#{messagesController.handleForm1}" update="form1"/>
+				<p:commandButton value="Submit" actionListener="#{messagesController.addHtmlMessages}" update="form1"/>
 			</h:panelGrid>
 			</p:panel>
 		</h:form>
 		
 		<br/><br/>
 		
-		<h:form id="form2">
+		<h:form id="form2" style="width: 500px; padding-left: 10px;">
 			<p:panel header="Messages with Severity levels - Using 'severity' attribute">
 			<h:panelGrid columns="3">
 				<h:outputText value="FirstName" />
@@ -70,13 +70,14 @@
 		
 		<br/><br/>
 		
-		<p:growl id="growl" severity="warn, error, fatal"/>
-		<h:form>
+		<h:form style="width: 500px; padding-left: 10px;" id="form3">
 			<p:panel header="Messages with All Severity levels">
-			<p:messages autoUpdate="true"/>
-			<p:commandButton value="Show FacesMessages" actionListener="#{messagesController.addMultipleMsgs}" update=":growl"/>
+			<p:messages globalOnly="true" autoUpdate="true"/>
+			<p:commandButton value="Show FacesMessages" actionListener="#{messagesController.addMultipleMsgs}"/>
 			</p:panel>
 		</h:form>
-
+		
+		<br/><br/>
+		
 	</ui:define>
 </ui:composition>

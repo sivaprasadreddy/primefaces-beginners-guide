@@ -55,7 +55,7 @@ public class MessagesController
 	}
 	
 	
-	public void handleForm1()
+	public void addHtmlMessages()
 	{
 		FacesContext.getCurrentInstance().addMessage("form1:fName",
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "<font size='4'>FirstName : "+user.getFirstName()+"</font>", null));
@@ -69,11 +69,6 @@ public class MessagesController
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "FirstName : "+user.getFirstName(), null));
 		FacesContext.getCurrentInstance().addMessage("form2:ulName",
 				new FacesMessage(FacesMessage.SEVERITY_INFO, "LastName :"+user.getLastName(), null));
-	}
-	
-	public void checkEmailAvailability()
-	{
-		
 	}
 	
 	public void addInfoMsg()

@@ -28,11 +28,9 @@ public class BlockUIController
 	public void doRegister() 
 	{
 		//To simulate 5 seconds delay from server
-		try
-		{
+		try {
 			Thread.sleep(5000);
-		} catch (InterruptedException e)
-		{
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		System.out.println("Register User :"+registerUser);

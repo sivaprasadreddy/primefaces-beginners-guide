@@ -29,10 +29,10 @@ public class UserRepositoryImpl implements UserRepository
 	private JdbcTemplate jdbcTemplate;
 	
 	@Override
-	public User login(String userName, String pwd)
+	public User login(String emailId, String pwd)
 	{
-		String sql = "SELECT * FROM USERS  WHERE USERNAME=? AND PASSWORD=? AND (DISABLED IS NULL OR DISABLED=0)";
-		Object[] args = new Object[]{userName, pwd};
+		String sql = "SELECT * FROM USERS  WHERE EMAIL_ID=? AND PASSWORD=? AND (DISABLED IS NULL OR DISABLED=0)";
+		Object[] args = new Object[]{emailId, pwd};
 		List<User> users = jdbcTemplate.query(sql, args, new UserRowMapper());
 		if(users != null && !users.isEmpty()){
 			return users.get(0);
@@ -53,22 +53,10 @@ public class UserRepositoryImpl implements UserRepository
 	}
 
 	@Override
-	public User findByUserName(String userName)
-	{
-		String sql = "SELECT * FROM USERS  WHERE USERNAME=?";
-		Object[] args = new Object[]{userName};
-		List<User> users = jdbcTemplate.query(sql, args, new UserRowMapper());
-		if(users != null && !users.isEmpty()){
-			return users.get(0);
-		}
-		return null;
-	}
-
-	@Override
 	public User createUser(final User user)
 	{
-		final String sql = "INSERT INTO USERS (USERNAME,PASSWORD,FIRSTNAME,LASTNAME,EMAIL_ID,PHONE,DOB,DISABLED)"+
-				 	 		" VALUES (?,?,?,?,?,?,?,?);";
+		final String sql = "INSERT INTO USERS (EMAIL_ID,PASSWORD,FIRSTNAME,LASTNAME,PHONE,DOB,DISABLED)"+
+				 	 		" VALUES (?,?,?,?,?,?,?);";
 		
 		KeyHolder holder = new GeneratedKeyHolder();
 
@@ -77,14 +65,13 @@ public class UserRepositoryImpl implements UserRepository
                 public PreparedStatement createPreparedStatement(Connection connection)
                         throws SQLException {
                     PreparedStatement ps = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
-                    ps.setString(1, user.getUserName());
+                    ps.setString(1, user.getEmailId());
                     ps.setString(2, user.getPassword());
                     ps.setString(3, user.getFirstName());
                     ps.setString(4, user.getLastName());
-                    ps.setString(5, user.getEmailId());
-                    ps.setString(6, user.getPhone());
-                    ps.setDate(7, new java.sql.Date(user.getDob().getTime()));
-                    ps.setBoolean(8, user.getDisabled());
+                    ps.setString(5, user.getPhone());
+                    ps.setDate(6, new java.sql.Date(user.getDob().getTime()));
+                    ps.setBoolean(7, user.getDisabled());
                     return ps;
                 }
             }, holder);
@@ -95,9 +82,9 @@ public class UserRepositoryImpl implements UserRepository
 	}
 	
 	@Override
-	public int changePassword(String userName, String oldPwd, String newPwd) {
-		String sql = "UPDATE USERS SET PASSWORD=? WHERE USERNAME=? AND PASSWORD=?";
-		Object[] args = new Object[]{newPwd,userName,oldPwd};
+	public int changePassword(String emailId, String oldPwd, String newPwd) {
+		String sql = "UPDATE USERS SET PASSWORD=? WHERE EMAIL_ID=? AND PASSWORD=?";
+		Object[] args = new Object[]{newPwd,emailId,oldPwd};
 		return jdbcTemplate.update(sql, args);
 	}
 }
@@ -109,11 +96,10 @@ class UserRowMapper implements RowMapper<User>
 	{
 		User user = new User();
 		user.setId(rs.getInt("user_id"));
-		user.setUserName(rs.getString("userName"));
+		user.setEmailId(rs.getString("email_Id"));
 		user.setPassword(rs.getString("password"));
 		user.setFirstName(rs.getString("firstName"));
 		user.setLastName(rs.getString("lastName"));
-		user.setEmailId(rs.getString("email_Id"));
 		user.setPhone(rs.getString("phone"));
 		user.setDob(rs.getDate("dob"));
 		user.setDisabled(rs.getBoolean("disabled"));		

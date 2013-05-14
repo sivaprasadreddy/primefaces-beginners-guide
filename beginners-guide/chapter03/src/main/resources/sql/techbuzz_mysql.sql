@@ -16,17 +16,15 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users 
 (
   user_id int(11) NOT NULL AUTO_INCREMENT,
-  username varchar(255) NOT NULL,
+  email_id varchar(255) NOT NULL,
   password varchar(255) NOT NULL,
   firstName varchar(255) DEFAULT NULL,
-  lastName varchar(255) DEFAULT NULL,
-  email_id varchar(255) NOT NULL,
+  lastName varchar(255) DEFAULT NULL,  
   phone varchar(255) DEFAULT NULL,
   dob datetime DEFAULT NULL,
   disabled tinyint(1) NULL,
   PRIMARY KEY (user_id),
-  UNIQUE KEY email_id (email_id),
-  UNIQUE KEY username (username)
+  UNIQUE KEY email_id (email_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE roles (
@@ -91,11 +89,11 @@ CREATE TABLE ratings (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-insert  into users(user_id,username,password,firstName,lastName,email_id,phone,dob,disabled) 
+insert  into users(user_id,email_id,password,firstName,lastName,phone,dob,disabled) 
 values 
-(1,'admin','admin','Mr','Administrator','admin@gmail.com',NULL,NULL,NULL),
-(2,'test','test','Mr','Test','test@gmail.com',NULL,NULL,1),
-(3,'guest','secret','Mr','Guest','guest@gmail.com','922221222545','2013-04-29 00:00:00',0);
+(1,'admin@gmail.com','admin','Mr','Administrator',NULL,NULL,NULL),
+(2,'test@gmail.com','test','Mr','Test',NULL,NULL,1),
+(3,'guest@gmail.com','secret','Mr','Guest','922221222545','2013-04-29 00:00:00',0);
 
 insert  into tags(tag_id,label,value)
 values 
