@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/masterLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>Message and Messages Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+		<h:form id="userRegForm" style="width: 500px; padding-left: 10px;">
+		<p:panel header="Messages - Using 'display' modes" >
+			<h:panelGrid columns="3">
+				<p:outputLabel value="EmailId"/>
+				<p:inputText id="emailId" value="#{messagesController.user.emailId}" required="true" requiredMessage="Enter EmailId"/>
+				<p:message for="emailId"/>
+				
+				<h:outputText value="Password" />
+				<p:password id="password" value="#{messagesController.user.password}" required="true"  requiredMessage="Enter Password"/>
+				<p:message  for="password" display="text"/>
+				
+				<h:outputText value="FirstName" />
+				<p:inputText id="firstName" value="#{messagesController.user.firstName}" required="true" requiredMessage="Enter FirstName"/> 
+				<p:message for="firstName" display="icon" severity="warn, error" />
+				
+				<p:commandButton value="Submit" actionListener="#{messagesController.doRegister}" update="userRegForm"/>
+			</h:panelGrid>
+			</p:panel>
+		</h:form>
+		<br/><br/>
+		
+		<h:form id="form1" style="width: 500px; padding-left: 10px;">
+			<p:panel header="Messages with HTML content - Using 'escape' attribute">
+			<h:panelGrid columns="3">
+				<h:outputText value="FirstName" />
+				<p:inputText id="fName" value="#{messagesController.user.firstName}"/> 
+				<p:message for="fName" escape="false" />
+				
+				<h:outputText value="LastName" />
+				<p:inputText id="lName" value="#{messagesController.user.lastName}"/> 
+				<p:message for="lName" escape="true" />
+				
+				<p:commandButton value="Submit" actionListener="#{messagesController.addHtmlMessages}" update="form1"/>
+			</h:panelGrid>
+			</p:panel>
+		</h:form>
+		
+		<br/><br/>
+		
+		<h:form id="form2" style="width: 500px; padding-left: 10px;">
+			<p:panel header="Messages with Severity levels - Using 'severity' attribute">
+			<h:panelGrid columns="3">
+				<h:outputText value="FirstName" />
+				<p:inputText id="ufName" value="#{messagesController.user.firstName}"/> 
+				<p:message for="ufName" severity="info,warn,error" />
+				
+				<h:outputText value="LastName" />
+				<p:inputText id="ulName" value="#{messagesController.user.lastName}"/> 
+				<p:message for="ulName" severity="warn,error" />
+				
+				<p:commandButton value="Submit" actionListener="#{messagesController.handleForm2}" update="form2"/>
+			</h:panelGrid>
+			</p:panel>
+		</h:form>
+		
+		<br/><br/>
+		
+		<h:form style="width: 500px; padding-left: 10px;" id="form3">
+			<p:panel header="Messages with All Severity levels">
+			<p:messages globalOnly="true" autoUpdate="true"/>
+			<p:commandButton value="Show FacesMessages" actionListener="#{messagesController.addMultipleMsgs}"/>
+			</p:panel>
+		</h:form>
+		
+		<br/><br/>
+		
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/masterLayout.xhtml">
+
+	<ui:define name="head">
+		<title>JQuery Selector API</title>
+	</ui:define>
+	<ui:define name="bodyContent">
+		<h2>JQuery Selector API</h2>		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+		<h:form id="loginForm" styleClass="myform" style="width: 500px;">
+			<p:panel header="Login Form">
+			<p:messages/>
+			<h:panelGrid columns="2">
+				<h:outputText value="EmailId:" />
+				<p:inputText value="#{jQuerySelectorController.user.emailId}" required="true" label="EmailId"/>
+				
+				<h:outputText value="Password:" />
+				<p:password value="#{jQuerySelectorController.user.password}" required="true" label="Password"/>
+				
+				<p:commandButton value="Update Form" actionListener="#{jQuerySelectorController.doLogin}" update="@(#loginForm)"/>
+				<p:commandButton value="Update Fields" actionListener="#{jQuerySelectorController.doLogin}" process="@(:input)" update="@(:input)"/>
+				
+			</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+		
+		
+	</ui:define>
+</ui:composition>

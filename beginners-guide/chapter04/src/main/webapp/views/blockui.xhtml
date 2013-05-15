@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/masterLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>BlockUI Component</h2>
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+		<p:growl autoUpdate="true"/>
+		
+		<h:form id="form1" style="width: 500px;">
+			<p:panel header="BlockUI">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="EmailId" />
+				<p:inputText value="#{blockUIController.registerUser.emailId}"/>
+				
+				<h:outputLabel value="Password" />
+				<p:password value="#{blockUIController.registerUser.password}"/>
+				
+				<p:commandButton id="submitBtn" value="Register" actionListener="#{blockUIController.doRegister}"/>
+			</h:panelGrid>
+			</p:panel>
+			<p:blockUI block="form1" trigger="submitBtn"/>
+		</h:form>
+		
+		<br/><br/>
+		
+		<h:form id="regForm" style="width: 500px;">
+			<p:panel header="BlockUI with Custom Content using Client API">
+			
+			<h:panelGrid columns="2">
+				<p:outputLabel for="emailId" value="EmailId" />
+				<p:inputText id="emailId" value="#{blockUIController.registerUser.emailId}" required="true"/>
+				
+				<p:outputLabel for="pwd" value="Password" />
+				<p:password id="pwd" value="#{blockUIController.registerUser.password}" required="true"/>
+				
+				<p:commandButton id="submitBtn" value="Register" action="#{blockUIController.doRegister}"
+					onclick="bui.show()" oncomplete="bui.hide()"/>
+			</h:panelGrid>
+			</p:panel>
+			
+			<p:blockUI block="regForm" widgetVar="bui">
+				Processing<br />
+				<p:graphicImage value="/resources/images/ajax-loader.gif"/>
+			</p:blockUI>
+
+		</h:form>
+
+	</ui:define>
+</ui:composition>
