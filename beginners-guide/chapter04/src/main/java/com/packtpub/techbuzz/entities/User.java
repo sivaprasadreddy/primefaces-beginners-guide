@@ -2,7 +2,8 @@ package com.packtpub.techbuzz.entities;
 
 import java.io.Serializable;
 import java.util.Date;
-
+import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -13,15 +14,22 @@ public class User implements Serializable
     private static final long serialVersionUID = 1L;
     
     private Integer id;
-    private String userName;
+    private String emailId;
     private String password;
     private String firstName;
 	private String lastName;
-    private String emailId;
+	private String gender;
     private String phone;
 	private Date dob;
     private boolean disabled;
+    private String bio;
     
+    private List<Role> roles;
+    private List<Vote> votes;
+    private List<Rating> ratings;
+    private List<Post> posts;
+    private Set<Comment> comments;
+
     public User() {
     }
 
@@ -29,43 +37,20 @@ public class User implements Serializable
         this.id = id;
     }
 
-    public User(Integer id, String userName, String password, String firstName, String emailId,boolean disabled)
+    public User(Integer id, String emailId, String password, String firstName, boolean disabled)
 	{
 		this.id = id;
-		this.userName = userName;
+		this.emailId = emailId;
 		this.password = password;
 		this.firstName = firstName;
-		this.emailId = emailId;
 	}
     
-    public User(Integer id, String userName, String password, 
-    		String firstName, String lastName, String phone, Date dob, String emailId, boolean disabled)
-	{
-		this.id = id;
-		this.userName = userName;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phone = phone;
-		this.dob = dob;
-		this.emailId = emailId;
-		this.disabled = disabled;
-	}
-
 	public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getPassword() {
@@ -105,7 +90,13 @@ public class User implements Serializable
 	{
 		this.phone = phone;
 	}
+	public String getGender() {
+		return gender;
+	}
 
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public Date getDob()
 	{
 		return dob;
@@ -130,6 +121,66 @@ public class User implements Serializable
 
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
+    }
+
+    public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
+    public List<Vote> getVotes() {
+        return votes;
+    }
+
+    public void setVotes(List<Vote> votes) {
+        this.votes = votes;
+    }
+    
+    public List<Rating> getRatings()
+	{
+		return ratings;
+	}
+
+	public void setRatings(List<Rating> ratings)
+	{
+		this.ratings = ratings;
+	}
+
+	public List<Post> getPosts()
+	{
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts)
+	{
+		this.posts = posts;
+	}
+
+	public List<Post> getLinks() {
+        return posts;
+    }
+
+    public void setLinks(List<Post> posts) {
+        this.posts = posts;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
     
 }

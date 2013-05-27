@@ -3,6 +3,8 @@
  */
 package com.packtpub.techbuzz.repositories;
 
+import java.util.List;
+
 import com.packtpub.techbuzz.entities.User;
 
 
@@ -20,4 +22,8 @@ public interface UserRepository
 	User createUser(User user);
 
 	int changePassword(String emailId, String oldPwd, String newPwd);
+
+	User update(User user);
+
+	List<User> findAllUsers();
 }

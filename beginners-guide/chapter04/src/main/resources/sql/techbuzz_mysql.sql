@@ -19,10 +19,12 @@ CREATE TABLE users
   email_id varchar(255) NOT NULL,
   password varchar(255) NOT NULL,
   firstName varchar(255) DEFAULT NULL,
-  lastName varchar(255) DEFAULT NULL,  
+  lastName varchar(255) DEFAULT NULL,
+  gender varchar(10) DEFAULT NULL,
   phone varchar(255) DEFAULT NULL,
   dob datetime DEFAULT NULL,
   disabled tinyint(1) NULL,
+  bio LONGTEXT NULL,
   PRIMARY KEY (user_id),
   UNIQUE KEY email_id (email_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -46,6 +48,7 @@ CREATE TABLE tags (
   tag_id int(11) NOT NULL AUTO_INCREMENT,
   label varchar(45) NOT NULL,
   value varchar(45) NOT NULL,
+  description varchar(256) DEFAULT NULL,
   PRIMARY KEY (tag_id),
   UNIQUE KEY label (label)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -89,20 +92,25 @@ CREATE TABLE ratings (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-insert  into users(user_id,email_id,password,firstName,lastName,phone,dob,disabled) 
+insert  into users(user_id,email_id,password,firstName,lastName,gender,phone,dob,disabled,bio) 
 values 
-(1,'admin@gmail.com','admin','Mr','Administrator',NULL,NULL,NULL),
-(2,'test@gmail.com','test','Mr','Test',NULL,NULL,1),
-(3,'guest@gmail.com','secret','Mr','Guest','922221222545','2013-04-29 00:00:00',0);
+(1,'admin@gmail.com','admin','Mr','Administrator','Male',NULL,NULL,NULL,'I am the THE admin'),
+(2,'test@gmail.com','test','Mr','Test','Female',NULL,NULL,1,'I am a tester'),
+(3,'guest@gmail.com','secret','Mr','Guest','Female','922221222545','2013-04-29 00:00:00',0,'Hey, this is Mr Guest');
 
-insert  into tags(tag_id,label,value)
+insert  into tags(tag_id,label,value, description)
 values 
-(1,'JavaSE','java-se'),
-(2,'JavaEE','java-ee'),
-(3,'Spring','spring'),
-(4,'SpringMVC','springmvc'),
-(5,'Hibernate','hibernate'),
-(6,'Struts','struts');
+(1,'JavaSE','java-se','Java Programming Language'),
+(2,'JavaEE','java-ee','Java Enterproze Edition'),
+(3,'Spring','spring','Spring Framework'),
+(4,'SpringMVC','springmvc','SpringMVC framework'),
+(5,'Hibernate','hibernate','Hibernate ORM Framework'),
+(6,'Struts','struts','Struts Framework'),
+(7,'JSF','jsf','JSF Framework'),
+(8,'PrimeFaces','primefaces','PrimeFaces UI Component library for JSF'),
+(9,'jQuery','jquery','jQuery: JavaScript framework'),
+(10,'Perl','perl','Perl Programming Language'),
+(11,'Python','python','Python Programming Language');
 
 
 insert  into posts(post_id,created_on,description,title,posted_by) 

@@ -37,14 +37,16 @@ public class AppConfig
 	private Environment env;
 
    	@Bean
-   	public DataSource dataSource(){
+   	public DataSource dataSource()
+   	{
       DriverManagerDataSource dataSource = new DriverManagerDataSource();
       dataSource.setDriverClassName(env.resolvePlaceholders("${jdbc.driverClassName}"));
       dataSource.setUrl(env.resolvePlaceholders("${jdbc.url}"));
       dataSource.setUsername(env.resolvePlaceholders("${jdbc.username}"));
       dataSource.setPassword(env.resolvePlaceholders("${jdbc.password}"));
       return dataSource;
-   }
+    }
+   	
    	@Bean
    	public JdbcTemplate jdbcTemplate()
 	{

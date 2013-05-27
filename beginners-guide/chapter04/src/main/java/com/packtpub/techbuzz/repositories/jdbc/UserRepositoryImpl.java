@@ -25,6 +25,7 @@ import com.packtpub.techbuzz.repositories.UserRepository;
 @Repository
 public class UserRepositoryImpl implements UserRepository
 {
+	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
@@ -55,8 +56,8 @@ public class UserRepositoryImpl implements UserRepository
 	@Override
 	public User createUser(final User user)
 	{
-		final String sql = "INSERT INTO USERS (EMAIL_ID,PASSWORD,FIRSTNAME,LASTNAME,PHONE,DOB,DISABLED)"+
-				 	 		" VALUES (?,?,?,?,?,?,?);";
+		final String sql = "INSERT INTO USERS (EMAIL_ID,PASSWORD,FIRSTNAME,LASTNAME,PHONE,DOB,DISABLED,BIO)"+
+				 	 		" VALUES (?,?,?,?,?,?,?,?);";
 		
 		KeyHolder holder = new GeneratedKeyHolder();
 
@@ -70,8 +71,14 @@ public class UserRepositoryImpl implements UserRepository
                     ps.setString(3, user.getFirstName());
                     ps.setString(4, user.getLastName());
                     ps.setString(5, user.getPhone());
-                    ps.setDate(6, new java.sql.Date(user.getDob().getTime()));
+                    if(user.getDob() != null)
+                    {
+                    	ps.setDate(6, new java.sql.Date(user.getDob().getTime()));
+                    }else {
+                    	ps.setDate(6, null);
+                    }
                     ps.setBoolean(7, user.getDisabled());
+                    ps.setString(8, user.getBio());
                     return ps;
                 }
             }, holder);
@@ -86,6 +93,31 @@ public class UserRepositoryImpl implements UserRepository
 		String sql = "UPDATE USERS SET PASSWORD=? WHERE EMAIL_ID=? AND PASSWORD=?";
 		Object[] args = new Object[]{newPwd,emailId,oldPwd};
 		return jdbcTemplate.update(sql, args);
+	}
+
+	@Override
+	public User update(User user) {
+		final String sql = "UPDATE USERS SET FIRSTNAME=?,LASTNAME=?,PHONE=?,DOB=?,DISABLED=?, BIO=? WHERE EMAIL_ID=?";
+		
+		Object[] args = {
+				user.getFirstName(),
+				user.getLastName(),
+				user.getPhone(),
+				user.getDob(),
+				user.getDisabled(),
+				user.getBio(),
+				user.getEmailId()
+		};
+		jdbcTemplate.update(sql, args);
+		
+		return user;
+	}
+
+	@Override
+	public List<User> findAllUsers() {
+		String sql = "SELECT * FROM USERS";
+		List<User> users = jdbcTemplate.query(sql, new UserRowMapper());
+		return users;
 	}
 }
 
@@ -102,7 +134,8 @@ class UserRowMapper implements RowMapper<User>
 		user.setLastName(rs.getString("lastName"));
 		user.setPhone(rs.getString("phone"));
 		user.setDob(rs.getDate("dob"));
-		user.setDisabled(rs.getBoolean("disabled"));		
+		user.setDisabled(rs.getBoolean("disabled"));
+		user.setBio(rs.getString("bio"));
 		return user;
 	}
 	

@@ -21,12 +21,10 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
-    <!-- 
-    <context-param>
+    <!-- <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>afterwork</param-value>
-    </context-param>
-     -->
+    </context-param> -->
 	
 	<!-- Java-based annotation-driven Spring container definition -->
 	<context-param>
@@ -47,7 +45,17 @@
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
-
+	
+	<filter>
+		<filter-name>AuthenticationFilter</filter-name>
+		<filter-class>com.packtpub.techbuzz.filters.AuthenticationFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>AuthenticationFilter</filter-name>
+		<url-pattern>*.jsf</url-pattern>
+		<url-pattern>*.xhtml</url-pattern>
+	</filter-mapping>
+	
     <!-- Session timeout -->
     <session-config>
         <session-timeout>60</session-timeout>
