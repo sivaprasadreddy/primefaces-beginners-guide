@@ -7,11 +7,12 @@
 
 	<ui:define name="bodyContent">
 	
-		  
+		<p:growl globalOnly="true" autoUpdate="true"/>
+		 
 		<h:form id="loginForm">
 			
 			<p:panel header="User Login Form" style="width:300px; float:right !important;margin:0px 0px 3px 0px;">
-			<p:messages globalOnly="true"/>
+			
 			<h:panelGrid columns="3">
 			    <h:outputLabel for="" value="EmailId: *" />
 			    <p:inputText id="emailId" value="#{userController.loginUser.emailId}" label="EmailId" required="true"/>
@@ -33,7 +34,7 @@
 			<h:form id="registrationForm">
 				
 				<p:panel header="Registration Form" style="width: 400px;">
-				<p:messages />
+				<p:messages severity="error"/>
 				<h:panelGrid columns="2">
 					<p:outputLabel value="EmailId:*"/>
 					<p:inputText id="emailId" value="#{userController.registerUser.emailId}" required="true" label="EmailId">

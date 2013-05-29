@@ -8,6 +8,7 @@ import java.util.List;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
+import org.primefaces.context.RequestContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -119,6 +120,7 @@ public class UserController implements Serializable
 			userService.register(registerUser);
 			JSFUtils.addInfoMsg("User Registered successfully");
 			registerUser = new User();
+			RequestContext.getCurrentInstance().execute("registrationDlg.hide()");
 		} catch (Exception e)
 		{
 			JSFUtils.addErrorMsg("registrationForm",e.getMessage());
@@ -144,9 +146,9 @@ public class UserController implements Serializable
 		{
 			boolean success = userService.changePassword(loginUser.getEmailId(), changePwd.getCurrentPwd(), changePwd.getNewPwd());
 			if(!success){
-				JSFUtils.addErrorMsg("Current password is incorrect");
+				JSFUtils.addErrorMsg("changePwdForm","Current password is incorrect");
 			}else {
-				JSFUtils.addInfoMsg("Updated successfully");
+				JSFUtils.addInfoMsg("changePwdForm","Updated successfully");
 			}
 		} catch (Exception e)
 		{

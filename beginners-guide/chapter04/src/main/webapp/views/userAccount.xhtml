@@ -9,8 +9,6 @@
 		
 		<p:growl autoUpdate="true"/>
 		
-		
-				
 		<p:tabView id="tabs">
 			<p:tab id="acctForm" title="User Details">
 			
@@ -53,9 +51,10 @@
 				
 				</h:form>
             </p:tab>
+            
             <p:tab id="changePwd" title="Change Password">
             	<h:form id="changePwdForm">
-            		 <p:messages id="messages" showDetail="true" autoUpdate="true"/>  
+            		<p:messages id="messages" severity="error" showDetail="true" autoUpdate="true"/>  
 					<p:panel header="Change Password">
 					<h:panelGrid columns="2">
 						
@@ -82,5 +81,6 @@
 				</h:form>
             </p:tab>
             </p:tabView>
+            
 	</ui:define>
 </ui:composition>

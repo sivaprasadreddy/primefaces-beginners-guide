@@ -2,13 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.sivalabs</groupId>
-  <artifactId>techbuzz</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <groupId>com.packtpub.pfbg</groupId>
+  <artifactId>chapter04</artifactId>
+  <version>0.0.1</version>
   <packaging>war</packaging>
-
-  <name>techbuzz</name>
-  <url>http://maven.apache.org</url>
+  
+  <name>PrimeFaces Beginner's Guide Chapter 04</name>
 
   <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -140,19 +139,7 @@
     
     
   <dependencies>
-		<!-- 
-        <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-api</artifactId>
-            <version>${jsf.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.faces</groupId>
-            <artifactId>jsf-impl</artifactId>
-            <version>${jsf.version}</version>
-        </dependency>
-		 -->
-        
+		        
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
