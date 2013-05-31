@@ -45,6 +45,23 @@ public class User implements Serializable
 		this.firstName = firstName;
 	}
     
+    @Override
+	public boolean equals(Object obj) {
+		if(obj == null)
+			return false;
+		if(!(obj instanceof User))
+			return false;
+		
+		return ((User)obj).getId() == this.id;
+	}
+
+	@Override
+	public int hashCode() {
+		return (id != null)
+		        ? (this.getClass().hashCode() + id.hashCode())
+		        : super.hashCode();
+	}
+    
 	public Integer getId() {
         return id;
     }

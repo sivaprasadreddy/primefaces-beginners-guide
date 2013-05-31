@@ -45,7 +45,7 @@
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
-	
+	<!-- 
 	<filter>
 		<filter-name>AuthenticationFilter</filter-name>
 		<filter-class>com.packtpub.techbuzz.filters.AuthenticationFilter</filter-class>
@@ -55,7 +55,7 @@
 		<url-pattern>*.jsf</url-pattern>
 		<url-pattern>*.xhtml</url-pattern>
 	</filter-mapping>
-	
+	 -->
     <!-- Session timeout -->
     <session-config>
         <session-timeout>60</session-timeout>
