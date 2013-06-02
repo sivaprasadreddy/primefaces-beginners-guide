@@ -5,7 +5,6 @@
   <artifactId>chapter02</artifactId>
   <packaging>war</packaging>
   <version>0.0.1</version>
-  <name>chapter02</name>
   
   <description>PrimeFaces Beginners Guide Chapter 02.</description>
   

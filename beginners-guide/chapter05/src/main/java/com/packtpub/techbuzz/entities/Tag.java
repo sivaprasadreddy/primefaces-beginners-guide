@@ -36,7 +36,25 @@ public class Tag implements Serializable
 		this.value = value;
 		this.description = description;
 	}
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null)
+			return false;
+		if(!(obj instanceof Tag))
+			return false;
+		
+		return ((Tag)obj).getId() == this.id;
+	}
 
+	@Override
+	public int hashCode() {
+		if(this.id != null)
+	    {
+			int hash = 1;
+			return hash * 31 + id.hashCode();
+	    }
+		return 1;
+	}
 	public Integer getId() {
         return id;
     }

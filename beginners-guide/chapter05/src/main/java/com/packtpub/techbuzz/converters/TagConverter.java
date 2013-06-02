@@ -52,9 +52,10 @@ public class TagConverter implements Converter
 	{
 		if (value == null || value.equals("")) {  
             return "";  
-        } else {  
+        } else if(value instanceof Tag){  
             return String.valueOf(((Tag) value).getId());
         } 
+		return "";
 	}
 
 }
