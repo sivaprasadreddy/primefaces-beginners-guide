@@ -18,13 +18,17 @@
 		<h:form>
 			<p:panel header="SelectCheckboxMenu" style="width: 400px; margin: 0 auto;">
 			<p:messages autoUpdate="true"/>  
-			<h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="3">
-		  		
+			<h:panelGrid style="margin-bottom:5px" cellpadding="3">
+		  		<p:selectCheckboxMenu value="#{selectionController.selectedSearchInOptions}" 
+		  				label="Search In" filter="true" filterText="Filter" filterMatchMode="startsWith" 
+		  				panelStyle="width:220px">  
+			        <f:selectItems value="#{selectionController.searchInOptions}" />  
+			    </p:selectCheckboxMenu>
 
 			</h:panelGrid>  
-			
-			<h:panelGrid columns="1" id="display">  
-				<h:outputText value="Value : #{selectionController.value1}" /> 
+			<p:commandButton value="Submit" update="display"/>
+			<h:panelGrid id="display">  
+				<h:outputText value="Value : #{selectionController.selectedSearchInOptions}" /> 
 			</h:panelGrid>
 			</p:panel>
 		</h:form>
