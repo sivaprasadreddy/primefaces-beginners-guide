@@ -53,7 +53,7 @@ public class Tag implements Serializable
 			int hash = 1;
 			return hash * 31 + id.hashCode();
 	    }
-		return 1;
+		return super.hashCode();
 	}
 	public Integer getId() {
         return id;

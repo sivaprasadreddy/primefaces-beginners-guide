@@ -10,25 +10,50 @@
 		<h2>SelectManyMenu Component</h2>
 		
 		<h:form>
-			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b>
+			<br/><br/>
 		</h:form>
 		
-	    <p:growl id="msg" autoUpdate="true"/>  
-	    
-		<h:form>
-			<p:panel header="SelectManyMenu" style="width: 400px; margin: 0 auto;">
-			<p:messages autoUpdate="true"/>  
-			<h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="3">
-		  		
+		<h:form id="form">
 
-			</h:panelGrid>  
-			
-			<h:panelGrid columns="1" id="display">  
-				<h:outputText value="Value : #{selectionController.value1}" /> 
-			</h:panelGrid>
-			</p:panel>
-		</h:form>
- 
+    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
+                 columnClasses="label, column">
+
+        <h:outputText value="Basic" />
+        <p:selectManyMenu id="basic" value="#{sampleController.selectedOptions}">
+            <f:selectItem itemLabel="Option 1" itemValue="Option 1" />
+            <f:selectItem itemLabel="Option 2" itemValue="Option 2" />
+            <f:selectItem itemLabel="Option 3" itemValue="Option 3" />
+        </p:selectManyMenu>
+
+        <h:outputText value="Advanced" />
+        <p:selectManyMenu id="scroll" value="#{sampleController.selectedUsers}" 
+        		converter="#{userConverter}" style="width:150px;height:200px" var="u" showCheckbox="true">
+            <f:selectItems value="#{sampleController.users}" var="user" itemLabel="#{user.emailId}" itemValue="#{user}" />
+
+            <p:column>
+                #{u.firstName} - #{u.lastName}
+            </p:column>
+        </p:selectManyMenu>
+
+    </h:panelGrid>
+
+    <p:commandButton id="btn" value="Submit" update="display" oncomplete="dlg.show()" />
+
+    <p:dialog id="dialog" header="Selected Values" modal="true" showEffect="fade" hideEffect="fade" widgetVar="dlg">
+        <p:outputPanel id="display">
+            <p:dataList id="selectedOptions" value="#{sampleController.selectedOptions}" var="option">
+                #{option}
+            </p:dataList>
+
+            <p:dataList id="selectedUsers" value="#{sampleController.selectedUsers}" var="user">
+                #{user.firstName} - #{user.lastName}
+            </p:dataList>
+        </p:outputPanel>
+    </p:dialog>
+
+</h:form>
+		
 		<br/><br/>
 		
 	</ui:define>

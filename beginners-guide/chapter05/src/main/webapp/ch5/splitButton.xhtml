@@ -10,25 +10,22 @@
 		<h2>SplitButton Component</h2>
 		
 		<h:form>
-			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b>
+			<br/><br/>
 		</h:form>
 		
-	    <p:growl id="msg" autoUpdate="true"/>  
-	    
-		<h:form>
-			<p:panel header="SplitButton" style="width: 400px; margin: 0 auto;">
-			<p:messages autoUpdate="true"/>  
-			<h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="3">
-		  		
-
-			</h:panelGrid>  
-			
-			<h:panelGrid columns="1" id="display">  
-				<h:outputText value="Value : #{selectionController.value1}" /> 
-			</h:panelGrid>
-			</p:panel>
+		<h:form>  
+  
+		    <p:growl id="messages"/>  
+		  
+		    <p:splitButton value="Save" actionListener="#{sampleController.save}" update="messages" icon="ui-icon-disk">  
+		        <p:menuitem value="Update" actionListener="#{sampleController.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>  
+		        <p:menuitem value="Delete" actionListener="#{sampleController.delete}" ajax="false" icon="ui-icon-close"/>  
+		        <p:separator />  
+		        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink"/>  
+		    </p:splitButton>  
+		  
 		</h:form>
- 
 		<br/><br/>
 		
 	</ui:define>

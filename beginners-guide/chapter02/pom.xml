@@ -6,7 +6,7 @@
   <packaging>war</packaging>
   <version>0.0.1</version>
   
-  <description>PrimeFaces Beginners Guide Chapter 02.</description>
+  <name>PrimeFaces Beginners Guide Chapter 02.</name>
   
   <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

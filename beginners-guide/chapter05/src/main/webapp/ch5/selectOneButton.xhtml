@@ -13,23 +13,20 @@
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
 		</h:form>
 		
-	    <p:growl id="msg" autoUpdate="true"/>  
-	    
 		<h:form>
 			<p:panel header="SelectOneButton" style="width: 400px; margin: 0 auto;">
-			<p:messages autoUpdate="true"/>  
-			<h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="3">
-		  		
-
+			<h:panelGrid  style="margin-bottom:5px" cellpadding="3">
+		  		<p:selectOneButton value="#{selectionController.number}">
+		  			<f:selectItem itemLabel="One" itemValue="1"/>
+		  			<f:selectItem itemLabel="Two" itemValue="2"/>
+		  			<f:selectItem itemLabel="Three" itemValue="3"/>
+		  		</p:selectOneButton>
 			</h:panelGrid>  
-			
-			<h:panelGrid columns="1" id="display">  
-				<h:outputText value="Value : #{selectionController.value1}" /> 
-			</h:panelGrid>
+  
+    		<p:commandButton value="Submit" update="display"/>  
+			<h:outputText id="display" value="  Value : #{selectionController.number}" /> 
 			</p:panel>
 		</h:form>
  
-		<br/><br/>
-		
 	</ui:define>
 </ui:composition>
