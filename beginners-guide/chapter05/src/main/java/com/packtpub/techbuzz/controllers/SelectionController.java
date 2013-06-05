@@ -44,7 +44,11 @@ public class SelectionController
 	private Tag selectedTag;
 	
 	private boolean value1;  
-    private boolean value2;  
+    private boolean value2;
+    private String number;
+    private List<String> numbers;
+    private List<String> searchInOptions;
+    private List<String> selectedSearchInOptions;
   
     public SelectionController() 
     {
@@ -73,6 +77,12 @@ public class SelectionController
     	servers.add("Glassfish");
     	servers.add("JBoss");
     	
+    	searchInOptions= new ArrayList<String>();
+    	searchInOptions.add("Posts");
+    	searchInOptions.add("Comments");
+    	searchInOptions.add("Tags");
+    	searchInOptions.add("Users");
+    	
 	}
     
     public boolean isValue1() {  
@@ -91,7 +101,47 @@ public class SelectionController
         this.value2 = value2;  
     }  
     
-    public String getGender() {
+    public String getNumber()
+	{
+		return number;
+	}
+
+	public void setNumber(String number)
+	{
+		this.number = number;
+	}
+	
+	public List<String> getNumbers()
+	{
+		return numbers;
+	}
+
+	public void setNumbers(List<String> numbers)
+	{
+		this.numbers = numbers;
+	}
+
+	public List<String> getSearchInOptions()
+	{
+		return searchInOptions;
+	}
+
+	public void setSearchInOptions(List<String> searchInOptions)
+	{
+		this.searchInOptions = searchInOptions;
+	}
+
+	public List<String> getSelectedSearchInOptions()
+	{
+		return selectedSearchInOptions;
+	}
+
+	public void setSelectedSearchInOptions(List<String> selectedSearchInOptions)
+	{
+		this.selectedSearchInOptions = selectedSearchInOptions;
+	}
+
+	public String getGender() {
 		return gender;
 	}
 
