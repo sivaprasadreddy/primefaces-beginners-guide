@@ -36,6 +36,13 @@ public class Tag implements Serializable
 		this.value = value;
 		this.description = description;
 	}
+	
+	@Override
+	public String toString()
+	{
+		return this.label;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if(obj == null)

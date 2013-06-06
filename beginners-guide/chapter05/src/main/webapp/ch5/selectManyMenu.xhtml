@@ -14,45 +14,39 @@
 			<br/><br/>
 		</h:form>
 		
-		<h:form id="form">
-
-    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5"
-                 columnClasses="label, column">
-
-        <h:outputText value="Basic" />
-        <p:selectManyMenu id="basic" value="#{sampleController.selectedOptions}">
-            <f:selectItem itemLabel="Option 1" itemValue="Option 1" />
-            <f:selectItem itemLabel="Option 2" itemValue="Option 2" />
-            <f:selectItem itemLabel="Option 3" itemValue="Option 3" />
-        </p:selectManyMenu>
-
-        <h:outputText value="Advanced" />
-        <p:selectManyMenu id="scroll" value="#{sampleController.selectedUsers}" 
-        		converter="#{userConverter}" style="width:150px;height:200px" var="u" showCheckbox="true">
-            <f:selectItems value="#{sampleController.users}" var="user" itemLabel="#{user.emailId}" itemValue="#{user}" />
-
-            <p:column>
-                #{u.firstName} - #{u.lastName}
-            </p:column>
-        </p:selectManyMenu>
-
-    </h:panelGrid>
-
-    <p:commandButton id="btn" value="Submit" update="display" oncomplete="dlg.show()" />
-
-    <p:dialog id="dialog" header="Selected Values" modal="true" showEffect="fade" hideEffect="fade" widgetVar="dlg">
-        <p:outputPanel id="display">
-            <p:dataList id="selectedOptions" value="#{sampleController.selectedOptions}" var="option">
-                #{option}
-            </p:dataList>
-
-            <p:dataList id="selectedUsers" value="#{sampleController.selectedUsers}" var="user">
-                #{user.firstName} - #{user.lastName}
-            </p:dataList>
-        </p:outputPanel>
-    </p:dialog>
-
-</h:form>
+		<h:form>
+			<p:panel header="SelectManyMenu" style="width: 400px; margin: 0 auto;">
+		    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+		
+		        <h:outputText value="Basic Usage: " />
+		        <p:selectManyMenu  value="#{selectionController.numbers}">
+		            <f:selectItem itemLabel="One" itemValue="1" />
+		            <f:selectItem itemLabel="Two" itemValue="2" />
+		            <f:selectItem itemLabel="Three" itemValue="3" />
+		        </p:selectManyMenu >
+		
+							
+				<h:outputText value="Pojo: " />  
+		        <p:selectManyMenu value="#{selectionController.selectedTagsFromPojos}" var="t" showCheckbox="true" converter="#{tagConverter}">  
+		            <f:selectItems value="#{selectionController.tagPojos}" var="tag" 
+		            itemLabel="#{tag.label}" itemValue="#{tag}"/>  
+		            <p:column>  
+		                #{t.label} - #{t.value}  
+		            </p:column>
+		        </p:selectManyMenu>
+        		
+        		
+        
+		    </h:panelGrid>
+		
+		    <p:commandButton value="Submit" update="display" />  
+		    <h:panelGrid id="display">
+		    	<h:outputText value="Basic: #{selectionController.numbers}" />  
+		    	<h:outputText value="POJO: #{selectionController.selectedTagsFromPojos}" rendered="#{not empty selectionController.selectedTagsFromPojos}"/>
+		    </h:panelGrid>
+			
+			</p:panel>
+		</h:form>
 		
 		<br/><br/>
 		

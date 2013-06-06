@@ -16,14 +16,12 @@
 		
 		<h:form>  
   
-		    <p:growl id="messages"/>  
+		    <p:growl id="messages" autoUpdate="true"/>  
 		  
-		    <p:splitButton value="Save" actionListener="#{sampleController.save}" update="messages" icon="ui-icon-disk">  
-		        <p:menuitem value="Update" actionListener="#{sampleController.update}" update="messages" icon="ui-icon-arrowrefresh-1-w"/>  
-		        <p:menuitem value="Delete" actionListener="#{sampleController.delete}" ajax="false" icon="ui-icon-close"/>  
-		        <p:separator />  
-		        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink"/>  
-		    </p:splitButton>  
+		    <p:splitButton value="My Account" actionListener="#{selectionController.showAccount}" >  
+		        <p:menuitem value="Change Password" url="changePwd.jsf" />  
+		        <p:menuitem value="Logout" actionListener="#{selectionController.logout}"/>  
+		    </p:splitButton>
 		  
 		</h:form>
 		<br/><br/>

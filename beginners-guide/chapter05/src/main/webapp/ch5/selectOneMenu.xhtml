@@ -15,64 +15,57 @@
 		</h:form>
 		
 		<h:form>
-
+			<p:panel header="SelectOneMenu" style="width: 400px; margin: 0 auto;">
 		    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 		
 		        <h:outputText value="Basic Usage: " />
-		        <p:selectOneMenu value="#{sampleController.number}">
+		        <p:selectOneMenu value="#{selectionController.number}">
 		            <f:selectItem itemLabel="Select One" itemValue="" />
-		            <f:selectItem itemLabel="Option 1" itemValue="1" />
-		            <f:selectItem itemLabel="Option 2" itemValue="2" />
-		            <f:selectItem itemLabel="Option 3" itemValue="3" />
+		            <f:selectItem itemLabel="One" itemValue="1" />
+		            <f:selectItem itemLabel="Two" itemValue="2" />
+		            <f:selectItem itemLabel="Three" itemValue="3" />
 		        </p:selectOneMenu>
 		
 		        <h:outputText value="Grouping: " />
-		        <p:selectOneMenu value="#{sampleController.car}">
+		        <p:selectOneMenu value="#{selectionController.selectedTagItem}">
 		            <f:selectItem itemLabel="Select One" itemValue="" />
-		            <f:selectItems value="#{sampleController.cars}" />
+		            <f:selectItems value="#{selectionController.tagItems}" />
 		        </p:selectOneMenu>
 		
-		        <h:outputText value="Editable: " />
-		        <p:selectOneMenu value="#{sampleController.city}" effect="fold" editable="true">
-		            <f:selectItem itemLabel="Select One" itemValue="" />
-		            <f:selectItems value="#{sampleController.cities}" />
+				<h:outputText value="Editable: " />
+		        <p:selectOneMenu value="#{selectionController.number}" editable="true">
+		        	<f:selectItem itemLabel="Select One" itemValue="" />
+		            <f:selectItem itemLabel="One" itemValue="1" />
+		            <f:selectItem itemLabel="Two" itemValue="2" />
+		            <f:selectItem itemLabel="Three" itemValue="3" />
 		        </p:selectOneMenu>
-		
-		        <h:outputText value="Pojo: " />
-		        <p:selectOneMenu value="#{sampleController.selectedUser1}" effect="fade" converter="#{userConverter}">
-		            <f:selectItem itemLabel="Select One" itemValue="" />
-		            <f:selectItems value="#{sampleController.users}" var="user" itemLabel="#{user.emailId}" itemValue="#{user}"/>
+				
+				<h:outputText value="Pojo: " />  
+		        <p:selectOneMenu value="#{selectionController.selectedTag}" effect="fade" converter="#{tagConverter}">  
+		            <f:selectItem itemLabel="Select One" itemValue="" />  
+		            <f:selectItems value="#{selectionController.tagPojos}" var="tag" itemLabel="#{tag.label}" itemValue="#{tag}"/>  
 		        </p:selectOneMenu>
-		
-		        <h:outputText value="Content with Filter:" />
-		        <p:selectOneMenu value="#{sampleController.selectedUser2}" converter="#{userConverter}" panelStyle="width:150px"
-		                         effect="fade" var="u" style="width:160px"  filter="true" filterMatchMode="startsWith">
-		            <f:selectItem itemLabel="Select One" itemValue="" />
-		            <f:selectItems value="#{sampleController.users}" var="user" itemLabel="#{user.emailId}" itemValue="#{user}"/>
-		
-		            <p:column>
-		                #{u.firstName} #{u.lastName}
-		            </p:column>
+        		
+        		<h:outputText value="Content with Filter:" />  
+		        <p:selectOneMenu value="#{selectionController.selectedTag1}" converter="#{tagConverter}" 
+		        				 panelStyle="width:150px"  effect="fade" style="width:160px"  
+		        				 filter="true" filterMatchMode="startsWith">  
+		            <f:selectItem itemLabel="Select One" itemValue="" />  
+		            <f:selectItems value="#{selectionController.tagPojos}" var="tag" itemLabel="#{tag.label}" itemValue="#{tag}"/>  
 		        </p:selectOneMenu>
-		
+        
 		    </h:panelGrid>
 		
-		    <p:commandButton value="Submit" update="display" oncomplete="dlg.show()" />
-		
-		    <p:dialog header="Selected Values" modal="true" showEffect="fade" hideEffect="fade" widgetVar="dlg">
-		        <h:panelGrid columns="1" id="display">
-		            <h:outputText value="Value 1: #{sampleController.number}" />
-		
-		            <h:outputText value="Value 2: #{sampleController.car}" />
-		
-		            <h:outputText value="Value 3: #{sampleController.city}" />
-		
-		            <h:outputText value="Value 4: #{sampleController.selectedUser1.emailId}" rendered="#{not empty sampleController.selectedUser1}" />
-		
-		            <h:outputText value="Value 5: #{sampleController.selectedUser2.emailId}" rendered="#{not empty sampleController.selectedUser2}" />
-		        </h:panelGrid>
-		    </p:dialog>
-		
+		    <p:commandButton value="Submit" update="display" />  
+		    <h:panelGrid id="display">
+		    	<h:outputText value="Basic: #{selectionController.number}" />  
+		    	<h:outputText value="Grouping: #{selectionController.selectedTagItem}" />  
+		    	<h:outputText value="Editable: #{selectionController.number}" />  
+		    	<h:outputText value="POJO: #{selectionController.selectedTag.label}" rendered="#{not empty selectionController.selectedTag}"/>  
+		    	<h:outputText value="Content with Filter: #{selectionController.selectedTag1.label}" rendered="#{not empty selectionController.selectedTag1}"/>
+		    </h:panelGrid>
+			
+			</p:panel>
 		</h:form>
 
 		<br/><br/>

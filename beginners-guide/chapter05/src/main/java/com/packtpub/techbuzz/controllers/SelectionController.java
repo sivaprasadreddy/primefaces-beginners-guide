@@ -12,6 +12,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
+import javax.faces.model.SelectItemGroup;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -42,6 +44,7 @@ public class SelectionController
 	private List<String> servers;
 	private String selectedServer;
 	private Tag selectedTag;
+	private Tag selectedTag1;
 	
 	private boolean value1;  
     private boolean value2;
@@ -50,6 +53,9 @@ public class SelectionController
     private List<String> searchInOptions;
     private List<String> selectedSearchInOptions;
   
+    private List<SelectItem> tagItems;
+    private String selectedTagItem;
+    
     public SelectionController() 
     {
     	tags = new ArrayList<String>();
@@ -83,6 +89,28 @@ public class SelectionController
     	searchInOptions.add("Tags");
     	searchInOptions.add("Users");
     	
+    	SelectItemGroup g1 = new SelectItemGroup("JavaSE");
+        g1.setSelectItems(new SelectItem[] {new SelectItem("Threads", "Threads"), 
+        					new SelectItem("JDBC", "JDBC")});
+        
+        SelectItemGroup g2 = new SelectItemGroup("JavaEE");
+        g2.setSelectItems(new SelectItem[] {new SelectItem("JPA", "JPA"), 
+        					new SelectItem("JMS", "JMS"), 
+        					new SelectItem("EJB", "EJB")});
+        
+        /*
+    	 SelectItemGroup g1 = new SelectItemGroup("German Carsssssssssss");
+         g1.setSelectItems(new SelectItem[] {new SelectItem("BMW", "BMW"), new SelectItem("Mercedes", "Mercedes"), new SelectItem("Volkswagen", "Volkswagen")});
+         
+         SelectItemGroup g2 = new SelectItemGroup("American Carssssssssss");
+         g2.setSelectItems(new SelectItem[] {new SelectItem("Chrysler", "Chrysler"), new SelectItem("GM", "GM"), new SelectItem("Ford", "Ford")});
+        */
+        
+        tagItems = new ArrayList<SelectItem>();
+        tagItems.add(g1);
+        tagItems.add(g2);
+        
+        
 	}
     
     public boolean isValue1() {  
@@ -114,6 +142,36 @@ public class SelectionController
 	public List<String> getNumbers()
 	{
 		return numbers;
+	}
+
+	public List<SelectItem> getTagItems()
+	{
+		return tagItems;
+	}
+
+	public void setTagItems(List<SelectItem> tagItems)
+	{
+		this.tagItems = tagItems;
+	}
+
+	public Tag getSelectedTag1()
+	{
+		return selectedTag1;
+	}
+
+	public void setSelectedTag1(Tag selectedTag1)
+	{
+		this.selectedTag1 = selectedTag1;
+	}
+
+	public String getSelectedTagItem()
+	{
+		return selectedTagItem;
+	}
+
+	public void setSelectedTagItem(String selectedTagItem)
+	{
+		this.selectedTagItem = selectedTagItem;
 	}
 
 	public void setNumbers(List<String> numbers)
@@ -281,6 +339,15 @@ public class SelectionController
 		addMessage(msg);
 	}
 
+	public void  logout()
+	{
+		addMessage("You have been logged out.");
+	}
+	
+	public void  showAccount()
+	{
+		addMessage("showAccount.");
+	}
 	
 
 	public void addMessage() {  
