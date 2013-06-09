@@ -46,8 +46,7 @@ public class SelectionController
 	private Tag selectedTag;
 	private Tag selectedTag1;
 	
-	private boolean value1;  
-    private boolean value2;
+    private String text1;
     private String number;
     private List<String> numbers;
     private List<String> searchInOptions;
@@ -61,16 +60,12 @@ public class SelectionController
     	tags = new ArrayList<String>();
     	tags.add("JSF");
     	tags.add("PrimeFaces");
-    	//tags.add("Spring");
     	tags.add("JPA");
-    	//tags.add("EJB");
     	tags.add("jQuery");
     	
     	popularTags = new HashMap<String, String>();
     	popularTags.put("Java","java");
-    	//popularTags.put("JavaEE","java-ee");
     	popularTags.put("JavaScript","javascript");
-    	//popularTags.put("JSF","jsf");
     	popularTags.put("PrimeFaces","primefaces");
     	
     	tagPojos = new ArrayList<Tag>();
@@ -98,38 +93,24 @@ public class SelectionController
         					new SelectItem("JMS", "JMS"), 
         					new SelectItem("EJB", "EJB")});
         
-        /*
-    	 SelectItemGroup g1 = new SelectItemGroup("German Carsssssssssss");
-         g1.setSelectItems(new SelectItem[] {new SelectItem("BMW", "BMW"), new SelectItem("Mercedes", "Mercedes"), new SelectItem("Volkswagen", "Volkswagen")});
-         
-         SelectItemGroup g2 = new SelectItemGroup("American Carssssssssss");
-         g2.setSelectItems(new SelectItem[] {new SelectItem("Chrysler", "Chrysler"), new SelectItem("GM", "GM"), new SelectItem("Ford", "Ford")});
-        */
-        
         tagItems = new ArrayList<SelectItem>();
         tagItems.add(g1);
         tagItems.add(g2);
         
         
 	}
-    
-    public boolean isValue1() {  
-        return value1;  
-    }  
-  
-    public void setValue1(boolean value1) {  
-        this.value1 = value1;  
-    }  
-  
-    public boolean isValue2() {  
-        return value2;  
-    }  
-  
-    public void setValue2(boolean value2) {  
-        this.value2 = value2;  
-    }  
-    
-    public String getNumber()
+
+    public String getText1()
+	{
+		return text1;
+	}
+
+	public void setText1(String text1)
+	{
+		this.text1 = text1;
+	}
+
+	public String getNumber()
 	{
 		return number;
 	}
@@ -348,12 +329,6 @@ public class SelectionController
 	{
 		addMessage("showAccount.");
 	}
-	
-
-	public void addMessage() {  
-        String summary = value2 ? "Checked" : "Unchecked";  
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));  
-    }
 
 	public void addMessage(String summary) {  
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(summary));  
