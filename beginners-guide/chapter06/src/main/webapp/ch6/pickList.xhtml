@@ -7,23 +7,77 @@
 
 	<ui:define name="bodyContent">
 		
-		<h2>pickList Component</h2>
+		<h2>PickList Component</h2>
 		
 		<h:form>
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
 		</h:form>
 		
-	    <p:growl id="msg" autoUpdate="true"/>  
 	    
-		<h:form>
-			<p:panel header="My Panel" style="width: 400px; margin: 0 auto;">
-			<p:messages autoUpdate="true"/>  
-			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-		  		<h:outputText value="Enter Text: " />
-				<p:inputText value=""/>
-			</h:panelGrid>  
+		<h:form style="width: 800px; margin: 0 auto;">
+		
+		    <p:growl id="msg" showDetail="true" escape="false" />
+		    
+		    <p:panel header="PickList Component">
+		    <h3 style="margin-top:0">Basic PickList</h3>
+		
+		    <p:pickList id="pickList" value="#{pickListController.cities}" var="city" 
+		                itemLabel="#{city}" itemValue="#{city}" />
+		
+		    <p:commandButton id="citySubmit" value="Submit" update="displayCities" 
+		    				oncomplete="cityDialog.show()" style="margin-top:5px"/>
+		
+		    <h3>PickList on Steroids: Pojo Support with Effect, Captions, Custom Content, Reordering, Filtering, Checkboxes and Ajax Transfer</h3>
+		    <p:pickList id="pojoPickList" value="#{pickListController.roles}" var="role" effect="bounce"
+		                    itemValue="#{role}" itemLabel="#{role.roleName}" converter="#{roleConverter}"
+		                    showSourceControls="true" showTargetControls="true" showCheckbox="true"
+		                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >
+		
+		        <f:facet name="sourceCaption">Available</f:facet>
+		        <f:facet name="targetCaption">Starting</f:facet>
+		
+		        <p:ajax event="transfer" listener="#{pickListController.onTransfer}" update="msg" />
+		
+		        <p:column style="width:100%">
+		            #{role.roleName} - #{role.description}
+		        </p:column>
+		
+		    </p:pickList>
+		
+		    <p:commandButton id="pojoSubmit" value="Submit" update="displayRoles" 
+		    				oncomplete="roleDialog.show()" style="margin-top:5px"/>
+		
+		    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="cityDialog">
+		        <h:panelGrid id="displayCities" columns="2">
+		            <h:outputText value="Source: " style="font-weight:bold"/>
+		                <ui:repeat value="#{pickListController.cities.source}" var="item">
+		                <h:outputText value="#{item}" style="margin-right:5px" />
+		            </ui:repeat>
+		
+		            <h:outputText value="Target: " style="font-weight:bold"/>
+		            <ui:repeat value="#{pickListController.cities.target}" var="item">
+		                <h:outputText value="#{item}" style="margin-right:5px" />
+		            </ui:repeat>
+		        </h:panelGrid>
+		    </p:dialog>
+		
+		    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="roleDialog">
+		        <h:panelGrid id="displayRoles" columns="2">
+		            <h:outputText value="Source: " style="font-weight:bold"/>
+		            <ui:repeat value="#{pickListController.roles.source}" var="role">
+		                <h:outputText value="#{role.roleName}" style="margin-right:5px" />
+		            </ui:repeat>
+		
+		            <h:outputText value="Target: " style="font-weight:bold"/>
+		            <ui:repeat value="#{pickListController.roles.target}" var="role">
+		                <h:outputText value="#{role.roleName}" style="margin-right:5px" />
+		            </ui:repeat>
+		        </h:panelGrid>
+		    </p:dialog>
+		
 			</p:panel>
 		</h:form>
+		                    
  
 		<br/><br/>
 		
