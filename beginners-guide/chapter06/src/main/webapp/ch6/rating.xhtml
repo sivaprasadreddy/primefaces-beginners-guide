@@ -16,45 +16,44 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
 		<h:form id="form">  
-  
-		    <p:growl id="messages" showDetail="true"/>  
+  			<p:panel header="Rating Demo" style="margin: 0 auto;">
+		    <p:growl id="messages" />  
 		  
 		    <h:panelGrid columns="2" cellpadding="5">  
 		        <h:outputText value="Basic:" />  
 		        <p:rating value="#{ratingController.rating1}" />  
 		  
 		        <h:outputText value="Callback:" />  
-		        <p:rating value="#{ratingController.rating2}" stars="10" cancel="false" onRate="alert('You rated ' + value)"/>  
+		        <p:rating value="#{ratingController.rating2}" cancel="false" onRate="alert('You rated ' + value)"/>  
 		  
 		        <h:outputText value="Ajax Rate:" />  
-		        <p:rating value="#{ratingController.rating3}">  
-		            <p:ajax event="rate" listener="#{ratingController.onrate}" update="messages" />  
-		            <p:ajax event="cancel" listener="#{ratingController.oncancel}" update="messages" />  
+		        <p:rating value="#{ratingController.rating3}" stars="10" >  
+		            <p:ajax event="rate" listener="#{ratingController.handleRate}" update="messages" />  
+		            <p:ajax event="cancel" listener="#{ratingController.handleCancel}" update="messages" />  
 		        </p:rating>  
 		  
 		        <h:outputText value="Readonly:"/>  
 		        <p:rating value="#{ratingController.rating4}" readonly="true" />  
 		  
 		        <h:outputText value="Disabled"/>  
-		        <p:rating value="#{ratingController.rating4}" disabled="true" />  
+		        <p:rating value="#{ratingController.rating4}" disabled="true"/>  
 		  
 		    </h:panelGrid>  
 		  
-		    <p:commandButton value="Submit" id="submit" update="display" oncomplete="dlg.show()" style="margin:5px"/>  
+		    <p:commandButton value="Submit" id="submit" update="display" style="margin:5px"/>  
 		  
-		    <p:dialog header="Values" widgetVar="dlg" showEffect="fade" hideEffect="fade">  
-		        <h:panelGrid id="display" columns="2" cellpadding="5">  
-		            <h:outputText value="Rating 1:" />  
-		            <h:outputText value="#{ratingController.rating1}" />  
+	        <h:panelGrid id="display" columns="2" cellpadding="5">  
+	            <h:outputText value="Rating 1:" />  
+	            <h:outputText value="#{ratingController.rating1}" />  
+	  
+	            <h:outputText value="Rating 2:" />  
+	            <h:outputText value="#{ratingController.rating2}" />  
+	  
+	            <h:outputText value="Rating 3:" />  
+	            <h:outputText value="#{ratingController.rating3}" />  
+	        </h:panelGrid>  
 		  
-		            <h:outputText value="Rating 2:" />  
-		            <h:outputText value="#{ratingController.rating2}" />  
-		  
-		            <h:outputText value="Rating 3:" />  
-		            <h:outputText value="#{ratingController.rating3}" />  
-		        </h:panelGrid>  
-		    </p:dialog>  
-		  
+		  </p:panel>
 		</h:form> 
  
 		<br/><br/>

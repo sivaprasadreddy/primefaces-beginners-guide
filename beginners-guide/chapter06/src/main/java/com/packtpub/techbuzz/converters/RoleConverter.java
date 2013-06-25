@@ -27,7 +27,6 @@ public class RoleConverter implements Converter
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value)
 	{
-		//System.out.println("getAsObject ->"+value);
 		if (value==null || value.trim().equals("")) {  
             return null;  
         } else {  
@@ -36,7 +35,6 @@ public class RoleConverter implements Converter
                 List<Role> roles = buzzService.findAllRoles();
 				for (Role r : roles ) {  
                     if (r.getRoleId() == id) {  
-                    	//System.out.println("getAsObject returning ->"+u);
                         return r;  
                     }  
                 }  
@@ -53,11 +51,9 @@ public class RoleConverter implements Converter
 	@Override
 	public String getAsString(FacesContext context, UIComponent component, Object value)
 	{
-		//System.out.println("getAsString ->"+value);
 		if (value == null || value.equals("")) {  
             return "";  
         } else {
-        	//System.out.println("getAsString returning ->"+String.valueOf(((User) value).getId()));
             return String.valueOf(((Role) value).getRoleId());
         } 
 	}

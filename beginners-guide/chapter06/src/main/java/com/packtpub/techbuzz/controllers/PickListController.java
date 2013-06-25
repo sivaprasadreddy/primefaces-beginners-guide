@@ -1,58 +1,55 @@
-/**
- * 
- */
 package com.packtpub.techbuzz.controllers;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.TransferEvent;
 import org.primefaces.model.DualListModel;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
 import com.packtpub.techbuzz.entities.Role;
+import com.packtpub.techbuzz.services.BuzzService;
 
 /**
- * @author skatam
+ * @author Siva
  *
  */
-@ManagedBean
-@RequestScoped
+@Component
+@Scope(value="request")
 public class PickListController 
 {
 
+	@Autowired
+	private BuzzService buzzService;
+	
+	private DualListModel<String> privileges;
 	private DualListModel<Role> roles;
 	
-	private DualListModel<String> cities;
-
-	public PickListController() {
+	@PostConstruct
+	public void init()
+	{
 		//Roles
-		List<Role> source = new ArrayList<Role>();
+		List<Role> source = buzzService.findAllRoles();
 		List<Role> target = new ArrayList<Role>();
-		
-		source.add(new Role(1, "Administrator"));
-		source.add(new Role(2, "Super Admin"));
-		source.add(new Role(3, "HR Executive"));
-		source.add(new Role(4, "Finance Dept Mngr"));
 		
 		roles = new DualListModel<Role>(source, target);
 		
 		//Cities
-		List<String> citiesSource = new ArrayList<String>();
-		List<String> citiesTarget = new ArrayList<String>();
+		List<String> privilegesSource = new ArrayList<String>();
+		List<String> privilegesTarget = new ArrayList<String>();
 		
-		citiesSource.add("Hyderabad");
-		citiesSource.add("Chennai");
-		citiesSource.add("Bangalore");
-		citiesSource.add("Pune");
-		citiesSource.add("Kolkata");
+		privilegesSource.add("Create User");
+		privilegesSource.add("Delete User");
+		privilegesSource.add("Disable User");
+		privilegesSource.add("Remove Buzz Post");
 		
-		cities = new DualListModel<String>(citiesSource, citiesTarget);
+		privileges = new DualListModel<String>(privilegesSource, privilegesTarget);
 	}
 	
 	public DualListModel<Role> getRoles() {
@@ -62,25 +59,28 @@ public class PickListController
 		this.roles = roles;
 	}
 	
-	public DualListModel<String> getCities() {
-		return cities;	
-}
-	public void setCities(DualListModel<String> cities) {
-		this.cities = cities;
+    public DualListModel<String> getPrivileges()
+	{
+		return privileges;
 	}
-    
-    public void onTransfer(TransferEvent event) {
+
+	public void setPrivileges(DualListModel<String> privileges)
+	{
+		this.privileges = privileges;
+	}
+
+	public void onTransfer(TransferEvent event) {
         StringBuilder builder = new StringBuilder();
         for(Object item : event.getItems()) {
             builder.append(((Role) item).getRoleName()).append("<br />");
         }
-        
-        FacesMessage msg = new FacesMessage();
-        msg.setSeverity(FacesMessage.SEVERITY_INFO);
-        msg.setSummary("Items Transferred");
-        msg.setDetail(builder.toString());
-        
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+        String msg = null;
+        if(event.isAdd()){
+        	msg = "Assigned Roles:<br/>"+builder.toString();
+        } else {
+        	msg = "Revoked Roles:<br/>"+builder.toString();
+        }
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));
     }
 }
                     

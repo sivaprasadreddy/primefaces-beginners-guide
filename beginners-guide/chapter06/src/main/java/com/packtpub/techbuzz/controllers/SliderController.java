@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.packtpub.techbuzz.controllers;
 
 import javax.faces.bean.ManagedBean;
@@ -9,21 +6,20 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;  
 import org.primefaces.event.SlideEndEvent; 
 /**
- * @author skatam
+ * @author Siva
  *
  */
 @ManagedBean
 @RequestScoped
 public class SliderController 
 {  
-  
     private int number1;  
     private int number2;  
     private int number3;  
     private int number4;  
     private int number5;  
-    private int number6 = 30;  
-    private int number7 = 80;  
+    private int number6 = 25;  
+    private int number7 = 70;  
   
     public int getNumber1() {  
         return number1;  

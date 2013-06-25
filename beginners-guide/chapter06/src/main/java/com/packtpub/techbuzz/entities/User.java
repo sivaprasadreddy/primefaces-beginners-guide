@@ -29,7 +29,7 @@ public class User implements Serializable
     private List<Rating> ratings;
     private List<Post> posts;
     private Set<Comment> comments;
-
+    
     public User() {
     }
 

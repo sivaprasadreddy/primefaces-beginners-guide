@@ -91,6 +91,12 @@ CREATE TABLE ratings (
   CONSTRAINT FK3AA08276D9C91C81 FOREIGN KEY (post_id) REFERENCES posts (post_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+insert into roles(role_id, role_name, description)
+values
+(1,'Administrator','Administrator'),
+(2,'Super Admin','Super Administrator'),
+(3,'HR Executive','HR Executive'),
+(4,'Finance Dept Mngr','Finance Dept Mngr');
 
 insert  into users(user_id,email_id,password,firstName,lastName,gender,phone,dob,disabled,bio) 
 values 

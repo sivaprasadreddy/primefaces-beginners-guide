@@ -14,8 +14,6 @@
         </f:facet>
         <style type="text/css">
         					
-				
-				
 				#wrapper{
 				   width:960px;
 				   margin:0 auto;
@@ -33,7 +31,12 @@
 				.ui-widget {
 				    font-size: 12px !important;
 				}
-
+				
+				.myCalendar{
+					font-size: 15px;
+					background-color: #D3D3D3;
+				}
+				
 		</style>
 		<title>#{msg['app.title']}</title>
         <ui:insert name="head"/>
@@ -61,6 +64,7 @@
 			</div>
     		
         </div>
+        <ui:insert name="appResources"/>
     </h:body>
 </f:view>
 </html>

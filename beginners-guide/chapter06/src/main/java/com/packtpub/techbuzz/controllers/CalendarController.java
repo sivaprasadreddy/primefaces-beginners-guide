@@ -1,9 +1,7 @@
-/**
- * 
- */
 package com.packtpub.techbuzz.controllers;
 
-import java.util.Calendar;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -15,7 +13,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.event.SelectEvent;
 
 /**
- * @author skatam
+ * @author Siva
  *
  */
 @ManagedBean
@@ -27,9 +25,7 @@ public class CalendarController {
 	private Date date3;
 	private Date date4;
 	private Date date5;
-	private Date date6;
-	private Date date7;
-	private Date date8;
+	
 	
 	public Date getDate1() {
 		return date1;
@@ -62,43 +58,15 @@ public class CalendarController {
 	public void setDate5(Date date5) {
 		this.date5 = date5;
 	}
-	public Date getDate6() {
-		return date6;
-	}
-	public void setDate6(Date date6) {
-		this.date6 = date6;
-	}
-	public Date getDate7() {
-		return date7;
-	}
-	public void setDate7(Date date7) {
-		this.date7 = date7;
+	
+	public Date getMinDate() throws ParseException 
+	{
+		return new SimpleDateFormat("dd-MM-yyyy").parse("01-06-2013");
 	}
 	
-	public Date getDate8() {
-		return date8;
-	}
-	public void setDate8(Date date8) {
-		this.date8 = date8;
-	}
-	public Date getMinDate()
+	public Date getMaxDate() throws ParseException
 	{
-		Calendar calendar = Calendar.getInstance();
-		calendar.clear();
-		calendar.set(Calendar.YEAR, 2013);
-		calendar.set(Calendar.MONTH, 6);
-		calendar.set(Calendar.DATE, 5);
-		return calendar.getTime();
-	}
-	
-	public Date getMaxDate()
-	{
-		Calendar calendar = Calendar.getInstance();
-		calendar.clear();
-		calendar.set(Calendar.YEAR, 2013);
-		calendar.set(Calendar.MONTH, 7);
-		calendar.set(Calendar.DATE, 30);
-		return calendar.getTime();
+		return new SimpleDateFormat("dd-MM-yyyy").parse("15-08-2013");
 	}
 	
 	public TimeZone getTimeZone() {

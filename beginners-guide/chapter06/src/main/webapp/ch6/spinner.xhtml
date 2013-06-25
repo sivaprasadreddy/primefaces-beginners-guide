@@ -15,54 +15,31 @@
 		
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
-		<h:form style="width: 800px; margin: 0 auto;">
+		<h:form>
 
                 <p:panel header="Spinner Component">
                     <h:panelGrid id="grid" columns="2" cellpadding="5">
-                        <h:outputLabel for="spinnerBasic" value="Basic Spinner: " />
-                        <p:spinner id="spinnerBasic" value="#{spinnerController.number1}"/>
 
-                        <h:outputLabel for="spinnerStep" value="Step Factor: " />
-                        <p:spinner id="spinnerStep" value="#{spinnerController.number2}" stepFactor="0.25"/>
+                        <h:outputLabel for="spinnerStep" value="Price:" />
+                        <p:spinner id="spinnerStep" value="#{spinnerController.price}" prefix="$" stepFactor="0.25"/>
 
-                        <h:outputLabel for="minmax" value="Min/Max: " />
-                        <p:spinner id="minmax" value="#{spinnerController.number3}" min="0" max="100"/>
-
-                        <h:outputLabel for="prefix" value="Prefix: " />
-                        <p:spinner id="prefix" value="#{spinnerController.number4}" prefix="$" min="0" />
-
-                        <h:outputLabel for="ajaxspinner" value="Ajax Spinner: " />
-                        <p:outputPanel>
-                            <p:spinner id="ajaxspinner" value="#{spinnerController.number5}">
-                                <p:ajax update="ajaxspinnervalue" process="@this" />
-                            </p:spinner>
-                            <h:outputText id="ajaxspinnervalue" value="#{spinnerController.number5}" style="padding-left:10px"/>
-                        </p:outputPanel>
+                        <h:outputLabel for="minmax" value="Discount: " />
+                        <p:spinner id="minmax" value="#{spinnerController.discount}" suffix="%" min="0" max="10" onkeydown="return false;"/>
 
                     </h:panelGrid>
                 </p:panel>
 
                 <br />
-                <p:commandButton value="Submit" update="display" oncomplete="dialog.show()" />
+                <p:commandButton value="Submit" update="display"/>
 
-                <p:dialog header="Values" widgetVar="dialog" showEffect="fold" hideEffect="fold">
-                    <h:panelGrid id="display" columns="2" cellpadding="5">
-                        <h:outputText value="Value 1: " />
-                        <h:outputText value="#{spinnerController.number1}" />
+               <h:panelGrid id="display" columns="2" cellpadding="5">
+                   <h:outputText value="Price: " />
+                   <h:outputText value="#{spinnerController.price}" />
 
-                        <h:outputText value="Value 2: " />
-                        <h:outputText value="#{spinnerController.number2}" />
+                   <h:outputText value="Discount: " />
+                   <h:outputText value="#{spinnerController.discount}" />
 
-                        <h:outputText value="Value 3: " />
-                        <h:outputText value="#{spinnerController.number3}" />
-
-                        <h:outputText value="Value 4: " />
-                        <h:outputText value="#{spinnerController.number4}" />
-
-                        <h:outputText value="Value 5: " />
-                        <h:outputText value="#{spinnerController.number5}" />
-                    </h:panelGrid>
-                </p:dialog>
+               </h:panelGrid>
 
             </h:form>
  

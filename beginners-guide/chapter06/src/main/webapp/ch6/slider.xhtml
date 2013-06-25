@@ -15,27 +15,27 @@
 		
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
-		<h:form id="form" style="width: 800px; margin: 0 auto;">
+		<h:form id="form">
 
 		    <p:growl id="growl" showDetail="true" />
 			<p:panel header="Slider Component">
-		    <h3>Input Text Slider</h3>
+		    <h3>Basic Slider</h3>
 		    <h:panelGrid columns="1" style="margin-bottom:10px">
 		        <p:inputText id="txt1" value="#{sliderController.number1}" />
 		        <p:slider for="txt1" animate="false"/>
 		    </h:panelGrid>
 		
-		    <h3>Hidden Input Slider with Display Value</h3>
+		    <h3>Slider with Display Value</h3>
 		    <h:panelGrid columns="1" style="margin-bottom:10px">
-		        <h:outputText id="output" value="Set ratio to %#{sliderController.number2}"/>
-		        <h:inputHidden id="txt2" value="#{sliderController.number2}" />
-		        <p:slider for="txt2" display="output" style="width:200px" displayTemplate="Set ratio to %{value}"/>
+				<h:outputText id="output" value="Value : #{sliderController.number2}" />
+				<h:inputHidden id="displaySlider" value="#{sliderController.number2}"/>
+				<p:slider for="displaySlider" display="output" style="width:150px" displayTemplate="Value : {value}"/>
 		    </h:panelGrid>
 		
-		    <h3>Slider with Step Factor</h3>
+		    <h3>Slider with Step Factor 10</h3>
 		    <h:panelGrid columns="1" style="margin-bottom:10px">
-		        <p:inputText id="txt3" value="#{sliderController.number3}"/>
-		        <p:slider for="txt3" step="10"/>
+		        <p:inputText id="txt3" value="#{sliderController.number3}" onkeydown="return false;"/>
+		        <p:slider for="txt3" minValue="0" maxValue="50" step="10"/>
 		    </h:panelGrid>
 		
 		    <h3>Vertical Slider</h3>
@@ -55,11 +55,13 @@
 		    <h3>Range Slider</h3>
 		    <h:panelGrid columns="1" style="margin-bottom:10px">                    
 		        <h:outputText id="displayRange" value="Between #{sliderController.number6} and #{sliderController.number7}"/>                    
-		        <p:slider for="txt6,txt7" display="displayRange" style="width:400px" range="true" 
-		                  displayTemplate="Between {min} and {max}"/>
-		    </h:panelGrid>
+		        <p:slider for="txt6,txt7" display="displayRange" style="width:300px" range="true" 
+		                  displayTemplate="Between {min} and {max}">
+		                 <p:ajax event="slideEnd" listener="#{sliderController.onSlideEnd}" update="growl" />
+		        </p:slider>
 		    <h:inputHidden id="txt6" value="#{sliderController.number6}" />
 		    <h:inputHidden id="txt7" value="#{sliderController.number7}" />
+		    </h:panelGrid>
 		
 		    <p:commandButton value="Submit" update="display" oncomplete="dialog.show()" />
 		
