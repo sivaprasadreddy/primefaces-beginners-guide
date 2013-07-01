@@ -10,7 +10,14 @@
     </ui:define>
     
 	<ui:define name="head">
-		
+		<script type="text/javascript">
+
+		</script>
+		<style type="text/css">
+			.myCol {
+				width: 150px;
+			}
+		</style>
 	</ui:define>
 	<ui:define name="bodyContent">
 		
@@ -23,18 +30,85 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
 		<h:form>
-			<p:panel header="DataList Demo" style="margin: 0 auto;">
-			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-			
-		  		<h:outputText value="Date (Popup, Navigator): " />
-				<p:calendar 
-							showOn="button" 
-							navigator="true" 
-							pattern="EEE, dd MMM, yyyy"/> 
-		            
-				</h:panelGrid>
+			<p:panel header="Unordered DataList" style="margin: 0 auto; width: 500px;">
 				
+				<h:panelGrid columns="3" columnClasses="myCol, myCol,myCol">
+					<h:outputText value="Disc"/>
+					<h:outputText value="Circle" />
+					<h:outputText value="Square" />
+				
+					<p:dataList value="#{tagController.tags}" var="tag" itemType="disc">  
+					    #{tag.label}  
+					</p:dataList>
+					
+					<p:dataList value="#{tagController.tags}" var="tag" itemType="circle">  
+					    #{tag.label}  
+					</p:dataList>
+					
+					<p:dataList value="#{tagController.tags}" var="tag" itemType="square">  
+					    #{tag.label} 
+					</p:dataList>
+				
+				</h:panelGrid>
 			</p:panel>
+			
+			<br/>
+			
+			<p:panel header="Ordered DataList" style="margin: 0 auto; width: 500px;">
+			
+			<h:panelGrid columns="4" columnClasses="myCol, myCol,myCol,myCol">
+					<h:outputText value="Number"/>
+					<h:outputText value="Uppercase Letter" />
+					<h:outputText value="Lowercase Letter" />
+					<h:outputText value="Roman Letter" />
+					
+				<p:dataList value="#{tagController.tags}" var="tag" type="ordered">  
+				   #{tag.label} 
+				</p:dataList>
+				
+				<p:dataList value="#{tagController.tags}" var="tag" type="ordered" itemType="A">
+				    #{tag.label}   
+				</p:dataList>
+				
+				<p:dataList value="#{tagController.tags}" var="tag" type="ordered" itemType="a">
+				    #{tag.label}   
+				</p:dataList>
+				
+				<p:dataList value="#{tagController.tags}" var="tag" type="ordered" itemType="i">  
+				   #{tag.label}  
+				</p:dataList>
+				
+				</h:panelGrid>
+			</p:panel>
+			
+			<br/>
+			<!-- 
+			<p:panel header="DataList Definition Demo" style="margin: 0 auto;">
+			
+				<p:dataList value="#{tagController.tags}" var="tag" type="definition"> 
+				    #{tag.label}   
+				    <f:facet name="description">  
+				       #{tag.description} 
+				    </f:facet>
+				</p:dataList>
+			</p:panel>
+			
+			<br/>
+			 -->
+			
+			<p:panel header="DataList Pagination" style="margin: 0 auto; width: 500px;">
+				<p:dataList value="#{tagController.tags}" var="tag" id="tags" type="none"
+					paginator="true" rows="5"  
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+					rowsPerPageTemplate="5,10,15">  
+						<f:facet name="header">  
+							Tags  
+						</f:facet> 		  
+						<h:outputText value="#{tag.id} - #{tag.label}" style="margin-left:10px" />  
+						<br />  
+				</p:dataList>
+			</p:panel>
+			
 		</h:form>
  
 		<br/><br/>

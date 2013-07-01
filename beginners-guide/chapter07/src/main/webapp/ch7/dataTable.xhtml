@@ -2,13 +2,10 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	xmlns:p="http://primefaces.org/ui"
 	template="/templates/publicLayout.xhtml">
 	
-	<ui:define name="appResources">
-        <h:outputScript library="js" name="calendarLocales.js" />
-    </ui:define>
-    
 	<ui:define name="head">
 		
 	</ui:define>
@@ -23,18 +20,63 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
 		<h:form>
-			<p:panel header="DataTable Demo" style="margin: 0 auto;">
-			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+			<p:panel header="DataTable Demo" style="margin: 0 auto; width: 500px;">
 			
-		  		<h:outputText value="Date (Popup, Navigator): " />
-				<p:calendar 
-							showOn="button" 
-							navigator="true" 
-							pattern="EEE, dd MMM, yyyy"/> 
-		            
-				</h:panelGrid>
-				
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}">  
+				<f:facet name="header">
+					List of Users
+				</f:facet>
+		        <p:column headerText="Id">  
+		            <h:outputText value="#{user.id}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Email">  
+		            <h:outputText value="#{user.emailId}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="FirstName">  
+		            <h:outputText value="#{user.firstName}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Disabled">  
+		            <h:outputText value="#{user.disabled}" />  
+		        </p:column>  
+		        <f:facet name="footer">
+					Total no. of Users: #{fn:length(adminController.users)}.
+				</f:facet>
+		    </p:dataTable>
+		    
 			</p:panel>
+			
+			<br/><br/>
+			
+			<p:panel header="DataTable Pagination Demo" style="margin: 0 auto; width: 500px;">
+			
+			<p:dataTable id="usersTbl2" var="user" value="#{adminController.users}" paginator="true" rows="5"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+                 currentPageReportTemplate="( {startRecord} - {endRecord}) of {totalRecords} Records."
+                 rowsPerPageTemplate="5,10,15" sortMode="single" sortBy="#{user.firstName}" sortOrder="descending"> 
+				
+		        <p:column headerText="Id" sortBy="#{user.id}" >  
+		            <h:outputText value="#{user.id}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="FirstName" sortBy="#{user.firstName}" sortFunction="#{adminController.sortByFirstName}">  
+		            <h:outputText value="#{user.firstName}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="LastName" sortBy="#{user.lastName}">  
+		            <h:outputText value="#{user.lastName}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Disabled">  
+		            <h:outputText value="#{user.disabled}" />  
+		        </p:column>  
+		        
+		    </p:dataTable>
+		    
+			</p:panel>
+			
 		</h:form>
  
 		<br/><br/>

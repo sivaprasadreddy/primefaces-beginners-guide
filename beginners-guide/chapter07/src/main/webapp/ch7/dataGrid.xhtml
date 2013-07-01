@@ -23,18 +23,19 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
 		<h:form>
-			<p:panel header="DataGrid Demo" style="margin: 0 auto;">
-			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-			
-		  		<h:outputText value="Date (Popup, Navigator): " />
-				<p:calendar 
-							showOn="button" 
-							navigator="true" 
-							pattern="EEE, dd MMM, yyyy"/> 
-		            
-				</h:panelGrid>
-				
-			</p:panel>
+			<p:dataGrid var="user" value="#{dataGridController.users}" columns="3"  
+		        rows="13" paginator="true"  
+		        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+		        rowsPerPageTemplate="9,12,15">  
+		  
+		        <p:panel header="#{user.firstName}" style="text-align:center">  
+		            <h:panelGrid columns="1" style="width:100%">  
+		                <h:outputText value="#{user.id} : #{user.emailId}" />  
+		            </h:panelGrid>  
+		        </p:panel>  
+		  
+		    </p:dataGrid>
+		    
 		</h:form>
  
 		<br/><br/>

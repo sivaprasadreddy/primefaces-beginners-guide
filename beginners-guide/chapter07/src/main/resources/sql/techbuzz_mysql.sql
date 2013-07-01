@@ -102,7 +102,22 @@ insert  into users(user_id,email_id,password,firstName,lastName,gender,phone,dob
 values 
 (1,'admin@gmail.com','admin','Mr','Administrator','Male',NULL,NULL,NULL,'I am the THE admin'),
 (2,'test@gmail.com','test','Mr','Test','Female',NULL,NULL,1,'I am a tester'),
-(3,'guest@gmail.com','secret','Mr','Guest','Female','922221222545','2013-04-29 00:00:00',0,'Hey, this is Mr Guest');
+(3,'guest@gmail.com','secret','Mr','Guest','Female','922221222545','2013-04-29 00:00:00',0,'Hey, this is Mr Guest'),
+(4,'essie@vaill.com','Essie','Essie','Vaill','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(5,'cruz@roudabush.com','Cruz','Cruz','Roudabush','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(6,'billie@tinnes.com','Billie','Billie','Tinnes','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(7,'zackary@mockus.com','Zackary','Zackary','Mockus','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(8,'rosemarie@fifield.com','Rosemarie','Rosemarie','Fifield','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(9,'bernard@laboy.com','Bernard','Bernard','Laboy','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(10,'sue@haakinson.com','Sue','Sue','Haakinson','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(11,'valerie@pou.com','Valerie','Valerie','Pou','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(12,'lashawn@hasty.com','Lashawn','Lashawn','Hasty','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(13,'marianne@earman.com','Marianne','Marianne','Earman','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(14,'justina@dragaj.com','Justina','Justina','Dragaj','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(15,'mandy@mcdonnell.com','Mandy','Mandy','Mcdonnell','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(16,'conrad@lanfear.com','Conrad','Conrad','Lanfear','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(17,'cyril@behen.com','Cyril','Cyril','Behen','Male','123-123-1234','2013-04-29 00:00:00',0,'');
+
 
 insert  into tags(tag_id,label,value, description)
 values 

@@ -24,15 +24,28 @@
 	    
 		<h:form>
 			<p:panel header="DataExporter Demo" style="margin: 0 auto;">
-			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
-			
-		  		<h:outputText value="Date (Popup, Navigator): " />
-				<p:calendar 
-							showOn="button" 
-							navigator="true" 
-							pattern="EEE, dd MMM, yyyy"/> 
-		            
-				</h:panelGrid>
+			<p:dataTable id="usersTbl" var="user" value="#{dataTableController.users}">  
+		        <p:column headerText="Id">  
+		            <h:outputText value="#{user.id}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Email">  
+		            <h:outputText value="#{user.emailId}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="FirstName">  
+		            <h:outputText value="#{user.firstName}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Disabled">  
+		            <h:outputText value="#{user.disabled}" />  
+		        </p:column>  
+		    </p:dataTable>
+    
+			<h:commandLink>  
+            <h:outputLabel value="Excel" /> 
+            <p:dataExporter type="xls" target="usersTbl" fileName="users" />  
+        	</h:commandLink>
 				
 			</p:panel>
 		</h:form>
