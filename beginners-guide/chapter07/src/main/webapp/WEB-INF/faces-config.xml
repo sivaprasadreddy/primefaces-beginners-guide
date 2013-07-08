@@ -29,5 +29,10 @@
 		    <source-class>javax.faces.component.UIViewRoot</source-class>
 		</system-event-listener>
     </application>
+    
+    <factory>
+        <exception-handler-factory>com.packtpub.techbuzz.config.TechBuzzExceptionHandlerFactory</exception-handler-factory>
+    </factory>
+    
 
 </faces-config>

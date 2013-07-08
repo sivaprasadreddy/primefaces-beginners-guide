@@ -1,0 +1,109 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="head">
+		<style type="text/css">
+            .valigntop td {
+			    vertical-align: top;
+			}
+        </style>
+	</ui:define>
+	<ui:define name="bodyContent">
+		
+		<h2>DataTable Filtering Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+								 
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h:form id="form">
+			<h:panelGrid columns="2" styleClass="valigntop" >
+			
+			
+			
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" style="width: 300px;" >  
+				<f:facet name="header">
+					List of Users
+				</f:facet>
+		        <p:column headerText="Id" width="20px;">  
+		            <h:outputText value="#{user.id}" />
+		        </p:column>  
+		  
+		        <p:column headerText="Email" >
+		            <h:outputText value="#{user.emailId}" />
+		        </p:column>  
+		  
+		        <p:column style="width:20px;">  
+		                <p:commandButton id="selectButton" update=":form:userDetails" icon="ui-icon-search" title="View">  
+		                <f:setPropertyActionListener value="#{user}" target="#{adminController.selectedUser}" />  
+		            </p:commandButton>  
+		        </p:column>
+		       
+		    </p:dataTable>
+		    <p:panel header="User Details" style="width: 300px;">
+				<h:panelGrid id="userDetails" columns="2" >  
+		            
+		            <h:outputText value="Id:" />  
+		            <h:outputText value="#{adminController.selectedUser.id}" style="font-weight:bold"/>  
+		  
+		            <h:outputText value="Email:" />  
+		            <h:outputText value="#{adminController.selectedUser.emailId}" style="font-weight:bold"/>  
+		  
+		        </h:panelGrid>
+		    </p:panel>
+	        </h:panelGrid>
+			<br/><br/>
+			
+		</h:form>
+ 
+		<br/><br/>
+		
+		<h:form id="form1">
+			<h:panelGrid columns="2" styleClass="valigntop" >
+			
+			
+			
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" style="width: 300px;" 
+					selectionMode="single" selection="#{adminController.selectedUser}" rowKey="#{user.id}" >
+					<p:ajax event="rowDblselect" />
+					<p:ajax event="rowSelect" listener="#{adminController.onRowSelect}"   
+                    		update=":form1:userDetails"/>  
+        			<p:ajax event="rowUnselect" listener="#{adminController.onRowUnselect}" update=":form1:userDetails"/>
+         
+				<f:facet name="header">
+					List of Users
+				</f:facet>
+		        <p:column headerText="Id" width="20px;">  
+		            <h:outputText value="#{user.id}" />
+		        </p:column>  
+		  
+		        <p:column headerText="Email" >
+		            <h:outputText value="#{user.emailId}" />
+		        </p:column>  
+		  
+		    </p:dataTable>
+		    <p:panel header="User Details" style="width: 300px;">
+				<h:panelGrid id="userDetails" columns="2" >  
+		            
+		            <h:outputText value="Id:" />  
+		            <h:outputText value="#{adminController.selectedUser.id}" style="font-weight:bold"/>  
+		  
+		            <h:outputText value="Email:" />  
+		            <h:outputText value="#{adminController.selectedUser.emailId}" style="font-weight:bold"/>  
+		  
+		        </h:panelGrid>
+		    </p:panel>
+	        </h:panelGrid>
+			<br/><br/>
+			
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

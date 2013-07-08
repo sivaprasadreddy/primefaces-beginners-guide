@@ -23,30 +23,101 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
 		<h:form>
-			<p:panel header="DataExporter Demo" style="margin: 0 auto;">
-			<p:dataTable id="usersTbl" var="user" value="#{dataTableController.users}">  
-		        <p:column headerText="Id">  
+		  <p:panel header="DataExporter Demo" style="margin: 0 auto;">
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" 
+					rowKey="#{user.id}"  paginator="true" rows="10"
+					selectionMode="multiple" selection="#{adminController.selectedUsersArray}" >  
+				
+		        <p:column headerText="Id" width="15px;"> 
+		        	<f:facet name="header">  
+			            <h:outputText value="Id" />  
+			        </f:facet> 
 		            <h:outputText value="#{user.id}" />  
 		        </p:column>  
 		  
-		        <p:column headerText="Email">  
+		        <p:column>  
+		        	<f:facet name="header">  
+			            <h:outputText value="Email" />  
+			        </f:facet>
 		            <h:outputText value="#{user.emailId}" />  
 		        </p:column>  
 		  
-		        <p:column headerText="FirstName">  
+		        <p:column headerText="FirstName">
+		        	<f:facet name="header">  
+			            <h:outputText value="FirstName" />  
+			        </f:facet>  
 		            <h:outputText value="#{user.firstName}" />  
 		        </p:column>  
 		  
-		        <p:column headerText="Disabled">  
+		        <p:column exportable="false"> 
+		        	<f:facet name="header">  
+			            <h:outputText value="Disabled" />  
+			        </f:facet> 
 		            <h:outputText value="#{user.disabled}" />  
-		        </p:column>  
+		        </p:column>   
+		    
 		    </p:dataTable>
-    
-			<h:commandLink>  
-            <h:outputLabel value="Excel" /> 
-            <p:dataExporter type="xls" target="usersTbl" fileName="users" />  
-        	</h:commandLink>
+		    
+		    <h:panelGrid columns="3">
+	    		<p:panel header="Export All Data">
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/excel.png"/>
+		            	<p:dataExporter type="xls" target="usersTbl" fileName="users" postProcessor="#{adminController.postProcessXLS}" />
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/pdf.png"/>
+		            	<p:dataExporter type="pdf" target="usersTbl" fileName="users" preProcessor="#{adminController.preProcessPDF}"/>
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/csv.png"/>
+		            	<p:dataExporter type="csv" target="usersTbl" fileName="users" />
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/xml.png"/>
+		            	<p:dataExporter type="xml" target="usersTbl" fileName="users"/>
+		        	</h:commandLink>
+				</p:panel>
 				
+				<p:panel header="Export Page Data">
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/excel.png"/>
+		            	<p:dataExporter type="xls" target="usersTbl" fileName="users" pageOnly="true" />
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/pdf.png"/>
+		            	<p:dataExporter type="pdf" target="usersTbl" fileName="users" pageOnly="true"/>
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/csv.png"/>
+		            	<p:dataExporter type="csv" target="usersTbl" fileName="users" pageOnly="true"/>
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/xml.png"/>
+		            	<p:dataExporter type="xml" target="usersTbl" fileName="users" pageOnly="true"/>
+		        	</h:commandLink>
+				</p:panel>
+				
+				<p:panel header="Export Selected Rows Data">
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/excel.png"/>
+		            	<p:dataExporter type="xls" target="usersTbl" fileName="users" selectionOnly="true" />
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/pdf.png"/>
+		            	<p:dataExporter type="pdf" target="usersTbl" fileName="users" selectionOnly="true"/>
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/csv.png"/>
+		            	<p:dataExporter type="csv" target="usersTbl" fileName="users" selectionOnly="true"/>
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/xml.png"/>
+		            	<p:dataExporter type="xml" target="usersTbl" fileName="users" selectionOnly="true"/>
+		        	</h:commandLink>
+				</p:panel>
+				
+			</h:panelGrid>
+			
 			</p:panel>
 		</h:form>
  

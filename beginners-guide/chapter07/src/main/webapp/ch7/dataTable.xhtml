@@ -7,7 +7,12 @@
 	template="/templates/publicLayout.xhtml">
 	
 	<ui:define name="head">
-		
+		<style type="text/css">
+			.colored {
+			background-color: #FF0000;
+			color: #FFFFFF;
+			}
+		</style>
 	</ui:define>
 	<ui:define name="bodyContent">
 		
@@ -22,7 +27,9 @@
 		<h:form>
 			<p:panel header="DataTable Demo" style="margin: 0 auto; width: 500px;">
 			
-			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}">  
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" 
+			scrollable="true" scrollHeight="150" 
+			rowStyleClass="#{user.disabled eq true ? 'colored' : null}">  
 				<f:facet name="header">
 					List of Users
 				</f:facet>
@@ -73,6 +80,48 @@
 		            <h:outputText value="#{user.disabled}" />  
 		        </p:column>  
 		        
+		    </p:dataTable>
+		    
+			</p:panel>
+			
+			<br/>
+			
+			<p:panel header="DataTable Grouping" style="margin: 0 auto; width: 500px;">
+			
+			<p:dataTable var="tagStats" value="#{adminController.tagStatisticsList}">  
+				<f:facet name="header">
+					Tag Usage Statistics
+				</f:facet>
+				<p:columnGroup type="header">  
+		            <p:row>  
+		                <p:column rowspan="2" headerText="Tag" />  
+		                <p:column colspan="2" headerText="Posts Associated with Tag" />  
+		            </p:row>  
+		  
+		            <p:row>  
+		                <p:column headerText="Last Year" />  
+		                <p:column headerText="This Year" />
+		            </p:row>  
+		        </p:columnGroup>
+		        <p:column headerText="Tag">  
+		            <h:outputText value="#{tagStats.tag}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Posts Count">  
+		            <h:outputText value="#{tagStats.postsCountLastYear}" />  
+		        </p:column> 
+		        
+		        <p:column headerText="Posts Count">  
+		            <h:outputText value="#{tagStats.postsCountThisYear}" />  
+		        </p:column>
+		        
+		        <p:columnGroup type="footer">
+					<p:row>
+						<p:column style="text-align:right" footerText="Totals:"/>
+						<p:column style="text-align:left" footerText="#{adminController.lastYearPostsCount}" />
+						<p:column style="text-align:left" footerText="#{adminController.thisYearPostsCount}" />
+					</p:row>
+				</p:columnGroup>
 		    </p:dataTable>
 		    
 			</p:panel>
