@@ -25,7 +25,7 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
 		<h:form>
-			<p:panel header="DataTable Demo" style="margin: 0 auto; width: 500px;">
+			<p:panel header="DataTable : Basic">
 			
 			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" 
 			scrollable="true" scrollHeight="150" 
@@ -57,7 +57,7 @@
 			
 			<br/><br/>
 			
-			<p:panel header="DataTable Pagination Demo" style="margin: 0 auto; width: 500px;">
+			<p:panel header="DataTable : Pagination">
 			
 			<p:dataTable id="usersTbl2" var="user" value="#{adminController.users}" paginator="true" rows="5"
 			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
@@ -86,7 +86,7 @@
 			
 			<br/>
 			
-			<p:panel header="DataTable Grouping" style="margin: 0 auto; width: 500px;">
+			<p:panel header="DataTable : Grouping">
 			
 			<p:dataTable var="tagStats" value="#{adminController.tagStatisticsList}">  
 				<f:facet name="header">
@@ -128,7 +128,5 @@
 			
 		</h:form>
  
-		<br/><br/>
-		
 	</ui:define>
 </ui:composition>

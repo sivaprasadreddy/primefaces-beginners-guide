@@ -19,7 +19,7 @@
 	</ui:define>
 	<ui:define name="bodyContent">
 		
-		<h2>DataTable Filtering Component</h2>
+		<h2>DataTable Filtering</h2>
 		
 		<h:form>
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
@@ -28,7 +28,7 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
 		<h:form>
-			<p:panel header="DataTable Demo" style="margin: 0 auto; width: 700px;">
+			<p:panel header="DataTable : Filtering" >
 			
 			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" widgetVar="userTable" 
 				filteredValue="#{adminController.filteredUsers}" emptyMessage="No Users found for the given Filters">  
@@ -64,11 +64,9 @@
 		    
 			</p:panel>
 			
-			<br/><br/>
+			<br/>
 			
 		</h:form>
  
-		<br/><br/>
-		
 	</ui:define>
 </ui:composition>

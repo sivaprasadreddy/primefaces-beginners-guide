@@ -50,6 +50,8 @@ public class AdminController
 	private List<User> filteredUsers = null;
 	private User selectedUser = null;
 	private List<User> selectedUsers = null;
+	//Note: DataExporter with selectionONly attribute is not working with List<User> for any of the formats. 
+	//But working fine with User[] for PDF and XLS exporting only. Seems like there is a bug.
 	private User[] selectedUsersArray = null;
 	private SelectItem[] userStatusOptions;
 	
@@ -60,7 +62,6 @@ public class AdminController
 	void init()
 	{
 		users = userService.findAllUsers();
-		//users = users.subList(0, 2);
 		this.userStatusOptions = new SelectItem[3];
 		this.userStatusOptions[0] = new SelectItem("", "Select");  
 		this.userStatusOptions[1] = new SelectItem("true", "True");
@@ -71,9 +72,9 @@ public class AdminController
 		tagStatisticsList = new ArrayList<TagStatistics>();
 		tagStatisticsList.add(new TagStatistics("JSF", 1005,1500));
 		tagStatisticsList.add(new TagStatistics("PrimeFaces", 2005,2200));
-		//tagStatisticsList.add(new TagStatistics("Spring", 2505,3000));
-		//tagStatisticsList.add(new TagStatistics("JPA", 1050,1750));
-		//tagStatisticsList.add(new TagStatistics("Hibernate", 500,750));
+		tagStatisticsList.add(new TagStatistics("Spring", 2505,3000));
+		tagStatisticsList.add(new TagStatistics("JPA", 1050,1750));
+		tagStatisticsList.add(new TagStatistics("Hibernate", 500,750));
 		tagStatisticsList.add(new TagStatistics("jQuery", 1205,1800));
 		tagStatisticsList.add(new TagStatistics("JavaScript", 4005,5000));
 		
@@ -192,9 +193,18 @@ public class AdminController
         FacesContext.getCurrentInstance().addMessage(null, msg);  
     } 
     
+    public void disableSelectedUser()
+	{
+    	if(this.selectedUser == null){
+    		return;
+    	}
+    	String msg = "Disabled User : [ "+this.selectedUser.getEmailId()+"]";
+    	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(msg));  		
+	}
+    
     public void disableSelectedUsers()
 	{
-    	String msg = "Disabled User Ids: [";
+    	String msg = "Disabled User Ids: [ ";
     	List<User> users = this.selectedUsers;
     	for (User user : users)
 		{
@@ -215,7 +225,6 @@ public class AdminController
 	      
 	    for(int i=0; i < header.getPhysicalNumberOfCells();i++) {  
 	        HSSFCell cell = header.getCell(i);  
-	          
 	        cell.setCellStyle(cellStyle);  
 	    }  
 	}  
@@ -225,9 +234,6 @@ public class AdminController
 	    pdf.open();  
 	    pdf.setPageSize(PageSize.A4);  
 	  
-	   // ServletContext servletContext = (ServletContext) FacesContext.getCurrentInstance().getExternalContext().getContext();  
-	   // String logo = servletContext.getRealPath("") + File.separator +"resources" + File.separator + "images" + File.separator + "primefaces.png";  
-	  
 	    InputStream stream = AdminController.class.getResourceAsStream("/primefaces.jpg");
 	    byte[] logoBytes =  IOUtils.toByteArray(stream);	   
 	    pdf.add(Image.getInstance(logoBytes));  
@@ -235,15 +241,13 @@ public class AdminController
 	
 	public void onEdit(RowEditEvent event) {  
 		User user = (User) event.getObject();
-		System.err.println("User Edited: "+user.getId()+","+user.getEmailId()+","+user.getFirstName()+","+user.getDisabled());
-        FacesMessage msg = new FacesMessage("User Edited: "+ user.getEmailId());  
+        FacesMessage msg = new FacesMessage("Edited User : "+ user.getEmailId());  
         FacesContext.getCurrentInstance().addMessage(null, msg);  
     }  
       
     public void onCancel(RowEditEvent event) {  
     	User user = (User) event.getObject();
-    	System.err.println("User Cancelled: "+user.getId()+","+user.getEmailId()+","+user.getFirstName()+","+user.getDisabled());
-        FacesMessage msg = new FacesMessage("User Cancelled: "+ user.getEmailId());  
+        FacesMessage msg = new FacesMessage("Editing Cancelled for User : "+ user.getEmailId());  
         FacesContext.getCurrentInstance().addMessage(null, msg);  
     }
     
@@ -252,7 +256,7 @@ public class AdminController
         Object newValue = event.getNewValue();  
           
         if(newValue != null && !newValue.equals(oldValue)) {  
-            FacesMessage msg = new FacesMessage("Cell Changed :"+ "Old: " + oldValue + ", New:" + newValue);  
+            FacesMessage msg = new FacesMessage("Cell Changed from : " + oldValue + ", to:" + newValue);  
             FacesContext.getCurrentInstance().addMessage(null, msg);  
         }  
     }

@@ -5,14 +5,8 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/templates/publicLayout.xhtml">
 	
-	<ui:define name="appResources">
-        <h:outputScript library="js" name="calendarLocales.js" />
-    </ui:define>
-    
 	<ui:define name="head">
-		<script type="text/javascript">
-
-		</script>
+		
 		<style type="text/css">
 			.myCol {
 				width: 150px;
@@ -30,7 +24,7 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
 		<h:form>
-			<p:panel header="Unordered DataList" style="margin: 0 auto; width: 500px;">
+			<p:panel header="Unordered DataList">
 				
 				<h:panelGrid columns="3" columnClasses="myCol, myCol,myCol">
 					<h:outputText value="Disc"/>
@@ -54,7 +48,7 @@
 			
 			<br/>
 			
-			<p:panel header="Ordered DataList" style="margin: 0 auto; width: 500px;">
+			<p:panel header="Ordered DataList">
 			
 			<h:panelGrid columns="4" columnClasses="myCol, myCol,myCol,myCol">
 					<h:outputText value="Number"/>
@@ -82,21 +76,8 @@
 			</p:panel>
 			
 			<br/>
-			<!-- 
-			<p:panel header="DataList Definition Demo" style="margin: 0 auto;">
-			
-				<p:dataList value="#{tagController.tags}" var="tag" type="definition"> 
-				    #{tag.label}   
-				    <f:facet name="description">  
-				       #{tag.description} 
-				    </f:facet>
-				</p:dataList>
-			</p:panel>
-			
-			<br/>
-			 -->
-			
-			<p:panel header="DataList Pagination" style="margin: 0 auto; width: 500px;">
+						
+			<p:panel header="DataList Pagination">
 				<p:dataList value="#{tagController.tags}" var="tag" id="tags" type="none"
 					paginator="true" rows="5"  
 					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
@@ -111,7 +92,5 @@
 			
 		</h:form>
  
-		<br/><br/>
-		
 	</ui:define>
 </ui:composition>

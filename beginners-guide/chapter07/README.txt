@@ -3,12 +3,9 @@ PrimeFaces Beginners Guide : Chapter7
 1. DataList
 	a) Unordered List
 	b) Ordered List
-	c) Pagination - Home Page to display Posts
+	c) Pagination
 
-2. DataGrid
-	a) DataGrid with Pagination - Tags display
-
-3. DataTable
+2. DataTable
 	a) Simple
 	b) Header Footer
 	c) Pagination
@@ -18,4 +15,4 @@ PrimeFaces Beginners Guide : Chapter7
 	g) Lazy Loading
 	h) Inline Row/Cell Editing
 
-4. DataExporter
+3. DataExporter

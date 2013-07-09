@@ -6,12 +6,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/templates/publicLayout.xhtml">
 	
-	<ui:define name="head">
-		
-	</ui:define>
 	<ui:define name="bodyContent">
-		
-		<h2>DataTable Component</h2>
 		
 		<h:form>
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
@@ -19,8 +14,8 @@
 								 
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
+		<h2>DataTable Component</h2>
 		<h:form>
-			<p:panel style="margin: 0 auto; width: 500px;">
 			
 			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" editable="true">  
 				<p:ajax event="rowEdit" listener="#{adminController.onEdit}"/>  
@@ -66,11 +61,9 @@
 		        </p:column> 
 				
 		    </p:dataTable>
-		    </p:panel>
 		    
 			<br/><br/>
 			
-			<p:panel style="margin: 0 auto; width: 500px;">
 			
 			<p:dataTable id="usersTbl1" var="user" value="#{adminController.users}" editable="true" editMode="cell">  
 				<p:ajax event="cellEdit" listener="#{adminController.onCellEdit}"/>
@@ -111,10 +104,8 @@
 		            </p:cellEditor>
 		        </p:column>  
 		    </p:dataTable>
-		    </p:panel>
 		    
 		</h:form>
- 
 		
 	</ui:define>
 </ui:composition>

@@ -15,7 +15,6 @@
 	</ui:define>
 	<ui:define name="bodyContent">
 		
-		<h2>DataTable Row Expansion Component</h2>
 		
 		<h:form>
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
@@ -23,7 +22,8 @@
 								 
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
-		<h:form style="margin: 0 auto; width: 500px;">
+		<h2>DataTable Row Expansion</h2>
+		<h:form>
 			
 			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" >  
 				<p:column style="width:15px;">  
@@ -41,7 +41,10 @@
 		  			<h:panelGrid columns="2" styleClass="ui-widget-content grid" style="width:300px;">
 		  				<h:outputText  value="FirstName: " />
 		  				<h:outputText value="#{user.firstName}" />
-				         
+		  				
+				        <h:outputText  value="LastName: " />
+		  				<h:outputText value="#{user.lastName}" />
+				  		
 				  		<h:outputText  value="Disabled: " />
 				  		<h:outputText value="#{user.disabled}" />
 				        
@@ -51,8 +54,6 @@
 		    </p:dataTable>
 		    
 		</h:form>
- 
-		<br/><br/>
 		
 	</ui:define>
 </ui:composition>

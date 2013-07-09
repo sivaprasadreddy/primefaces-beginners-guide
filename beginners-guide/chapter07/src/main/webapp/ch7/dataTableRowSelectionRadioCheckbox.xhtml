@@ -19,7 +19,7 @@
 	</ui:define>
 	<ui:define name="bodyContent">
 		
-		<h2>DataTable Filtering Component</h2>
+		<h2>DataTable RowSelection using Radio/Checkbox</h2>
 		
 		<h:form>
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
@@ -34,7 +34,7 @@
 					selection="#{adminController.selectedUser}" rowKey="#{user.id}" >
 					<p:column selectionMode="single" style="width:20px"/>
 				<f:facet name="header">
-					List of Users
+					Select User to Disable
 				</f:facet>
 		        <p:column headerText="Id" width="20px;">  
 		            <h:outputText value="#{user.id}" />
@@ -43,6 +43,9 @@
 		        <p:column headerText="Email" >
 		            <h:outputText value="#{user.emailId}" />
 		        </p:column>  
+		        <f:facet name="footer">
+					<p:commandButton value="Disable" actionListener="#{adminController.disableSelectedUser}"/>
+				</f:facet>
 		  
 		    </p:dataTable>
 		    
@@ -50,7 +53,7 @@
 					selection="#{adminController.selectedUsers}" rowKey="#{user.id}" >
 					<p:column selectionMode="multiple" style="width:20px"/>
 				<f:facet name="header">
-					List of Users
+					Select Users to Disable
 				</f:facet>
 		        <p:column headerText="Id" width="20px;">  
 		            <h:outputText value="#{user.id}" />
@@ -65,7 +68,7 @@
 		    </p:dataTable>
 		   
 	        </h:panelGrid>
-			<br/><br/>
+			<br/>
 			
 		</h:form>
 		

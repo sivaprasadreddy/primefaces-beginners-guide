@@ -52,7 +52,6 @@ public class LazyUserModel extends LazyDataModel<User>
                 try {  
                     String filterProperty = it.next();  
                     String filterValue = filters.get(filterProperty);  
-                   // String fieldValue = String.valueOf(car.getClass().getField(filterProperty).get(car));  
                     Field field = user.getClass().getDeclaredField(filterProperty);
             		field.setAccessible(true);
             		String fieldValue = String.valueOf(field.get(user));
@@ -110,16 +109,21 @@ class LazySorter implements Comparator<User> {
         this.sortOrder = sortOrder;
     }
 
-    public int compare(User user1, User user2) {
+    @SuppressWarnings({"rawtypes","unchecked"})
+	public int compare(User user1, User user2) {
         try {
-            Object value1 = User.class.getField(this.sortField).get(user1);
-            Object value2 = User.class.getField(this.sortField).get(user2);
+        	Field field = user1.getClass().getDeclaredField(this.sortField);
+    		field.setAccessible(true);
+            Object value1 = field.get(user1);
+            Object value2 = field.get(user2);
 
-            int value = ((Comparable)value1).compareTo(value2);
+            
+			int value = ((Comparable)value1).compareTo(value2);
             
             return SortOrder.ASCENDING.equals(sortOrder) ? value : -1 * value;
         }
         catch(Exception e) {
+        	e.printStackTrace();
             throw new RuntimeException();
         }
     }
