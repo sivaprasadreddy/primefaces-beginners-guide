@@ -1,0 +1,111 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+								 
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h2>DataTable Component</h2>
+		<h:form>
+			
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" editable="true">  
+				<p:ajax event="rowEdit" listener="#{adminController.onEdit}"/>  
+        		<p:ajax event="rowEditCancel" listener="#{adminController.onCancel}"/>
+        
+				<f:facet name="header">
+					DataTable Row Editing
+				</f:facet>
+		        <p:column headerText="Id">  
+		            <h:outputText value="#{user.id}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Email">  
+		            <h:outputText value="#{user.emailId}" /> 
+		        </p:column>  
+		  
+		        <p:column headerText="FirstName">  
+		            <p:cellEditor>  
+		                <f:facet name="output">  
+		                    <h:outputText value="#{user.firstName}" />  
+		                </f:facet>  
+		                <f:facet name="input">  
+		                    <p:inputText value="#{user.firstName}" style="width:100%"/>  
+		                </f:facet>  
+		            </p:cellEditor>
+		        </p:column>  
+		  
+		        <p:column headerText="Disabled">  
+		            <p:cellEditor>  
+		                <f:facet name="output">  
+		                    <h:outputText value="#{user.disabled}" />  
+		                </f:facet>  
+		                <f:facet name="input">  
+		                    <h:selectOneMenu value="#{user.disabled}" >
+		                    	<f:selectItem itemLabel="True" itemValue="true"/>
+		                    	<f:selectItem itemLabel="False" itemValue="false"/>
+		                    </h:selectOneMenu>  
+		                </f:facet>  
+		            </p:cellEditor>
+		        </p:column>  
+		        <p:column style="width:6%">  
+		            <p:rowEditor />  
+		        </p:column> 
+				
+		    </p:dataTable>
+		    
+			<br/><br/>
+			
+			
+			<p:dataTable id="usersTbl1" var="user" value="#{adminController.users}" editable="true" editMode="cell">  
+				<p:ajax event="cellEdit" listener="#{adminController.onCellEdit}"/>
+        
+				<f:facet name="header">
+					DataTable Cell Editing
+				</f:facet>
+		        <p:column headerText="Id">  
+		            <h:outputText value="#{user.id}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Email">  
+		            <h:outputText value="#{user.emailId}" /> 
+		        </p:column>  
+		  
+		        <p:column headerText="FirstName">  
+		            <p:cellEditor>  
+		                <f:facet name="output">  
+		                    <h:outputText value="#{user.firstName}" />  
+		                </f:facet>  
+		                <f:facet name="input">  
+		                    <p:inputText value="#{user.firstName}" style="width:100%"/>  
+		                </f:facet>  
+		            </p:cellEditor>
+		        </p:column>  
+		  
+		        <p:column headerText="Disabled">  
+		            <p:cellEditor>  
+		                <f:facet name="output">  
+		                    <h:outputText value="#{user.disabled}" />  
+		                </f:facet>  
+		                <f:facet name="input">  
+		                    <h:selectOneMenu value="#{user.disabled}" >
+		                    	<f:selectItem itemLabel="True" itemValue="true"/>
+		                    	<f:selectItem itemLabel="False" itemValue="false"/>
+		                    </h:selectOneMenu>  
+		                </f:facet>  
+		            </p:cellEditor>
+		        </p:column>  
+		    </p:dataTable>
+		    
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

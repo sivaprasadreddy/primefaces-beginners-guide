@@ -1,0 +1,96 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="head">
+		
+		<style type="text/css">
+			.myCol {
+				width: 150px;
+			}
+		</style>
+	</ui:define>
+	<ui:define name="bodyContent">
+		
+		<h2>DataList Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+								 
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h:form>
+			<p:panel header="Unordered DataList">
+				
+				<h:panelGrid columns="3" columnClasses="myCol, myCol,myCol">
+					<h:outputText value="Disc"/>
+					<h:outputText value="Circle" />
+					<h:outputText value="Square" />
+				
+					<p:dataList value="#{tagController.tags}" var="tag" itemType="disc">  
+					    #{tag.label}  
+					</p:dataList>
+					
+					<p:dataList value="#{tagController.tags}" var="tag" itemType="circle">  
+					    #{tag.label}  
+					</p:dataList>
+					
+					<p:dataList value="#{tagController.tags}" var="tag" itemType="square">  
+					    #{tag.label} 
+					</p:dataList>
+				
+				</h:panelGrid>
+			</p:panel>
+			
+			<br/>
+			
+			<p:panel header="Ordered DataList">
+			
+			<h:panelGrid columns="4" columnClasses="myCol, myCol,myCol,myCol">
+					<h:outputText value="Number"/>
+					<h:outputText value="Uppercase Letter" />
+					<h:outputText value="Lowercase Letter" />
+					<h:outputText value="Roman Letter" />
+					
+				<p:dataList value="#{tagController.tags}" var="tag" type="ordered">  
+				   #{tag.label} 
+				</p:dataList>
+				
+				<p:dataList value="#{tagController.tags}" var="tag" type="ordered" itemType="A">
+				    #{tag.label}   
+				</p:dataList>
+				
+				<p:dataList value="#{tagController.tags}" var="tag" type="ordered" itemType="a">
+				    #{tag.label}   
+				</p:dataList>
+				
+				<p:dataList value="#{tagController.tags}" var="tag" type="ordered" itemType="i">  
+				   #{tag.label}  
+				</p:dataList>
+				
+				</h:panelGrid>
+			</p:panel>
+			
+			<br/>
+						
+			<p:panel header="DataList Pagination">
+				<p:dataList value="#{tagController.tags}" var="tag" id="tags" type="none"
+					paginator="true" rows="5"  
+					paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
+					rowsPerPageTemplate="5,10,15">  
+						<f:facet name="header">  
+							Tags  
+						</f:facet> 		  
+						<h:outputText value="#{tag.id} - #{tag.label}" style="margin-left:10px" />  
+						<br />  
+				</p:dataList>
+			</p:panel>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="appResources">
+        <h:outputScript library="js" name="jquery-plugins.js" />
+    </ui:define>
+    
+	<ui:define name="head">
+		<style type="text/css">
+			.pwStyle {
+				width:200px;
+				height:140px;
+				text-align:center;
+			}
+			
+			.photo {
+				width:400px;
+				height:250px;
+			}
+			
+		</style>
+    </ui:define>
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+	    <p:growl id="msg" autoUpdate="true"/>  
+		<h2>Carousel Component</h2>
+	    
+		<h:form>
+			
+			<p:carousel value="#{homeController.portfolioWidgets}" headerText="Techuzz" var="pw" 
+						itemStyleClass="pwStyle" easing="easeOutBounce">
+			    <h:panelGrid columns="1" style="width:100%" cellpadding="5">
+					<p:outputLabel value="#{pw.title}"/>
+					<p:outputLabel value="#{pw.description}"/>
+				</h:panelGrid>
+			</p:carousel>
+		    
+		    <br/><br/>
+		    
+		    <p:carousel value="#{homeController.portfolioWidgets}" headerText="Techuzz" var="pw" 
+		    			itemStyleClass="pwStyle" numVisible="2" effect="fade">
+			    <h:panelGrid columns="1" style="width:100%" cellpadding="5">
+					<p:outputLabel value="#{pw.title}"/>
+					<p:outputLabel value="#{pw.description}"/>
+				</h:panelGrid>
+			</p:carousel>
+			
+			<br/><br/>
+		    
+		    <p:carousel headerText="Techuzz" numVisible="1" itemStyle="height:200px;width:600px;" effect="easeInStrong">
+				<p:tab>
+					Tab1
+				</p:tab>
+				<p:tab>
+					Tab2
+				</p:tab>
+				<p:tab>
+					Tab3
+				</p:tab>
+			</p:carousel>
+			
+			<br/><br/>
+		    <!-- 
+		    https://code.google.com/p/primefaces/issues/detail?id=5327
+		     -->
+		    <p:carousel itemStyleClass="photo" pageLinks="4" autoPlayInterval="4000"   
+        				numVisible="1" effect="easeInStrong" circular="true">
+				<p:graphicImage value="/resources/images/primefaces.jpg"/>	
+				<p:graphicImage value="/resources/images/csv.png"/>
+				<p:graphicImage value="/resources/images/xml.png"/>		
+			</p:carousel>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>
