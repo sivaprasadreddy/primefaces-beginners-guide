@@ -12,15 +12,9 @@
     
 	<ui:define name="head">
 		<style type="text/css">
-			.pwStyle {
-				width:200px;
-				height:140px;
-				text-align:center;
-			}
-			
-			.photo {
-				width:400px;
-				height:250px;
+			.topAlign td
+			{
+				vertical-align: top;
 			}
 			
 		</style>
@@ -35,49 +29,102 @@
 		<h2>Carousel Component</h2>
 	    
 		<h:form>
-			
-			<p:carousel value="#{homeController.portfolioWidgets}" headerText="Techuzz" var="pw" 
-						itemStyleClass="pwStyle" easing="easeOutBounce">
+						
+			<p:carousel value="#{carouselController.books}" headerText="Latest Books" var="book" easing="easeOutBounce">
 			    <h:panelGrid columns="1" style="width:100%" cellpadding="5">
-					<p:outputLabel value="#{pw.title}"/>
-					<p:outputLabel value="#{pw.description}"/>
+			    	<p:graphicImage value="/resources/images/books/#{book}" width="150px" height="200px;"/>
 				</h:panelGrid>
 			</p:carousel>
 		    
 		    <br/><br/>
-		    
-		    <p:carousel value="#{homeController.portfolioWidgets}" headerText="Techuzz" var="pw" 
-		    			itemStyleClass="pwStyle" numVisible="2" effect="fade">
-			    <h:panelGrid columns="1" style="width:100%" cellpadding="5">
-					<p:outputLabel value="#{pw.title}"/>
-					<p:outputLabel value="#{pw.description}"/>
-				</h:panelGrid>
+
+			<p:carousel id="tabsCarousel" numVisible="1" itemStyle="height:220px;width:600px;" 
+						effect="easeInStrong" headerText="Carousel using Tabs">
+				
+				<p:tab title="PrimeFaces Beginners Guide">  
+					<h:panelGrid columns="2" cellpadding="10" styleClass="topAlign">  
+						<p:graphicImage value="/resources/images/books/PFBG_Raw.jpg" width="150px" height="200px;"/>  
+						<h:outputText  
+							value="PrimeFaces Beginners Guide is a practical, hands-on guide that provides you with clear step-by-step exercises,
+									that will help you to learn and explore the features of PrimeFaces." />  
+					</h:panelGrid>  
+				</p:tab>
+				
+				<p:tab title="PrimeFaces Beginners Guide">  
+					<h:panelGrid columns="2" cellpadding="10" styleClass="topAlign">  
+						<p:graphicImage value="/resources/images/books/PF_Cookbook.jpg" width="150px" height="200px;"/>  
+						<h:outputText  
+							value="PrimeFaces Cookbook covers over 100 effective recipes for PrimeFaces 3.x which is a leading component suite to boost JSF applications. 
+							The book’s range is wide from AJAX basics, theming, and input components to advanced usage of datatable, menus, drag &amp; drop, and charts. 
+							It also includes creating custom components and PrimeFaces Extensions." />  
+					</h:panelGrid>
+				</p:tab>
+				
+				<p:tab title="JSF 2.0 Cookbook">  
+					<h:panelGrid columns="2" cellpadding="10" styleClass="topAlign">  
+						<p:graphicImage value="/resources/images/books/JSF2_Cookbook.jpg" width="150px" height="200px;"/>  
+						<h:outputText  
+							value="This book will cover all the important aspects involved in developing JSF applications. 
+								It provides clear instructions for getting the most out of JSF and offers many exercises 
+								to build impressive desktop-style interfaces for your web applications. 
+								Develop JSF applications starting with simple recipes and gradually moving on to complex recipes." />  
+					</h:panelGrid>  
+				</p:tab>
+					
+				<p:tab title="Instant PrimeFaces Starter">  
+					<h:panelGrid columns="2" cellpadding="10" styleClass="topAlign">  
+						<p:graphicImage value="/resources/images/books/PF_Starter.jpg" width="150px" height="200px;"/>  
+						<h:outputText  
+							value="Instant PrimeFaces Starter is a practical, hands-on guide to PrimeFaces that will show 
+							you how to get started quickly using PrimeFaces in your web applications and provides examples on
+							 how to design and develop compelling user interfaces using PrimeFaces Ajax UI components, PrimeFaces Mobile, and PrimeFaces Push." />  
+					</h:panelGrid>  
+				</p:tab>			    
+
 			</p:carousel>
-			
-			<br/><br/>
-		    
-		    <p:carousel headerText="Techuzz" numVisible="1" itemStyle="height:200px;width:600px;" effect="easeInStrong">
-				<p:tab>
-					Tab1
-				</p:tab>
-				<p:tab>
-					Tab2
-				</p:tab>
-				<p:tab>
-					Tab3
-				</p:tab>
-			</p:carousel>
-			
-			<br/><br/>
+		    <br/><br/>
 		    <!-- 
-		    https://code.google.com/p/primefaces/issues/detail?id=5327
+		    autoPlayInterval is not working properly in primefaces-3.5 and is fixed in later version.
+		    See https://code.google.com/p/primefaces/issues/detail?id=5327
 		     -->
-		    <p:carousel itemStyleClass="photo" pageLinks="4" autoPlayInterval="4000"   
-        				numVisible="1" effect="easeInStrong" circular="true">
-				<p:graphicImage value="/resources/images/primefaces.jpg"/>	
-				<p:graphicImage value="/resources/images/csv.png"/>
-				<p:graphicImage value="/resources/images/xml.png"/>		
+		     <p:carousel id="tabsCarouselSlideshow" numVisible="1" itemStyle="height:220px;width:600px;" 
+		     			effect="easeInStrong" pageLinks="4" vertical="true"
+		     			 autoPlayInterval="4000" circular="true" headerText="Carousel AutoScroll Vertically">
+				
+				<p:tab title="PrimeFaces Beginners Guide">  
+					<h:panelGrid columns="2" cellpadding="10" styleClass="topAlign">  
+						<p:graphicImage value="/resources/images/books/PFBG_Raw.jpg" width="150px" height="200px;"/>  
+						<h:outputText  
+							value="PrimeFaces Beginners Guide is a practical, hands-on guide that provides you with clear step-by-step exercises,that will help you to learn and explore the features of PrimeFaces." />  
+					</h:panelGrid>  
+				</p:tab>
+				
+				<p:tab title="PrimeFaces Beginners Guide">  
+					<h:panelGrid columns="2" cellpadding="10" styleClass="topAlign">  
+						<p:graphicImage value="/resources/images/books/PF_Cookbook.jpg" width="150px" height="200px;"/>  
+						<h:outputText  
+							value="PrimeFaces Cookbook covers over 100 effective recipes for PrimeFaces 3.x which is a leading component suite to boost JSF applications. The book’s range is wide from AJAX basics, theming, and input components to advanced usage of datatable, menus, drag &amp; drop, and charts. It also includes creating custom components and PrimeFaces Extensions." />  
+					</h:panelGrid>  
+				</p:tab>
+				
+				<p:tab title="JSF 2.0 Cookbook">  
+					<h:panelGrid columns="2" cellpadding="10" styleClass="topAlign">  
+						<p:graphicImage value="/resources/images/books/JSF2_Cookbook.jpg" width="150px" height="200px;"/>  
+						<h:outputText  
+							value="This book will cover all the important aspects involved in developing JSF applications. It provides clear instructions for getting the most out of JSF and offers many exercises to build impressive desktop-style interfaces for your web applications. Develop JSF applications starting with simple recipes and gradually moving on to complex recipes." />  
+					</h:panelGrid>  
+				</p:tab>
+				
+				<p:tab title="Instant PrimeFaces Starter">  
+					<h:panelGrid columns="2" cellpadding="10" styleClass="topAlign">  
+						<p:graphicImage value="/resources/images/books/PF_Starter.jpg" width="150px" height="200px;"/>  
+						<h:outputText  
+							value="Instant PrimeFaces Starter is a practical, hands-on guide to PrimeFaces that will show you how to get started quickly using PrimeFaces in your web applications and provides examples on how to design and develop compelling user interfaces using PrimeFaces Ajax UI components, PrimeFaces Mobile, and PrimeFaces Push." />  
+					</h:panelGrid>  
+				</p:tab>			    
+
 			</p:carousel>
+		    
 			
 		</h:form>
  

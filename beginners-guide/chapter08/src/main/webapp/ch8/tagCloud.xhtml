@@ -10,19 +10,18 @@
 		<h:form>
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
 		</h:form>
-								 
+		
 	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>  
 	    <h2>TagCloud Component</h2>
 	    
 		<h:form>
-			<p:tagCloud model="#{tagCloudController.model}">  
-		        <p:ajax event="select" update="posts" listener="#{tagCloudController.onSelect}" />  
+			
+			<p:tagCloud model="#{tagController.model}">  
+		        <p:ajax event="select" update="posts" listener="#{tagController.onSelect}" />  
 		    </p:tagCloud>
-		    
-		    <p:separator/>
-		    
+		    <br/>
 		    <p:panel header="Posts by Tag">
-			    <p:dataList value="#{tagCloudController.posts}" var="post" id="posts"  
+			    <p:dataList value="#{tagController.posts}" var="post" id="posts"  
 		        	paginator="true" rows="10" type="none">  
 		  
 		            <h:outputText value="#{post.title}" style="margin-left:10px; font-size:7; font-weight:bold" /><br />
