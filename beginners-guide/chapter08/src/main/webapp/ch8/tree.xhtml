@@ -11,41 +11,20 @@
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
 		</h:form>
 								 
-	    <p:growl id="msg" autoUpdate="true"/>  
+	    <p:growl id="msg" autoUpdate="true" escape="false"/>  
 	    <h2>Tree Component</h2>
 	    
 		<h:form id="form">
-			<p:growl id="messages" showDetail="true" />  
-			
-			<p:tree value="#{treeController.root}" var="node" id="tree">  
+			<p:growl id="messages" showDetail="true" escape="false"/>  
+			<h2>Basic Tree</h2>
+			<p:tree value="#{treeController.root}" var="node" id="tree" style="width: 500px;">  
 		        <p:treeNode id="treeNode">  
 		            <h:outputText value="#{node}" id="lblNode"/>  
 		        </p:treeNode>  
 		    </p:tree>
 		    
 		    <br/><br/>
-		    
-		    <p:tree id="docTree" value="#{documentsController.root}" var="doc" animate="true">  
-		        <p:treeNode expandedIcon="ui-icon-folder-open"  
-		                    collapsedIcon="ui-icon-folder-collapsed">  
-		            <h:outputText value="#{doc.name}"/>  
-		        </p:treeNode>  
-		  
-		        <p:treeNode type="document" icon="ui-icon-document">  
-		            <h:outputText value="#{doc.name}" />  
-		        </p:treeNode>  
-		  
-		        <p:treeNode type="picture" icon="ui-icon-image">  
-		            <h:outputText value="#{doc.name}" />  
-		        </p:treeNode>  
-		  
-		        <p:treeNode type="mp3" icon="ui-icon-video">  
-		            <h:outputText value="#{doc.name}" />  
-		        </p:treeNode>  
-		    </p:tree>
-    		
-    		<br/><br/>
-    		
+		    <h2>Ajax Tree</h2>
     		<p:tree value="#{treeController.root}" var="node" dynamic="true" cache="true" id="ajaxtree">
 				<p:treeNode>
 					<h:outputText value="#{node}"/>
@@ -53,19 +32,66 @@
 			</p:tree>
 				
 			<br/><br/>
-			
+			<h2>Tree Events</h2>
 			<p:tree value="#{treeController.root}" var="node" dynamic="true" cache="false"  
 	            selectionMode="single"  selection="#{treeController.selectedNode}" id="treeevents">  
 	  
-	        <p:ajax event="expand" update=":form:messages" listener="#{treeController.onNodeExpand}" />  
-	        <p:ajax event="collapse" update=":form:messages" listener="#{treeController.onNodeCollapse}" />  
-	        <p:ajax event="select" update=":form:messages" listener="#{treeController.onNodeSelect}" />  
-	        <p:ajax event="unselect" update=":form:messages" listener="#{treeController.onNodeUnselect}" />  
-	  
-	        <p:treeNode>  
-	            <h:outputText value="#{node}" />  
-	        </p:treeNode>  
-	    </p:tree>
+		        <p:ajax event="expand" update=":form:messages" listener="#{treeController.onNodeExpand}" />  
+		        <p:ajax event="collapse" update=":form:messages" listener="#{treeController.onNodeCollapse}" />  
+		        <p:ajax event="select" update=":form:messages" listener="#{treeController.onNodeSelect}" />  
+		        <p:ajax event="unselect" update=":form:messages" listener="#{treeController.onNodeUnselect}" />  
+		  
+		        <p:treeNode>  
+		            <h:outputText value="#{node}" />  
+		        </p:treeNode>  
+		    </p:tree>
+	    
+		    <br/><br/>
+		    <h2>Single Selection</h2>
+		    <p:tree value="#{treeController.root}" var="node" dynamic="true" cache="false"  
+		            selectionMode="single"  selection="#{treeController.selectedNode}" id="treeevents1">  
+		  
+			        <p:treeNode>  
+			            <h:outputText value="#{node}" />  
+			        </p:treeNode>  
+		    </p:tree>
+	    	<p:commandButton value="Display Selected" update="messages" style="margin:20px 0 20px 0;"  
+                    actionListener="#{treeController.displaySelectedSingle}" id="btnDisplay1"/>
+                    
+	    	<br/><br/>
+		    <h2>Multiple Selection</h2>
+		    <p:tree value="#{treeController.root}" var="node" dynamic="true" cache="false"  
+		            selectionMode="multiple"  selection="#{treeController.selectedNodes}" id="treeevents2">  
+		  
+			        <p:treeNode>  
+			            <h:outputText value="#{node}" />  
+			        </p:treeNode>  
+		    </p:tree>
+	    	<p:commandButton value="Display Selected" update="messages" style="margin:20px 0 20px 0;"  
+                    actionListener="#{treeController.displaySelectedMultiple}" id="btnDisplay2"/>
+	    
+	     <br/><br/>
+	    <h2>Tree Icons</h2>
+	     <p:tree id="docTree" value="#{treeController.rootx}" var="node" animate="true">  
+		        <p:treeNode expandedIcon="ui-icon-folder-open"  
+		                    collapsedIcon="ui-icon-folder-collapsed">  
+		            <h:outputText value="#{node}"/>  
+		        </p:treeNode>  
+		  
+		        <p:treeNode type="document" icon="ui-icon-document">  
+		            <h:outputText value="#{node}" />  
+		        </p:treeNode>  
+		  
+		        <p:treeNode type="pic" icon="ui-icon-image">  
+		            <h:outputText value="#{node}" />  
+		        </p:treeNode>  
+		  
+		        <p:treeNode type="video" icon="ui-icon-video">  
+		            <h:outputText value="#{node}" />  
+		        </p:treeNode>  
+		    </p:tree>
+    		
+    		<br/><br/>
 		</h:form>
  
 	</ui:define>

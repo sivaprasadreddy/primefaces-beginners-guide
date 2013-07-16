@@ -25,6 +25,7 @@ public class TreeController
 {
 	
 	private TreeNode root;
+	private TreeNode rootx;
 	
 	private TreeNode selectedNode;
 
@@ -32,27 +33,63 @@ public class TreeController
 
 	public TreeController() {
 		root = new DefaultTreeNode("Root", null);
-		TreeNode node0 = new DefaultTreeNode("Node 0", root);
-		TreeNode node1 = new DefaultTreeNode("Node 1", root);
-		TreeNode node2 = new DefaultTreeNode("Node 2", root);
 		
-		TreeNode node00 = new DefaultTreeNode("Node 0.0", node0);
-		TreeNode node01 = new DefaultTreeNode("Node 0.1", node0);
 		
-		TreeNode node10 = new DefaultTreeNode("Node 1.0", node1);
-		TreeNode node11 = new DefaultTreeNode("Node 1.1", node1);
+		TreeNode node2013 = new DefaultTreeNode("2013", root);
+		TreeNode node2012 = new DefaultTreeNode("2012", root);
+		TreeNode node2011 = new DefaultTreeNode("2011", root);
 		
-		TreeNode node000 = new DefaultTreeNode("Node 0.0.0", node00);
-		TreeNode node001 = new DefaultTreeNode("Node 0.0.1", node00);
-		TreeNode node010 = new DefaultTreeNode("Node 0.1.0", node01);
+		TreeNode jan2013 = new DefaultTreeNode("Jan", node2013);
+		TreeNode feb2013 = new DefaultTreeNode("Feb", node2013);
 		
-		TreeNode node100 = new DefaultTreeNode("Node 1.0.0", node10);
+		TreeNode aug2012 = new DefaultTreeNode("Aug", node2012);
+		TreeNode sep2012 = new DefaultTreeNode("Sep", node2012);
+		
+		TreeNode nov2011 = new DefaultTreeNode("Nov", node2011);
+		
+		
+		TreeNode jan2013Post1 = new DefaultTreeNode("PrimeFaces Elite 3.5.5 Released", jan2013);
+		TreeNode jan2013Post2 = new DefaultTreeNode("PrimeFaces Extensions 0.7 Released", jan2013);
+		TreeNode feb2013Post1 = new DefaultTreeNode("Spring Framework 4.0 M1: WebSocket Support", feb2013);
+		
+		TreeNode aug2012Post1 = new DefaultTreeNode("EclipseLink 2.5 Release Available for Download", aug2012);
+		TreeNode sep2012Post1 = new DefaultTreeNode("Building REST-ful services with Spring", sep2012);
+		
+		TreeNode nov2011Post1 = new DefaultTreeNode("PrimeUI 0.9 Released", nov2011);
+		
+		rootx = new DefaultTreeNode("Root", null);
+		
+		
+		TreeNode node2013x = new DefaultTreeNode("2013", rootx);
+		TreeNode node2012x = new DefaultTreeNode("2012", rootx);
+		TreeNode node2011x = new DefaultTreeNode("2011", rootx);
+		
+		TreeNode jan2013x = new DefaultTreeNode("Jan", node2013x);
+		TreeNode feb2013x = new DefaultTreeNode("Feb", node2013x);
+		
+		TreeNode aug2012x = new DefaultTreeNode("Aug", node2012x);
+		TreeNode sep2012x = new DefaultTreeNode("Sep", node2012x);
+		
+		TreeNode nov2011x = new DefaultTreeNode("Nov", node2011x);
+		
+		
+		TreeNode jan2013Post1x = new DefaultTreeNode("pic","PrimeFaces Elite 3.5.5 Released", jan2013x);
+		TreeNode jan2013Post2x = new DefaultTreeNode("pic","PrimeFaces Extensions 0.7 Released", jan2013x);
+		TreeNode feb2013Post1x = new DefaultTreeNode("video","Spring Framework 4.0 M1: WebSocket Support", feb2013x);
+		
+		TreeNode aug2012Post1x = new DefaultTreeNode("document","EclipseLink 2.5 Release Available for Download", aug2012x);
+		TreeNode sep2012Post1x = new DefaultTreeNode("document","Building REST-ful services with Spring", sep2012x);
+		
+		TreeNode nov2011Post1x = new DefaultTreeNode("video", "PrimeUI 0.9 Released", nov2011x);
 	}
 
 	public TreeNode getRoot() {
 		return root;
 	}
-	
+	public TreeNode getRootx()
+	{
+		return rootx;
+	}
 	public TreeNode[] getSelectedNodes() {
 		return selectedNodes;
 	}
