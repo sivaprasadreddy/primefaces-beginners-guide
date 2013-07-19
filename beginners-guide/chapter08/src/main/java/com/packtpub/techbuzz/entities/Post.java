@@ -40,7 +40,11 @@ public class Post implements Serializable
         this.description = description;
         this.createdOn = createdOn;
     }
-
+    public Post(Integer id, String title, Date createdOn) {
+        this.id = id;
+        this.title = title;
+        this.createdOn = createdOn;
+    }
     public Integer getId() {
         return id;
     }
