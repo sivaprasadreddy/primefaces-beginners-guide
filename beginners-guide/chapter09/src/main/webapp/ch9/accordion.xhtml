@@ -17,12 +17,17 @@
 			
 		</style>
 		<script type="text/javascript">
-			function tabChanged(tab){
-				alert("Tab Changed: "+tab.id);
+		
+			function tabChanged(panel)
+			{
+				alert("Tab Changed");
 			}
-			function tabShowed(tab){
-				alert("Tab Showed:"+tab.id);
+
+			function tabShowed(panel)
+			{
+				$(panel).effect( "highlight", {color:"#669966"}, 3000 );
 			}
+			
 		</script>
     </ui:define>
     
@@ -78,7 +83,7 @@
 			<br/><br/>
 			
 			<h2>Accordion Panel Events</h2>
-			<p:accordionPanel onTabChange="tabChanged(tab)" onTabShow="tabShowed(tab)" >
+			<p:accordionPanel onTabChange="tabChanged(panel)" onTabShow="tabShowed(panel)" >
 				<p:ajax event="tabChange" listener="#{sampleController.onTabChange}"/> 
 			 	<!-- <p:ajax event="tabClose" listener="#{sampleController.onTabClose}"/> -->
 			 	
