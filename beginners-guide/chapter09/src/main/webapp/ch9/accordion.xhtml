@@ -14,19 +14,98 @@
     
 	<ui:define name="head">
 		<style type="text/css">
-						
+			
 		</style>
+		<script type="text/javascript">
+			function tabChanged(tab){
+				alert("Tab Changed: "+tab.id);
+			}
+			function tabShowed(tab){
+				alert("Tab Showed:"+tab.id);
+			}
+		</script>
     </ui:define>
     
 	<ui:define name="bodyContent">
 		
 		<h:form>
-			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/>
 		</h:form>
-	    <p:growl id="msg" autoUpdate="true"/>  
-		<h2> Component</h2>
+	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>  
+		<h2>AccordionPanel Component</h2>
 	    
 		<h:form>
+			<h2>Basic Accordion Panel</h2>
+			<p:accordionPanel>  
+    			<p:tab title="Panel 1">
+    				Panel 1 Content
+    			</p:tab>  
+    			<p:tab title="Panel 2">
+    				Panel 2 Content
+    			</p:tab>  
+    			<p:tab title="Panel 3">
+    				Panel 3 Content
+    			</p:tab>  
+    		</p:accordionPanel>
+			<br/><br/>
+			
+			<h2>Multiple Selection Accordion Panel</h2>
+			<p:accordionPanel multiple="true">  
+    			<p:tab title="Panel 1">
+    				Panel 1 Content
+    			</p:tab>  
+    			<p:tab title="Panel 2">
+    				Panel 2 Content
+    			</p:tab>  
+    			<p:tab title="Panel 3">
+    				Panel 3 Content
+    			</p:tab>  
+    		</p:accordionPanel>
+			<br/><br/>
+			
+			<h2>Accordion Panel Dynamic Loading</h2>
+			<p:accordionPanel dynamic="true" cache="true">
+    			<p:tab title="Panel 1">
+    				<h:outputText value="#{sampleController.tab1Content}" />
+    			</p:tab>  
+    			<p:tab title="Panel 2">
+    				<h:outputText value="#{sampleController.tab2Content}" />
+    			</p:tab>  
+    			<p:tab title="Panel 3">
+    				<h:outputText value="#{sampleController.tab3Content}" />
+    			</p:tab>  
+    		</p:accordionPanel>
+			<br/><br/>
+			
+			<h2>Accordion Panel Events</h2>
+			<p:accordionPanel onTabChange="tabChanged(tab)" onTabShow="tabShowed(tab)" >
+				<p:ajax event="tabChange" listener="#{sampleController.onTabChange}"/> 
+			 	<!-- <p:ajax event="tabClose" listener="#{sampleController.onTabClose}"/> -->
+			 	
+    			<p:tab title="Panel 1" id="Panel1">
+    				<h:outputText value="#{sampleController.tab1Content}" />
+    			</p:tab>  
+    			<p:tab title="Panel 2"  id="Panel2" disabled="true">
+    				<h:outputText value="#{sampleController.tab2Content}" />
+    			</p:tab>  
+    			<p:tab title="Panel 3"  id="Panel3">
+    				<h:outputText value="#{sampleController.tab3Content}" />
+    			</p:tab>  
+    		</p:accordionPanel>
+			<br/><br/>
+			
+			<h2>Accordion Panel DataModel</h2>
+			<p:accordionPanel value="#{tagController.tags}" var="tag" activeIndex="2">
+				<p:tab title="#{tag.label}">
+    				<h:outputText value="#{tag.description}" />
+    			</p:tab>  
+    		</p:accordionPanel>
+			<br/><br/>
+			
+			
+			
+			
+			
 			
 		</h:form>
  

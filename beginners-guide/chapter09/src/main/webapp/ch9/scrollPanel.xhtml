@@ -24,10 +24,35 @@
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
 		</h:form>
 	    <p:growl id="msg" autoUpdate="true"/>  
-		<h2> Component</h2>
+		<h2>ScrollPanel Component</h2>
 	    
 		<h:form>
-			
+			<p:scrollPanel style="width:250px;height:100px">  
+				<h:outputLabel value="1111111111111111111111111111111111111111111" />
+				<h:outputLabel value="2222222222222222222222222222222222222222222" />
+				<h:outputLabel value="3333333333333333333333333333333333333333333" />
+				<h:outputLabel value="4444444444444444444444444444444444444444444" />
+				<h:outputLabel value="5555555555555555555555555555555555555555555" />
+				<h:outputLabel value="6666666666666666666666666666666666666666666" />
+				<h:outputLabel value="7777777777777777777777777777777777777777777" />
+				<h:outputLabel value="8888888888888888888888888888888888888888888" />
+				<h:outputLabel value="9999999999999999999999999999999999999999999" />
+				<h:outputLabel value="0000000000000000000000000000000000000000000" />
+			</p:scrollPanel>
+			<br/><br/>
+			<p:scrollPanel style="width:250px;height:100px" mode="native">  
+				<h:outputLabel value="1111111111111111111111111111111111111111111" />
+				<h:outputLabel value="2222222222222222222222222222222222222222222" />
+				<h:outputLabel value="3333333333333333333333333333333333333333333" />
+				<h:outputLabel value="4444444444444444444444444444444444444444444" />
+				<h:outputLabel value="5555555555555555555555555555555555555555555" />
+				<h:outputLabel value="6666666666666666666666666666666666666666666" />
+				<h:outputLabel value="7777777777777777777777777777777777777777777" />
+				<h:outputLabel value="8888888888888888888888888888888888888888888" />
+				<h:outputLabel value="9999999999999999999999999999999999999999999" />
+				<h:outputLabel value="0000000000000000000000000000000000000000000" />
+			</p:scrollPanel>
+				
 		</h:form>
  
 	</ui:define>
