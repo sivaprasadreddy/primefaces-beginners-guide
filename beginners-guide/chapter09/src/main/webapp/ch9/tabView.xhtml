@@ -16,6 +16,26 @@
 		<style type="text/css">
 						
 		</style>
+		<script type="text/javascript">
+		
+			function tabChanged(index)
+			{
+				alert("Tab Changed:"+index);
+			}
+
+			function tabShowed(index)
+			{
+				alert("Tab Show:"+index);
+				/*
+				var attrs = "";
+				for(var prop in index){
+					attrs += prop + "="+index[prop]+",";
+				}
+				alert(attrs);
+				*/
+			}
+			
+		</script>
     </ui:define>
     
 	<ui:define name="bodyContent">
@@ -23,10 +43,93 @@
 		<h:form>
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
 		</h:form>
-	    <p:growl id="msg" autoUpdate="true"/>  
+	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>  
 		<h2> Component</h2>
 	    
 		<h:form>
+			
+			<h2>Basic TabView</h2>
+			<p:tabView>
+				<p:tab title="Panel 1">
+    				Panel 1 Content
+    			</p:tab>  
+    			<p:tab title="Panel 2">
+    				Panel 2 Content
+    			</p:tab>  
+    			<p:tab title="Panel 3">
+    				Panel 3 Content
+    			</p:tab> 
+			</p:tabView>
+			<br/><br/>
+			
+			<h2>TabView Dynamic Loading</h2>
+			<p:tabView dynamic="true" cache="false">
+    			<p:tab title="Panel 1">
+    				<h:outputText value="#{sampleController.tab1Content}" />
+    			</p:tab>  
+    			<p:tab title="Panel 2">
+    				<h:outputText value="#{sampleController.tab2Content}" />
+    			</p:tab>  
+    			<p:tab title="Panel 3">
+    				<h:outputText value="#{sampleController.tab3Content}" />
+    			</p:tab>  
+    		</p:tabView>
+			<br/><br/>
+			
+			<h2>TabView Events</h2>
+			<p:tabView onTabChange="tabChanged(index)" onTabShow="tabShowed(this.getActiveIndex())" >
+				<p:ajax event="tabChange" listener="#{sampleController.onTabChange}"/> 
+			 	<!-- <p:ajax event="tabClose" listener="#{sampleController.onTabClose}"/> -->
+			 	
+    			<p:tab title="Panel 1" id="Panel1">
+    				<h:outputText value="#{sampleController.tab1Content}" />
+    			</p:tab>  
+    			<p:tab title="Panel 2"  id="Panel2" disabled="true">
+    				<h:outputText value="#{sampleController.tab2Content}" />
+    			</p:tab>  
+    			<p:tab title="Panel 3"  id="Panel3">
+    				<h:outputText value="#{sampleController.tab3Content}" />
+    			</p:tab>  
+    		</p:tabView>
+			<br/><br/>
+			
+			<h2>TabView DataModel</h2>
+			<p:tabView value="#{tagController.tags}" var="tag" activeIndex="2">
+				<p:tab title="#{tag.label}">
+    				<h:outputText value="#{tag.description}" />
+    			</p:tab>  
+    		</p:tabView>
+			<br/><br/>
+			
+			<h2>Closable TabView</h2>
+			<p:tabView effect="fade" effectDuration="fast">
+				<p:ajax event="tabClose" listener="#{sampleController.onTabClose}"/>
+				<p:tab title="Panel 1" closable="true">
+    				Panel 1 Content
+    			</p:tab>  
+    			<p:tab title="Panel 2" closable="true">
+    				Panel 2 Content
+    			</p:tab>  
+    			<p:tab title="Panel 3" closable="true">
+    				Panel 3 Content
+    			</p:tab> 
+			</p:tabView>
+			<br/><br/>
+			
+			<h2>TabView Orientation</h2>
+			<!-- orientation="top|bottom|left|right" -->
+			<p:tabView orientation="left">
+				<p:tab title="Panel 1">
+    				Panel 1 Content
+    			</p:tab>  
+    			<p:tab title="Panel 2">
+    				Panel 2 Content
+    			</p:tab>  
+    			<p:tab title="Panel 3">
+    				Panel 3 Content
+    			</p:tab> 
+			</p:tabView>
+			<br/><br/>
 			
 		</h:form>
  

@@ -37,17 +37,17 @@ public class SampleController
     }
     
     public String getTab1Content(){
-    	//System.out.println("*****Tab1 Content*******");
+    	System.out.println("*****Tab1 Content*******");
     	return "Tab1 Content" + new Date();
     }
     
     public String getTab2Content(){
-    	//System.out.println("*****Tab2 Content*******");
+    	System.out.println("*****Tab2 Content*******");
     	return "Tab2 Content"+ new Date();
     }
     
     public String getTab3Content(){
-    	//System.out.println("*****Tab3 Content*******");
+    	System.out.println("*****Tab3 Content*******");
     	return "Tab3 Content"+ new Date();
     }
     
