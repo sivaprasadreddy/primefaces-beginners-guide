@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="appResources">
+       <!-- 
+        <h:outputScript library="js" name="jquery-plugins.js" />
+      	-->
+    </ui:define>
+    
+	<ui:define name="head">
+		<style type="text/css">
+						
+		</style>
+    </ui:define>
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>  
+		<h2>DashBoard Component</h2>
+	    
+		<h:form>
+			<p:dashboard id="board" model="#{dashboardController.model}">  
+		        <p:ajax event="reorder" listener="#{dashboardController.handleReorder}" />  
+		  
+		        <p:panel id="sports" header="Sports">  
+		            <h:outputText value="Sports Content" />  
+		        </p:panel>  
+		  
+		        <p:panel id="finance" header="Finance">  
+		            <h:outputText value="Finance Content" />  
+		        </p:panel>  
+		  
+		        <p:panel id="lifestyle" header="Lifestyle">  
+		            <h:outputText value="Lifestyle Content"  />  
+		        </p:panel>  
+		  
+		        <p:panel id="weather" header="Weather">  
+		            <h:outputText value="Weather Content" />  
+		        </p:panel>  
+		  
+		        <p:panel id="politics" header="Politics">  
+		            <h:outputText value="Politics Content" />  
+		        </p:panel>  
+		    </p:dashboard>
+				
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

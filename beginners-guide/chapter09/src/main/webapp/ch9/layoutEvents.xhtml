@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+
+        </h:head>
+
+        <h:body>
+
+            <p:growl id="msg" showDetail="true"/>
+
+            <p:layout fullPage="true">
+
+
+                <p:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
+                    <h:outputText value="North unit content." />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
+                    <h:outputText value="South unit content." />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
+                    <h:outputText value="West unit content." />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true">
+                    <h:outputText value="Right unit content." />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+                    Layout responds to toggle, close and resize events by invoking server side listeners.
+                    
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+
+    </f:view>
+    
+</html>

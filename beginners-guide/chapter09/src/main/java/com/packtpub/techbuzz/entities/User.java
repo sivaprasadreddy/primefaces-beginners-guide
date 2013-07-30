@@ -21,6 +21,7 @@ public class User implements Serializable
 	private String gender;
     private String phone;
 	private Date dob;
+	private Address address;
     private boolean disabled;
     private String bio;
     
@@ -122,6 +123,19 @@ public class User implements Serializable
 	public void setDob(Date dob)
 	{
 		this.dob = dob;
+	}
+	
+	public Address getAddress()
+	{
+		if(address == null){
+			address = new Address();
+		}
+		return address;
+	}
+
+	public void setAddress(Address address)
+	{
+		this.address = address;
 	}
 
 	public String getEmailId() {

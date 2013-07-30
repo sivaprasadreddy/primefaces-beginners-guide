@@ -14,7 +14,9 @@
     
 	<ui:define name="head">
 		<style type="text/css">
-						
+			.loginPanelGrid tr, .loginPanelGrid td {
+			    border: none;
+			}
 		</style>
     </ui:define>
     
@@ -28,7 +30,7 @@
 	    
 		<h:form style="width: 800px; margin: 0 auto;">
 		
-			<p:panelGrid columns="2">
+			<p:panelGrid columns="2" styleClass="loginPanelGrid">
 				<f:facet name="header">
 					<h:outputLabel value="User Login Form" />
 				</f:facet>

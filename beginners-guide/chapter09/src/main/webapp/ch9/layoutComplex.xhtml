@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta http-equiv="X-UA-Compatible" content="EmulateIE8" />
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces - ShowCase</title>
+            </f:facet>
+
+            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/default.css" />
+            <link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/syntaxhighlighter/syntaxhighlighter.css" />
+
+            <style type="text/css">
+                .ui-layout-north {
+                    z-index:20 !important;
+                    overflow:visible !important;;
+                }
+
+                .ui-layout-north .ui-layout-unit-content {
+                    overflow:visible !important;
+                }
+            </style>
+        </h:head>
+
+
+        <h:body>
+
+            <p:layout fullPage="true" >
+
+                <p:layoutUnit id="top" position="north" size="50">
+
+                    <p:menubar autoSubmenuDisplay="true">
+                        <p:submenu label="File" icon="ui-icon-document">
+                            <p:submenu label="New" icon="ui-icon-contact">
+                                <p:menuitem value="Project" url="#" helpText="CTRL+N" />
+                                <p:menuitem value="Other" url="#" helpText="CTRL+O"/>
+                            </p:submenu>
+                            <p:menuitem value="Open" url="#" />
+                            <p:menuitem value="Quit" url="#" />
+                        </p:submenu>
+
+                        <p:submenu label="Edit" icon="ui-icon-pencil">
+                            <p:menuitem value="Undo" url="#" icon="ui-icon-arrowreturnthick-1-w" helpText="CTRL+Z"></p:menuitem>
+                            <p:menuitem value="Redo" url="#" icon="ui-icon-arrowreturnthick-1-e" helpText="CTRL+Y"></p:menuitem>
+                        </p:submenu>
+
+                        <p:submenu label="Help" icon="ui-icon-help">
+                            <p:menuitem value="Contents" url="#" />
+                            <p:submenu label="Search" icon="ui-icon-search">
+                                <p:submenu label="Text">
+                                    <p:menuitem value="Workspace" url="#" />
+                                </p:submenu>
+                                <p:menuitem value="File" url="#" />
+                            </p:submenu>
+                        </p:submenu>
+                    </p:menubar>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="bottom" position="south" size="60">
+                    <h:outputLink value="http://code.google.com/p/primefaces/source/browse/examples/trunk/showcase/src/main/webapp/ui/layoutComplex.xhtml">
+				View Page Source (layoutComplex.xhtml)
+                    </h:outputLink>
+
+                    <br />
+
+                    <h:outputLink value="http://code.google.com/p/primefaces/source/browse/examples/trunk/showcase/src/main/java/org/primefaces/examples/view/LayoutBean.java">
+				View Backing Bean Source (LayoutBean.java)
+                    </h:outputLink>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="left" position="west" size="300" resizable="true" closable="true" collapsible="true" header="Options" minSize="200">
+                    <p:accordionPanel>
+                        <p:tab title="Menu 1">
+                            <br />
+                            <p:calendar mode="inline" navigator="none"/>
+                            <br />
+                        </p:tab>
+
+                        <p:tab title="Menu 2">
+                            <h:outputText value="Menu 2 Content" />
+                        </p:tab>
+
+                        <p:tab title="Menu 3">
+                            <h:outputText value="Menu 3 Content" />
+                        </p:tab>
+                    </p:accordionPanel>
+                </p:layoutUnit>
+
+                <p:layoutUnit id="right" position="east" size="250" header="Gallery" resizable="true" closable="true" collapsible="true"
+                              style="text-align:center">
+
+                    <p:lightBox transition="fade" style="text-align:center;margin-top:20px;">
+                        <h:outputLink value="#{request.contextPath}/images/nature1.jpg" title="Nature 1" style="margin-bottom:5px;">
+                            <h:graphicImage value="/images/nature1_small.jpg"/>
+                        </h:outputLink>
+
+                        <h:outputLink value="#{request.contextPath}/images/nature2.jpg" title="Nature 2" style="margin-bottom:2px;">
+                            <h:graphicImage value="/images/nature2_small.jpg"/>
+                        </h:outputLink>
+
+                        <h:outputLink value="#{request.contextPath}/images/nature3.jpg" title="Nature 3" style="margin-bottom:2px;">
+                            <h:graphicImage value="/images/nature3_small.jpg"/>
+                        </h:outputLink>
+
+                        <h:outputLink value="#{request.contextPath}/images/nature4.jpg" title="Nature 4" style="margin-bottom:2px;">
+                            <h:graphicImage value="/images/nature4_small.jpg"/>
+                        </h:outputLink>
+                    </p:lightBox>
+
+                    <p:commandButton id="basic" value="Show Dialog" onclick="dlg1.show();" type="button" style="margin-top:10px"/>
+
+                </p:layoutUnit>
+
+                <p:layoutUnit id="center" position="center">
+                    <h:form>
+
+
+
+
+                    </h:form>
+
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+            <p:dialog header="Basic Dialog" widgetVar="dlg1" modal="true">
+                <h:outputText value="Resistance to PrimeFaces is futile!" />
+            </p:dialog>
+
+        </h:body>
+
+    </f:view>
+</html>
+

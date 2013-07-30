@@ -39,9 +39,9 @@
 	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>  
 		<h2>AccordionPanel Component</h2>
 	    
-		<h:form>
+		<h:form style="width: 400px; margin: 0 auto;">
 			<h2>Basic Accordion Panel</h2>
-			<p:accordionPanel>  
+			<p:accordionPanel widgetVar="accordion1">  
     			<p:tab title="Panel 1">
     				Panel 1 Content
     			</p:tab>  
@@ -52,6 +52,14 @@
     				Panel 3 Content
     			</p:tab>  
     		</p:accordionPanel>
+    		<br/>
+    		<p:commandButton value="Select Tab1" onclick="accordion1.select(0);"/> 
+    		<p:commandButton value="Unselect Tab1" onclick="accordion1.unselect(0);"/><br/>
+    		<p:commandButton value="Select Tab2" onclick="accordion1.select(1);"/> 
+    		<p:commandButton value="Unselect Tab2" onclick="accordion1.unselect(1);"/><br/>
+    		<p:commandButton value="Select Tab3" onclick="accordion1.select(2);"/> 
+    		<p:commandButton value="Unselect Tab3" onclick="accordion1.unselect(2);"/>
+    		
 			<br/><br/>
 			
 			<h2>Multiple Selection Accordion Panel</h2>
@@ -86,7 +94,6 @@
 			<p:accordionPanel onTabChange="tabChanged(panel)" onTabShow="tabShowed(panel)" >
 				<p:ajax event="tabChange" listener="#{sampleController.onTabChange}"/> 
 			 	<!-- <p:ajax event="tabClose" listener="#{sampleController.onTabClose}"/> -->
-			 	
     			<p:tab title="Panel 1" id="Panel1">
     				<h:outputText value="#{sampleController.tab1Content}" />
     			</p:tab>  
@@ -106,11 +113,6 @@
     			</p:tab>  
     		</p:accordionPanel>
 			<br/><br/>
-			
-			
-			
-			
-			
 			
 		</h:form>
  

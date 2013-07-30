@@ -21,14 +21,12 @@ import org.primefaces.event.ToggleEvent;
 public class SampleController
 {
 	public void handleClose(CloseEvent event) {  
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Panel Closed", "Closed panel id:'" + event.getComponent().getId() + "'");  
-          
+		FacesMessage message = new FacesMessage("Closed Panel Id: " + event.getComponent().getId());  
         addMessage(message);  
     }  
       
     public void handleToggle(ToggleEvent event) {  
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, event.getComponent().getId() + " toggled", "Status:" + event.getVisibility().name());  
-          
+    	FacesMessage message = new FacesMessage("Toggled Panel Id: "+ event.getComponent().getId() + " ,Status:" + event.getVisibility().name());  
         addMessage(message);  
     }  
       

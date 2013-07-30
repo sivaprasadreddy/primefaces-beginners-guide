@@ -24,55 +24,37 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 		<h2>Panel Component</h2>
 	    
-		<h:form>
+		<h:form style="width: 500px; margin: 0 auto;">
 			
 			<p:panel id="panel1" header="About PrimeFaces" footer="PrimeFaces Rocks!!!">
-				<h3>PrimeFaces is an open source JSF component suite with various extensions.</h3>
-				<ul>
-					<li>Rich set of components (HtmlEditor, Dialog, AutoComplete, Charts and many more).</li>
-					<li>Built-in Ajax based on standard JSF 2.0 Ajax APIs.</li>
-					<li>Lightweight, one jar, zero-configuration and no required dependencies.</li>
-				</ul>
+				<p:outputLabel value="PrimeFaces is an open source JSF component suite with 100+ Components."/>
 			</p:panel>
 			
 			<br/><br/>
 			
-			<p:panel id="panel2" closable="true"  closeSpeed="800" toggleable="true" toggleSpeed="800" toggleOrientation="vertical">
+			<p:panel id="AboutPrimeFacesPanel" closable="true" toggleable="true">
 				<p:ajax event="close" listener="#{sampleController.handleClose}" />  
-        		<p:ajax event="toggle" listener="#{sampleController.handleToggle}"/> 
+				<p:ajax event="toggle" listener="#{sampleController.handleToggle}"/> 
 				<f:facet name="header">
 					About PrimeFaces
 				</f:facet>
 				<f:facet name="footer">
 					PrimeFaces Rocks!!!
 				</f:facet>
-				<h3>PrimeFaces is an open source JSF component suite with various extensions.</h3>
-				<ul>
-					<li>Rich set of components (HtmlEditor, Dialog, AutoComplete, Charts and many more).</li>
-					<li>Built-in Ajax based on standard JSF 2.0 Ajax APIs.</li>
-					<li>Lightweight, one jar, zero-configuration and no required dependencies.</li>
-				</ul>
+				<p:outputLabel value="PrimeFaces is an open source JSF component suite with 100+ Components."/>
 			</p:panel>
 			<br/><br/>
 			
-			<p:panel id="panel3" widgetVar="panel" header="About PrimeFaces"
-						closable="true" toggleable="true">
-						
+			<p:panel widgetVar="panel" header="About PrimeFaces" closable="true" toggleable="true">		
 				<f:facet name="options">  
-		           <p:menu>  
-		               <p:submenu label="Settings">  
-		                   <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="panel.toggle()"/>  
-		                   <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="panel.close()"/>  
-		               </p:submenu>  
-		           </p:menu>  
-		       </f:facet>
-		       
-				<h3>PrimeFaces is an open source JSF component suite with various extensions.</h3>
-				<ul>
-					<li>Rich set of components (HtmlEditor, Dialog, AutoComplete, Charts and many more).</li>
-					<li>Built-in Ajax based on standard JSF 2.0 Ajax APIs.</li>
-					<li>Lightweight, one jar, zero-configuration and no required dependencies.</li>
-				</ul>
+				   <p:menu>  
+					   <p:submenu label="Settings">  
+						   <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="panel.toggle()"/>  
+						   <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="panel.close()"/>  
+					   </p:submenu>  
+				   </p:menu>  
+			   </f:facet>
+				<p:outputLabel value="PrimeFaces is an open source JSF component suite with 100+ Components."/>
 			</p:panel>
 			
 			<br/><br/>
@@ -92,13 +74,7 @@
 		            </h:outputLink>
 		           
 		        </f:facet>  
-        
-				<h3>PrimeFaces is an open source JSF component suite with various extensions.</h3>
-				<ul>
-					<li>Rich set of components (HtmlEditor, Dialog, AutoComplete, Charts and many more).</li>
-					<li>Built-in Ajax based on standard JSF 2.0 Ajax APIs.</li>
-					<li>Lightweight, one jar, zero-configuration and no required dependencies.</li>
-				</ul>
+				<p:outputLabel value="PrimeFaces is an open source JSF component suite with 100+ Components."/>
 			</p:panel>
 			
 			<br/><br/>

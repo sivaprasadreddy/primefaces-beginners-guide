@@ -26,31 +26,53 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 		<h2>ScrollPanel Component</h2>
 	    
-		<h:form>
-			<p:scrollPanel style="width:250px;height:100px">  
-				<h:outputLabel value="1111111111111111111111111111111111111111111" />
-				<h:outputLabel value="2222222222222222222222222222222222222222222" />
-				<h:outputLabel value="3333333333333333333333333333333333333333333" />
-				<h:outputLabel value="4444444444444444444444444444444444444444444" />
-				<h:outputLabel value="5555555555555555555555555555555555555555555" />
-				<h:outputLabel value="6666666666666666666666666666666666666666666" />
-				<h:outputLabel value="7777777777777777777777777777777777777777777" />
-				<h:outputLabel value="8888888888888888888888888888888888888888888" />
-				<h:outputLabel value="9999999999999999999999999999999999999999999" />
-				<h:outputLabel value="0000000000000000000000000000000000000000000" />
+		<h:form style="width: 800px; margin: 0 auto;">
+			<p:scrollPanel style="width:295px;height:250px">  
+				<p:dataTable var="user" value="#{adminController.users}">  
+					<f:facet name="header">
+						List of Users
+					</f:facet>
+			        <p:column headerText="Id">  
+			            <h:outputText value="#{user.id}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="Email">  
+			            <h:outputText value="#{user.emailId}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="FirstName">  
+			            <h:outputText value="#{user.firstName}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="Disabled">  
+			            <h:outputText value="#{user.disabled}" />  
+			        </p:column>  
+			    </p:dataTable>
+				
 			</p:scrollPanel>
+			
 			<br/><br/>
-			<p:scrollPanel style="width:250px;height:100px" mode="native">  
-				<h:outputLabel value="1111111111111111111111111111111111111111111" />
-				<h:outputLabel value="2222222222222222222222222222222222222222222" />
-				<h:outputLabel value="3333333333333333333333333333333333333333333" />
-				<h:outputLabel value="4444444444444444444444444444444444444444444" />
-				<h:outputLabel value="5555555555555555555555555555555555555555555" />
-				<h:outputLabel value="6666666666666666666666666666666666666666666" />
-				<h:outputLabel value="7777777777777777777777777777777777777777777" />
-				<h:outputLabel value="8888888888888888888888888888888888888888888" />
-				<h:outputLabel value="9999999999999999999999999999999999999999999" />
-				<h:outputLabel value="0000000000000000000000000000000000000000000" />
+			<p:scrollPanel style="width:295px;height:250px" mode="native">  
+				<p:dataTable var="user" value="#{adminController.users}">  
+					<f:facet name="header">
+						List of Users
+					</f:facet>
+			        <p:column headerText="Id">  
+			            <h:outputText value="#{user.id}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="Email">  
+			            <h:outputText value="#{user.emailId}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="FirstName">  
+			            <h:outputText value="#{user.firstName}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="Disabled">  
+			            <h:outputText value="#{user.disabled}" />  
+			        </p:column>  
+			    </p:dataTable>
 			</p:scrollPanel>
 				
 		</h:form>
