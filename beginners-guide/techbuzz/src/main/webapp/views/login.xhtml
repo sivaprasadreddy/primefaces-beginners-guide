@@ -3,29 +3,43 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui"
-                template="/templates/masterLayout.xhtml">
-
-	<ui:define name="bodyContent">
+                template="/templates/publicLayout.xhtml">
 	
+	<ui:define name="head">
+		<style>
+			.labels{
+				width: 150px;
+				text-align: right;
+			}
+			
+		</style>
 		
-		<h:form id="loginForm">
-			
-			<p:panel header="User Login Form" style="width:450px;">
-			<p:messages />
-			<h:panelGrid columns="2">
-			    <h:outputLabel for="userName" value="UserName: *" />
-			    <p:inputText id="userName" value="#{userController.loginUser.userName}" label="UserName" required="true" />
-			
-			    <h:outputLabel for="password" value="Password: *" />
-			    <p:password id="password" value="#{userController.loginUser.password}" required="true" label="Password"/>
-			
-			    <f:facet name="footer">
-			        <p:commandButton value="Login" style="margin:0" action="#{userController.doLogin}" update="loginForm"/>
-			    </f:facet>
-			</h:panelGrid>
-			</p:panel>
-			
-		</h:form>
-		
+	</ui:define>
+	<ui:define name="bodyContent">
+
+		<p:panel header="User Login Form" style="width:400px; margin: 0 auto;">
+
+			<h:form id="loginForm">
+
+				<p:messages autoUpdate="true"/>
+				<h:panelGrid columns="2" columnClasses="labels">
+					<p:outputLabel for="emailId" value="EmailId/UserName:" />
+					<p:inputText id="emailId" value="#{userController.loginUser.emailId}" label="EmailId/UserName" 
+								required="true" requiredMessage="EmailId/UserName is required."/>
+					
+					<p:outputLabel for="password" value="Password:" />
+					<p:password id="password" value="#{userController.loginUser.password}" label="Password" 
+								required="true" requiredMessage="Password is required"/>
+
+					<p:commandButton value="Login" action="#{userController.doLogin}"/>
+					<p:commandButton value="Reset" type="reset"/>
+					
+					<h:outputText value="New User?" />
+					<p:button value="Register" outcome="registration"/>
+						
+				</h:panelGrid>
+			</h:form>
+		</p:panel>
+
 	</ui:define>
 </ui:composition>

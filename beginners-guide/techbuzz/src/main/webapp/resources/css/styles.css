@@ -1,0 +1,24 @@
+
+
+#wrapper{
+   width:960px;
+   margin:0 auto;
+   text-align:left;
+}
+
+.header {
+    height:50px;
+    background:#F0F0F0;
+    border:1px solid #CCC;
+    width:960px;
+    margin:2px auto;
+}
+
+.ui-widget {
+    font-size: 12px !important;
+}
+
+.table-align-top td
+{
+	vertical-align: top;
+}
