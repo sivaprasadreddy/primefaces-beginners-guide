@@ -10,12 +10,6 @@
         <h:outputScript library="js" name="jquery-plugins.js" />
     </ui:define>
     
-	<ui:define name="head">
-		<style type="text/css">
-			
-		</style>
-    </ui:define>
-    
 	<ui:define name="bodyContent">
 		
 		<h:form>
@@ -24,19 +18,18 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 		<h2>Panel Component</h2>
 	    
-		<h:form style="width: 500px; margin: 0 auto;">
-			
-			<p:panel id="panel1" header="About PrimeFaces" footer="PrimeFaces Rocks!!!">
+		<h:form>
+			<p:panel id="panel1" header="Simple Panel" footer="PrimeFaces Rocks!!!">
 				<p:outputLabel value="PrimeFaces is an open source JSF component suite with 100+ Components."/>
 			</p:panel>
 			
 			<br/><br/>
 			
-			<p:panel id="AboutPrimeFacesPanel" closable="true" toggleable="true">
-				<p:ajax event="close" listener="#{sampleController.handleClose}" />  
-				<p:ajax event="toggle" listener="#{sampleController.handleToggle}"/> 
+			<p:panel id="panel2" closable="true" toggleable="true">
+				<p:ajax event="close" listener="#{tabController.handleClose}" />  
+				<p:ajax event="toggle" listener="#{tabController.handleToggle}"/> 
 				<f:facet name="header">
-					About PrimeFaces
+					Closable and Toggleable Panel
 				</f:facet>
 				<f:facet name="footer">
 					PrimeFaces Rocks!!!
@@ -45,7 +38,7 @@
 			</p:panel>
 			<br/><br/>
 			
-			<p:panel widgetVar="panel" header="About PrimeFaces" closable="true" toggleable="true">		
+			<p:panel widgetVar="panel" header="Panel with Popup Menu" closable="true" toggleable="true" toggleOrientation="horizontal">		
 				<f:facet name="options">  
 				   <p:menu>  
 					   <p:submenu label="Settings">  
@@ -62,7 +55,7 @@
 				<p>Forum: http://forum.primefaces.org/ </p>
 			</p:dialog>
 			
-			<p:panel id="panel4" widgetVar="panel4" header="About PrimeFaces" footer="PrimeFaces Rocks!!!">
+			<p:panel id="panel4" widgetVar="panel4" header="Panel with Custom Actions" footer="PrimeFaces Rocks!!!">
 						
 		       <f:facet name="actions">  
 		            <h:outputLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"  value="javascript:void(0)" onclick="helpWidget.show()">  

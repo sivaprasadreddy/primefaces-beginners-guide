@@ -24,30 +24,33 @@
 			<p:growl autoUpdate="true" showDetail="true"/>
             <p:layout fullPage="true">
 				
-				<p:ajax event="toggle" listener="#{sampleController.handleLayoutToggle}"  />  
-    			<p:ajax event="close" listener="#{sampleController.handleLayoutClose}" />
-    			<p:ajax event="resize" listener="#{sampleController.handleLayoutResize}" />
+				<p:ajax event="toggle" listener="#{layoutController.handleLayoutToggle}"  />  
+    			<p:ajax event="close" listener="#{layoutController.handleLayoutClose}" />
+    			<p:ajax event="resize" listener="#{layoutController.handleLayoutResize}" />
     
-                <p:layoutUnit position="north" size="100" header="Top" resizable="true" closable="true" collapsible="true">
-                    <h:outputText value="North unit content." />
+                <p:layoutUnit position="north" size="80" resizable="true" closable="true" collapsible="true">
+                    <center><font size="6">TechBuzz</font></center>
                 </p:layoutUnit>
 
-                <p:layoutUnit position="south" size="100" header="Bottom" resizable="true" closable="true" collapsible="true">
-                    <h:outputText value="South unit content." />
+                <p:layoutUnit position="south" size="65" header="Footer" resizable="true" closable="true" collapsible="true">
+                    <center><h:outputText value="Copyright @ 2013" /></center> 
                 </p:layoutUnit>
 
-                <p:layoutUnit position="west" size="200" header="Left" resizable="true" closable="true" collapsible="true">
-                    <h:outputText value="West unit content." />
+                <p:layoutUnit position="west" size="200" header="NavigationBar" resizable="true" closable="true" collapsible="true">
+                    <h:form>
+                    	<br/>
+	                    <h:link value="User Management" /><br/><br/>
+	                    <h:link value="Tag Config" /><br/><br/>
+	                    <h:link value="System Admin"/><br/>
+                    </h:form>
                 </p:layoutUnit>
 
-                <p:layoutUnit position="east" size="200" header="Right" resizable="true" closable="true" collapsible="true" effect="drop">
-                    <h:outputText value="East unit content." />
+                <p:layoutUnit position="east" size="200" header="Latest Buzz" resizable="true" closable="true" collapsible="true" effect="drop">
+                    <h:outputText value="PrimeFaces forum reached 98,000 posts." />
                 </p:layoutUnit>
 
                 <p:layoutUnit id="centerUnit" position="center">
-                    <h:form>
-							<h:outputText value="CenterUnit content." />
-                    </h:form>
+						<center><h:outputText value="FullPage Layout using PrimeFaves Layout Component." /></center>
                 </p:layoutUnit>
 
             </p:layout>

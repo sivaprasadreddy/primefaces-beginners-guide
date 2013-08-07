@@ -5,16 +5,10 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	template="/templates/publicLayout.xhtml">
-	
-	<ui:define name="appResources">
-       <!-- 
-        <h:outputScript library="js" name="jquery-plugins.js" />
-      	-->
-    </ui:define>
+
     
 	<ui:define name="head">
 		<style type="text/css">
-			
 			
 			.ui-dashboard-column {
 				width:200px;
@@ -30,7 +24,7 @@
 	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>  
 		<h2>DashBoard Component</h2>
 	    
-		<h:form style="width: 800px; margin: 0 auto;">
+		<h:form >
 			<p:dashboard id="board" model="#{dashboardController.model}" disabled="false">  
 		        <p:ajax event="reorder" listener="#{dashboardController.handleReorder}" />  
 		  

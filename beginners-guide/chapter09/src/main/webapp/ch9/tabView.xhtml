@@ -5,12 +5,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	template="/templates/publicLayout.xhtml">
-	
-	<ui:define name="appResources">
-       <!-- 
-        <h:outputScript library="js" name="jquery-plugins.js" />
-      	-->
-    </ui:define>
     
 	<ui:define name="head">
 		<style type="text/css">
@@ -30,13 +24,6 @@
 			function tabShowed(index)
 			{
 				alert("Tab Show:"+index);
-				/*
-				var attrs = "";
-				for(var prop in index){
-					attrs += prop + "="+index[prop]+",";
-				}
-				alert(attrs);
-				*/
 			}
 			
 		</script>
@@ -49,12 +36,13 @@
 		</h:form>
 	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>  
 		<h2>TabView Component</h2>
+	    <p:separator/>
 	    
-		<h:form style="width: 500px; margin: 0 auto;">
+		<h:form>
 			
 			<h2>Basic TabView</h2>
-			<p:tabView orientation="bottom">
-				<p:tab title="My Profile" closable="true">
+			<p:tabView>
+				<p:tab title="My Profile">
 					<p:panel header="Personal Info">
 						<h:panelGrid columns="2" columnClasses="label">
 		    				<p:outputLabel value="First Name : " />
@@ -68,7 +56,7 @@
 	    				</h:panelGrid>
     				</p:panel>
     			</p:tab>  
-    			<p:tab title="Change Password" closable="true">
+    			<p:tab title="Change Password">
     				<h:form id="changePwdForm">
 		            		<p:messages id="messages" severity="error" showDetail="true" autoUpdate="true"/>  
 							<p:panel header="Change Password">
@@ -97,7 +85,7 @@
 						</h:form>
 				
     			</p:tab>  
-    			<p:tab title="My Buzz" closable="true">
+    			<p:tab title="My Buzz">
     				<p:dataList value="#{postController.posts}" var="post" id="posts" paginator="true" rows="10" type="none">  
 				            <h:outputText value="#{post.title}" style="margin-left:10px; font-size:7; font-weight:bold" /><br />
 				            <h:outputText value="#{post.description}" style="margin-left:10px" escape="false"/><br /><br />
@@ -109,49 +97,41 @@
 			
 			<h2>TabView Dynamic Loading</h2>
 			<p:tabView dynamic="true" cache="false">
-    			<p:tab title="Panel 1">
-    				<h:outputText value="#{sampleController.tab1Content}" />
+    			<p:tab title="PrimeFaces">
+    				<h:outputText value="#{tabController.tab1Content}" />
     			</p:tab>  
-    			<p:tab title="Panel 2">
-    				<h:outputText value="#{sampleController.tab2Content}" />
+    			<p:tab title="JSF">
+    				<h:outputText value="#{tabController.tab2Content}" />
     			</p:tab>  
-    			<p:tab title="Panel 3">
-    				<h:outputText value="#{sampleController.tab3Content}" />
+    			<p:tab title="JavaEE">
+    				<h:outputText value="#{tabController.tab3Content}" />
     			</p:tab>  
     		</p:tabView>
 			<br/><br/>
 			
 			<h2>TabView Events</h2>
 			<p:tabView onTabChange="tabChanged(index)" onTabShow="tabShowed(this.getActiveIndex())" >
-				<p:ajax event="tabChange" listener="#{sampleController.onTabChange}"/> 
-			 	<!-- <p:ajax event="tabClose" listener="#{sampleController.onTabClose}"/> -->
+				<p:ajax event="tabChange" listener="#{tabController.onTabChange}"/> 
+			 	<!-- <p:ajax event="tabClose" listener="#{tabController.onTabClose}"/> -->
 			 	
-    			<p:tab title="Personal Details">
+    			<p:tab id="personalDetails" title="Personal Details">
     				<h:outputText value="First Name : David" /><br/>
     				<h:outputText value="Last Name : Jr" />
     			</p:tab>  
-    			<p:tab title="Contact Info">
+    			<p:tab id="contactInfo" title="Contact Info">
     				<h:outputText value="Email : david@gmail.com" /><br/>
     				<h:outputText value="Phone : 123-456-7890" />
     			</p:tab>  
-    			<p:tab title="Address Details">
+    			<p:tab id="addressDetails" title="Address Details">
     				<h:outputText value="City : Chicago" /><br/>
     				<h:outputText value="State : Illinois" />
     			</p:tab>  
     		</p:tabView>
 			<br/><br/>
 			
-			<h2>TabView DataModel</h2>
-			<p:tabView value="#{tagController.tags}" var="tag" activeIndex="2">
-				<p:tab title="#{tag.label}">
-    				<h:outputText value="#{tag.description}" />
-    			</p:tab>  
-    		</p:tabView>
-			<br/><br/>
-			
 			<h2>Closable TabView</h2>
 			<p:tabView>
-				<p:ajax event="tabClose" listener="#{sampleController.onTabClose}"/>
+				<p:ajax event="tabClose" listener="#{tabController.onTabClose}"/>
     			<p:tab title="Personal Details" closable="true">
     				<h:outputText value="First Name : David" /><br/>
     				<h:outputText value="Last Name : Jr" />
@@ -188,10 +168,10 @@
 			
 			<h2>TabView DataModel</h2>
 			<p:tabView value="#{tagController.tags}" var="tag" dynamic="true" cache="false" activeIndex="2">
-				<p:ajax event="tabChange" listener="#{sampleController.onTabChange}"/> 
-				<p:ajax event="tabClose" listener="#{sampleController.onTabClose}"/>
+				<p:ajax event="tabChange" listener="#{tabController.onTabChange}"/> 
+				<p:ajax event="tabClose" listener="#{tabController.onTabClose}"/>
 				
-				<p:tab title="#{tag.label}" closable="true" disabled="#{empty tag.posts}">
+				<p:tab title="#{tag.label}" closable="true">
     				<h:outputText value="#{tag.description}" />
     			</p:tab>  
     		</p:tabView>

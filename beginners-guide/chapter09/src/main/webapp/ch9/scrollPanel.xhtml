@@ -5,18 +5,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	template="/templates/publicLayout.xhtml">
-	
-	<ui:define name="appResources">
-       <!-- 
-        <h:outputScript library="js" name="jquery-plugins.js" />
-      	-->
-    </ui:define>
-    
-	<ui:define name="head">
-		<style type="text/css">
-						
-		</style>
-    </ui:define>
     
 	<ui:define name="bodyContent">
 		
@@ -25,8 +13,11 @@
 		</h:form>
 	    <p:growl id="msg" autoUpdate="true"/>  
 		<h2>ScrollPanel Component</h2>
+	    <p:separator/>
 	    
 		<h:form style="width: 800px; margin: 0 auto;">
+		
+			<h2>ScrollBar with Theme aware Scrollbars</h2>
 			<p:scrollPanel style="width:295px;height:250px">  
 				<p:dataTable var="user" value="#{adminController.users}">  
 					<f:facet name="header">
@@ -52,6 +43,7 @@
 			</p:scrollPanel>
 			
 			<br/><br/>
+			<h2>ScrollBar with browser native Scrollbars</h2>
 			<p:scrollPanel style="width:295px;height:250px" mode="native">  
 				<p:dataTable var="user" value="#{adminController.users}">  
 					<f:facet name="header">
@@ -74,7 +66,7 @@
 			        </p:column>  
 			    </p:dataTable>
 			</p:scrollPanel>
-				
+			<br/><br/>
 		</h:form>
  
 	</ui:define>

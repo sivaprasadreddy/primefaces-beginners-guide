@@ -1,15 +1,11 @@
 package com.packtpub.techbuzz.controllers;
 
-import java.util.Date;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
-import org.primefaces.component.layout.LayoutUnit;
 import org.primefaces.event.CloseEvent;
-import org.primefaces.event.ResizeEvent;
 import org.primefaces.event.TabChangeEvent;
 import org.primefaces.event.TabCloseEvent;
 import org.primefaces.event.ToggleEvent;
@@ -20,7 +16,7 @@ import org.primefaces.event.ToggleEvent;
  */
 @ManagedBean
 @RequestScoped
-public class SampleController
+public class TabController
 {
 	public void handleClose(CloseEvent event) {  
 		FacesMessage message = new FacesMessage("Closed Panel Id: " + event.getComponent().getId());  
@@ -36,18 +32,31 @@ public class SampleController
         FacesContext.getCurrentInstance().addMessage(null, message);  
     }
     
+    void sleep(long millis){
+    	try
+		{
+			Thread.sleep(millis);
+		} catch (InterruptedException e)
+		{
+			//e.printStackTrace();
+		}
+    }
+    
     public String getTab1Content(){
+    	//sleep(2000); // to simulate delay in dynamic loading
     	return "PrimeFaces is an open source JSF component library with 100+ Rich UI Components support. " +
     			"It has built-in Ajax support based on standard JSF 2.0 Ajax APIs.";
     }
     
     public String getTab2Content(){
+    	//sleep(2000); // to simulate delay in dynamic loading
     	return "Java Server Faces (JSF) is a Java specification for building component-based " +
     			"user interfaces for web applications. It was formalized as a standard through " +
     			"the Java Community Process and is part of the Java Platform, Enterprise Edition.";
     }
     
     public String getTab3Content(){
+    	//sleep(2000); // to simulate delay in dynamic loading
     	return "Java Platform, Enterprise Edition (Java EE) is the standard in community-driven " +
     			"enterprise software. Java EE is developed using the Java Community Process, " +
     			"with contributions from industry experts, commercial and open source organizations," +
@@ -65,22 +74,4 @@ public class SampleController
         FacesContext.getCurrentInstance().addMessage(null, msg);  
     }
     
-    public void handleLayoutClose(CloseEvent event) {  
-    	String msg =  "Position: "+((LayoutUnit)event.getComponent()).getPosition();
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "LayoutUnit Closed", msg);  
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }  
-  
-    public void handleLayoutToggle(ToggleEvent event) {
-    	String msg =  "Position: "+((LayoutUnit)event.getComponent()).getPosition() + " , Status:" + event.getVisibility().name();
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,"LayoutUnit Toggled",msg);  
-        FacesContext.getCurrentInstance().addMessage(null, message);
-    }  
-     
-    public void handleLayoutResize(ResizeEvent event) {  
-    	String msg =  "Position: "+((LayoutUnit)event.getComponent()).getPosition() + " , Id:" + event.getComponent().getId();
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "LayoutUnit Resized", msg);  
-        FacesContext.getCurrentInstance().addMessage(null, message); 
-    }
-  
 }

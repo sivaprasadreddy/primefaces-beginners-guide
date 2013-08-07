@@ -52,12 +52,12 @@ public class TagController
         for (Tag tag : tags)
 		{
         	model.addTag(new DefaultTagCloudItem(tag.getLabel(), getStrength(1, 5)));
-        	
-        	System.out.println("["+tag.getLabel()+"]");
+        	/*
          	if(!tag.getLabel().equals("Hibernate") && !tag.getLabel().equals("Struts")){
          		tag.setPosts(new ArrayList<Post>());
              	tag.getPosts().add(new Post(1));
          	}
+         	*/
 		}
         
        

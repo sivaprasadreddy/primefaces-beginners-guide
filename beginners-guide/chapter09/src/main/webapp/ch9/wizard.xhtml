@@ -6,18 +6,6 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	template="/templates/publicLayout.xhtml">
 	
-	<ui:define name="appResources">
-       <!-- 
-        <h:outputScript library="js" name="jquery-plugins.js" />
-      	-->
-    </ui:define>
-    
-	<ui:define name="head">
-		<style type="text/css">
-						
-		</style>
-    </ui:define>
-    
 	<ui:define name="bodyContent">
 		
 		<h:form>
@@ -25,8 +13,9 @@
 		</h:form>
 	    <p:growl id="msg" autoUpdate="true"/>  
 		<h2>Wizard Component</h2>
+	    <p:separator/>
 	    
-		<h:form style="width: 500px; margin: 0 auto;">
+		<h:form>
 			<p:wizard widgetVar="wiz" flowListener="#{wizardController.onFlowProcess}">
 					
 					<p:tab id="personal" title="Personal">
