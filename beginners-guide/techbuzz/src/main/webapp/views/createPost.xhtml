@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/masterLayout.xhtml">
+
+	<ui:define name="bodyContent">
+
+	<h:form id="newPostForm">
+				<p:messages globalOnly="true"/>
+				<h:panelGrid columns="3">
+					<p:outputLabel>Title:*</p:outputLabel>
+					<p:inputText id="title" value="#{buzzController.newPost.title}" required="true" title="Title"></p:inputText>
+					<p:message for="title" id="titleMsg"></p:message>
+					
+					<p:outputLabel>Description:*</p:outputLabel>
+					<p:inputTextarea id="descroption" value="#{buzzController.newPost.description}" required="true" title="Description"></p:inputTextarea>
+					<p:message for="descroption" id="descroptionMsg"></p:message>
+					
+					<p:outputLabel>Tags:</p:outputLabel>
+					<p:autoComplete id="newPostTags" value="#{buzzController.newPost.tags}" 
+									completeMethod="#{buzzController.completeTags}"
+                    				var="t" itemLabel="#{t.label}" itemValue="#{t}" 
+                    				converter="tagConverter" multiple="true">
+                    </p:autoComplete>
+                    <p:outputLabel value=""/>
+                
+					
+					
+					<p:commandButton action="${buzzController.createPost()}" value="Submit" update="newPostForm"></p:commandButton>
+				</h:panelGrid>
+			</h:form>
+			
+					
+                        
+	</ui:define>
+</ui:composition>
