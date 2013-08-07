@@ -14,7 +14,11 @@
     
 	<ui:define name="head">
 		<style type="text/css">
-						
+			
+			
+			.ui-dashboard-column {
+				width:200px;
+			}
 		</style>
     </ui:define>
     
@@ -26,31 +30,52 @@
 	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>  
 		<h2>DashBoard Component</h2>
 	    
-		<h:form>
-			<p:dashboard id="board" model="#{dashboardController.model}">  
+		<h:form style="width: 800px; margin: 0 auto;">
+			<p:dashboard id="board" model="#{dashboardController.model}" disabled="false">  
 		        <p:ajax event="reorder" listener="#{dashboardController.handleReorder}" />  
 		  
-		        <p:panel id="sports" header="Sports">  
-		            <h:outputText value="Sports Content" />  
+		        <p:panel id="twitter" widgetVar="twitterPanel" header="Twitter" closable="true" toggleable="true">    
+		        	<f:facet name="options">  
+					   <p:menu>  
+						   <p:submenu label="Settings">  
+							   <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="twitterPanel.toggle()"/>  
+							   <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="twitterPanel.close()"/>  
+						   </p:submenu>  
+					   </p:menu>  
+				   </f:facet>
+		            <h:outputText value="Twitter feed" />
 		        </p:panel>  
 		  
-		        <p:panel id="finance" header="Finance">  
-		            <h:outputText value="Finance Content" />  
+		        <p:panel id="facebook" header="Facebook">  
+		            <h:outputText value="Facebook feed" />  
 		        </p:panel>  
 		  
-		        <p:panel id="lifestyle" header="Lifestyle">  
-		            <h:outputText value="Lifestyle Content"  />  
+		        <p:panel id="youtube" header="YouTube">  
+		            <h:outputText value="YouTube Videos"  />  
 		        </p:panel>  
 		  
-		        <p:panel id="weather" header="Weather">  
-		            <h:outputText value="Weather Content" />  
+		  		<p:panel id="linkedIn" header="LinkedIn">  
+		            <h:outputText value="LinkedIn Content" />  
+		        </p:panel>
+		        
+		        <p:panel id="dzone" header="DZone">  
+		            <h:outputText value="DZone Posts" />  
 		        </p:panel>  
 		  
-		        <p:panel id="politics" header="Politics">  
-		            <h:outputText value="Politics Content" />  
+		        <p:panel id="jcg" header="Java Code Geeks">  
+		            <h:outputText value="JavaCodeGeeks Posts" />  
 		        </p:panel>  
+		        
 		    </p:dashboard>
-				
+		    
+		    <div style="clear:both" />
+			<ui:remove>
+				<p:panel id="newwidget" header="NewWidget">
+					<h:outputText value="New Widget" />
+				</p:panel>
+				<p:draggable for="newwidget" helper="clone" dashboard="board" />
+			</ui:remove>	
+
 		</h:form>
  
 	</ui:define>

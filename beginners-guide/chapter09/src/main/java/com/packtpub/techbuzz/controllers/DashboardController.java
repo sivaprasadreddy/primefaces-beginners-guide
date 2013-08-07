@@ -25,19 +25,21 @@ public class DashboardController implements Serializable
 	private static final long serialVersionUID = 1L;
 	private DashboardModel model;  
       
-    public DashboardController() {  
+    public DashboardController() 
+    {  
         model = new DefaultDashboardModel();  
         DashboardColumn column1 = new DefaultDashboardColumn();  
         DashboardColumn column2 = new DefaultDashboardColumn();  
         DashboardColumn column3 = new DefaultDashboardColumn();  
-          
-        column1.addWidget("sports");  
-        column1.addWidget("finance");  
-          
-        column2.addWidget("lifestyle");  
-        column2.addWidget("weather");  
-          
-        column3.addWidget("politics");  
+        
+        column1.addWidget("twitter");
+		column1.addWidget("facebook");
+		column1.addWidget("youtube");
+		
+		column2.addWidget("linkedIn");
+		
+		column3.addWidget("dzone");
+		column3.addWidget("jcg");
   
         model.addColumn(column1);  
         model.addColumn(column2);  
@@ -48,7 +50,9 @@ public class DashboardController implements Serializable
         FacesMessage message = new FacesMessage();  
         message.setSeverity(FacesMessage.SEVERITY_INFO);  
         message.setSummary("Reordered: " + event.getWidgetId());  
-        message.setDetail("Item index: " + event.getItemIndex() + ", Column index: " + event.getColumnIndex() + ", Sender index: " + event.getSenderColumnIndex());  
+        message.setDetail("Item index: " + event.getItemIndex() 
+        		+ ", Column index: " + event.getColumnIndex() 
+        		+ ", Sender index: " + event.getSenderColumnIndex());  
           
         addMessage(message);  
     }  

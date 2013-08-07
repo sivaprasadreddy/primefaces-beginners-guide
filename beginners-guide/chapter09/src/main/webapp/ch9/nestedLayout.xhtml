@@ -1,0 +1,69 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>TechBuzz</title>
+        </f:facet>
+        <style>
+        	
+        	.ui-widget {
+				font-size: 12px !important;
+			}
+				
+        </style>
+	</h:head>
+
+        <h:body>
+            <p:layout fullPage="true">
+				
+                <p:layoutUnit position="north" header="North" size="100"  resizable="true">
+                    <h:outputText value="NorthUnit" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" header="South" size="100"  resizable="true">
+                    <h:outputText value="SouthUnit" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" header="West" size="200"  resizable="true">
+                    <h:outputText value="WestUnit" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="east" header="East" size="200"  resizable="true">
+                    <h:outputText value="EastUnit" />
+                </p:layoutUnit>
+
+                <p:layoutUnit position="center">
+
+					<p:layout>
+						
+		                <p:layoutUnit position="north" size="100" resizable="true">
+		                    <h:outputText value="CenterNorth Unit" />
+		                </p:layoutUnit>
+		
+		
+		                <p:layoutUnit position="west" size="200"  resizable="true">
+		                    <h:outputText value="CenterWest Unit" />
+		                </p:layoutUnit>
+		
+		                <p:layoutUnit position="center">
+		                   <h:outputText value="Center CenterUnit" />
+		                </p:layoutUnit>
+		
+		            </p:layout>
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+    </f:view>
+    
+</html>
+

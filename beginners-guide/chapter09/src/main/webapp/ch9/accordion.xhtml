@@ -39,18 +39,26 @@
 	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>  
 		<h2>AccordionPanel Component</h2>
 	    
-		<h:form style="width: 400px; margin: 0 auto;">
+		<h:form style="width: 500px; margin: 0 auto;">
 			<h2>Basic Accordion Panel</h2>
 			<p:accordionPanel widgetVar="accordion1">  
-    			<p:tab title="Panel 1">
-    				Panel 1 Content
+				<p:tab title="PrimeFaces">
+    				<h:outputText value="PrimeFaces is an open source JSF component library with 100+ Rich UI Components support. 
+    								It has built-in Ajax support based on standard JSF 2.0 Ajax APIs." />
+    			</p:tab>
+    			<p:tab title="JSF">
+    				<h:outputText value="JavaServer Faces is a Java specification for building component-based 
+    					user interfaces for web applications. It was formalized as a standard through 
+    					the Java Community Process and is part of the Java Platform, Enterprise Edition." />
+    			</p:tab>
+    			<p:tab title="JavaEE">
+    				<h:outputText value="Java Platform, Enterprise Edition (Java EE) is the standard in community-driven 
+    				enterprise software. Java EE is developed using the Java Community Process, 
+    				with contributions from industry experts, commercial and open source organizations, 
+    				Java User Groups, and countless individuals." />
     			</p:tab>  
-    			<p:tab title="Panel 2">
-    				Panel 2 Content
-    			</p:tab>  
-    			<p:tab title="Panel 3">
-    				Panel 3 Content
-    			</p:tab>  
+    			  
+    			  
     		</p:accordionPanel>
     		<br/>
     		<p:commandButton value="Select Tab1" onclick="accordion1.select(0);"/> 
@@ -64,27 +72,33 @@
 			
 			<h2>Multiple Selection Accordion Panel</h2>
 			<p:accordionPanel multiple="true">  
-    			<p:tab title="Panel 1">
-    				Panel 1 Content
-    			</p:tab>  
-    			<p:tab title="Panel 2">
-    				Panel 2 Content
-    			</p:tab>  
-    			<p:tab title="Panel 3">
-    				Panel 3 Content
-    			</p:tab>  
+    			<p:tab title="PrimeFaces">
+    				<h:outputText value="PrimeFaces is an open source JSF component library with 100+ Rich UI Components support. 
+    								It has built-in Ajax support based on standard JSF 2.0 Ajax APIs." />
+    			</p:tab>
+    			<p:tab title="JSF">
+    				<h:outputText value="Java Server Faces (JSF) is a Java specification for building component-based 
+    					user interfaces for web applications. It was formalized as a standard through 
+    					the Java Community Process and is part of the Java Platform, Enterprise Edition." />
+    			</p:tab>
+    			<p:tab title="JavaEE">
+    				<h:outputText value="Java Platform, Enterprise Edition (Java EE) is the standard in community-driven 
+    				enterprise software. Java EE is developed using the Java Community Process, 
+    				with contributions from industry experts, commercial and open source organizations, 
+    				Java User Groups, and countless individuals." />
+    			</p:tab>
     		</p:accordionPanel>
 			<br/><br/>
 			
 			<h2>Accordion Panel Dynamic Loading</h2>
 			<p:accordionPanel dynamic="true" cache="true">
-    			<p:tab title="Panel 1">
+    			<p:tab title="PrimeFaces">
     				<h:outputText value="#{sampleController.tab1Content}" />
     			</p:tab>  
-    			<p:tab title="Panel 2">
+    			<p:tab title="JSF">
     				<h:outputText value="#{sampleController.tab2Content}" />
     			</p:tab>  
-    			<p:tab title="Panel 3">
+    			<p:tab title="JavaEE">
     				<h:outputText value="#{sampleController.tab3Content}" />
     			</p:tab>  
     		</p:accordionPanel>
@@ -94,14 +108,17 @@
 			<p:accordionPanel onTabChange="tabChanged(panel)" onTabShow="tabShowed(panel)" >
 				<p:ajax event="tabChange" listener="#{sampleController.onTabChange}"/> 
 			 	<!-- <p:ajax event="tabClose" listener="#{sampleController.onTabClose}"/> -->
-    			<p:tab title="Panel 1" id="Panel1">
-    				<h:outputText value="#{sampleController.tab1Content}" />
+    			<p:tab title="Personal Details">
+    				<h:outputText value="First Name : David" /><br/>
+    				<h:outputText value="Last Name : Jr" />
     			</p:tab>  
-    			<p:tab title="Panel 2"  id="Panel2" disabled="true">
-    				<h:outputText value="#{sampleController.tab2Content}" />
+    			<p:tab title="Contact Info" disabled="true">
+    				<h:outputText value="Email : david@gmail.com" /><br/>
+    				<h:outputText value="Phone : 123-456-7890" />
     			</p:tab>  
-    			<p:tab title="Panel 3"  id="Panel3">
-    				<h:outputText value="#{sampleController.tab3Content}" />
+    			<p:tab title="Address Details">
+    				<h:outputText value="City : Chicago" /><br/>
+    				<h:outputText value="State : Illinois" />
     			</p:tab>  
     		</p:accordionPanel>
 			<br/><br/>
