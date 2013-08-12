@@ -15,18 +15,18 @@
 	    <p:separator/>
 	    
 		<h:form style="width: 800px; margin: 0 auto;">
-		
+			
 			<p:breadCrumb>  
-			    <p:menuitem value="Categories" url="#" />  
-			    <p:menuitem value="Sports" url="#" />  
-			    <p:menuitem value="Football" url="#" />  
-			    <p:menuitem value="Countries" url="#" />  
-			    <p:menuitem value="Spain" url="#" />  
-			    <p:menuitem value="F.C. Barcelona" url="#" />  
-			    <p:menuitem value="Squad" url="#" />  
-			    <p:menuitem value="Lionel Messi" url="#" />  
+			    <p:menuitem value="PrimeFaces" url="http://www.primefaces.org/" />  
+			    <p:menuitem value="Board index" url="http://forum.primefaces.org/index.php" />  
+			    <p:menuitem value="JavaServer Faces" url="http://forum.primefaces.org/viewforum.php?f=19" />  
+			    <p:menuitem value="General" url="http://forum.primefaces.org/viewforum.php?f=3" />  
 			</p:breadCrumb>
 			
+			<br/><br/>
+
+			<p:breadCrumb model="#{menuController.breadcrumbMenuModel}"></p:breadCrumb>
+
 		</h:form>
  
 	</ui:define>

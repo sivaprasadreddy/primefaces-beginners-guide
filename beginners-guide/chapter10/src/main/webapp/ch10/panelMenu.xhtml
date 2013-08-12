@@ -23,44 +23,22 @@
 			
 			<p:panelMenu style="width:200px">  
 				<p:submenu label="User Management">
-					<p:submenu label="View Users">
-						<p:menuitem value="Moderators" url="#"  icon="ui-icon-person"/>
+					<p:submenu label="View Users" icon="ui-icon-person">
+						<p:menuitem value="Moderators" url="#"  />
 						<p:menuitem value="Normal Users" actionListener="#{menuController.showUserManagement()}"/>
 					</p:submenu>
-					<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
 				</p:submenu>
 				<p:submenu label="Tag Management">
 					<p:menuitem value="View Tags" url="panelMenu.jsf" icon="ui-icon-tag"/>
-					<p:menuitem value="Tag Stistics" outcome="panelMenu"/>
+					<p:menuitem value="Tag Stistics" outcome="panelMenu" icon="ui-icon-image"/>
 				</p:submenu>
 				<p:submenu label="System Config" >
-					<p:menuitem value="View Configuration" outcome="panelMenu"/>
+					<p:menuitem value="View Configuration" outcome="panelMenu" icon="ui-icon-gear"/>
 				</p:submenu>
 			</p:panelMenu>
 			
 			<br/>
 			
-			<p:panelMenu style="width:200px">
-					<p:submenu label="Ajax Menuitems">
-						<p:menuitem value="Save" actionListener="#{menuController.showUserManagement()}" icon="ui-icon-disk" />
-						<p:menuitem value="Update" actionListener="#{menuController.showUserManagement()}"  icon="ui-icon-arrowrefresh-1-w" />
-					</p:submenu>
-					<p:submenu label="Non-Ajax Menuitem">
-						<p:menuitem value="Delete" actionListener="#{menuController.showUserManagement()}"  ajax="false" icon="ui-icon-close"/>
-					</p:submenu>
-                    <p:separator />
-					<p:submenu label="Navigations" >
-						<p:submenu label="Links" icon="ui-icon-extlink">
-                            <p:submenu label="PrimeFaces" icon="ui-icon-heart">
-                                <p:menuitem value="Home" url="http://www.primefaces.org" icon="ui-icon-home" />
-                                <p:menuitem value="Docs" url="http://www.primefaces.org/documentation.html" icon="ui-icon-document" />
-                                <p:menuitem value="Download" url="http://www.primefaces.org/downloads.html" icon="ui-icon-arrowthick-1-s" />
-                                <p:menuitem value="Support" url="http://www.primefaces.org/support.html" icon="ui-icon-wrench" />
-                            </p:submenu>
-						</p:submenu>
-					</p:submenu>
-				</p:panelMenu>
-				
 		</h:form>
  
 	</ui:define>

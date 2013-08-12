@@ -1,0 +1,12 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+    
+	<p:tabMenu activeIndex="#{activeIndex}">
+		<p:menuitem value="Home" url="home.jsf" icon="ui-icon-home"/>  
+		<p:menuitem value="Post Buzz" outcome="tabMenu"   icon="ui-icon-document"/>  
+		<p:menuitem value="Search" action="#{menuController.showSearchPage}" ajax="false" icon="ui-icon-search" />  
+		<p:menuitem value="My Account" actionListener="#{menuController.showMyAccount()}" icon="ui-icon-person" />  
+	</p:tabMenu>
+ 
+</ui:composition>

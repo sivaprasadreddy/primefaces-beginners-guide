@@ -26,6 +26,7 @@ public class MenuController
 {
 	private MenuModel menuModel;
 	private MenuModel tieredMenuModel;
+	private MenuModel breadcrumbMenuModel;
 	private int activeIndex = 0;
 	private boolean autoDisplay = true;
 	
@@ -33,8 +34,34 @@ public class MenuController
 	{
 		initSimpleMenuModel();
 		initTieredMenuModel();	
+		initBreadcrumbMenuModel();
 	}
 	
+	private void initBreadcrumbMenuModel()
+	{
+		breadcrumbMenuModel = new DefaultMenuModel();
+		MenuItem item1 = new MenuItem();
+		item1.setValue("PrimeFaces");
+		item1.setUrl("http://www.primefaces.org/");
+		breadcrumbMenuModel.addMenuItem(item1);
+		
+		MenuItem item2 = new MenuItem();
+		item2.setValue("Board index");
+		item2.setUrl("http://forum.primefaces.org/index.php");
+		breadcrumbMenuModel.addMenuItem(item2);
+		
+		MenuItem item3 = new MenuItem();
+		item3.setValue("JavaServer Faces");
+		item3.setUrl("http://forum.primefaces.org/viewforum.php?f=19");
+		breadcrumbMenuModel.addMenuItem(item3);
+		
+		MenuItem item4 = new MenuItem();
+		item4.setValue("General");
+		item4.setUrl("http://forum.primefaces.org/viewforum.php?f=3");
+		breadcrumbMenuModel.addMenuItem(item4);
+		
+	}
+
 	void initSimpleMenuModel()
 	{
 		menuModel = new DefaultMenuModel();
@@ -217,7 +244,10 @@ public class MenuController
 	{
 		return tieredMenuModel;
 	}
-	
+	public MenuModel getBreadcrumbMenuModel()
+	{
+		return breadcrumbMenuModel;
+	}
 	public void showUserManagement()
 	{
 		addMessage("Show User Management Screen");
