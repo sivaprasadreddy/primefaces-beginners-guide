@@ -14,11 +14,78 @@
 		<h2>TieredMenu Component</h2>
 	    <p:separator/>
 	    
+	    <p:growl autoUpdate="true"/>
 		<h:form style="width: 800px; margin: 0 auto;">
-		
 			
+			<h3>Inline TieredMenu</h3>
+			<p:tieredMenu style="width:180px">  
+				<p:submenu label="User Management" icon="ui-icon-person">
+					<p:submenu label="View Users">
+						<p:menuitem value="Moderators" url="#"/>
+						<p:menuitem value="Normal Users" actionListener="#{menuController.showUserManagement()}"/>
+					</p:submenu>
+					<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+				</p:submenu>
+				<p:submenu label="Tag Management" icon="ui-icon-tag">
+					<p:menuitem value="View Tags" url="tieredMenu.jsf"/>
+					<p:menuitem value="Tag Stistics" outcome="tieredMenu"/>
+				</p:submenu>
+				<p:menuitem value="System Config" icon="ui-icon-gear" outcome="tieredMenu"/>
+			</p:tieredMenu>
 			
+			<br/><br/>
+			
+			<h:outputText value="AutoDisplay: " />   
+			<p:selectOneRadio id="options" value="#{menuController.autoDisplay}">
+				<p:ajax update="tMenu"></p:ajax>  
+	            <f:selectItem itemLabel="True" itemValue="true" />
+	            <f:selectItem itemLabel="False" itemValue="false" />
+	        </p:selectOneRadio>
+	        
+			<h3>Click Trigger</h3>
+				<p:tieredMenu id="tMenu" style="width:180px" autoDisplay="#{menuController.autoDisplay}">  
+					<p:submenu label="User Management" icon="ui-icon-person">
+						<p:submenu label="View Users">
+							<p:menuitem value="Moderators" url="#"/>
+							<p:menuitem value="Normal Users" actionListener="#{menuController.showUserManagement()}"/>
+						</p:submenu>
+						<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+					</p:submenu>
+					<p:submenu label="Tag Management" icon="tag-icon">
+						<p:menuitem value="View Tags" url="tieredMenu.jsf"/>
+						<p:menuitem value="Tag Stistics" outcome="tieredMenu"/>
+					</p:submenu>
+					<p:submenu label="System Config" icon="ui-icon-gear">
+						<p:menuitem value="View Configuration" outcome="tieredMenu"/>
+					</p:submenu>
+				</p:tieredMenu>
+				
+				<br/><br/>
+				
+			<h3>Overlay</h3>
+		    <p:commandButton id="dynaButton" value="Show" type="button"/>  
+		    <p:tieredMenu overlay="true" trigger="dynaButton" my="left top" at="right bottom">
+			    <p:submenu label="User Management" icon="ui-icon-person">
+						<p:submenu label="View Users">
+							<p:menuitem value="Moderators" url="#"/>
+							<p:menuitem value="Normal Users" actionListener="#{menuController.showUserManagement()}"/>
+						</p:submenu>
+						<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+					</p:submenu>
+					<p:submenu label="Tag Management" icon="tag-icon">
+						<p:menuitem value="View Tags" url="tieredMenu.jsf"/>
+						<p:menuitem value="Tag Stistics" outcome="tieredMenu"/>
+					</p:submenu>
+					<p:submenu label="System Config" icon="ui-icon-gear">
+						<p:menuitem value="View Configuration" outcome="tieredMenu"/>
+					</p:submenu>
+				</p:tieredMenu>
+			
+				
+				<p:tieredMenu style="width:180px" model="#{menuController.tieredMenuModel}"></p:tieredMenu>
+				
 		</h:form>
- 
+ 		<br/><br/>
+ 		<br/><br/>
 	</ui:define>
 </ui:composition>

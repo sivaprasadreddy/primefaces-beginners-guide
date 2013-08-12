@@ -14,10 +14,78 @@
 		<h2>ContextMenu Component</h2>
 	    <p:separator/>
 	    
+	    <p:growl autoUpdate="true"/>
 		<h:form style="width: 800px; margin: 0 auto;">
-		
+			<ui:remove>
+			<p:contextMenu>  
+		        <p:menuitem value="Save" icon="ui-icon-disk"/>  
+		        <p:menuitem value="Update" icon="ui-icon-arrowrefresh-1-w"/>  
+		        <p:menuitem value="Delete" icon="ui-icon-close"/>  
+		        <p:menuitem value="Homepage" url="http://www.primefaces.org" icon="ui-icon-extlink"/>  
+		    </p:contextMenu>
+			</ui:remove>
 			
+			<p:button id="tieredMenu" value="TieredMenu"></p:button>
+			<p:contextMenu style="width:180px" for="tieredMenu"> 
+				<p:submenu label="User Management" icon="ui-icon-person">
+					<p:submenu label="View Users">
+						<p:menuitem value="Moderators" url="#"/>
+						<p:menuitem value="Normal Users" actionListener="#{menuController.showUserManagement()}"/>
+					</p:submenu>
+					<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+				</p:submenu>
+				<p:submenu label="Tag Management" icon="tag-icon">
+					<p:menuitem value="View Tags" url="tieredMenu.jsf"/>
+					<p:menuitem value="Tag Stistics" outcome="tieredMenu"/>
+				</p:submenu>
+				<p:submenu label="System Config" icon="ui-icon-gear">
+					<p:menuitem value="View Configuration" outcome="tieredMenu"/>
+				</p:submenu>
 			
+			</p:contextMenu>
+			
+			<br/>
+			
+			<p:dialog widgetVar="selectedUserDlg">
+				<h:panelGrid id="userDetails" columns="2" >  
+		            
+		            <h:outputText value="Id:" />  
+		            <h:outputText value="#{adminController.selectedUser.id}" style="font-weight:bold"/>  
+		  
+		            <h:outputText value="Email:" />  
+		            <h:outputText value="#{adminController.selectedUser.emailId}" style="font-weight:bold"/>  
+		            
+		            <h:outputText value="FirstName:" />  
+		            <h:outputText value="#{adminController.selectedUser.firstName}" style="font-weight:bold"/>
+		            
+		            <h:outputText value="LastName:" />  
+		            <h:outputText value="#{adminController.selectedUser.lastName}" style="font-weight:bold"/>
+		  
+		        </h:panelGrid>
+			</p:dialog>
+			
+			<p:contextMenu for="usersTbl">  
+		        <p:menuitem value="View" update="userDetails" icon="ui-icon-search" oncomplete="selectedUserDlg.show()"/>  
+		        <p:menuitem value="Disable" update="usersTbl" icon="ui-icon-close" actionListener="#{adminController.disableSelectedUser}"/>  
+		    </p:contextMenu>
+    
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" style="width: 300px;" 
+			 		paginator="true" rows="5"
+					selectionMode="single" selection="#{adminController.selectedUser}" rowKey="#{user.id}" >
+					
+				<f:facet name="header">
+					List of Users
+				</f:facet>
+		        <p:column headerText="Id" width="20px;">  
+		            <h:outputText value="#{user.id}" />
+		        </p:column>  
+		  
+		        <p:column headerText="Email" >
+		            <h:outputText value="#{user.emailId}" />
+		        </p:column>  
+		  
+		    </p:dataTable>
+		    
 		</h:form>
  
 	</ui:define>

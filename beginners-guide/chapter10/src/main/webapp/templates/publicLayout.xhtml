@@ -12,6 +12,7 @@
             <meta http-equiv="cache-control" content="no-cache"/>
             <meta http-equiv="expires" content="0"/>
         </f:facet>
+        <title>#{msg['app.title']}</title>
         <style type="text/css">
         					
 				#wrapper{
@@ -40,8 +41,18 @@
 					vertical-align: top;
 				}
 				
+				h3 {
+				    font-size: 1em;
+				    margin-top: 20px;
+				}
+
+				.tag-icon
+		    	{
+		    		background-image:url(../resources/images/tag-16.png) !important;
+		    	}
+				
 		</style>
-		<title>#{msg['app.title']}</title>
+		<ui:insert name="appResources"/>
         <ui:insert name="head"/>
     </h:head>
     <h:body>
@@ -67,7 +78,7 @@
 			</div>
     		
         </div>
-        <ui:insert name="appResources"/>
+        
     </h:body>
 </f:view>
 </html>

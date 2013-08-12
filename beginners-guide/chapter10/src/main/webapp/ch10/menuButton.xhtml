@@ -14,8 +14,15 @@
 		<h2>MenuButton Component</h2>
 	    <p:separator/>
 	    
+	    <p:growl autoUpdate="true"/>
 		<h:form style="width: 800px; margin: 0 auto;">
 		
+			<p:menuButton value="Administration">
+				<p:menuitem value="View Users" actionListener="#{menuController.showUserManagement()}"/>
+				<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+				<p:menuitem value="Tag Management" outcome="menuButton"/>
+				<p:menuitem value="System Config" url="menuButton.jsf"/>
+			</p:menuButton>
 			
 			
 		</h:form>

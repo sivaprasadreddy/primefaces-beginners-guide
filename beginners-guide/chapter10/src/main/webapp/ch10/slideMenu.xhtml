@@ -6,6 +6,15 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	template="/templates/publicLayout.xhtml">
     
+    <ui:define name="head">
+    	<style type="text/css">
+    	.tag-icon
+    	{
+    		background-image:url(../resources/images/tag-16.png) !important;
+    	}
+    	</style>
+    </ui:define>
+    
 	<ui:define name="bodyContent">
 		
 		<h:form>
@@ -14,9 +23,45 @@
 		<h2>SlideMenu Component</h2>
 	    <p:separator/>
 	    
+	     <p:growl autoUpdate="true"/>
 		<h:form style="width: 800px; margin: 0 auto;">
 		
+			<h3>SlideMenu</h3>
+			<p:slideMenu style="width:180px">  
+				<p:submenu label="User Management" icon="ui-icon-person">
+					<p:submenu label="View Users">
+						<p:menuitem value="Moderators" url="#"/>
+						<p:menuitem value="Normal Users" actionListener="#{menuController.showUserManagement()}"/>
+					</p:submenu>
+					<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+				</p:submenu>
+				<p:submenu label="Tag Management" icon="tag-icon">
+					<p:menuitem value="View Tags" url="slideMenu.jsf"/>
+					<p:menuitem value="Tag Stistics" outcome="slideMenu"/>
+				</p:submenu>
+				<p:submenu label="System Config" icon="ui-icon-gear">
+					<p:menuitem value="View Configuration" outcome="slideMenu"/>
+				</p:submenu>
+			</p:slideMenu>
 			
+			<h3>Overlay SlideMenu</h3>
+		    <p:commandButton id="dynaButton" value="Show" type="button"/>  
+		    <p:slideMenu overlay="true" trigger="dynaButton" my="left top" at="right bottom">
+			    <p:submenu label="User Management" icon="ui-icon-person">
+						<p:submenu label="View Users">
+							<p:menuitem value="Moderators" url="#"/>
+							<p:menuitem value="Normal Users" actionListener="#{menuController.showUserManagement()}"/>
+						</p:submenu>
+						<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+					</p:submenu>
+					<p:submenu label="Tag Management" icon="tag-icon">
+						<p:menuitem value="View Tags" url="slideMenu.jsf"/>
+						<p:menuitem value="Tag Stistics" outcome="slideMenu"/>
+					</p:submenu>
+					<p:submenu label="System Config" icon="ui-icon-gear">
+						<p:menuitem value="View Configuration" outcome="slideMenu"/>
+					</p:submenu>
+				</p:slideMenu>
 			
 		</h:form>
  

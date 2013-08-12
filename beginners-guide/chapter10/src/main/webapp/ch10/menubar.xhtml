@@ -6,6 +6,15 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	template="/templates/publicLayout.xhtml">
     
+    <ui:define name="head">
+    	<style type="text/css">
+    	.tag-icon
+    	{
+    		background-image:url(../resources/images/tag-16.png) !important;
+    	}
+    	</style>
+    </ui:define>
+    
 	<ui:define name="bodyContent">
 		
 		<h:form>
@@ -13,10 +22,29 @@
 		</h:form>
 		<h2>Menubar Component</h2>
 	    <p:separator/>
+	    <p:growl autoUpdate="true"/>
 	    
 		<h:form style="width: 800px; margin: 0 auto;">
-		
 			
+			<p:menubar autoDisplay="false">  
+				<p:submenu label="User Management" icon="ui-icon-person">
+					<p:submenu label="View Users">
+						<p:menuitem value="Moderators" url="#"/>
+						<p:menuitem value="Normal Users" actionListener="#{menuController.showUserManagement()}"/>
+					</p:submenu>
+					<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+				</p:submenu>
+				<p:submenu label="Tag Management" icon="tag-icon">
+					<p:menuitem value="View Tags" url="menubar.jsf"/>
+					<p:menuitem value="Tag Stistics" outcome="menubar"/>
+				</p:submenu>
+				<p:submenu label="System Config" icon="ui-icon-gear">
+					<p:menuitem value="View Configuration" outcome="menubar"/>
+				</p:submenu>
+			</p:menubar>
+			
+			<h3>Programatic Menubar</h3>
+			<p:menubar model="#{menuController.menuModel}"></p:menubar>
 			
 		</h:form>
  
