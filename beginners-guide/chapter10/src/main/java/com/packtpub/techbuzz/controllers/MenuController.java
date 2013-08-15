@@ -4,7 +4,6 @@ import javax.el.MethodExpression;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.ActionListener;
@@ -21,9 +20,9 @@ import org.primefaces.model.MenuModel;
  */
 @ManagedBean
 @RequestScoped
-//@ViewScoped
 public class MenuController
 {
+	private MenuModel simpleMenuModel;
 	private MenuModel menuModel;
 	private MenuModel tieredMenuModel;
 	private MenuModel breadcrumbMenuModel;
@@ -33,36 +32,58 @@ public class MenuController
 	public MenuController()
 	{
 		initSimpleMenuModel();
+		initMenuModel();
 		initTieredMenuModel();	
 		initBreadcrumbMenuModel();
 	}
 	
-	private void initBreadcrumbMenuModel()
+	void initSimpleMenuModel()
 	{
-		breadcrumbMenuModel = new DefaultMenuModel();
-		MenuItem item1 = new MenuItem();
-		item1.setValue("PrimeFaces");
-		item1.setUrl("http://www.primefaces.org/");
-		breadcrumbMenuModel.addMenuItem(item1);
+		simpleMenuModel = new DefaultMenuModel();
 		
-		MenuItem item2 = new MenuItem();
-		item2.setValue("Board index");
-		item2.setUrl("http://forum.primefaces.org/index.php");
-		breadcrumbMenuModel.addMenuItem(item2);
+		MenuItem rootItem1 = new MenuItem();
+		rootItem1.setValue("System Config");
+		rootItem1.setIcon("ui-icon-gear");
+		simpleMenuModel.addMenuItem(rootItem1 );
 		
-		MenuItem item3 = new MenuItem();
-		item3.setValue("JavaServer Faces");
-		item3.setUrl("http://forum.primefaces.org/viewforum.php?f=19");
-		breadcrumbMenuModel.addMenuItem(item3);
+		Submenu sm1 = new Submenu();
+		sm1.setLabel("User Management");
+		sm1.setIcon("ui-icon-person");
 		
-		MenuItem item4 = new MenuItem();
-		item4.setValue("General");
-		item4.setUrl("http://forum.primefaces.org/viewforum.php?f=3");
-		breadcrumbMenuModel.addMenuItem(item4);
+			MenuItem sm1Menu1Item1 = new MenuItem();
+			sm1Menu1Item1.setValue("View Users");
+			sm1Menu1Item1.setActionExpression(buildMethodExpression("#{menuController.showUserManagement()}"));
+		
+			MenuItem sm1Menu1Item2 = new MenuItem();
+			sm1Menu1Item2.setValue("View User Activity");
+			sm1Menu1Item2.addActionListener(buildMethodExpressionActionListener("#{menuController.showUserActivity()}"));
+			sm1Menu1Item2.setAjax(false);
+			
+			sm1.getChildren().add(sm1Menu1Item1);
+			sm1.getChildren().add(sm1Menu1Item2);
+			
+		simpleMenuModel.addSubmenu(sm1);
+		
+		Submenu sm2 = new Submenu();
+		sm2.setLabel("Tag Management");
+		sm2.setIcon("ui-icon-tag");
+		
+			MenuItem sm2Item1 = new MenuItem();
+			sm2Item1.setValue("View Tags");
+			sm2Item1.setOutcome("menu");
+			
+			MenuItem sm2Item2 = new MenuItem();
+			sm2Item2.setValue("Tag Stistics");
+			sm2Item2.setUrl("menu.jsf");
+			
+		sm2.getChildren().add(sm2Item1);
+		sm2.getChildren().add(sm2Item2);
+		
+		simpleMenuModel.addSubmenu(sm2);
+		
 		
 	}
-
-	void initSimpleMenuModel()
+	void initMenuModel()
 	{
 		menuModel = new DefaultMenuModel();
 		
@@ -236,6 +257,35 @@ public class MenuController
 		
 	}
 	
+	void initBreadcrumbMenuModel()
+	{
+		breadcrumbMenuModel = new DefaultMenuModel();
+		MenuItem item1 = new MenuItem();
+		item1.setValue("PrimeFaces");
+		item1.setUrl("http://www.primefaces.org/");
+		breadcrumbMenuModel.addMenuItem(item1);
+		
+		MenuItem item2 = new MenuItem();
+		item2.setValue("Board index");
+		item2.setUrl("http://forum.primefaces.org/index.php");
+		breadcrumbMenuModel.addMenuItem(item2);
+		
+		MenuItem item3 = new MenuItem();
+		item3.setValue("JavaServer Faces");
+		item3.setUrl("http://forum.primefaces.org/viewforum.php?f=19");
+		breadcrumbMenuModel.addMenuItem(item3);
+		
+		MenuItem item4 = new MenuItem();
+		item4.setValue("General");
+		item4.setUrl("http://forum.primefaces.org/viewforum.php?f=3");
+		breadcrumbMenuModel.addMenuItem(item4);
+		
+	}
+	
+	public MenuModel getSimpleMenuModel()
+	{
+		return simpleMenuModel;
+	}
 	public MenuModel getMenuModel()
 	{
 		return menuModel;
@@ -285,12 +335,11 @@ public class MenuController
 	}
 	public void setActiveIndex(int activeIndex)
 	{
-		//System.out.println("activeIndex int->"+activeIndex);
 		this.activeIndex = activeIndex;
 	}
+	//PrimeFaces invokes setActiveIndex() with Long type param
 	public void setActiveIndex(Long activeIndex)
 	{
-		//System.out.println("activeIndex ->"+activeIndex);
 		this.activeIndex = activeIndex.intValue();
 	}
 	public void addMessage(String summary) {  

@@ -6,15 +6,6 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	template="/templates/publicLayout.xhtml">
     
-    <ui:define name="head">
-    	<style type="text/css">
-    	.tag-icon
-    	{
-    		background-image:url(../resources/images/tag-16.png) !important;
-    	}
-    	</style>
-    </ui:define>
-    
 	<ui:define name="bodyContent">
 		
 		<h:form>
@@ -34,7 +25,7 @@
 					</p:submenu>
 					<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
 				</p:submenu>
-				<p:submenu label="Tag Management" icon="tag-icon">
+				<p:submenu label="Tag Management" icon="ui-icon-tag">
 					<p:menuitem value="View Tags" url="menubar.jsf"/>
 					<p:menuitem value="Tag Stistics" outcome="menubar"/>
 				</p:submenu>
@@ -43,7 +34,7 @@
 				</p:submenu>
 			</p:menubar>
 			
-			<h3>Programatic Menubar</h3>
+			<h3>Programmatic Menubar</h3>
 			<p:menubar model="#{menuController.menuModel}"></p:menubar>
 			
 		</h:form>

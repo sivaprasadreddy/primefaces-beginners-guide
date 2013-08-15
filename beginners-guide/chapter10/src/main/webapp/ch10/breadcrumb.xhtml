@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	template="/templates/publicLayout.xhtml">
-    
+
 	<ui:define name="bodyContent">
 		
 		<h:form>
@@ -14,17 +14,18 @@
 		<h2>Breadcrumb Component</h2>
 	    <p:separator/>
 	    
-		<h:form style="width: 800px; margin: 0 auto;">
+		<h:form id="form1" style="width: 800px; margin: 0 auto;">
 			
-			<p:breadCrumb>  
-			    <p:menuitem value="PrimeFaces" url="http://www.primefaces.org/" />  
+			<h3>Static Breadcrumb Menu</h3>
+			<p:breadCrumb >  
+			    <p:menuitem value="PrimeFaces" url="http://www.primefaces.org/"/>  
 			    <p:menuitem value="Board index" url="http://forum.primefaces.org/index.php" />  
 			    <p:menuitem value="JavaServer Faces" url="http://forum.primefaces.org/viewforum.php?f=19" />  
 			    <p:menuitem value="General" url="http://forum.primefaces.org/viewforum.php?f=3" />  
 			</p:breadCrumb>
 			
 			<br/><br/>
-
+			<h3>Programmatic Breadcrumb Menu</h3>
 			<p:breadCrumb model="#{menuController.breadcrumbMenuModel}"></p:breadCrumb>
 
 		</h:form>
