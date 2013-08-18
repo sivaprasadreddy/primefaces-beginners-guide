@@ -11,26 +11,16 @@
 		<h:form>
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
 		</h:form>
-		<h2>PieChart Component</h2>
+		<h2>AreaChart Component</h2>
 	    <p:separator/>
 	    
 		<h:form style="width: 800px; margin: 0 auto;">
 		
-		<p:pieChart value="#{chartController.pieChartModel}"
-			legendPosition="ne" 
-			showDataLabels="false"
-			dataFormat="percent"
-			/>
-			<br/>
-			<p:pieChart value="#{chartController.pieChartModel}"
-			legendPosition="ne" 
-			legendCols="3"
-			showDataLabels="true"
-			diameter="150"
-			sliceMargin="5"
-			fill="true"
-			dataFormat="value"
-			/>
+			<p:lineChart title="Linear Chart" value="#{chartController.areaChartModel}" legendPosition="nw"
+				xaxisLabel="Year" yaxisLabel="No. of Posts" xaxisAngle="45" yaxisAngle="45"
+				minX="2010" maxX="2015" minY="0" maxY="1000"
+				animate="true"
+				fill="true" stacked="true"/>
 			
 		</h:form>
  

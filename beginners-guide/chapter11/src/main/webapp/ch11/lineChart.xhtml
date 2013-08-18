@@ -16,8 +16,17 @@
 	    
 		<h:form style="width: 800px; margin: 0 auto;">
 		
-			
-			
+			<p:lineChart value="#{chartController.chartModel}" legendPosition="se"/>
+			<br/>
+			<p:lineChart title="Linear Chart" value="#{chartController.linearChartModel}" legendPosition="nw"
+				xaxisLabel="Year" yaxisLabel="No. of Posts" xaxisAngle="45" yaxisAngle="45"
+				minX="2010" maxX="2015" minY="0" maxY="1000"
+				breakOnNull="false" zoom="true" animate="true"
+				showMarkers="true" shadow="true" 
+				showDatatip="true" datatipFormat="#{chartController.datatipFormat}"
+				seriesColors="800000,006400"
+				legendCols="2"/>
+
 		</h:form>
  
 	</ui:define>

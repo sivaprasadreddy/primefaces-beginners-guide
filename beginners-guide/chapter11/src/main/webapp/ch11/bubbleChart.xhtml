@@ -11,26 +11,14 @@
 		<h:form>
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
 		</h:form>
-		<h2>PieChart Component</h2>
+		<h2>BubbleChart Component</h2>
 	    <p:separator/>
 	    
 		<h:form style="width: 800px; margin: 0 auto;">
 		
-		<p:pieChart value="#{chartController.pieChartModel}"
-			legendPosition="ne" 
-			showDataLabels="false"
-			dataFormat="percent"
-			/>
-			<br/>
-			<p:pieChart value="#{chartController.pieChartModel}"
-			legendPosition="ne" 
-			legendCols="3"
-			showDataLabels="true"
-			diameter="150"
-			sliceMargin="5"
-			fill="true"
-			dataFormat="value"
-			/>
+			<p:bubbleChart value="#{chartController.bubbleChartModel}" style="width: 350px;" xaxisAngle="45"
+			bubbleGradients="true"
+			xaxisLabel="Year" yaxisLabel="Population"/>	
 			
 		</h:form>
  

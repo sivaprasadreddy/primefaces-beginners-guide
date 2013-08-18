@@ -16,8 +16,19 @@
 	    
 		<h:form style="width: 800px; margin: 0 auto;">
 		
-			
-			
+			<p:barChart value="#{chartController.chartModel}" 
+			barMargin="20" barPadding="18">
+				<p:ajax event="itemSelect" listener="#{chartController.itemSelect()}"></p:ajax>
+			</p:barChart>
+			<br/>
+			<p:barChart value="#{chartController.chartModel}" animate="true"
+			legendPosition="se"
+			orientation="horizontal"
+			/>
+			<br/>
+			<p:barChart value="#{chartController.chartModel}" animate="true"
+			legendPosition="se" stacked="true"
+			/>
 		</h:form>
  
 	</ui:define>
