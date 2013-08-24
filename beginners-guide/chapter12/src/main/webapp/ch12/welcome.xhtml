@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+	
+			<h:form>
+			<br/>
+				<ui:remove>
+				<p:selectOneMenu value="#{userPreferences.selectedTheme}" style="width: 200px;">
+					<f:selectItem itemLabel="Select Theme" itemValue=""/>
+					<f:selectItems value="#{userPreferences.themes}"/>
+					<p:ajax update="@all"/>
+				</p:selectOneMenu>
+				<br/><br/>
+				</ui:remove>
+				
+				<ui:remove>
+				<h:outputText value="Stateful ThemeSwitcher:" />  
+				<p:themeSwitcher value="#{userPreferences.selectedTheme}"  style="width:165px" id="defaultSwitcher">  
+		            <f:selectItem itemLabel="Choose Theme" itemValue="" />  
+		            <f:selectItems value="#{userPreferences.themes}" />  
+		            <p:ajax listener="#{userPreferences.saveUserTheme}"/>
+		        </p:themeSwitcher>
+		        </ui:remove>
+		        
+				<br/><br/>
+				<h:outputText value="Theme Preview:" />   
+		        <p:themeSwitcher value="#{userPreferences.selectedTheme}" style="width:165px" effect="fade" var="t" id="themePreview">  
+		            <f:selectItem itemLabel="Choose Theme" itemValue="" />  
+		            <f:selectItems value="#{userPreferences.advancedThemes}" var="theme" 
+		            				itemLabel="#{theme.name}" itemValue="#{theme}"/>
+		            	<p:ajax listener="#{userPreferences.saveUserTheme}"/>
+		            <p:column>  
+		                <p:graphicImage value="/resources/images/themes/#{t.image}"/>  
+		            </p:column>  
+		            <p:column>  
+		                #{t.name}  
+		            </p:column>
+		        </p:themeSwitcher> 
+        		<br/><br/>
+        		<p:calendar mode="inline"/><br/><br/>
+				<h:link value="Panel" outcome="panel"/><br/><br/>
+				<h:link value="TabView" outcome="tabView"/><br/><br/>
+				<p:commandButton type="button" value="Show Dialog" onclick="dlg.show()"/><br/><br/>
+				<p:dialog widgetVar="dlg" modal="true" header="sample Dialog" width="300" height="100">
+					<h:outputText value="Sample Dialog" />
+				</p:dialog>
+				<h:outputText value="Selected Theme: #{userPreferences.selectedTheme}"/>
+				<br/>
+				<h3>Panel Component</h3>
+				<p:panel header="PrimeFaces Themes">
+					<h:outputText value="PrimeFaces provides 30+ built-in themes !!" />
+				</p:panel>
+				
+				<h3>TabView Component</h3>
+				<p:tabView>
+					<p:tab title="Tab1">
+						Tab 1
+					</p:tab>
+					<p:tab title="Tab2">
+						Tab 2
+					</p:tab>
+					
+				</p:tabView>
+				
+			</h:form>
+
+	</ui:define>
+</ui:composition>
