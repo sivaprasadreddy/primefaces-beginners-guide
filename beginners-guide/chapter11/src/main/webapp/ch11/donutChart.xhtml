@@ -15,11 +15,21 @@
 	    <p:separator/>
 	    
 		<h:form style="width: 800px; margin: 0 auto;">
-		
-			<p:donutChart value="#{chartController.donutChartModel}" style="width: 350px; height: 250px;" legendPosition="ne"/>
-			<p:donutChart value="#{chartController.donutChartModel}" style="width: 350px; height: 250px;"
-			legendPosition="se"
-			sliceMargin="5" showDataLabels="true" dataFormat="value" />
+			
+			<h2>Simple Donut Chart</h2>
+			<p:donutChart value="#{chartController.donutChartModel}" 
+							style="width: 350px; height: 250px;" 
+							legendPosition="ne"
+							showDataLabels="true" 
+							dataFormat="percent"/>
+			
+			<h2>Donut Chart with custom sliceMargin, dataFormat options.</h2>
+			<p:donutChart value="#{chartController.donutChartModel}" 
+							style="width: 350px; height: 250px;"
+							legendPosition="se"
+							sliceMargin="5" 
+							showDataLabels="true" 
+							dataFormat="value" />
 			
 		</h:form>
  

@@ -15,7 +15,6 @@ import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.DefaultPieDataset;
-import org.jfree.data.general.PieDataset;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -42,7 +41,6 @@ public class ChartController implements Serializable
 	private PieChartModel pieChartModel;
 	private DonutChartModel donutChartModel;
 	private BubbleChartModel bubbleChartModel;
-	private StreamedContent  jfreechart;
 			
 	public ChartController()
 	{
@@ -53,7 +51,6 @@ public class ChartController implements Serializable
 		initDonutChartModel();
 		initBubbleChartModel();
 		
-		initJFreeChart();
 	}
 	
 	
@@ -156,7 +153,7 @@ public class ChartController implements Serializable
 		
 		LineChartSeries primefacesSeries = new LineChartSeries();
 		primefacesSeries.setLabel("PrimeFaces");
-		primefacesSeries.setMarkerStyle("diamond");
+		//primefacesSeries.setMarkerStyle("diamond");
 		primefacesSeries.set("2009", 150);
 		primefacesSeries.set("2010", 250);
 		primefacesSeries.set("2011", 300);
@@ -178,37 +175,36 @@ public class ChartController implements Serializable
 	
 	public StreamedContent getJfreeChart()
 	{
-		return jfreechart;
-
-	}
-	private void initJFreeChart() 
-	{
+		StreamedContent content = null;
 		try
 		{
-			JFreeChart chart = ChartFactory.createPieChart("JFreeChart", createDataset(), true, true, false);  
-			File chartFile = new File("dynamic_chart");  
-			ChartUtilities.saveChartAsPNG(chartFile, chart, 375, 300);  
-			jfreechart = new DefaultStreamedContent(new FileInputStream(chartFile), "image/png");
+			DefaultPieDataset dataset = new DefaultPieDataset();  
+	        dataset.setValue("PrimeFaces", 455);
+	        dataset.setValue("JSF", 380);
+			dataset.setValue("jQuery", 202);
+			dataset.setValue("JPA", 180);
+			
+			boolean legend=true, tooltip=true, urls =false;
+			JFreeChart chart = ChartFactory.createPieChart("JFreeChart", dataset, legend, tooltip, urls);
+			
+			File chartFile = new File("jfreechart");  
+			int width=375, height=300;
+			ChartUtilities.saveChartAsPNG(chartFile, chart, width, height);  
+			
+			content = new DefaultStreamedContent(new FileInputStream(chartFile), "image/png");
 		} catch (Exception e)
 		{
 			e.printStackTrace();
 			throw new RuntimeException(e);
-		}  
-        
+		}
+		return content;
 	}
-	
-	private PieDataset createDataset() {  
-        DefaultPieDataset dataset = new DefaultPieDataset();  
-        
-        dataset.setValue("JSF", 380);
-		dataset.setValue("PrimeFaces", 455);
-		dataset.setValue("jQuery", 202);
-		dataset.setValue("JPA", 180);
-        return dataset;  
-    } 
+	 
 	public void itemSelect(ItemSelectEvent event) {  
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",  
-                        "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());  
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, 
+        				"Item selected",  
+                        "Item Index: " + event.getItemIndex() 
+                        + ", Series Index:" + event.getSeriesIndex());  
   
         FacesContext.getCurrentInstance().addMessage(null, msg);  
     }
@@ -233,8 +229,13 @@ public class ChartController implements Serializable
 	{
 		return bubbleChartModel;
 	}
-	public String getDatatipFormat() {
-		return "<span style=\"display:none;\">%s</span><span>No. of Posts: %s</span>";
+	public String  getHorizontalChartDatatipFormat()
+	{
+		return "<span>No. of Posts: %s</span>";
+	}
+	public String getDatatipFormat()
+	{
+		return "<span style=\"display:none\">%s</span><span>No. of Posts: %s</span>";
 	}
 	public PieChartModel getPieChartModel()
 	{

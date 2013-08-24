@@ -6,16 +6,12 @@
 	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
 	template="/templates/publicLayout.xhtml">
     
-    <ui:define name="appResources">
-        <h:outputScript library="js" name="jquery-plugins.js" />
-    </ui:define>
-    
     <ui:define name="head">
         
         <script type="text/javascript">
             //<![CDATA[
 				function exportChart() {
-				    $('#form1\\:output').empty().append(chart.exportAsImage());
+					$(PrimeFaces.escapeClientId('form1:output')).empty().append(chart.exportAsImage());
 				    dlg.show();
 				}
             //]]>
@@ -27,22 +23,24 @@
 		<h:form >
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
 		</h:form>
-		<h2>BarChart Component</h2>
+		<h2>Exporting Chart as Image</h2>
 	    <p:separator/>
 	    
 			<h:form id="form1">
-				<p:lineChart value="#{chartController.linearChartModel}" legendPosition="e" zoom="true"
-	                         title="Linear Chart" minY="0" maxY="600" style="width:500px;height:300px" widgetVar="chart"/>
-				
+				<p:lineChart widgetVar="chart" 
+							value="#{chartController.linearChartModel}" 
+							style="width:500px;height:300px" 
+							title="Linear Chart" 
+							legendPosition="ne"				
+							minY="0" maxY="600"/>
 	            
-	           	<p:commandButton type="button" value="Export" icon="ui-icon-extlink" onclick="exportChart()"/>
+	           	<p:commandButton type="button" value="Export" onclick="exportChart()"/>
             
-            
-            
-            <p:dialog widgetVar="dlg" showEffect="fade" modal="true" header="Chart as an Image">
-                <p:outputPanel id="output" layout="block" style="width:500px;height:300px"/>
-            </p:dialog>
+	            <p:dialog widgetVar="dlg" showEffect="fade" modal="true" header="Chart as an Image">
+	                <p:outputPanel id="output" layout="block" style="width:500px;height:300px"/>
+	            </p:dialog>
              
              </h:form>
+             
 	</ui:define>
 </ui:composition>

@@ -11,15 +11,17 @@
 		<h:form>
 			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
 		</h:form>
-		<h2>AreaChart Component</h2>
+		<h2>AreaChart using LineChart Component</h2>
 	    <p:separator/>
 	    
 		<h:form style="width: 800px; margin: 0 auto;">
-		
-			<p:lineChart title="Linear Chart" value="#{chartController.areaChartModel}" legendPosition="nw"
-				xaxisLabel="Year" yaxisLabel="No. of Posts" xaxisAngle="45" yaxisAngle="45"
-				minX="2010" maxX="2015" minY="0" maxY="1000"
-				animate="true"
+			<h2>Stacked Area Chart</h2>
+			<p:lineChart title="Area Chart" value="#{chartController.areaChartModel}" 
+				legendPosition="nw"
+				style="width: 400px; height: 300px;"
+				xaxisLabel="Year" yaxisLabel="No. of Posts" 
+				xaxisAngle="45" yaxisAngle="45"
+				minY="0" maxY="1000"
 				fill="true" stacked="true"/>
 			
 		</h:form>
