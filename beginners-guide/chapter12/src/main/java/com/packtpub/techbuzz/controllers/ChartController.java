@@ -41,7 +41,6 @@ public class ChartController implements Serializable
 	private PieChartModel pieChartModel;
 	private DonutChartModel donutChartModel;
 	private BubbleChartModel bubbleChartModel;
-	//private StreamedContent  jfreechart;
 			
 	public ChartController()
 	{
@@ -52,7 +51,6 @@ public class ChartController implements Serializable
 		initDonutChartModel();
 		initBubbleChartModel();
 		
-		//initJFreeChart();
 	}
 	
 	
@@ -203,8 +201,10 @@ public class ChartController implements Serializable
 	}
 	 
 	public void itemSelect(ItemSelectEvent event) {  
-        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Item selected",  
-                        "Item Index: " + event.getItemIndex() + ", Series Index:" + event.getSeriesIndex());  
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, 
+        				"Item selected",  
+                        "Item Index: " + event.getItemIndex() 
+                        + ", Series Index:" + event.getSeriesIndex());  
   
         FacesContext.getCurrentInstance().addMessage(null, msg);  
     }
@@ -229,8 +229,13 @@ public class ChartController implements Serializable
 	{
 		return bubbleChartModel;
 	}
-	public String getDatatipFormat() {
+	public String  getHorizontalChartDatatipFormat()
+	{
 		return "<span>No. of Posts: %s</span>";
+	}
+	public String getDatatipFormat()
+	{
+		return "<span style=\"display:none\">%s</span><span>No. of Posts: %s</span>";
 	}
 	public PieChartModel getPieChartModel()
 	{
