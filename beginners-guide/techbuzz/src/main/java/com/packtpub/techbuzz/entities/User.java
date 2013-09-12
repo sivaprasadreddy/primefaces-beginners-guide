@@ -3,9 +3,7 @@ package com.packtpub.techbuzz.entities;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -25,10 +23,6 @@ public class User implements Serializable
 	private Date dob = new Date();
     private boolean disabled;
     private List<Role> roles = new ArrayList<Role>();
-    private List<Vote> votes = new ArrayList<Vote>();
-    private List<Rating> ratings = new ArrayList<Rating>();
-    private List<Post> posts = new ArrayList<Post>();
-    private Set<Comment> comments = new HashSet<Comment>();
 
     public User() 
     {
@@ -148,48 +142,4 @@ public class User implements Serializable
         this.roles = roles;
     }
 
-    public List<Vote> getVotes() {
-        return votes;
-    }
-
-    public void setVotes(List<Vote> votes) {
-        this.votes = votes;
-    }
-    
-    public List<Rating> getRatings()
-	{
-		return ratings;
-	}
-
-	public void setRatings(List<Rating> ratings)
-	{
-		this.ratings = ratings;
-	}
-
-	public List<Post> getPosts()
-	{
-		return posts;
-	}
-
-	public void setPosts(List<Post> posts)
-	{
-		this.posts = posts;
-	}
-
-	public List<Post> getLinks() {
-        return posts;
-    }
-
-    public void setLinks(List<Post> posts) {
-        this.posts = posts;
-    }
-
-    public Set<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
-    
 }

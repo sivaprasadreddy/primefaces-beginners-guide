@@ -2,7 +2,6 @@ package com.packtpub.techbuzz.repositories.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -10,13 +9,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
-import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.packtpub.techbuzz.entities.User;
 import com.packtpub.techbuzz.repositories.UserRepository;
+import com.packtpub.techbuzz.repositories.rowmappers.UserRowMapper;
 
 /**
  * @author Siva
@@ -105,24 +104,32 @@ public class UserRepositoryImpl implements UserRepository
 		Object[] args = new Object[]{newPwd, loginId, loginId, oldPwd};
 		return jdbcTemplate.update(sql, args);
 	}
+
+	@Override
+	public User create(User t) {
+		return null;
+	}
+
+	@Override
+	public User findById(Integer key) {
+		return null;
+	}
+
+	@Override
+	public List<User> findAll() {
+		return null;
+	}
+
+	@Override
+	public void update(User t) {
+		
+	}
+
+	@Override
+	public void delete(Integer key) {
+		
+	}
+
 }
 
-class UserRowMapper implements RowMapper<User>
-{
-	@Override
-	public User mapRow(ResultSet rs, int rowNum) throws SQLException
-	{
-		User user = new User();
-		user.setId(rs.getInt("user_id"));
-		user.setEmailId(rs.getString("userName"));
-		user.setEmailId(rs.getString("email_Id"));
-		user.setPassword(rs.getString("password"));
-		user.setFirstName(rs.getString("firstName"));
-		user.setLastName(rs.getString("lastName"));
-		user.setPhone(rs.getString("phone"));
-		user.setDob(rs.getDate("dob"));
-		user.setDisabled(rs.getBoolean("disabled"));
-		return user;
-	}
-	
-}
+

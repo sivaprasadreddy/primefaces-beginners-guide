@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.packtpub.techbuzz.entities.Tag;
-import com.packtpub.techbuzz.repositories.BuzzRepository;
+import com.packtpub.techbuzz.repositories.TagRepository;
 
 /**
  * @author Siva
@@ -20,14 +20,14 @@ public class TagCache
 	private static TagCache tagCache = null;
 	
 	@Autowired
-	private BuzzRepository buzzRepository;
+	private TagRepository tagRepository;
 	
 	private List<Tag> tags = null;
 	
 	@PostConstruct
 	void init()
 	{
-		tags = buzzRepository.findAllTags();
+		tags = tagRepository.findAll();
 		tagCache = this;
 	}
 	

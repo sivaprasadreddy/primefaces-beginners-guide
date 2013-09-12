@@ -11,22 +11,20 @@ import org.springframework.stereotype.Component;
 
 import com.packtpub.techbuzz.entities.Post;
 import com.packtpub.techbuzz.entities.Tag;
-import com.packtpub.techbuzz.entities.User;
-import com.packtpub.techbuzz.services.BuzzService;
+import com.packtpub.techbuzz.services.PostService;
+import com.packtpub.techbuzz.services.TagService;
 import com.packtpub.techbuzz.utils.JSFUtils;
 
 /**
  * @author Siva
  *
  */
-//@ManagedBean
-//@RequestScoped
 @Component
 @Scope("request")
 public class BuzzController
 {
-	@Autowired
-	private BuzzService buzzService;
+	@Autowired private PostService postService;
+	@Autowired private TagService tagService;
 	
 	private List<Post> posts = null;
 	private List<Tag> tags = null;
@@ -42,23 +40,8 @@ public class BuzzController
 	@PostConstruct
 	void init()
 	{
-		/*posts = new ArrayList<Post>();
-		posts.add(new Post(1, "Apple Can't Obey Its Own Specifications", "It turns out that iTunes (at least 11.0.2 build 26) doesn’t actually implement Apple’s own specification properly, in that it can’t handle media segment URIs relative to the URI of the m3u8 playlist."));
-		posts.add(new Post(2, "5 Ways to Implement HTTPS in an Insufficient Manner (and Leak Sensitive Data)", "HTTPS or SSL or TLS or whatever you want to call it can be a confusing beast. Some say it’s just about protecting your password and banking info whilst the packets are flying around the web but I’ve long said that SSL is not about encryption."));
-		posts.add(new Post(3, "Getting Started with JSON-P", "For those unaware, JSON-P is now in the proposed final draft stage. Do feel free to download the draft and take a look at it yourself."));
-		posts.add(new Post(4, "Testing Frontend integration with Play 2.x (Scala)", "In this blog, I will demonstrate how we implement a simple test to test the Web layer using TestServer."));
-		posts.add(new Post(5, "Augmenting 3rd-Party Libraries", "For every project I’ve participated in, there has been a need for augmenting some third-party library. There are a few of reasons for this"));
-		
-		
-		posts.add(new Post(1, "Apple Can't Obey Its Own Specifications", "It turns out that iTunes (at least 11.0.2 build 26) doesn’t actually implement Apple’s own specification properly, in that it can’t handle media segment URIs relative to the URI of the m3u8 playlist."));
-		posts.add(new Post(2, "5 Ways to Implement HTTPS in an Insufficient Manner (and Leak Sensitive Data)", "HTTPS or SSL or TLS or whatever you want to call it can be a confusing beast. Some say it’s just about protecting your password and banking info whilst the packets are flying around the web but I’ve long said that SSL is not about encryption."));
-		posts.add(new Post(3, "Getting Started with JSON-P", "For those unaware, JSON-P is now in the proposed final draft stage. Do feel free to download the draft and take a look at it yourself."));
-		posts.add(new Post(4, "Testing Frontend integration with Play 2.x (Scala)", "In this blog, I will demonstrate how we implement a simple test to test the Web layer using TestServer."));
-		posts.add(new Post(5, "Augmenting 3rd-Party Libraries", "For every project I’ve participated in, there has been a need for augmenting some third-party library. There are a few of reasons for this"));
-		*/
-		
-		posts = buzzService.findAllPosts();
-		tags = buzzService.findAllTags();
+		posts = postService.findAllPosts();
+		tags = tagService.findAllTags();
 		selectedTags = new ArrayList<Tag>();
 	}
 	public void setSelectedTag(Tag selectedTag)
@@ -122,7 +105,7 @@ public class BuzzController
 			return new ArrayList<Tag>();
 		}
 		List<Tag> tags = new ArrayList<Tag>();
-		List<Tag> allTags = buzzService.findAllTags();
+		List<Tag> allTags = tagService.findAllTags();
 		System.out.println("---->"+allTags);
 		for (Tag tag : allTags)
 		{
@@ -136,8 +119,8 @@ public class BuzzController
 	public void createPost()
 	{
 		System.out.println("#################################################");
-		newPost.setPostedBy(new User(1));
-		buzzService.createPost(newPost);
+		newPost.setUserId(1);
+		postService.createPost(newPost);
 		JSFUtils.addInfoMsg("Post created successfully");
 
 	}

@@ -91,9 +91,9 @@ CREATE TABLE ratings (
 insert into roles(role_id, role_name, description)
 values
 (1,'Administrator','Administrator'),
-(2,'Super Admin','Super Administrator'),
-(3,'HR Executive','HR Executive'),
-(4,'Finance Dept Mngr','Finance Dept Mngr');
+(2,'SuperAdmin','Super Administrator'),
+(3,'Moderator','Moderator'),
+(4,'NormalUser','Normal User');
 
 insert  into users(user_id,username, email_id,password,firstName,lastName,gender,phone,dob,disabled,bio) 
 values 

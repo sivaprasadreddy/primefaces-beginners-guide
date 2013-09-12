@@ -10,7 +10,7 @@ import com.packtpub.techbuzz.entities.User;
  * @author siva
  *
  */
-public interface UserRepository
+public interface UserRepository extends GenericRepository<Integer, User>
 {
 
 	User login(String loginId, String password);
@@ -22,5 +22,6 @@ public interface UserRepository
 	User createUser(User user);
 
 	int changePassword(String loginId, String oldPwd, String newPwd);
+	
 
 }
