@@ -23,14 +23,35 @@ public class TagService
 	@Autowired private PostRepository postRepository;
 	@Autowired private TagRepository tagRepository;
 
-	public List<Tag> findByLabelStartingWith(String query)
+	public Tag createTag(Tag tag)
 	{
-		return tagRepository.findByLabelStartingWith(query);
+		return tagRepository.create(tag);
+	}
+
+	public Tag findTagById(Integer tagId)
+	{
+		return tagRepository.findById(tagId);
 	}
 
 	public List<Tag> findAllTags()
 	{
 		return tagRepository.findAll();
 	}
+
+	public void updateTag(Tag tag)
+	{
+		tagRepository.update(tag);
+	}
+
+	public void deleteTag(Integer tagId)
+	{
+		tagRepository.delete(tagId);
+	}
+
+	public List<Tag> findByLabelStartingWith(String query)
+	{
+		return tagRepository.findByLabelStartingWith(query);
+	}
+
 	
 }

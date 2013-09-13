@@ -1,6 +1,7 @@
 package com.packtpub.techbuzz.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,6 +15,8 @@ public class Tag implements Serializable
     private Integer id;
     private String label;
     private String value;
+    private String description;
+    
     private List<Post> posts;
 
     public Tag() {
@@ -27,6 +30,13 @@ public class Tag implements Serializable
 		this.id = id;
 		this.label = label;
 		this.value = value;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Tag [id=" + id + ", label=" + label + ", value=" + value
+				+ ", posts=" + posts + "]";
 	}
 
 	public Integer getId() {
@@ -53,12 +63,28 @@ public class Tag implements Serializable
 		this.value = value;
 	}
 
-    public List<Post> getLinks() {
-        return posts;
-    }
+	public String getDescription()
+	{
+		return description;
+	}
 
-    public void setLinks(List<Post> posts) {
-        this.posts = posts;
-    }
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+
+	public List<Post> getPosts()
+	{
+		if(posts == null){
+			posts = new ArrayList<Post>();
+		}
+		return posts;
+	}
+
+	public void setPosts(List<Post> posts)
+	{
+		this.posts = posts;
+	}
+	
 
 }

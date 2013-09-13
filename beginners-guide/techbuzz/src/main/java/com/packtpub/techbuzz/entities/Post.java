@@ -91,7 +91,11 @@ public class Post implements Serializable
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
-
+    public void addTag(Tag tag)
+	{
+    	getTags().add(tag);
+	}
+    
     public List<Comment> getComments() {
     	if(comments == null){
     		comments = new ArrayList<Comment>();
@@ -113,5 +117,7 @@ public class Post implements Serializable
 	public void setRatings(List<Rating> ratings) {
 		this.ratings = ratings;
 	}
+
+	
     
 }
