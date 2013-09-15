@@ -7,17 +7,17 @@
 
 	<ui:define name="bodyContent">
 
-		<h:panelGrid columns="3" styleClass="mytable">
+		<h:panelGrid columns="3" styleClass="table-valign">
 
 			<h:form id="loginForm">
 
 				<p:panel header="User Login Form" style="width:350px;">
 					<p:messages />
 					<h:panelGrid columns="2">
-						<h:outputLabel for="userName" value="UserName: *" />
-						<p:inputText id="userName"
-							value="#{userController.loginUser.userName}" label="UserName"
-							required="true" />
+						<p:outputLabel value="Email*:" />
+						<p:inputText id="email"
+							value="#{userController.loginUser.emailId}" 
+							required="true" label="EmailId"/>
 
 						<h:outputLabel for="password" value="Password: *" />
 						<p:password id="password"
@@ -30,7 +30,6 @@
 						</f:facet>
 					</h:panelGrid>
 				</p:panel>
-
 			</h:form>
 
 			<h:outputLabel value="  " />
@@ -39,14 +38,11 @@
 
 				<p:panel header="Registration Form" style="width: 400px;">
 					<p:messages />
-					<h:panelGrid columns="3">
-						<p:outputLabel value="UserName:*" />
-						<p:inputText id="userName"
-							value="#{userController.registerUser.userName}" required="true"
-							label="UserName">
-							<f:validateLength minimum="4" />
-						</p:inputText>
-						<p:message id="userNameMsg" for="userName" />
+					<h:panelGrid columns="2">
+						<p:outputLabel value="Email*:" />
+						<p:inputText id="email"
+							value="#{userController.registerUser.emailId}" 
+							required="true" label="EmailId"/>
 
 						<p:outputLabel value="Password:*" />
 						<p:password id="password"
@@ -54,30 +50,20 @@
 							label="Password">
 							<f:validateLength minimum="4" />
 						</p:password>
-						<p:message id="passwordMsg" for="password" />
 
 						<p:outputLabel value="FirstName:*" />
 						<p:inputText id="firstName"
 							value="#{userController.registerUser.firstName}" required="true"
 							label="FirstName">
-
 						</p:inputText>
-						<p:message id="firstNameMsg" for="firstName" />
 
 						<p:outputLabel value="LastName:" />
 						<p:inputText id="lastName"
 							value="#{userController.registerUser.lastName}" />
-						<p:message id="lastNameMsg" for="lastName" />
-
-						<p:outputLabel value="Email*:" />
-						<p:inputText id="email"
-							value="#{userController.registerUser.emailId}" />
-						<p:message id="emailMsg" for="email" />
 
 						<p:outputLabel value="Phone:" />
 						<p:inputText id="phone"
 							value="#{userController.registerUser.phone}" />
-						<p:message id="phoneMsg" for="phone" />
 
 						<p:outputLabel value="DOB:" />
 						<p:calendar value="#{userController.registerUser.dob}" id="dob">
@@ -88,7 +74,6 @@
 						<p:outputLabel value="" />
 						<p:commandButton action="#{userController.doRegister()}"
 							value="Register" update="registrationForm" />
-						<p:outputLabel value="" />
 
 					</h:panelGrid>
 				</p:panel>

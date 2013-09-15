@@ -1,62 +1,19 @@
-<!DOCTYPE html> 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    template="/templates/masterTemplate.xhtml"> 
 
-<h:head>
-	<title>PPR</title>
-	<script>
-		/*
-		function validateEmail() 
-		{
-			var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-			var email = $.trim($("#userForm\\:email").val());
-			if(email ==''){
-				$("#userForm\\:emailMsg").text("");
-				$("#userForm\\:emailMsg").attr("class", "");
-				return;
-			}
-		    if( emailReg.test( email ) ) {
-			   $("#userForm\\:emailMsg").text("Valid Email");		
-			   $("#userForm\\:emailMsg").attr("class", "ui-messages-info ui-widget ui-corner-all ui-messages-info-summary");		   
-			} else {
-			    $("#userForm\\:emailMsg").text("Invalid Email");
-			    $("#userForm\\:emailMsg").attr("class", "ui-message-error ui-widget ui-corner-all ui-message-error-detail");
-		   }
-		}
-		*/
-
-		function validateEmail() 
-		{
-			var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-			var email = $.trim($(PrimeFaces.escapeClientId("userForm:email")).val());
-			if(email ==''){
-				$(PrimeFaces.escapeClientId("userForm:emailMsg")).text("");
-				$(PrimeFaces.escapeClientId("userForm:emailMsg")).attr("class", "");
-				return;
-			}
-			if( emailReg.test( email ) ) {
-			   $(PrimeFaces.escapeClientId("userForm:emailMsg")).text("Valid Email");		
-			   $(PrimeFaces.escapeClientId("userForm:emailMsg")).attr("class", "ui-messages-info ui-widget ui-corner-all ui-messages-info-summary");		   
-			} else {
-				$(PrimeFaces.escapeClientId("userForm:emailMsg")).text("Invalid Email");
-				$(PrimeFaces.escapeClientId("userForm:emailMsg")).attr("class", "ui-message-error ui-widget ui-corner-all ui-message-error-detail");
-		   }
-		}
-		
-	</script>
-</h:head> 
-<body>
+<ui:define name="bodyContent">
 
 <h:form id="userDetailsForm">
-	<h2>This is to demonstrate Partial Rendering and Processing</h2>
+	<h2>Partial Rendering and Processing</h2>
 	<ul>
 		<li>When you click on Update button then UserId, UserName,Password and FirstName fields will be validated</li>
 		<li>When you click on Delete button only UserId will be processed and validated</li>
 	</ul>
-	<p:panel header="User Details Form" style="width: 800px;">
+	<p:panel header="User Details Form">
 		<p:messages/>
 		<h:panelGrid columns="3">
 		
@@ -77,14 +34,15 @@
 			<p:message id="firstNameMsg" for="firstName"/>
 			
 			<p:commandButton value="Update" action="#{userController.updateUser()}" update="userDetailsForm"/>		
-			<p:commandButton value="Delete" process="@this,userId" action="#{userController.deleteUser()}" update="userDetailsForm"/>
+			<p:commandButton value="Delete" process="@this,userId" partialSubmit="true"
+					action="#{userController.deleteUser()}" update="userDetailsForm"/>
 						
 		</h:panelGrid>
 	</p:panel>
 	<p>
-			<h:link value="Back" outcome="welcome.jsf?faces-redirect=true" />
-		</p>
+		<h:link value="Back" outcome="welcome.jsf?faces-redirect=true" />
+	</p>
 </h:form>
 
-</body> 
-</html>
+</ui:define>
+</ui:composition>

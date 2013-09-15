@@ -1,16 +1,14 @@
-<!DOCTYPE html> 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    template="/templates/masterTemplate.xhtml"> 
 
-<h:head>
-	<title>Registration With Validations</title>
-</h:head> 
-<body> 
+<ui:define name="bodyContent">
+   
 	<h:form id="registrationForm">
-		<h2>This is to demonstrate how to perform Validations</h2>
+		<h2>This is to demonstrate how to perform validations</h2>
 		<div>
 			<ul>
 				<li>UserName is required</li>
@@ -18,7 +16,7 @@
 				<li>FirstName is required</li>
 			</ul>
 		</div>
-		<p:panel header="Registration Form" style="width: 800px;">
+		<p:panel header="Registration Form" >
 		<p:messages />
 		<h:panelGrid columns="3">
 			<p:outputLabel value="UserName:*"/>
@@ -49,12 +47,13 @@
 			<p:message id="emailMsg" for="email"/>
 			
 			<p:outputLabel value=""/>
-			<p:commandButton action="#{userController.register}" value="Register" update="registrationForm"/>
+			<p:commandButton action="#{userController.doRegister}" value="Register" update="registrationForm"/>
 			<p:outputLabel value=""/>
 		    
 		</h:panelGrid>
 		</p:panel>
 		<p><h:link value="Back" outcome="welcome.jsf?faces-redirect=true"/></p>
 	</h:form>
-</body> 
-</html>
+
+</ui:define>
+</ui:composition>

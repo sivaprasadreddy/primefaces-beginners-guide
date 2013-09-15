@@ -1,13 +1,13 @@
-<!DOCTYPE html> 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    template="/templates/masterTemplate.xhtml"> 
 
-<h:head>
-	<title>Client Side Validation</title>
-	<script>
+<ui:define name="head">
+	
+	<script type="text/javascript">
 		/*
 		function validateEmail() 
 		{
@@ -47,12 +47,14 @@
 		}
 		
 	</script>
-</h:head> 
-<body>
+</ui:define>
+
+<ui:define name="bodyContent">
+
 	<h:form id="userForm">
-		<h2>This is to demonstrate how to perform Client Side Validations</h2>
+		<h2>Performing Client Side Validations</h2>
 		<p>When the email is changed client side validation is performed and adds error/info message</p>
-		<p:panel header="User Form" style="width: 500px;">
+		<p:panel header="User Form">
 			<p:messages />
 			<h:panelGrid columns="3">
 				<p:outputLabel value="Email:" />
@@ -67,6 +69,5 @@
 		</p>
 	</h:form>
 
-
-</body> 
-</html>
+</ui:define>
+</ui:composition>

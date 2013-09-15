@@ -3,8 +3,7 @@
  */
 package com.packtpub.techbuzz.controlers;
 
-import javax.annotation.PostConstruct;
-
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -23,20 +22,16 @@ import com.packtpub.techbuzz.utils.JSFUtils;
 @Scope("request")
 public class UserController 
 {
+	private static final Logger logger = Logger.getLogger(UserController.class);
 	
 	@Autowired
 	private UserService userService;
 	
-	private User loginUser;
-	private User registerUser;
+	private User loginUser = new User();
+	private User registerUser = new User();
 	
-	public UserController() {
-		loginUser = new User();
-		registerUser = new User();
-	}
-	
-	@PostConstruct
-	public void init() {
+	public UserController() 
+	{
 	}
 	
 	public User getLoginUser() {
@@ -57,24 +52,27 @@ public class UserController
 		
 	public String doLogin() 
 	{
-		User user = userService.login(loginUser.getUserName(), loginUser.getPassword());
+		User user = userService.login(loginUser.getEmailId(), loginUser.getPassword());
 		if(user != null)
 		{
 			return "home.jsf?faces-redirect=true";
 		}
-		JSFUtils.addErrorMsg("Invalid UserName and Password. Please try again");
+		JSFUtils.addErrorMsg("Invalid Email and Password");
 		return null;
 	}
 	
 	public String doRegister() 
 	{
-		User user = userService.register(registerUser);
-		if(user != null)
+		try
 		{
+			userService.register(registerUser);
 			JSFUtils.addInfoMsg("User Registered successfully");
-		} else {
-			JSFUtils.addErrorMsg("Registration failed. Please try again");
+		} catch (Exception e)
+		{
+			logger.error(e.getMessage(),e);
+			JSFUtils.addErrorMsg("Registration failed. Cause: "+e.getMessage());
 		}
+		
 		return null;
 	}
 }

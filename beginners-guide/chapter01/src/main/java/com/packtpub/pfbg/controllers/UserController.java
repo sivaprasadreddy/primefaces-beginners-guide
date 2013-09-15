@@ -1,9 +1,12 @@
 package com.packtpub.pfbg.controllers;
 
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+
+import org.apache.log4j.Logger;
 
 import com.packtpub.pfbg.model.User;
 
@@ -15,14 +18,14 @@ import com.packtpub.pfbg.model.User;
 @RequestScoped
 public class UserController 
 {
-	private User loginUser;
-	private User registrationUser;
+	private static final Logger logger = Logger.getLogger(UserController.class);
+	
+	private User loginUser = new User();
+	private User registrationUser = new User();
 	private String loginStatus;
 	
 	public UserController() 
 	{
-		this.loginUser = new User();
-		this.registrationUser = new User();
 	}
 
 	public User getLoginUser() 
@@ -63,11 +66,19 @@ public class UserController
 	
 	public String register() 
 	{
-		System.out.println("Register User :"+ this.registrationUser);
+		logger.info("Registering User :"+ this.registrationUser);
+		String msg = "User Registered Successfully";
+		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
+		return null;	
+	}
+	
+	public String doRegister() 
+	{
+		logger.info("Registering User :"+ this.registrationUser);
 		String msg = "User Registered Successfully";
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
 		FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
-		return "registration.jsf?faces-redirect=true";	
+		return "registrationWithVal.jsf?faces-redirect=true";	
 	}
 	
 	public void checkUserNamesExists()
@@ -83,7 +94,7 @@ public class UserController
 
 	public String  updateUser() 
 	{
-		System.out.println("Updating User Id: "+this.loginUser.getId());
+		logger.info("Updating User Id: "+this.loginUser.getId());
 		String msg = "User updated Successfully";
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
 		return "userDetails.jsf";
@@ -91,7 +102,7 @@ public class UserController
 	
 	public String  deleteUser() 
 	{
-		System.out.println("deleting User Id: "+this.loginUser.getId());
+		logger.info("deleting User Id: "+this.loginUser.getId());
 		String msg = "User deleted Successfully";
 		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
 		return "userDetails.jsf";
@@ -105,6 +116,10 @@ public class UserController
 			String msg = "Email ["+email+"] already in use.";
 			FacesContext.getCurrentInstance().addMessage("registrationForm:email", 
 					new FacesMessage(FacesMessage.SEVERITY_ERROR, msg, msg));
+		} else {
+			String msg = "Email ["+email+"] is available.";
+			FacesContext.getCurrentInstance().addMessage("registrationForm:email", 
+					new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
 		}
 	}
 }

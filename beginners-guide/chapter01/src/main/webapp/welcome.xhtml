@@ -3,14 +3,17 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"> 
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
 <h:head>
 	<title>PrimeFaces Beginner's Guide : Chapter-01</title>
+	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
 </h:head> 
 <body> 
+	<h2>PrimeFaces Beginner's Guide : Chapter-01</h2>
 	<h:form>
 		
-		<p:panel header="Chapter-01 Demos" style="width: 800px;">
+		<p:panel header="PrimeFaces Beginner's Guide : Chapter-01 Demos" style="width: 800px;">
 			<h:panelGrid columns="1">
 				<p><h:link outcome="helloworld.jsf" value="Hello World"/> </p>
 				
@@ -34,4 +37,5 @@
 		</p:panel>
 	</h:form>
 </body> 
+</f:view>
 </html>

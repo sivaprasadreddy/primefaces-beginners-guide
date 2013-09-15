@@ -13,14 +13,16 @@ public class User implements Serializable
     private static final long serialVersionUID = 1L;
     
     private Integer id;
-    private String userName;
+    private String emailId;
     private String password;
     private String firstName;
 	private String lastName;
-    private String emailId;
+	private String gender;
     private String phone;
-	private Date dob;
+	private Date dob = new Date();
     private boolean disabled;
+    private String bio;
+    
     
     public User() {
     }
@@ -29,43 +31,37 @@ public class User implements Serializable
         this.id = id;
     }
 
-    public User(Integer id, String userName, String password, String firstName, String emailId,boolean disabled)
+    public User(Integer id, String emailId, String password, String firstName, boolean disabled)
 	{
 		this.id = id;
-		this.userName = userName;
+		this.emailId = emailId;
 		this.password = password;
 		this.firstName = firstName;
-		this.emailId = emailId;
 	}
     
-    public User(Integer id, String userName, String password, 
-    		String firstName, String lastName, String phone, Date dob, String emailId, boolean disabled)
-	{
-		this.id = id;
-		this.userName = userName;
-		this.password = password;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.phone = phone;
-		this.dob = dob;
-		this.emailId = emailId;
-		this.disabled = disabled;
+    @Override
+	public boolean equals(Object obj) {
+		if(obj == null)
+			return false;
+		if(!(obj instanceof User))
+			return false;
+		
+		return ((User)obj).getId() == this.id;
 	}
 
+	@Override
+	public int hashCode() {
+		return (id != null)
+		        ? (this.getClass().hashCode() + id.hashCode())
+		        : super.hashCode();
+	}
+    
 	public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getPassword() {
@@ -105,7 +101,13 @@ public class User implements Serializable
 	{
 		this.phone = phone;
 	}
+	public String getGender() {
+		return gender;
+	}
 
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 	public Date getDob()
 	{
 		return dob;
@@ -115,7 +117,7 @@ public class User implements Serializable
 	{
 		this.dob = dob;
 	}
-
+	
 	public String getEmailId() {
         return emailId;
     }
@@ -131,5 +133,14 @@ public class User implements Serializable
     public void setDisabled(boolean disabled) {
         this.disabled = disabled;
     }
+
+    public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
     
 }

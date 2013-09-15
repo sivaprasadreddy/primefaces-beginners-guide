@@ -24,9 +24,6 @@ public class UserService
 	
 	public User register(User user)
 	{
-		if(userRepository.findByUserName(user.getUserName()) != null){
-			throw new RuntimeException("UserName ["+user.getUserName()+"] already in use");
-		}
 		if(userRepository.findByEmailId(user.getEmailId()) != null){
 			throw new RuntimeException("EmailId ["+user.getEmailId()+"] already in use");
 		}

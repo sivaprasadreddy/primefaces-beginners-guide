@@ -1,16 +1,14 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+    template="/templates/masterTemplate.xhtml"> 
 
-<h:head>
-	<title>Polling</title>
-</h:head>
-<body>
+<ui:define name="bodyContent">
+
 	<h:form id="form1">
-		<h2>This is to demonstrate how to perform tasks periodically using Poll component</h2>
+		<h2>Perform tasks periodically using Poll component</h2>
 		<p:outputLabel value="Current Time:" />
 		<p:outputLabel id="currentTime" value="#{serverTimeBean.time}" />
 		<p:poll interval="1" listener="#{serverTimeBean.updateTime()}"
@@ -21,7 +19,7 @@
 	<br/>
 	
 	<h:form id="form2">
-		<h2>This is to demonstrate how to Start/Stop Poll component manually</h2>
+		<h2>Start/Stop Poll component manually</h2>
 		<p:outputLabel value="Current Time:" /> <p:outputLabel id="currentTime1" value="#{serverTimeBean.time}"/>
 		<p:poll interval="1"  listener="#{serverTimeBean.updateTime()}" update="currentTime1" widgetVar="currentTimePoller" autoStart="false"/> <br/>
 		<p:button value="Start" onclick="currentTimePoller.start()"  href="#" />
@@ -33,5 +31,5 @@
 		
 	</h:form>
 
-</body>
-</html>
+</ui:define>
+</ui:composition>

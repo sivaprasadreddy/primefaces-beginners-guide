@@ -19,7 +19,6 @@
 		<aspectj.version>1.7.2</aspectj.version>
 		<cglib.version>2.2.2</cglib.version>
 		<log4j.version>1.2.17</log4j.version>
-        <ehcache.version>2.6.5</ehcache.version>
 		
 		<!-- Database access -->
         <commons-dbcp.version>1.4</commons-dbcp.version>
@@ -54,42 +53,13 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
-            
-            <plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.12</version>
-				<configuration>
-					<includes>
-						<include>**/*Tests.java</include>
-					</includes>
-					<excludes>
-						<exclude>**/Abstract*.java</exclude>
-					</excludes>
-					<junitArtifactName>junit:junit</junitArtifactName>
-					<argLine>-Xmx512m</argLine>
-				</configuration>
-			</plugin>
-			
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-dependency-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>install</id>
-						<phase>install</phase>
-						<goals>
-							<goal>sources</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 			
 			<plugin>
 				<groupId>org.apache.tomcat.maven</groupId>
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.0</version>
 			</plugin>
+			
     	</plugins>
     
     </build>
@@ -172,6 +142,7 @@
             <version>2.5</version>
             <scope>provided</scope>
         </dependency>
+        
         <dependency>
             <groupId>rome</groupId>
             <artifactId>rome</artifactId>
@@ -183,10 +154,11 @@
             <artifactId>poi</artifactId>
             <version>3.7</version>
         </dependency>
+        
         <dependency>
             <groupId>com.lowagie</groupId>
             <artifactId>itext</artifactId>
-            <version>1.4.8</version>
+            <version>2.1.7</version>
         </dependency>
 
         <dependency>
@@ -243,11 +215,13 @@
 			<artifactId>cglib</artifactId>
 			<version>${cglib.version}</version>
 		</dependency>
+		
         <dependency>
              <groupId>org.aspectj</groupId>
              <artifactId>aspectjrt</artifactId>
              <version>${aspectj.version}</version>
          </dependency>
+         
          <dependency>
              <groupId>org.aspectj</groupId>
              <artifactId>aspectjweaver</artifactId>
@@ -258,25 +232,24 @@
 
 		<!-- Databases -->
             
-            <dependency>
-                <groupId>org.hsqldb</groupId>
-                <artifactId>hsqldb</artifactId>
-                <version>${hsqldb.version}</version>
-                <scope>runtime</scope>
-            </dependency>
-            
-            <dependency>
-	            <groupId>mysql</groupId>
-	            <artifactId>mysql-connector-java</artifactId>
-	            <version>${mysql.version}</version>
-	            <scope>runtime</scope>
-	        </dependency>
+         <dependency>
+               <groupId>org.hsqldb</groupId>
+               <artifactId>hsqldb</artifactId>
+               <version>${hsqldb.version}</version>
+               <scope>runtime</scope>
+         </dependency>
+           
+         <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+            <scope>runtime</scope>
+         </dependency>
 
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
-			<scope>runtime</scope>
 		</dependency>
 		
 		<!-- Test -->
@@ -286,6 +259,7 @@
 			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>

@@ -13,13 +13,11 @@ import com.packtpub.techbuzz.entities.User;
 public interface UserRepository
 {
 
-	User login(String userName, String password);
+	User login(String emailId, String password);
 	
-	User findByEmailId(String email);
+	User findByEmailId(String emailId);
 	
-	User findByUserName(String userName);
-
 	User createUser(User user);
 
-	int changePassword(String userName, String oldPwd, String newPwd);
+	int changePassword(String emailId, String oldPwd, String newPwd);
 }
