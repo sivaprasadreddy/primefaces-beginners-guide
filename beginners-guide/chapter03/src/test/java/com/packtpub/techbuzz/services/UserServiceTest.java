@@ -39,7 +39,6 @@ public class UserServiceTest
 	public void register()
 	{
 		User user = new User();
-		user.setUserName("foo");
 		user.setPassword("bar");
 		user.setFirstName("Mr");
 		user.setLastName("Foo");

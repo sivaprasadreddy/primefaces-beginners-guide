@@ -15,7 +15,7 @@ public interface UserRepository
 
 	User login(String emailId, String password);
 	
-	User findByEmailId(String email);
+	User findByEmailId(String emailId);
 	
 	User createUser(User user);
 

@@ -5,55 +5,32 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html" locale="en">
-    <h:head title="#{msg['app.title']}">
+    <h:head>
+    	<title>#{msg['app.title']}</title>
         <f:facet name="first">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <meta http-equiv="pragma" content="no-cache"/>
             <meta http-equiv="cache-control" content="no-cache"/>
             <meta http-equiv="expires" content="0"/>
         </f:facet>
-        <style type="text/css">
-        	
-				body{
-				   text-align:center; /*For IE6 Shenanigans*/
-				}
-				
-				#wrapper{
-				   width:960px;
-				   margin:0 auto;
-				   text-align:left;
-				}
-				
-				.header {
-				    height:50px;
-				    background:#F0F0F0;
-				    border:1px solid #CCC;
-				    width:960px;
-				    margin:5px auto;
-				}
-				
-				.mytable td {
-				    vertical-align: top;
-				}
-				
-				.ui-widget, .ui-widget .ui-widget {
-				    font-size: 90% !important;
-				}
-
-		</style>
+        <h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
+         <!-- jquery-plugins.js is added because there is a bug in primefaces-3.5 Resource Loading mechanism -->
+		 <!-- See https://code.google.com/p/primefaces/issues/detail?id=5612 -->
+        <h:outputScript library="js" name="jquery-plugins.js" />
         <ui:insert name="head"/>
     </h:head>
     <h:body>
-    	<div id="wrapper">
-    		
-			<div class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all" style="height: 50px; margin-bottom: 2px;">
-				<h2>PrimeFaces Beginner's Guide : Chapter-03</h2>
+    
+    	<div class="wrapper">
+	    	<div class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all" style="height: 80px; margin-bottom: 2px;">
+				<h1>PrimeFaces Beginner's Guide : Chapter-03</h1>
 			</div>
-			<div class="ui-panel ui-widget ui-widget-content ui-corner-all" style="margin-bottom: 3px; min-height: 500px;">
+	    	<div class="ui-panel ui-widget ui-widget-content ui-corner-all" style="margin-bottom: 3px; min-height: 500px;">
 				<ui:insert name="bodyContent"/> 
 			</div>
-    		
-        </div>
+    	</div>
+    	
     </h:body>
 </f:view>
 </html>
+

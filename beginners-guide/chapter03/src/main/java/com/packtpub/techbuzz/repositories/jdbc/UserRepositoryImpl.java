@@ -41,10 +41,10 @@ public class UserRepositoryImpl implements UserRepository
 	}
 
 	@Override
-	public User findByEmailId(String email)
+	public User findByEmailId(String emailId)
 	{
 		String sql = "SELECT * FROM USERS WHERE EMAIL_ID=?";
-		Object[] args = new Object[]{email};
+		Object[] args = new Object[]{emailId};
 		List<User> users = jdbcTemplate.query(sql, args, new UserRowMapper());
 		if(users != null && !users.isEmpty()){
 			return users.get(0);
@@ -70,7 +70,11 @@ public class UserRepositoryImpl implements UserRepository
                     ps.setString(3, user.getFirstName());
                     ps.setString(4, user.getLastName());
                     ps.setString(5, user.getPhone());
-                    ps.setDate(6, new java.sql.Date(user.getDob().getTime()));
+                    if(user.getDob() != null){
+                    	ps.setDate(6, new java.sql.Date(user.getDob().getTime()));
+                    } else {
+                    	ps.setDate(6, null);
+                    }
                     ps.setBoolean(7, user.getDisabled());
                     return ps;
                 }
