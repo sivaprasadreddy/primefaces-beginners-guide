@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<persistence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/persistence"
+  	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+  	http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
+  	
+  <persistence-unit name="TechBuzzPU" transaction-type="JTA">
+  	<!-- For Glassfish -->
+  	<!-- <jta-data-source>jdbc/techbuzz</jta-data-source> -->
+  	
+  	<!-- For JBoss AS 7 -->
+  	<jta-data-source>java:/jdbc/techbuzz</jta-data-source>
+  	
+    <properties>
+      
+
+	  <!-- Hibernate Properties -->
+	  <property name="hibernate.hbm2ddl.auto" value="update"/>
+	  <property name="hibernate.show_sql" value="true"/>
+ 	
+      <!-- EclipseLink Properties -->
+      <!-- <property name="eclipselink.ddl-generation" value="create-tables" /> -->
+      
+    </properties>
+
+  </persistence-unit>
+</persistence> 
