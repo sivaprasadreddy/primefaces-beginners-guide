@@ -41,11 +41,18 @@
 		        </p:selectOneMenu>
 				
 				<h:outputText value="Pojo: " />  
-		        <p:selectOneMenu value="#{selectionController.selectedTag}" effect="fade" converter="#{tagConverter}">  
+		        <p:selectOneMenu value="#{selectionController.selectedTag}" var="t" effect="fade" converter="#{tagConverter}">  
 		            <f:selectItem itemLabel="Select One" itemValue="" />  
-		            <f:selectItems value="#{selectionController.tagPojos}" var="tag" itemLabel="#{tag.label}" itemValue="#{tag}"/>  
+		            <f:selectItems value="#{selectionController.tagPojos}" var="tag" itemLabel="#{tag.label}" itemValue="#{tag}"/>
+		            <p:column>  
+						#{t.label} - #{t.value}  
+					</p:column>
+					<p:column>  
+						<p:graphicImage value="/resources/images/tags/#{t.value}.png" width="32px" height="32px"/>  
+					</p:column>  
 		        </p:selectOneMenu>
         		
+        		<br/><br/>
         		<h:outputText value="Content with Filter:" />  
 		        <p:selectOneMenu value="#{selectionController.selectedTag1}" converter="#{tagConverter}" 
 		        				 panelStyle="width:150px"  effect="fade" style="width:160px"  

@@ -15,17 +15,17 @@
 								 
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
-		<h:form>
-			<p:dataGrid var="user" value="#{adminController.users}" columns="3"  
-		        rows="13" paginator="true"  
-		        paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"  
-		        rowsPerPageTemplate="9,12,15">  
+		<h:form style="width: 550px; margin: 0 auto;">
+			<p:dataGrid var="user" value="#{adminController.users}" 
+				columns="3" rows="5" paginator="true"  
+		        rowsPerPageTemplate="5,10,15">  
 		  
-		        <p:panel header="#{user.firstName} #{user.lastName}" style="text-align:center">  
-		            <h:panelGrid columns="1" style="width:100%">  
+		        <p:panel header="#{user.firstName} #{user.lastName}" 
+		        		style="text-align:center">  
+		            <h:panelGrid columns="1">  
 		                <h:outputText value="#{user.id} : #{user.emailId}" />  
 		            </h:panelGrid>  
-		        </p:panel>  
+		        </p:panel>
 		  
 		    </p:dataGrid>
 		    
