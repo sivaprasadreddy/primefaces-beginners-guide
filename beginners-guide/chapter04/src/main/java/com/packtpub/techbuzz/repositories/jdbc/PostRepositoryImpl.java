@@ -17,7 +17,6 @@ import org.springframework.stereotype.Repository;
 
 import com.packtpub.techbuzz.entities.Post;
 import com.packtpub.techbuzz.entities.Tag;
-import com.packtpub.techbuzz.entities.User;
 import com.packtpub.techbuzz.repositories.PostRepository;
 
 /**
@@ -65,7 +64,7 @@ public class PostRepositoryImpl implements PostRepository
 		        PreparedStatement ps = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 		        ps.setString(1, post.getTitle());
 		        ps.setString(2, post.getDescription());
-		        ps.setInt(3, post.getPostedBy().getId());
+		        ps.setInt(3, post.getUserId());
 		        if(post.getCreatedOn() != null)
                 {
                 	ps.setDate(4, new java.sql.Date(post.getCreatedOn().getTime()));
@@ -86,7 +85,7 @@ public class PostRepositoryImpl implements PostRepository
 
 	@Override
 	public boolean insertPostTags(Integer postId, List<Tag> tags) {
-		
+		System.err.println(postId+":"+tags);
 		if(tags == null || tags.isEmpty()){
 			return true;
 		}
@@ -109,7 +108,7 @@ class PostMapper implements RowMapper<Post>{
 		post.setId(rs.getInt("post_id"));
 		post.setTitle(rs.getString("title"));
 		post.setDescription(rs.getString("description"));
-		post.setPostedBy(new User(rs.getInt("posted_by")));
+		post.setUserId(rs.getInt("posted_by"));
 		post.setCreatedOn(rs.getDate("created_on"));
 		return post;
 	}

@@ -4,6 +4,9 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
     <description>TechBuzz</description>
+	<welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
 	
     <!-- Faces Servlet -->
     <servlet>
@@ -45,7 +48,6 @@
 	<listener>
 		<listener-class>org.springframework.web.context.request.RequestContextListener</listener-class>
 	</listener>
-	
 	<filter>
 		<filter-name>AuthenticationFilter</filter-name>
 		<filter-class>com.packtpub.techbuzz.filters.AuthenticationFilter</filter-class>
@@ -56,14 +58,8 @@
 		<url-pattern>*.xhtml</url-pattern>
 	</filter-mapping>
 	
-    <!-- Session timeout -->
     <session-config>
         <session-timeout>60</session-timeout>
     </session-config>
-
-    <!-- Welcome files -->
-    <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
 
 </web-app>

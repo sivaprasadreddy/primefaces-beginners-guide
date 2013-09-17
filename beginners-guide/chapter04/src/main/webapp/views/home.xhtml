@@ -8,10 +8,10 @@
 	<ui:define name="bodyContent">
 		
 		<p:dataList value="#{postController.posts}" var="post" id="posts"  
-	        	paginator="true" rows="10" type="none">  
+	        	paginator="true" rows="5" type="none">  
 	  
-	            <h:outputText value="#{post.title}" style="margin-left:10px; font-size:7; font-weight:bold" /><br />
-	            <h:outputText value="#{post.description}" style="margin-left:10px" escape="false"/><br /><br />
+	            <h:outputText value="#{post.title}" style="margin-left:0px;  font-weight:bold; font-size: 14px;" /><br />
+	            <h:outputText value="#{post.description}" style="margin-left:0px; font-size: 12px;" escape="false"/><br /><br />
 	            <p:separator/>
 	    </p:dataList>
                         

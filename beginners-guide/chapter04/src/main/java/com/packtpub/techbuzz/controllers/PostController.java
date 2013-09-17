@@ -7,6 +7,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +36,7 @@ public class PostController
 	private List<Tag> selectedTags = new ArrayList<Tag>();
 	private Tag selectedTag = new Tag();
 	
-	private Post newPost = new Post();;
+	private Post newPost = new Post();
 		
 	@PostConstruct
 	void init()
@@ -96,7 +97,26 @@ public class PostController
 	public void handleTagSelected(SelectEvent selectEvent)
 	{
 		Tag selectedObj = (Tag) selectEvent.getObject();
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("You have selected :"+selectedObj.getLabel()));
+		Integer tagid = selectedObj.getId();
+		Tag duplicateTag = null;
+		int count = 0;
+		for(Tag t : selectedTags)
+		{
+			if(tagid == t.getId()){
+				duplicateTag = t;
+				count++;
+			}
+		}
+		if(count > 1)
+		{
+			selectedTags.remove(duplicateTag);
+			RequestContext.getCurrentInstance().update("newPostForm:newPostTags");
+			JSFUtils.addErrorMsg("You have selected Duplicate Tag:"+selectedObj.getLabel());
+		}
+		else
+		{
+			JSFUtils.addInfoMsg("You have selected :"+selectedObj.getLabel());
+		}
 	}
 	
 	public void handleTagUnselected(UnselectEvent unselectEvent)
@@ -106,18 +126,21 @@ public class PostController
 	}
 	
 	
-	public void createPost()
+	public String createPost()
 	{
+		String view = null;
 		User loggedinUser = JSFUtils.getLoggedinUser();
-		newPost.setPostedBy(loggedinUser);
+		newPost.setUserId(loggedinUser.getId());
+		newPost.setTags(selectedTags);
 		try {
 			buzzService.createPost(newPost);
 			JSFUtils.addInfoMsg("Post created successfully");
 			newPost = new Post();
+			view = "home.jsf?faces-redirect=true";
 		} catch (Exception e) {
 			e.printStackTrace();
 			JSFUtils.addErrorMsg("Failed to save post. Error: "+e.getMessage());
 		}
-
+		return view;
 	}
 }

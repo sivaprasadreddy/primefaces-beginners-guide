@@ -22,7 +22,7 @@
 					<p:autoComplete id="newPostTags" value="#{postController.selectedTags}" 
 									completeMethod="#{postController.completeTag}"
 									maxResults="10" minQueryLength="1" queryDelay="400" 
-									forceSelection="true" multiple="true"
+									multiple="true"
                     				var="t" itemLabel="#{t.label}" itemValue="#{t}" 
                     				converter="#{tagConverter}" >
                     		<p:ajax event="itemSelect" listener="#{postController.handleTagSelected}"/>	
@@ -41,8 +41,8 @@
 							</f:facet>
                     				
                     </p:autoComplete>
-                
-					<p:commandButton action="${postController.createPost()}" value="Submit" update="@form"/>
+                	
+					<p:commandButton action="#{postController.createPost()}" value="Submit" update="@form"/>
 				</h:panelGrid>
 			</h:form>
                         

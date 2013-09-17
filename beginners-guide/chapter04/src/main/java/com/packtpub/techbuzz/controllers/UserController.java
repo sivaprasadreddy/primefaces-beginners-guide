@@ -233,5 +233,7 @@ public class UserController implements Serializable
 	public void handleFirstNameCancel(){
 		System.out.println("-----------handleFirstNameCancel------");
 	}
-	
+	public void handleLastNameChanged(){
+		System.out.println("-----------handleLastNameChanged------");
+	}
 }

@@ -56,8 +56,8 @@ public class UserRepositoryImpl implements UserRepository
 	@Override
 	public User createUser(final User user)
 	{
-		final String sql = "INSERT INTO USERS (EMAIL_ID,PASSWORD,FIRSTNAME,LASTNAME,PHONE,DOB,DISABLED,BIO)"+
-				 	 		" VALUES (?,?,?,?,?,?,?,?);";
+		final String sql = "INSERT INTO USERS (EMAIL_ID,PASSWORD,FIRSTNAME,LASTNAME,GENDER,PHONE,DOB,DISABLED,BIO)"+
+				 	 		" VALUES (?,?,?,?,?,?,?,?,?);";
 		
 		KeyHolder holder = new GeneratedKeyHolder();
 
@@ -70,15 +70,16 @@ public class UserRepositoryImpl implements UserRepository
                     ps.setString(2, user.getPassword());
                     ps.setString(3, user.getFirstName());
                     ps.setString(4, user.getLastName());
-                    ps.setString(5, user.getPhone());
+                    ps.setString(5, user.getGender());
+                    ps.setString(6, user.getPhone());
                     if(user.getDob() != null)
                     {
-                    	ps.setDate(6, new java.sql.Date(user.getDob().getTime()));
+                    	ps.setDate(7, new java.sql.Date(user.getDob().getTime()));
                     }else {
-                    	ps.setDate(6, null);
+                    	ps.setDate(7, null);
                     }
-                    ps.setBoolean(7, user.getDisabled());
-                    ps.setString(8, user.getBio());
+                    ps.setBoolean(8, user.getDisabled());
+                    ps.setString(9, user.getBio());
                     return ps;
                 }
             }, holder);
@@ -97,11 +98,12 @@ public class UserRepositoryImpl implements UserRepository
 
 	@Override
 	public User update(User user) {
-		final String sql = "UPDATE USERS SET FIRSTNAME=?,LASTNAME=?,PHONE=?,DOB=?,DISABLED=?, BIO=? WHERE EMAIL_ID=?";
+		final String sql = "UPDATE USERS SET FIRSTNAME=?,LASTNAME=?,GENDER=?,PHONE=?,DOB=?,DISABLED=?, BIO=? WHERE EMAIL_ID=?";
 		
 		Object[] args = {
 				user.getFirstName(),
 				user.getLastName(),
+				user.getGender(),
 				user.getPhone(),
 				user.getDob(),
 				user.getDisabled(),
@@ -132,6 +134,7 @@ class UserRowMapper implements RowMapper<User>
 		user.setPassword(rs.getString("password"));
 		user.setFirstName(rs.getString("firstName"));
 		user.setLastName(rs.getString("lastName"));
+		user.setGender(rs.getString("gender"));
 		user.setPhone(rs.getString("phone"));
 		user.setDob(rs.getDate("dob"));
 		user.setDisabled(rs.getBoolean("disabled"));
