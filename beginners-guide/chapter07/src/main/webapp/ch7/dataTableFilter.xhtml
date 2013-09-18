@@ -27,18 +27,17 @@
 								 
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
-		<h:form>
-			<p:panel header="DataTable : Filtering" >
+		<h:form style="width: 800px; margin: 0 auto;">
 			
 			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" widgetVar="userTable" 
 				filteredValue="#{adminController.filteredUsers}" emptyMessage="No Users found for the given Filters">  
 				<f:facet name="header">  
 		            <p:outputPanel>  
-		                <h:outputText value="Search all Columns:" />  
+		                <h:outputText value="Search all Columns: " />  
 		                <p:inputText id="globalFilter" onkeyup="userTable.filter()" style="width:150px" />  
 		            </p:outputPanel>  
 		        </f:facet> 
-		        <p:column headerText="Id">  
+		        <p:column headerText="Id" style="width:30px">  
 		            <h:outputText value="#{user.id}" />
 		        </p:column>  
 		  
@@ -48,21 +47,20 @@
 		        </p:column>  
 		  
 		        <p:column headerText="FirstName" filterBy="#{user.firstName}" footerText="startsWith">  
-		            <h:outputText value="#{user.firstName}" />  
+		            <h:outputText value="#{user.firstName}"/>  
 		        </p:column>  
 		  		
 		  		<p:column headerText="LastName" filterBy="#{user.lastName}" filterMatchMode="endsWith" footerText="endsWith">  
 		            <h:outputText value="#{user.lastName}" />  
 		        </p:column>
 		        
-		        <p:column headerText="Disabled" filterBy="#{user.disabled}" 
+		        <p:column headerText="Disabled"  filterBy="#{user.disabled}" 
 		        		filterOptions="#{adminController.userStatusOptions}" filterMatchMode="exact" footerText="exact">  
 		            <h:outputText value="#{user.disabled}" />  
 		        </p:column>
 		       
 		    </p:dataTable>
 		    
-			</p:panel>
 			
 			<br/>
 			

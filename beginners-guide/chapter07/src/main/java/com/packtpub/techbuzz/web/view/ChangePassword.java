@@ -1,12 +1,14 @@
 package com.packtpub.techbuzz.web.view;
 
+import java.io.Serializable;
+
 /**
  * @author Siva
  *
  */
-public class ChangePassword 
+public class ChangePassword implements Serializable
 {
-
+	private static final long serialVersionUID = 1L;
 	private String currentPwd;
 	private String newPwd;
 	private String confPwd;

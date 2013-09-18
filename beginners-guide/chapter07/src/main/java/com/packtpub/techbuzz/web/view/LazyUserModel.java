@@ -23,9 +23,9 @@ public class LazyUserModel extends LazyDataModel<User>
 	private static final long serialVersionUID = 1L;
 	private List<User> datasource;  
     
-	  public LazyUserModel(List<User> datasource) {  
+	public LazyUserModel(List<User> datasource) {  
 	      this.datasource = datasource;  
-	  }  
+	}  
     
   @Override  
   public User getRowData(String rowKey) {  
@@ -41,8 +41,11 @@ public class LazyUserModel extends LazyDataModel<User>
   public Object getRowKey(User car) {  
       return car.getEmailId();  
   }  
-	@Override  
-    public List<User> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,String> filters) {  
+  
+  //TODO; Update to apply filters, sorting and pagination on database table instead of in-memory collection of objects.
+  @Override  
+  public List<User> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,String> filters) 
+  {  
         List<User> data = new ArrayList<User>();  
         //filter  
         for(User user : datasource) {  

@@ -67,8 +67,8 @@ public class UserRepositoryImpl implements UserRepository
 	@Override
 	public User create(final User user)
 	{
-		final String sql = "INSERT INTO USERS (EMAIL_ID,PASSWORD,FIRSTNAME,LASTNAME,GENDER,PHONE,DOB,BIO,DISABLED)"+
-				 	 		" VALUES (?,?,?,?,?,?,?,?,?);";
+		final String sql = "INSERT INTO USERS (EMAIL_ID,USERNAME,PASSWORD,FIRSTNAME,LASTNAME,GENDER,PHONE,DOB,BIO,DISABLED)"+
+				 	 		" VALUES (?,?,?,?,?,?,?,?,?,?)";
 		
 		KeyHolder holder = new GeneratedKeyHolder();
 
@@ -78,19 +78,20 @@ public class UserRepositoryImpl implements UserRepository
                         throws SQLException {
                     PreparedStatement ps = connection.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
                     ps.setString(1, user.getEmailId());
-                    ps.setString(2, user.getPassword());
-                    ps.setString(3, user.getFirstName());
-                    ps.setString(4, user.getLastName());
-                    ps.setString(5, user.getGender());
-                    ps.setString(6, user.getPhone());
+                    ps.setString(2, user.getUserName());
+                    ps.setString(3, user.getPassword());
+                    ps.setString(4, user.getFirstName());
+                    ps.setString(5, user.getLastName());
+                    ps.setString(6, user.getGender());
+                    ps.setString(7, user.getPhone());
                     if(user.getDob() != null)
                     {
-                    	ps.setDate(7, new java.sql.Date(user.getDob().getTime()));
+                    	ps.setDate(8, new java.sql.Date(user.getDob().getTime()));
                     }else {
-                    	ps.setDate(7, null);
+                    	ps.setDate(8, null);
                     }
-                    ps.setString(8, user.getBio());
-                    ps.setBoolean(9, user.getDisabled());
+                    ps.setString(9, user.getBio());
+                    ps.setBoolean(10, user.getDisabled());
                     return ps;
                 }
             }, holder);

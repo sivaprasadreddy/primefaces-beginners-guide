@@ -8,9 +8,7 @@
 	
 	<ui:define name="head">
 		<style type="text/css">
-            .valigntop td {
-			    vertical-align: top;
-			}
+            
 			.ui-datatable .ui-datatable-footer {
                 text-align:left;
             }
@@ -28,7 +26,7 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
 		<h:form id="form1">
-			<h:panelGrid columns="2" styleClass="valigntop" >
+			<h:panelGrid columns="2" styleClass="table-valign" >
 			
 			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" style="width: 300px;" 
 					selection="#{adminController.selectedUser}" rowKey="#{user.id}" >

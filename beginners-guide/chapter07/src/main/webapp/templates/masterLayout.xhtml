@@ -5,39 +5,18 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 <f:view contentType="text/html" locale="en">
-    <h:head title="#{msg['app.title']}">
+    <h:head>
+    	<title>#{msg['app.title']}</title>
         <f:facet name="first">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
             <meta http-equiv="pragma" content="no-cache"/>
             <meta http-equiv="cache-control" content="no-cache"/>
             <meta http-equiv="expires" content="0"/>
         </f:facet>
-        <style type="text/css">
-				
-				#wrapper{
-				   width:960px;
-				   margin:0 auto;
-				   text-align:left;
-				}
-				
-				.header {
-				    height:50px;
-				    background:#F0F0F0;
-				    border:1px solid #CCC;
-				    width:960px;
-				    margin:2px auto;
-				}
-				
-				.ui-widget, .ui-widget .ui-widget {
-				    font-size: 90% !important;
-				}
-
-		</style>
-		<title>#{msg['app.title']}</title>
         <ui:insert name="head"/>
     </h:head>
     <h:body>
-    	<div id="wrapper">
+    	<div class="wrapper">
     		
 			<div class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all" style="height: 80px; margin-bottom: 2px;">
 				<h1>TechBuzz</h1>

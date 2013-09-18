@@ -65,17 +65,20 @@ public class UserController implements Serializable
 		return null;
 	}
 	
-	public void doRegister() 
+	public String doRegister() 
 	{
 		try
 		{
 			userService.register(registerUser);
 			JSFUtils.addInfoMsg("User Registered successfully");
 			registerUser = new User();
+			return "login.jsf?faces-redirect=true";
 		} catch (Exception e)
 		{
+			e.printStackTrace();
 			JSFUtils.addErrorMsg("registrationForm",e.getMessage());
 		}
+		return null;
 		
 	}
 	

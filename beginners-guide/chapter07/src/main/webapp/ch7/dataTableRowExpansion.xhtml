@@ -11,6 +11,11 @@
 			.grid td {
                 border: 0px none !important;
             }
+            
+            .labels
+            {
+            	font-weight: bold;
+            }
 		</style>
 	</ui:define>
 	<ui:define name="bodyContent">
@@ -23,7 +28,7 @@
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
 		<h2>DataTable Row Expansion</h2>
-		<h:form>
+		<h:form style="width: 600px; margin: 0 auto;">
 			
 			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" >  
 				<p:column style="width:15px;">  
@@ -37,8 +42,8 @@
 		            <h:outputText value="#{user.emailId}" />  
 		        </p:column>  
 		  		<p:rowExpansion>
-		  			<p:panel header="User Details">
-		  			<h:panelGrid columns="2" styleClass="ui-widget-content grid" style="width:300px;">
+		  			
+		  			<h:panelGrid columns="2" columnClasses="labels" styleClass="grid" style="width:180px;">
 		  				<h:outputText  value="FirstName: " />
 		  				<h:outputText value="#{user.firstName}" />
 		  				
@@ -49,7 +54,7 @@
 				  		<h:outputText value="#{user.disabled}" />
 				        
 		  			</h:panelGrid>
-		  			</p:panel>
+		  			
 		        </p:rowExpansion>
 		    </p:dataTable>
 		    

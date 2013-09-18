@@ -108,7 +108,7 @@ class PostMapper implements RowMapper<Post>{
 		post.setId(rs.getInt("post_id"));
 		post.setTitle(rs.getString("title"));
 		post.setDescription(rs.getString("description"));
-		post.setId(rs.getInt("posted_by"));
+		post.setUserId(rs.getInt("posted_by"));
 		post.setCreatedOn(rs.getDate("created_on"));
 		return post;
 	}

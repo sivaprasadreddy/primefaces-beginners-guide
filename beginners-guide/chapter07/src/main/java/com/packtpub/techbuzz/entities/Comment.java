@@ -14,8 +14,8 @@ public class Comment implements Serializable
 	private Integer id;
 	private String message;
 	private Date createdOn;
-	private User postedBy;
-	private Post post;
+	private int userId;
+	private int postId;
 
 	public Comment()
 	{
@@ -33,54 +33,44 @@ public class Comment implements Serializable
 		this.createdOn = createdOn;
 	}
 
-	public Integer getId()
-	{
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Integer id)
-	{
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getMessage()
-	{
+	public String getMessage() {
 		return message;
 	}
 
-	public void setMessage(String message)
-	{
+	public void setMessage(String message) {
 		this.message = message;
 	}
 
-	public Date getCreatedOn()
-	{
+	public Date getCreatedOn() {
 		return createdOn;
 	}
 
-	public void setCreatedOn(Date createdOn)
-	{
+	public void setCreatedOn(Date createdOn) {
 		this.createdOn = createdOn;
 	}
 
-	public User getPostedBy()
-	{
-		return postedBy;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setPostedBy(User postedBy)
-	{
-		this.postedBy = postedBy;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
 
-	public Post getPost()
-	{
-		return post;
+	public int getPostId() {
+		return postId;
 	}
 
-	public void setPost(Post post)
-	{
-		this.post = post;
+	public void setPostId(int postId) {
+		this.postId = postId;
 	}
-
+	
 }

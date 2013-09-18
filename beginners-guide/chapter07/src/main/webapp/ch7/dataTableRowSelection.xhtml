@@ -6,13 +6,6 @@
 	xmlns:p="http://primefaces.org/ui"
 	template="/templates/publicLayout.xhtml">
 	
-	<ui:define name="head">
-		<style type="text/css">
-            .valigntop td {
-			    vertical-align: top;
-			}
-        </style>
-	</ui:define>
 	<ui:define name="bodyContent">
 		
 		<h2>DataTable RowSelection</h2>
@@ -25,7 +18,7 @@
 	    
 		<h:form id="form">
 		<p:panel header="Basic Row Selection">
-			<h:panelGrid columns="2" styleClass="valigntop" >
+			<h:panelGrid columns="2" styleClass="table-valign" >
 			
 			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" style="width: 300px;" paginator="true" rows="5">  
 				<f:facet name="header">
@@ -71,7 +64,7 @@
 		
 		<h:form id="form1">
 			<p:panel header="Row Selection on Click and Select/Unselect Events">
-			<h:panelGrid columns="2" styleClass="valigntop" >
+			<h:panelGrid columns="2" styleClass="table-valign" >
 			
 					<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" style="width: 300px;" 
 					 		paginator="true" rows="5"
