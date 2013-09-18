@@ -1,9 +1,9 @@
 package com.packtpub.techbuzz.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -14,54 +14,56 @@ public class User implements Serializable
     private static final long serialVersionUID = 1L;
     
     private Integer id;
+    private String userName;
     private String emailId;
     private String password;
     private String firstName;
 	private String lastName;
 	private String gender;
     private String phone;
-	private Date dob;
+	private Date dob = new Date();
+	private String bio;
     private boolean disabled;
-    private String bio;
-    
-    private List<Role> roles;
-    private List<Vote> votes;
-    private List<Rating> ratings;
-    private List<Post> posts;
-    private Set<Comment> comments;
+    private List<Role> roles = new ArrayList<Role>();
 
-    public User() {
+    public User() 
+    {
     }
 
     public User(Integer id) {
         this.id = id;
     }
 
-    public User(Integer id, String emailId, String password, String firstName, boolean disabled)
+    public User(Integer id, String userName, String emailId, String password)
 	{
 		this.id = id;
+		this.userName = userName;
+		this.emailId = emailId;
+		this.password = password;
+	}
+
+	public User(Integer id, String userName, String emailId, String password,
+			String firstName, String lastName, String phone, Date dob,
+			boolean disabled) {
+		this.id = id;
+		this.userName = userName;
 		this.emailId = emailId;
 		this.password = password;
 		this.firstName = firstName;
-	}
-    
-    @Override
-	public boolean equals(Object obj) {
-		if(obj == null)
-			return false;
-		if(!(obj instanceof User))
-			return false;
-		
-		return ((User)obj).getId() == this.id;
+		this.lastName = lastName;
+		this.phone = phone;
+		this.dob = dob;
+		this.disabled = disabled;
 	}
 
-	@Override
-	public int hashCode() {
-		return (id != null)
-		        ? (this.getClass().hashCode() + id.hashCode())
-		        : super.hashCode();
+	public String getUserName() {
+		return userName;
 	}
-    
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
 	public Integer getId() {
         return id;
     }
@@ -107,13 +109,7 @@ public class User implements Serializable
 	{
 		this.phone = phone;
 	}
-	public String getGender() {
-		return gender;
-	}
 
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
 	public Date getDob()
 	{
 		return dob;
@@ -132,7 +128,27 @@ public class User implements Serializable
         this.emailId = emailId;
     }
 
-    public boolean getDisabled() {
+    public String getGender()
+	{
+		return gender;
+	}
+
+	public void setGender(String gender)
+	{
+		this.gender = gender;
+	}
+
+	public String getBio()
+	{
+		return bio;
+	}
+
+	public void setBio(String bio)
+	{
+		this.bio = bio;
+	}
+
+	public boolean getDisabled() {
         return disabled;
     }
 
@@ -140,15 +156,7 @@ public class User implements Serializable
         this.disabled = disabled;
     }
 
-    public String getBio() {
-		return bio;
-	}
-
-	public void setBio(String bio) {
-		this.bio = bio;
-	}
-
-	public List<Role> getRoles() {
+    public List<Role> getRoles() {
         return roles;
     }
 
@@ -156,48 +164,4 @@ public class User implements Serializable
         this.roles = roles;
     }
 
-    public List<Vote> getVotes() {
-        return votes;
-    }
-
-    public void setVotes(List<Vote> votes) {
-        this.votes = votes;
-    }
-    
-    public List<Rating> getRatings()
-	{
-		return ratings;
-	}
-
-	public void setRatings(List<Rating> ratings)
-	{
-		this.ratings = ratings;
-	}
-
-	public List<Post> getPosts()
-	{
-		return posts;
-	}
-
-	public void setPosts(List<Post> posts)
-	{
-		this.posts = posts;
-	}
-
-	public List<Post> getLinks() {
-        return posts;
-    }
-
-    public void setLinks(List<Post> posts) {
-        this.posts = posts;
-    }
-
-    public Set<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
-    
 }

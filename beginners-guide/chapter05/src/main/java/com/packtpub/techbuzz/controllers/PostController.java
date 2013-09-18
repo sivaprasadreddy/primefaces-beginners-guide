@@ -109,7 +109,7 @@ public class PostController
 	public void createPost()
 	{
 		User loggedinUser = JSFUtils.getLoggedinUser();
-		newPost.setPostedBy(loggedinUser);
+		newPost.setUserId(loggedinUser.getId());
 		try {
 			buzzService.createPost(newPost);
 			JSFUtils.addInfoMsg("Post created successfully");

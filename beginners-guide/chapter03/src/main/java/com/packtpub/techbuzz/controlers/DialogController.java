@@ -5,6 +5,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.CloseEvent;
 
@@ -18,6 +19,8 @@ import com.packtpub.techbuzz.entities.User;
 @RequestScoped
 public class DialogController
 {
+	private static final Logger logger = Logger.getLogger(DialogController.class);
+	
 	private User registerUser = new User();
 	public User getRegisterUser()
 	{
@@ -39,7 +42,7 @@ public class DialogController
 	{
 		boolean registered = false;
 		try {
-			System.out.println("Register User "+registerUser);
+			logger.info("Register User "+registerUser);
 			String msg = "User Registered successfully";
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, msg));
 			registerUser = new User();

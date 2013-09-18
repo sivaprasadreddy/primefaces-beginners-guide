@@ -1,6 +1,7 @@
 package com.packtpub.techbuzz.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ public class Tag implements Serializable
     private String label;
     private String value;
     private String description;
+    
     private List<Post> posts;
 
     public Tag() {
@@ -29,39 +31,22 @@ public class Tag implements Serializable
 		this.label = label;
 		this.value = value;
 	}
-
-	public Tag(Integer id, String label, String value, String description) {
+    
+	public Tag(Integer id, String label, String value, String description)
+	{
 		this.id = id;
 		this.label = label;
 		this.value = value;
 		this.description = description;
 	}
-	
+
 	@Override
 	public String toString()
 	{
-		return this.label;
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if(obj == null)
-			return false;
-		if(!(obj instanceof Tag))
-			return false;
-		
-		return ((Tag)obj).getId() == this.id;
+		return "Tag [id=" + id + ", label=" + label + ", value=" + value
+				+ ", posts=" + posts + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		if(this.id != null)
-	    {
-			int hash = 1;
-			return hash * 31 + id.hashCode();
-	    }
-		return super.hashCode();
-	}
 	public Integer getId() {
         return id;
     }
@@ -86,20 +71,28 @@ public class Tag implements Serializable
 		this.value = value;
 	}
 
-    public String getDescription() {
+	public String getDescription()
+	{
 		return description;
 	}
 
-	public void setDescription(String description) {
+	public void setDescription(String description)
+	{
 		this.description = description;
 	}
 
-	public List<Post> getPosts() {
+	public List<Post> getPosts()
+	{
+		if(posts == null){
+			posts = new ArrayList<Post>();
+		}
 		return posts;
 	}
 
-	public void setPosts(List<Post> posts) {
+	public void setPosts(List<Post> posts)
+	{
 		this.posts = posts;
 	}
+	
 
 }

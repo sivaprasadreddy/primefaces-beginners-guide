@@ -5,6 +5,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.log4j.Logger;
+
 import com.packtpub.techbuzz.entities.User;
 
 /**
@@ -15,6 +17,8 @@ import com.packtpub.techbuzz.entities.User;
 @RequestScoped
 public class BlockUIController
 {
+	private static final Logger logger = Logger.getLogger(BlockUIController.class);
+	
 	private User registerUser = new User();
 	public User getRegisterUser()
 	{
@@ -33,7 +37,7 @@ public class BlockUIController
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Register User :"+registerUser);
+		logger.info("Register User :"+registerUser);
 		if(registerUser != null)
 		{
 			FacesContext.getCurrentInstance().addMessage(null, 
