@@ -3,10 +3,14 @@
  */
 package com.packtpub.techbuzz.config;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.sql.DataSource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.CustomScopeConfigurer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -79,4 +83,13 @@ public class AppConfig
        return transactionManager;
     }
    	
+   	@Bean
+   	public static CustomScopeConfigurer customScopeConfigurer()
+	{
+   		CustomScopeConfigurer configurer = new CustomScopeConfigurer();
+   		Map<String, Object> scopes = new HashMap<String, Object>();
+   		scopes.put("view", new ViewScope());
+		configurer.setScopes(scopes );
+   		return configurer;
+	}
 }

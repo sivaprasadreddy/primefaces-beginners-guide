@@ -28,6 +28,8 @@ public class UserRowMapper implements RowMapper<User>
 		user.setLastName(rs.getString("lastName"));
 		user.setPhone(rs.getString("phone"));
 		user.setDob(rs.getDate("dob"));
+		user.setGender(rs.getString("gender"));
+		user.setBio(rs.getString("bio"));
 		user.setDisabled(rs.getBoolean("disabled"));
 		return user;
 	}	

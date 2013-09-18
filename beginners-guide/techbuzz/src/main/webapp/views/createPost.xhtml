@@ -8,27 +8,47 @@
 	<ui:define name="bodyContent">
 
 	<h:form id="newPostForm">
-				<p:messages globalOnly="true"/>
-				<h:panelGrid columns="3">
+				<p:growl globalOnly="true" autoUpdate="true"/>
+				<p:messages/>
+				<h:panelGrid columns="2">
 					<p:outputLabel>Title:*</p:outputLabel>
-					<p:inputText id="title" value="#{buzzController.newPost.title}" required="true" title="Title"></p:inputText>
-					<p:message for="title" id="titleMsg"></p:message>
+					<p:inputText id="title" value="#{postController.newPost.title}" 
+						required="true" title="Title" size="80"
+						requiredMessage="Please enter Title"/>
 					
 					<p:outputLabel>Description:*</p:outputLabel>
-					<p:inputTextarea id="descroption" value="#{buzzController.newPost.description}" required="true" title="Description"></p:inputTextarea>
-					<p:message for="descroption" id="descroptionMsg"></p:message>
+					<p:editor id="description" widgetVar="editor" value="#{postController.newPost.description}"
+								required="true" title="Description"
+								requiredMessage="Please enter Description"/>
 					
 					<p:outputLabel>Tags:</p:outputLabel>
-					<p:autoComplete id="newPostTags" value="#{buzzController.newPost.tags}" 
-									completeMethod="#{buzzController.completeTags}"
+                    <p:autoComplete id="newPostTags" value="#{postController.newPost.tags}" 
+									completeMethod="#{postController.completeTag}"
+									maxResults="10" minQueryLength="1" queryDelay="400" 
+									multiple="true"
                     				var="t" itemLabel="#{t.label}" itemValue="#{t}" 
-                    				converter="tagConverter" multiple="true">
+                    				converter="#{tagConverter}" >
+                    		<p:ajax event="itemSelect" listener="#{postController.handleTagSelected}"/>	
+                    		<p:ajax event="itemUnselect" listener="#{postController.handleTagUnselected}"/>
+                    		
+                    		<f:facet name="itemtip">
+								<h:panelGrid columns="2" style="width: 400px; text-align: left">
+									<f:facet name="header">
+										Tag Details
+									</f:facet>
+									<h:outputText value="Label: " />
+									<h:outputText value="#{t.label}" />
+									<h:outputText value="Description " />
+									<h:outputText value="#{t.description}" />
+								</h:panelGrid>
+							</f:facet>
+                    				
                     </p:autoComplete>
                     <p:outputLabel value=""/>
                 
 					
 					
-					<p:commandButton action="${buzzController.createPost()}" value="Submit" update="newPostForm"></p:commandButton>
+					<p:commandButton action="${postController.createPost()}" value="Submit" update="newPostForm"/>
 				</h:panelGrid>
 			</h:form>
 			

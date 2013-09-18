@@ -7,7 +7,41 @@
 
 	<ui:define name="bodyContent">
 		
-		Search
-                        
+		<h:form id="searchUserForm">
+			<p:panel header="Search Users">
+				<h:panelGrid columns="2">
+					
+					<p:outputLabel for="searchUser" value="Search Users By Email"/>
+					<p:autoComplete id="searchUser" value="#{userController.searchUser}" 
+									completeMethod="#{userController.completeEmail}"
+									var="u" itemLabel="#{u.emailId}" itemValue="#{u}"
+									converter="#{userConverter}"/>
+							
+					<p:commandButton value="Submit" update="@form"/>
+				</h:panelGrid>
+			</p:panel>
+		
+        	<br/><br/>
+        	<p:panel header="User Details">
+	        <h:panelGrid columns="2" id="searchUserDetails">
+				<p:outputLabel for="emailId" value="EmailId"/>
+				<p:outputLabel id="emailId" value="#{userController.searchUser.emailId}"/>
+				
+				<p:outputLabel for="firstName" value="firstName"/>
+				<p:inputText id="firstName" value="#{userController.searchUser.firstName}" readonly="true"/>
+				
+				<p:outputLabel for="lastName" value="lastName"/>
+				<p:inputText id="lastName" value="#{userController.searchUser.lastName}" readonly="true"/>
+				
+				<p:outputLabel for="phone" value="phone"/>
+				<p:inputText id="phone" value="#{userController.searchUser.phone}" readonly="true"/>
+				
+				<p:outputLabel for="bio" value="Bio"/>
+				<p:inputTextarea id="bio" value="#{userController.searchUser.bio}" cols="50" rows="5" readonly="true"/>
+				
+			</h:panelGrid>
+			</p:panel>
+		</h:form>
+		
 	</ui:define>
 </ui:composition>

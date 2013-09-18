@@ -11,19 +11,18 @@ import javax.faces.convert.ConverterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.packtpub.techbuzz.entities.Tag;
-import com.packtpub.techbuzz.repositories.TagRepository;
-import com.packtpub.techbuzz.services.TagService;
+import com.packtpub.techbuzz.entities.User;
+import com.packtpub.techbuzz.services.UserService;
 
 /**
  * @author Siva
  *
  */
 @Component
-public class TagConverter implements Converter
+public class UserConverter implements Converter
 {
 	@Autowired
-	private TagService tagService;
+	private UserService userService;
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value)
@@ -33,14 +32,15 @@ public class TagConverter implements Converter
         } else {  
             try {  
             	int id = Integer.parseInt(value);
-                List<Tag> tags = tagService.findAllTags();
-				for (Tag t : tags ) {  
-                    if (t.getId() == id) {  
-                        return t;  
+                List<User> users = userService.findAllUsers();
+				for (User u : users ) {  
+                    if (u.getId() == id) {  
+                        return u;  
                     }  
                 }  
-            } catch(NumberFormatException exception) {
-            	FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid Tag");
+  
+            } catch(NumberFormatException exception) {  
+            	FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid User");
                 throw new ConverterException(msg);  
             }  
         }  
@@ -54,8 +54,8 @@ public class TagConverter implements Converter
 		if (value == null || value.equals("")) {  
             return "";  
         } else {  
-            return String.valueOf(((Tag) value).getId());
+            return String.valueOf(((User) value).getId());
         } 
 	}
-
+	
 }

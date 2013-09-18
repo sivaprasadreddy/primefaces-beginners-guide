@@ -65,10 +65,10 @@ public class UserRepositoryImpl implements UserRepository
 	}
 	
 	@Override
-	public User createUser(final User user)
+	public User create(final User user)
 	{
-		final String sql = "INSERT INTO USERS (EMAIL_ID,PASSWORD,FIRSTNAME,LASTNAME,PHONE,DOB,DISABLED)"+
-				 	 		" VALUES (?,?,?,?,?,?,?);";
+		final String sql = "INSERT INTO USERS (EMAIL_ID,PASSWORD,FIRSTNAME,LASTNAME,GENDER,PHONE,DOB,BIO,DISABLED)"+
+				 	 		" VALUES (?,?,?,?,?,?,?,?,?);";
 		
 		KeyHolder holder = new GeneratedKeyHolder();
 
@@ -81,14 +81,16 @@ public class UserRepositoryImpl implements UserRepository
                     ps.setString(2, user.getPassword());
                     ps.setString(3, user.getFirstName());
                     ps.setString(4, user.getLastName());
-                    ps.setString(5, user.getPhone());
+                    ps.setString(5, user.getGender());
+                    ps.setString(6, user.getPhone());
                     if(user.getDob() != null)
                     {
-                    	ps.setDate(6, new java.sql.Date(user.getDob().getTime()));
+                    	ps.setDate(7, new java.sql.Date(user.getDob().getTime()));
                     }else {
-                    	ps.setDate(6, null);
+                    	ps.setDate(7, null);
                     }
-                    ps.setBoolean(7, user.getDisabled());
+                    ps.setString(8, user.getBio());
+                    ps.setBoolean(9, user.getDisabled());
                     return ps;
                 }
             }, holder);
@@ -106,28 +108,60 @@ public class UserRepositoryImpl implements UserRepository
 	}
 
 	@Override
-	public User create(User t) {
-		return null;
-	}
-
-	@Override
-	public User findById(Integer key) {
-		return null;
+	public void update(User user) {
+		final String sql = "UPDATE USERS SET FIRSTNAME=?,LASTNAME=?,GENDER=?,PHONE=?,DOB=?,DISABLED=?, BIO=? WHERE EMAIL_ID=?";
+		
+		Object[] args = {
+				user.getFirstName(),
+				user.getLastName(),
+				user.getGender(),
+				user.getPhone(),
+				user.getDob(),
+				user.getDisabled(),
+				user.getBio(),
+				user.getEmailId()
+		};
+		jdbcTemplate.update(sql, args);
+		
 	}
 
 	@Override
 	public List<User> findAll() {
+		String sql = "SELECT * FROM USERS";
+		List<User> users = jdbcTemplate.query(sql, new UserRowMapper());
+		return users;
+	}
+	
+	@Override
+	public User findById(Integer key) {
+		String sql = "SELECT * FROM USERS WHERE USER_ID=?";
+		List<User> users = jdbcTemplate.query(sql, new Object[]{key}, new UserRowMapper());
+		if(!users.isEmpty()){
+			return users.get(0);
+		}
 		return null;
 	}
 
-	@Override
-	public void update(User t) {
-		
-	}
+
 
 	@Override
 	public void delete(Integer key) {
 		
+	}
+
+	@Override
+	public void updateUsersStatus(List<User> users, String status) {
+		final String sql = "UPDATE USERS SET DISABLED=? WHERE EMAIL_ID=?";
+		boolean disabled = (status != null && "DISABLED".equalsIgnoreCase(status));
+		for (User user : users) 
+		{
+			Object[] args = {					
+					disabled,					
+					user.getEmailId()
+			};
+			jdbcTemplate.update(sql, args);
+		}
+				
 	}
 
 }

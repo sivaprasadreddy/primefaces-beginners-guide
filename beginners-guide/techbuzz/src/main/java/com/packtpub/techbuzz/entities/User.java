@@ -19,8 +19,10 @@ public class User implements Serializable
     private String password;
     private String firstName;
 	private String lastName;
+	private String gender;
     private String phone;
 	private Date dob = new Date();
+	private String bio;
     private boolean disabled;
     private List<Role> roles = new ArrayList<Role>();
 
@@ -98,6 +100,14 @@ public class User implements Serializable
 		this.lastName = lastName;
 	}
 
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
 	public String getPhone()
 	{
 		return phone;
@@ -126,7 +136,15 @@ public class User implements Serializable
         this.emailId = emailId;
     }
 
-    public boolean getDisabled() {
+    public String getBio() {
+		return bio;
+	}
+
+	public void setBio(String bio) {
+		this.bio = bio;
+	}
+
+	public boolean getDisabled() {
         return disabled;
     }
 

@@ -7,7 +7,81 @@
 
 	<ui:define name="bodyContent">
 		
-		User Account
-                        
+		<p:growl autoUpdate="true" showDetail="true"/>
+		
+		<p:tabView id="tabs">
+			<p:tab id="acctForm" title="User Details">
+			
+				<h:form id="myAccountForm">
+					<p:panel header="My Account">
+					<h:panelGrid columns="2">
+						<p:outputLabel for="emailId" value="EmailId"/>
+						<p:outputLabel id="emailId" value="#{userController.loginUser.emailId}"/>
+						
+						<p:outputLabel for="firstName" value="firstName"/>
+						<p:inplace id="firstName" emptyLabel="Enter FirstName" editor="true" effect="slide" effectSpeed="fast">
+							<p:inputText value="#{userController.loginUser.firstName}"/>
+						</p:inplace>
+					
+						<p:outputLabel for="lastName" value="lastName"/>
+						<p:inputText id="lastName" value="#{userController.loginUser.lastName}"/>
+						
+						<p:outputLabel for="gender" value="Gender"/>
+						<p:inplace id="gender" emptyLabel="Select Gender" event="dblclick">
+							<p:selectOneMenu value="#{userController.loginUser.gender}">
+								<f:selectItem itemLabel="Male" itemValue="Male" />
+								<f:selectItem itemLabel="Female" itemValue="Female" />
+							</p:selectOneMenu>
+						</p:inplace>
+					
+						<p:outputLabel for="phone" value="Phone"/>
+						<p:inputMask id="phone" value="#{userController.loginUser.phone}" mask="999-999-9999? x(9999)" placeHolder="X"/>
+						
+						<p:outputLabel for="dob" value="DOB"/>
+						<p:calendar id="dob" value="#{userController.loginUser.dob}"></p:calendar>
+						
+						<p:outputLabel for="bio" value="About Me"/>
+						<p:inputTextarea id="bio" value="#{userController.loginUser.bio}" cols="50" rows="5"
+								completeMethod="#{userController.completeBio}" minQueryLength="4" scrollHeight="100"
+								counter="counter" maxlength="50"/>
+						<h:outputText id="counter" value="" />
+						<p:commandButton value="Update" actionListener="#{userController.updateUser}" update="@form"/>
+						
+					</h:panelGrid>
+					</p:panel>
+				
+				</h:form>
+            </p:tab>
+            
+            <p:tab id="changePwd" title="Change Password">
+            	<h:form id="changePwdForm">
+            		<p:messages id="messages" severity="error" showDetail="true" autoUpdate="true"/>  
+					<p:panel header="Change Password">
+					<h:panelGrid columns="2">
+						
+						<p:outputLabel for="oldPwd" value="Current Password"/> 
+						<p:password id="oldPwd" value="#{userController.changePwd.currentPwd}"  required="true"/>
+						
+						<p:outputLabel for="newPwd" value="New Password"/>
+						<p:password id="newPwd" value="#{userController.changePwd.newPwd}" 
+									feedback="true" 
+									promptLabel="Enter New Password"
+									weakLabel="Weak Password"
+									goodLabel="Good Password"
+									strongLabel="Strong Password"
+									match="confPwd"  required="true"/>
+						
+						<p:outputLabel for="confPwd" value="Confirm Password"/>
+						<p:password id="confPwd" value="#{userController.changePwd.newPwd}" required="true"/>
+						
+						<p:commandButton value="Submit" actionListener="#{userController.changePassword}" update="@form"/>
+						
+					</h:panelGrid>
+					</p:panel>
+				
+				</h:form>
+            </p:tab>
+            </p:tabView>
+            
 	</ui:define>
 </ui:composition>

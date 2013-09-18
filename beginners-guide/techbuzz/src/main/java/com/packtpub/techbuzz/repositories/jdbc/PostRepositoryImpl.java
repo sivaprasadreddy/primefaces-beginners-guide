@@ -29,14 +29,14 @@ public class PostRepositoryImpl implements PostRepository
 	@Override
 	public List<Post> findAll()
 	{
-		String FIND_ALL_POSTS_SQL = "select * from posts";
+		String FIND_ALL_POSTS_SQL = "select * from posts order by created_on desc";
 		return jdbcTemplate.query(FIND_ALL_POSTS_SQL, new PostRowMapper());
 	}
 
 	@Override
 	public List<Post> findPostsByUserId(Integer userId)
 	{
-		String FIND_POSTS_BY_USER_SQL = "select * from posts where posted_by=?";
+		String FIND_POSTS_BY_USER_SQL = "select * from posts where posted_by=? order by created_on desc";
 		return jdbcTemplate.query(FIND_POSTS_BY_USER_SQL, 
 				new Object[]{userId}, new PostRowMapper());
 	}
@@ -44,7 +44,7 @@ public class PostRepositoryImpl implements PostRepository
 	@Override
 	public Post findById(Integer postId)
 	{
-		String FIND_POST_SQL = "select * from posts where post_id=?";
+		String FIND_POST_SQL = "select * from posts where post_id=? order by created_on desc";
 		List<Post> posts = jdbcTemplate.query(FIND_POST_SQL, 
 					new Object[]{postId}, new PostRowMapper());
 		if(posts != null && !posts.isEmpty())
@@ -67,7 +67,7 @@ public class PostRepositoryImpl implements PostRepository
 			            	ps.setString(1, post.getTitle());
 			            	ps.setString(2, post.getDescription());
 			            	ps.setInt(3, post.getUserId());
-			            	ps.setDate(4, new java.sql.Date(post.getCreatedOn().getTime()));
+			            	ps.setTimestamp(4, new java.sql.Timestamp(post.getCreatedOn().getTime()));
 			            return ps;
 			        }
 			    },
@@ -92,7 +92,7 @@ public class PostRepositoryImpl implements PostRepository
 
 	@Override
 	public List<Post> searchPosts(String query) {
-		String SEARCH_SQL = "select * from posts where title like ? or description like ?";
+		String SEARCH_SQL = "select * from posts where title like ? or description like ? order by created_on desc";
 		return jdbcTemplate.query(SEARCH_SQL,
 				new Object[]{"%"+query+"%","%"+query+"%"},
 				new PostRowMapper());

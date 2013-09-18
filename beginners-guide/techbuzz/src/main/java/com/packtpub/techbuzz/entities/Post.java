@@ -66,6 +66,9 @@ public class Post implements Serializable
 	}
 	
     public Date getCreatedOn() {
+    	if(createdOn == null){
+    		createdOn = new Date();
+    	}
         return createdOn;
     }
 

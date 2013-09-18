@@ -8,11 +8,11 @@
 	<ui:define name="bodyContent">
 		
 		<p:dataList value="#{buzzController.posts}" var="post" id="posts" paginator="true" rows="5" type="none">  
-	  		<div>
-	            <h:outputText value="#{post.title}" style="margin-left:10px; font-size:7; font-weight:bold" /><br />
-	            <h:outputText value="#{post.description}" style="margin-left:10px" /><br /><br />
-	  		</div>
-	              
+		
+            <h:outputText value="#{post.title}" style="margin-left:0px; font-size:7; font-weight:bold" /><br />
+            <h:outputText value="#{post.description}" escape="false" style="margin-left:0px" /><br /><br />
+            <p:separator/>
+            
 	    </p:dataList>
                         
 	</ui:define>

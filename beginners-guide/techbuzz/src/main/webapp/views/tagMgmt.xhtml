@@ -1,0 +1,44 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui">
+
+	<h:form>
+	
+	<p:panel header="Create Tag">
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Label" />
+			<p:inputText value="#{adminController.newTag.label}" required="true" requiredMessage="Enter Label"/>
+			
+			<h:outputLabel value="Value" />
+			<p:inputText value="#{adminController.newTag.value}" required="true" requiredMessage="Enter Value"/>
+			
+			<h:outputLabel value="Description" />
+			<p:inputTextarea value="#{adminController.newTag.description}"
+				counter="counter" maxlength="250"  cols="50"
+				counterTemplate="{0} characters remaining."/>
+			<h:outputText id="counter" />  
+			<h:outputText value="" />
+			
+			<p:commandButton value="Save" actionListener="#{adminController.createTag()}" update="@form"/>  
+		</h:panelGrid>
+	</p:panel>
+	
+	<p:dataTable value="#{adminController.tags}" var="tag" paginator="true" rows="10" rowsPerPageTemplate="5,10,15">
+		<f:facet name="header">  
+            Tag Management
+        </f:facet> 
+		<p:column headerText="ID">
+			<h:outputText value="#{tag.id}" />
+		</p:column>
+		<p:column headerText="Label">
+			<h:outputText value="#{tag.label}" />
+		</p:column>
+		<p:column headerText="Value">
+			<h:outputText value="#{tag.value}" />
+		</p:column>
+		
+	</p:dataTable>
+	</h:form>
+</ui:composition>
