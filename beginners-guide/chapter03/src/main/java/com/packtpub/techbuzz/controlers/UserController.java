@@ -16,8 +16,6 @@ import com.packtpub.techbuzz.utils.JSFUtils;
  * @author Siva
  *
  */
-//@ManagedBean
-//@RequestScoped
 @Component
 @Scope("request")
 public class UserController 
