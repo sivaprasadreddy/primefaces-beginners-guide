@@ -1,7 +1,6 @@
 package com.packtpub.techbuzz.entities;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *
@@ -14,7 +13,6 @@ public class Role implements Serializable
     private Integer id;
     private String roleName;
     private String description;
-    private List<User> users;
 
     public Role() {
     }
@@ -50,14 +48,6 @@ public class Role implements Serializable
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public List<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(List<User> users) {
-        this.users = users;
     }
 
 }

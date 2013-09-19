@@ -14,7 +14,7 @@
   <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.6</java.version>
-        <primefaces.version>3.5</primefaces.version>
+        <primefaces.version>4.0.RC1</primefaces.version>
         <primefaces.theme.version>1.0.9</primefaces.theme.version>
         <jsf.version>2.1.13</jsf.version>
         <junit.version>4.8.2</junit.version>
