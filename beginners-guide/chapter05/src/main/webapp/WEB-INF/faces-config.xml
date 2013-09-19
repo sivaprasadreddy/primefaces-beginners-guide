@@ -16,6 +16,23 @@
             <base-name>messages</base-name>
             <var>msg</var>
         </resource-bundle>
+        
+        <system-event-listener>
+		    <system-event-listener-class>com.packtpub.techbuzz.config.ViewScopeCallbackRegistrar</system-event-listener-class>
+		    <system-event-class>javax.faces.event.PostConstructViewMapEvent</system-event-class>
+		    <source-class>javax.faces.component.UIViewRoot</source-class>
+		</system-event-listener>
+		 
+		<system-event-listener>
+		    <system-event-listener-class>com.packtpub.techbuzz.config.ViewScopeCallbackRegistrar</system-event-listener-class>
+		    <system-event-class>javax.faces.event.PreDestroyViewMapEvent</system-event-class>
+		    <source-class>javax.faces.component.UIViewRoot</source-class>
+		</system-event-listener>
     </application>
+    
+    <factory>
+        <exception-handler-factory>com.packtpub.techbuzz.config.TechBuzzExceptionHandlerFactory</exception-handler-factory>
+    </factory>
+    
 
 </faces-config>
