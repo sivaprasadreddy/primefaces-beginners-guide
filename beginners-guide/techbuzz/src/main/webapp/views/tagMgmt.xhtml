@@ -25,20 +25,51 @@
 		</h:panelGrid>
 	</p:panel>
 	
-	<p:dataTable value="#{adminController.tags}" var="tag" paginator="true" rows="10" rowsPerPageTemplate="5,10,15">
+	<p:dataTable value="#{adminController.tags}" var="tag" paginator="true" rows="10" rowsPerPageTemplate="5,10,15"
+					editable="true">
+		<p:ajax event="rowEdit" listener="#{adminController.onTagEdit}"/>  
 		<f:facet name="header">  
             Tag Management
         </f:facet> 
 		<p:column headerText="ID">
 			<h:outputText value="#{tag.id}" />
 		</p:column>
-		<p:column headerText="Label">
-			<h:outputText value="#{tag.label}" />
-		</p:column>
-		<p:column headerText="Value">
-			<h:outputText value="#{tag.value}" />
-		</p:column>
+		<p:column headerText="Label">  
+            <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{tag.label}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{tag.label}" style="width:100%"/>  
+                </f:facet>  
+            </p:cellEditor>
+        </p:column>  
 		
+		<p:column headerText="Value">  
+            <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{tag.value}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{tag.value}" style="width:100%"/>  
+                </f:facet>  
+            </p:cellEditor>
+        </p:column>  
+		
+		<p:column headerText="Description">  
+            <p:cellEditor>  
+                <f:facet name="output">  
+                    <h:outputText value="#{tag.description}" />  
+                </f:facet>  
+                <f:facet name="input">  
+                    <p:inputText value="#{tag.description}" style="width:100%"/>  
+                </f:facet>  
+            </p:cellEditor>
+        </p:column>
+        
+		<p:column style="width:6%">  
+            <p:rowEditor />  
+        </p:column> 
 	</p:dataTable>
 	</h:form>
 </ui:composition>

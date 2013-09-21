@@ -9,11 +9,14 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
+import org.primefaces.event.RowEditEvent;
+import org.primefaces.model.DualListModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.packtpub.techbuzz.entities.Post;
+import com.packtpub.techbuzz.entities.Role;
 import com.packtpub.techbuzz.entities.Tag;
 import com.packtpub.techbuzz.entities.User;
 import com.packtpub.techbuzz.services.PostService;
@@ -35,11 +38,14 @@ public class AdminController implements Serializable
 	private transient PostService postService;
 	
 	private List<User> users = null;
+	private List<Role> roles = null;
 	private List<Tag> tags = null;
 	private List<Post> posts = null;
 	private Tag newTag;
 	
 	private List<User> selectedUsers = new ArrayList<User>();
+	private User selectedUser = null;
+	private DualListModel<Role> selectedUserRoles;
 	
 	@Autowired
 	public void setUserService(UserService userService) {
@@ -58,6 +64,11 @@ public class AdminController implements Serializable
 	public void init()
 	{
 		this.users = userService.findAllUsers();
+		for (User user : users)
+		{
+			System.out.println(user.getId()+"=>"+user.getRoles());
+		}
+		this.roles = userService.findAllRoles();
 		this.tags = tagService.findAllTags();
 		//this.posts = postService.findAllPosts();
 	}
@@ -80,6 +91,46 @@ public class AdminController implements Serializable
 	public void setSelectedUsers(List<User> selectedUsers) {
 		this.selectedUsers = selectedUsers;
 	}
+	
+	public User getSelectedUser()
+	{
+		System.out.println("******getSelectedUser *******"+selectedUser);
+		return selectedUser;
+	}
+	public void setSelectedUser(User selectedUser)
+	{
+		System.err.println("------setSelectedUser-------");
+		this.selectedUser = selectedUser;
+		List<Role> source = new ArrayList<Role>();
+		List<Role> target = new ArrayList<Role>();
+		
+		for (Role role : roles)
+		{
+			if(selectedUser.getRoles().contains(role)){
+				target.add(role);
+			} else {
+				source.add(role);
+			}
+			
+		}
+		System.out.println(source+":"+target);
+		selectedUserRoles = new DualListModel<Role>(source, target);
+	}
+	public DualListModel<Role> getSelectedUserRoles()
+	{
+		System.out.println("------getSelectedUserRoles--------");
+		
+		if(selectedUserRoles == null){
+			System.out.println("empty userroles");
+			selectedUserRoles = new DualListModel<Role>();
+		}
+		return selectedUserRoles;
+	}
+	public void setSelectedUserRoles(DualListModel<Role> selectedUserRoles)
+	{
+		this.selectedUserRoles = selectedUserRoles;
+	}
+	
 	public Tag getNewTag() {
 		if(newTag == null){
 			newTag = new Tag();
@@ -128,4 +179,23 @@ public class AdminController implements Serializable
 		newTag = null;
 		this.tags = tagService.findAllTags();
 	}
+	
+	public void updateUser()
+	{
+		
+		if(selectedUser != null){
+			List<Role> updatedRoles = selectedUserRoles.getTarget();
+			selectedUser.setRoles(updatedRoles);
+			userService.updateUserRoles(selectedUser);
+			JSFUtils.addInfoMsg("Updated successfully");
+		}
+		selectedUsers = new ArrayList<User>();
+		this.users = userService.findAllUsers();
+	}
+	
+	public void onTagEdit(RowEditEvent event) {  
+		Tag tag = (Tag) event.getObject();
+		tagService.updateTag(tag);
+		JSFUtils.addInfoMsg("Tag saved successfully");
+    }
 }

@@ -37,6 +37,7 @@ CREATE TABLE roles (
 CREATE TABLE users_roles (
   user_id int(11) NOT NULL,
   role_id int(11) NOT NULL,  
+   PRIMARY KEY (user_id, role_id),
   CONSTRAINT FKF6CCD9C6432D04C1 FOREIGN KEY (role_id) REFERENCES roles (role_id),
   CONSTRAINT FKF6CCD9C6E857C8A1 FOREIGN KEY (user_id) REFERENCES users (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -115,6 +116,13 @@ values
 (16,'conrad','conrad@lanfear.com','Conrad','Conrad','Lanfear','Male','123-123-1234','2013-04-29 00:00:00',0,''),
 (17,'cyril','cyril@behen.com','Cyril','Cyril','Behen','Male','123-123-1234','2013-04-29 00:00:00',0,'');
 
+insert into users_roles(user_id,role_id)
+values
+(1,1),(1,2),(1,3),(1,4),
+(2,1),(2,2),(2,3),
+(3,1),(3,2),
+(4,1)
+;
 
 insert  into tags(tag_id,label,value, description)
 values 

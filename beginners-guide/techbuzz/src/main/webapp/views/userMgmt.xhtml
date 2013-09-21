@@ -4,11 +4,14 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 	
-	<h:form>
+	
+	
+	<h:form id="form">
+		<p:growl showDetail="true" autoUpdate="true" />
 		<p:dataTable value="#{adminController.users}" var="user" 
 			selection="#{adminController.selectedUsers}"
 			rowKey="#{user.emailId}"
-			paginator="true" rows="10">
+			paginator="true" rows="5">
 				<f:facet name="header">  
 		            User Management
 		        </f:facet> 
@@ -25,10 +28,62 @@
 				<p:column headerText="Disabled">
 					<h:outputText value="#{user.disabled} " />
 				</p:column>
+				<p:column style="width:20px;">  
+		                <p:commandButton id="selectButton" update=":tabs:form:userDetails" icon="ui-icon-search" title="View">  
+		                <f:setPropertyActionListener value="#{user}" target="#{adminController.selectedUser}" />  
+		            </p:commandButton>  
+		        </p:column>
 				<f:facet name="footer">  
 		            <p:commandButton value="Disable" actionListener="#{adminController.disableUsers}" update="@form"/>  
 		            <p:commandButton value="Enable" actionListener="#{adminController.enableUsers}"  update="@form"/>
 		        </f:facet>
 		</p:dataTable>
+		<p:panel header="User Details">
+				<h:panelGrid id="userDetails">  
+		            <p:row>
+		            <p:column> <h:outputText value="Id: " />  </p:column>
+		            <p:column><h:outputText value="#{adminController.selectedUser.id}" style="font-weight:bold"/>  </p:column>
+		            </p:row>
+		  
+		            <p:row>
+		            <p:column><h:outputText value="Email: " />  </p:column>
+		           <p:column> <h:outputText value="#{adminController.selectedUser.emailId}" style="font-weight:bold"/>  </p:column>
+		            </p:row>
+		            
+		            <p:row>
+		            <p:column><h:outputText value="FirstName: " />  </p:column>
+		           <p:column> <h:outputText value="#{adminController.selectedUser.firstName}" style="font-weight:bold"/></p:column>
+		            </p:row>
+		            
+		            <p:row>
+		            <p:column><h:outputText value="LastName: " />  </p:column>
+		           <p:column> <h:outputText value="#{adminController.selectedUser.lastName}" style="font-weight:bold"/></p:column>
+		  			</p:row>
+		  			
+		  			<p:row>
+		           <p:column colspan="2"> 
+		           <p:pickList id="pojoPickList" value="#{adminController.selectedUserRoles}" var="role" effect="bounce"
+		                    itemValue="#{role}" itemLabel="#{role.roleName}" converter="#{roleConverter}"
+		                     showSourceControls="true" showTargetControls="true" showCheckbox="true"
+		                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" 
+		                    >
+						
+						<f:facet name="sourceCaption">Available Roles</f:facet>
+				        <f:facet name="targetCaption">Assigned Roles</f:facet>
+				
+				        <p:column style="width:100%">
+				            #{role.roleName}
+				        </p:column>
+		        
+			    	</p:pickList>
+			    	</p:column>
+		    		</p:row>
+		            
+		    		<p:row>
+		           <p:column colspan="2"> <p:commandButton value="Save" actionListener="#{adminController.updateUser}" update="@form"/></p:column>
+		        	</p:row>
+		            
+		        </h:panelGrid>
+		    </p:panel>
 	</h:form>
 </ui:composition>

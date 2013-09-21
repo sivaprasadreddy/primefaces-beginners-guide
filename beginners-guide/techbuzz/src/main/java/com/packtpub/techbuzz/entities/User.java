@@ -153,6 +153,9 @@ public class User implements Serializable
     }
 
     public List<Role> getRoles() {
+    	if(roles == null){
+    		roles = new ArrayList<Role>();
+    	}
         return roles;
     }
 

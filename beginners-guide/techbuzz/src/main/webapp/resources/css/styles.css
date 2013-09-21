@@ -21,3 +21,8 @@
 {
 	vertical-align: top;
 }
+
+.ui-picklist-list {
+	height:100px !important;
+	width:200px !important;
+}

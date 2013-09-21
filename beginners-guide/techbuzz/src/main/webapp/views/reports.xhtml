@@ -4,5 +4,22 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:p="http://primefaces.org/ui">
 
-	Reports
+	<p:pieChart value="#{reportsController.pieChartModel}"
+		style="width: 350px; height: 250px;" title="Total Posts by Tag"
+		legendPosition="ne"
+		showDataLabels="true" dataFormat="value">
+	</p:pieChart>
+	<br/><br/>
+	
+	<p:barChart value="#{reportsController.tagPostsChartModel}" 
+						style="width: 400px; height: 250px;"
+						xaxisLabel="Tag" yaxisLabel="No. of Posts"
+						animate="true" legendPosition="nw"
+						legendCols="3">
+	</p:barChart>
+	<br/><br/>
+	
+	
+	
+	
 </ui:composition>

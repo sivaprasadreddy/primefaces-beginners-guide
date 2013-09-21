@@ -10,6 +10,7 @@ import com.packtpub.techbuzz.entities.Tag;
 import com.packtpub.techbuzz.repositories.PostRepository;
 import com.packtpub.techbuzz.repositories.TagRepository;
 import com.packtpub.techbuzz.repositories.UserRepository;
+import com.packtpub.techbuzz.web.view.TagPostCountBean;
 
 /**
  * @author Siva
@@ -51,6 +52,11 @@ public class TagService
 	public List<Tag> findByLabelStartingWith(String query)
 	{
 		return tagRepository.findByLabelStartingWith(query);
+	}
+
+	public List<TagPostCountBean> getTagPostCounts()
+	{
+		return tagRepository.getTagPostCounts();
 	}
 
 	

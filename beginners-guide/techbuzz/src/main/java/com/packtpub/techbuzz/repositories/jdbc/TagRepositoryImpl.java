@@ -2,12 +2,14 @@ package com.packtpub.techbuzz.repositories.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import com.packtpub.techbuzz.entities.Tag;
 import com.packtpub.techbuzz.repositories.TagRepository;
 import com.packtpub.techbuzz.repositories.rowmappers.TagRowMapper;
+import com.packtpub.techbuzz.web.view.TagPostCountBean;
 
 /**
  * @author Siva
@@ -86,6 +89,25 @@ public class TagRepositoryImpl implements TagRepository
 	public List<Tag> findByLabelStartingWith(String query) {
 		String FIND_ALL_TAGS_SQL = "select * from tags where label like ?";
 		return jdbcTemplate.query(FIND_ALL_TAGS_SQL, new Object[]{query+"%"}, new TagRowMapper());
+	}
+
+	@Override
+	public List<TagPostCountBean> getTagPostCounts()
+	{
+		String SQL = "SELECT t.label, count(*) posts_count FROM posts_tags p left outer join tags t on p.tag_id=t.tag_id group by p.tag_id";
+		return jdbcTemplate.query(SQL, new RowMapper<TagPostCountBean>(){
+
+			@Override
+			public TagPostCountBean mapRow(ResultSet rs, int rowNum) throws SQLException
+			{
+				TagPostCountBean bean = new TagPostCountBean();
+				bean.setTag(rs.getString("label"));
+				bean.setPostCount(rs.getInt("posts_count"));
+				
+				return bean;
+			}
+			
+		});
 	}
 
 	

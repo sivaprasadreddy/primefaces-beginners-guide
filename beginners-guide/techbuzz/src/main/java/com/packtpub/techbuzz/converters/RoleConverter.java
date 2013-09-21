@@ -11,18 +11,18 @@ import javax.faces.convert.ConverterException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.packtpub.techbuzz.entities.Tag;
-import com.packtpub.techbuzz.services.TagService;
+import com.packtpub.techbuzz.entities.Role;
+import com.packtpub.techbuzz.services.UserService;
 
 /**
  * @author Siva
  *
  */
 @Component
-public class TagConverter implements Converter
+public class RoleConverter implements Converter
 {
 	@Autowired
-	private TagService tagService;
+	private UserService userService;
 	
 	@Override
 	public Object getAsObject(FacesContext context, UIComponent component, String value)
@@ -32,14 +32,15 @@ public class TagConverter implements Converter
         } else {  
             try {  
             	int id = Integer.parseInt(value);
-                List<Tag> tags = tagService.findAllTags();
-				for (Tag t : tags ) {  
-                    if (t.getId() == id) {  
-                        return t;  
+                List<Role> roles = userService.findAllRoles();
+				for (Role r : roles ) {  
+                    if (r.getId() == id) {  
+                        return r;  
                     }  
                 }  
-            } catch(NumberFormatException exception) {
-            	FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid Tag");
+  
+            } catch(NumberFormatException exception) {  
+            	FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error", "Not a valid Role");
                 throw new ConverterException(msg);  
             }  
         }  
@@ -52,9 +53,9 @@ public class TagConverter implements Converter
 	{
 		if (value == null || value.equals("")) {  
             return "";  
-        } else {  
-            return String.valueOf(((Tag) value).getId());
+        } else {
+            return String.valueOf(((Role) value).getId());
         } 
 	}
-
+	
 }
