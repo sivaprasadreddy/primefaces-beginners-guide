@@ -90,7 +90,20 @@ public class Post implements Serializable
     	}
         return tags;
     }
-
+	public String getTagsAsString()
+	{
+		if(tags != null && !tags.isEmpty())
+		{
+			StringBuilder sb = new StringBuilder();
+			for (Tag tag : tags)
+			{
+				sb = sb.append(tag.getLabel()+",");
+			}
+			if(sb.length() > 0)
+				return sb.substring(0, sb.length()-1);
+		}
+		return "";
+	}
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
@@ -115,6 +128,18 @@ public class Post implements Serializable
 			ratings = new ArrayList<Rating>();
 		}
 		return ratings;
+	}
+	
+	public Rating getUserRating(int userId){
+		if(ratings != null && !ratings.isEmpty()){
+			for (Rating rating : ratings)
+			{
+				if(rating.getUserId() == userId){
+					return rating;
+				}
+			}
+		}
+		return null;
 	}
 
 	public void setRatings(List<Rating> ratings) {

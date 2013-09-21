@@ -5,15 +5,53 @@
                 xmlns:p="http://primefaces.org/ui"
                 template="/templates/masterLayout.xhtml">
 
+	<ui:define name="head">
+		<style type="text/css">
+			.postsPanel {
+				width: 75%;
+			}
+
+		</style>
+	
+	</ui:define>
 	<ui:define name="bodyContent">
-		
-		<p:dataList value="#{buzzController.posts}" var="post" id="posts" paginator="true" rows="5" type="none">  
-		
-            <h:outputText value="#{post.title}" style="margin-left:0px; font-size:7; font-weight:bold" /><br />
-            <h:outputText value="#{post.description}" escape="false" style="margin-left:0px" /><br /><br />
-            <p:separator/>
-            
-	    </p:dataList>
-                        
+	
+		<h:form id="form">
+		<p:growl autoUpdate="true"/>
+		<h:panelGrid columns="2" styleClass="table-align-top" columnClasses="postsPanel">
+			
+			<p:dataList value="#{buzzController.postViews}" var="postView" id="posts" paginator="true" rows="5" type="none">  
+	            <h:outputText value="#{postView.post.title}" style="margin-left:0px; font-size:7; font-weight:bold" /><br />
+	            <h:outputText value="#{postView.post.description}" escape="false" style="margin-left:0px" /><br />
+	            <h:outputText value="Tags: #{postView.post.tagsAsString}" style="margin-left:0px" /><br />
+	            <p:rating value="#{postView.rating.rate}" readonly="true"></p:rating><br />
+	            <p:commandButton value="more..." 
+	            			actionListener="#{buzzController.setSelectedPostView(postView)}" 
+	            			update=":form:postViewDetails"
+	            			oncomplete="postDlg.show()">
+	            </p:commandButton>
+	            <br /><br />
+	            <p:separator/>
+		    </p:dataList>
+		    
+		    <p:panel header="Live Updates">
+		    	<p:tagCloud model="#{buzzController.model}">  
+			        <p:ajax event="select" update="posts" listener="#{buzzController.onSelect}" />  
+			    </p:tagCloud>
+		    </p:panel>
+		    
+		    <p:dialog widgetVar="postDlg" header="Post Detail">
+		    	<h:panelGrid id="postViewDetails" columns="1"  style="width: 500px;">
+			    	<h:outputLabel value="#{buzzController.selectedPostView.post.title}" />
+		    		<h:outputText value="#{buzzController.selectedPostView.post.description}" />
+		    		<p:rating  value="#{buzzController.selectedPostView.rating.rate}" 
+		    				readonly="#{buzzController.selectedPostView.alreadyRated}">
+		    			<p:ajax event="rate" listener="#{buzzController.handlePostRating}" />  
+		    		</p:rating>
+		    		
+		    	</h:panelGrid>
+		    </p:dialog>
+      </h:panelGrid>    
+      </h:form>              
 	</ui:define>
 </ui:composition>

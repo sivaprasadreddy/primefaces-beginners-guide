@@ -64,10 +64,6 @@ public class AdminController implements Serializable
 	public void init()
 	{
 		this.users = userService.findAllUsers();
-		for (User user : users)
-		{
-			System.out.println(user.getId()+"=>"+user.getRoles());
-		}
 		this.roles = userService.findAllRoles();
 		this.tags = tagService.findAllTags();
 		//this.posts = postService.findAllPosts();
@@ -94,12 +90,10 @@ public class AdminController implements Serializable
 	
 	public User getSelectedUser()
 	{
-		System.out.println("******getSelectedUser *******"+selectedUser);
 		return selectedUser;
 	}
 	public void setSelectedUser(User selectedUser)
 	{
-		System.err.println("------setSelectedUser-------");
 		this.selectedUser = selectedUser;
 		List<Role> source = new ArrayList<Role>();
 		List<Role> target = new ArrayList<Role>();
@@ -113,15 +107,12 @@ public class AdminController implements Serializable
 			}
 			
 		}
-		System.out.println(source+":"+target);
 		selectedUserRoles = new DualListModel<Role>(source, target);
 	}
 	public DualListModel<Role> getSelectedUserRoles()
 	{
-		System.out.println("------getSelectedUserRoles--------");
 		
 		if(selectedUserRoles == null){
-			System.out.println("empty userroles");
 			selectedUserRoles = new DualListModel<Role>();
 		}
 		return selectedUserRoles;

@@ -110,6 +110,13 @@ public class TagRepositoryImpl implements TagRepository
 		});
 	}
 
+	@Override
+	public List<Tag> findPostTags(Integer postId)
+	{
+		String FIND_ALL_TAGS_SQL = "SELECT t.*  FROM posts_tags p left outer join tags t on p.tag_id=t.tag_id where p.post_id=?";
+		return jdbcTemplate.query(FIND_ALL_TAGS_SQL, new Object[]{postId}, new TagRowMapper());
+	}
+
 	
 	
 }

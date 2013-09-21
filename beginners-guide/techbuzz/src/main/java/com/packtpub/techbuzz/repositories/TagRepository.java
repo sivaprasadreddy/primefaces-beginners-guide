@@ -19,4 +19,6 @@ public interface TagRepository extends GenericRepository<Integer, Tag>
 
 	List<TagPostCountBean> getTagPostCounts();
 
+	List<Tag> findPostTags(Integer id);
+
 }

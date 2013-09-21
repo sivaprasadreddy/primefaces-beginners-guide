@@ -16,6 +16,20 @@ public class Rating implements Serializable
 
     public Rating() {
     }
+    
+	public Rating(int postId, int userId, int rate)
+	{
+		this.postId = postId;
+		this.userId = userId;
+		this.rate = rate;
+	}
+
+	@Override
+	public String toString()
+	{
+		return "Rating [postId=" + postId + ", userId=" + userId + ", rate="
+				+ rate + "]";
+	}
 
 	public int getPostId() {
 		return postId;
