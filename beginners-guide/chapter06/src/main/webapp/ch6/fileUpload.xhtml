@@ -30,6 +30,15 @@
        
        <br/><br/>
        
+	    <p:panel header="FileUpload : Auto Upload">
+			<h:form enctype="multipart/form-data">
+			    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"
+			    		auto="true"/>
+			</h:form> 
+       </p:panel>
+       
+       <br/><br/>
+       
 	    <p:panel header="FileUpload : Single File Restriction using jQuery">
 			<h:form enctype="multipart/form-data">
 			    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"
@@ -51,7 +60,10 @@
  		</p:panel>
  		
  		<script type="text/javascript">
- 	
+ 			//
+ 			//Credit goes to BalusC
+ 			//http://stackoverflow.com/questions/14881131/primefaces-upload-how-to-only-allow-one-upload-in-advance-mode
+ 			// 
 			$(document).ready(function() {
 		    upload.buttonBar.find('input[type=file]').change(function() {
 		        if (this.value) {

@@ -7,11 +7,14 @@
     <application>
     	
     	<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-    	
+    	<!-- 
         <locale-config>
             <default-locale>en</default-locale>
             <supported-locale>tr_TR</supported-locale>
         </locale-config>
+         -->
+         <message-bundle>messages</message-bundle>
+         
         <resource-bundle>
             <base-name>messages</base-name>
             <var>msg</var>
@@ -36,3 +39,4 @@
     
 
 </faces-config>
+

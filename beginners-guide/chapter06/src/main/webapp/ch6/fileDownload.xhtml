@@ -18,15 +18,25 @@
 		
 	    <p:growl id="msg" autoUpdate="true"/>  
 	    
+	    <h:form>  
+  
+		    <h:commandLink id="downloadLink" value="Download">  
+			    <p:fileDownload value="#{userController.userPic}" />  
+			</h:commandLink>
+  
+		</h:form> 
+		<br/><br/>
+		
 	    <p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
 		    <p:graphicImage value="/resources/images/ajax-loader.gif" />  
 		</p:dialog> 
 
 		<h:form id="form1" >  
   
-		    <p:commandButton id="downloadLink" value="Download" ajax="false" onclick="PrimeFaces.monitorDownload(onDownloadStart, onDownloadStop)"   
+		    <p:commandButton id="downloadLink" value="Download" ajax="false" 
+		    			onclick="PrimeFaces.monitorDownload(onDownloadStart, onDownloadStop)"   
 		        icon="ui-icon-arrowthick-1-s">  
-		    <p:fileDownload value="#{fileDownloadController.file}" />  
+		    <p:fileDownload value="#{userController.userPic}" />  
 		</p:commandButton>
   
 		</h:form>  

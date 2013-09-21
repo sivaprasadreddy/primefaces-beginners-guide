@@ -1,11 +1,11 @@
 package com.packtpub.techbuzz.controllers;
 
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 import org.primefaces.event.RateEvent;
+
+import com.packtpub.techbuzz.utils.JSFUtils;
 
 /**
  * @author Siva
@@ -54,10 +54,10 @@ public class RatingController {
     
     public void handleRate(RateEvent rateEvent) {  
     	int rate = ((Integer) rateEvent.getRating()).intValue();  
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("You rated:" +rate));  
-    }  
+        JSFUtils.addInfoMsg("You rated:" +rate);  
+    }
       
     public void handleCancel() {  
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Rating Cancelled"));  
+    	JSFUtils.addInfoMsg("Rating Cancelled");
     }
 }

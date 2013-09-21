@@ -35,19 +35,27 @@ public class PostRepositoryImpl implements PostRepository
 		return jdbcTemplate.query("select * from posts order by created_on desc", new PostMapper());
 	}
 
+
 	@Override
 	public List<Post> findPostsByUserId(Integer userId)
 	{
-		return null;
+		String FIND_POSTS_BY_USER_SQL = "select * from posts where posted_by=? order by created_on desc";
+		return jdbcTemplate.query(FIND_POSTS_BY_USER_SQL, 
+				new Object[]{userId}, new PostMapper());
 	}
 
 	@Override
-	public Post getPost(Integer PostId)
+	public Post getPost(Integer postId)
 	{
-		// TODO Auto-generated method stub
+		String FIND_POST_SQL = "select * from posts where post_id=? order by created_on desc";
+		List<Post> posts = jdbcTemplate.query(FIND_POST_SQL, 
+					new Object[]{postId}, new PostMapper());
+		if(posts != null && !posts.isEmpty())
+		{
+			return posts.get(0);
+		}
 		return null;
 	}
-
 	
 	@Override
 	public Post createPost(final Post post)

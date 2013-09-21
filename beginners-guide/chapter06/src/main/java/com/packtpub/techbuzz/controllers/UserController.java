@@ -1,14 +1,18 @@
 
 package com.packtpub.techbuzz.controllers;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -219,6 +223,10 @@ public class UserController implements Serializable
 		this.searchUser = userService.findUserByEmail(searchEmail);
 	}
 	
+	public void validateCaptcha() {  
+        JSFUtils.addInfoMsg("Valid Captcha");
+    }  
+	
 	public String logout()
 	{
 		FacesContext context = FacesContext.getCurrentInstance();
@@ -234,4 +242,17 @@ public class UserController implements Serializable
 		System.out.println("-----------handleFirstNameCancel------");
 	}
 	
+	public StreamedContent getUserPic() 
+    {  
+    	System.out.println("Downloading File....");
+    	
+    	// To downloaf files which are under classpath
+		//InputStream stream = this.getClass().getResourceAsStream("/Sample.pdf");
+		//StreamedContent file = new DefaultStreamedContent(stream, "application/pdf", "Sample.pdf"); 
+		
+		StreamedContent file = null;
+		InputStream stream = ((ServletContext)FacesContext.getCurrentInstance().getExternalContext().getContext()).getResourceAsStream("/resources/images/user-icon.png");  
+		file = new DefaultStreamedContent(stream, "image/png", "user_icon.png");
+		return file;
+    }
 }
