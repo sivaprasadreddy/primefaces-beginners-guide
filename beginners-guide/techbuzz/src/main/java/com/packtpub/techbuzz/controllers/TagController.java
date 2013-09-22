@@ -1,5 +1,6 @@
 package com.packtpub.techbuzz.controllers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -29,8 +30,9 @@ import com.packtpub.techbuzz.services.TagService;
  */
 @Component
 @Scope("request")
-public class TagController
+public class TagController implements Serializable 
 {
+	private static final long serialVersionUID = 1L;
 	@Autowired private PostService postService;
 	@Autowired private TagService tagService;
 	

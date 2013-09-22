@@ -1,5 +1,6 @@
 package com.packtpub.techbuzz.controllers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,38 +28,24 @@ import com.packtpub.techbuzz.utils.JSFUtils;
  */
 @Component
 @Scope("request")
-public class PostController
+public class PostController implements Serializable 
 {
+	private static final long serialVersionUID = 1L;
 	@Autowired private PostService postService;
 	@Autowired private TagService tagService;
 	
 	
-	private List<Post> posts = null;
 	private List<Tag> tags = null;
 	private List<Tag> selectedTags = new ArrayList<Tag>();
-	private Tag selectedTag = new Tag();
 	
 	private Post newPost = new Post();
 		
 	@PostConstruct
 	void init()
 	{
-		posts = postService.findAllPosts();
 		tags = tagService.findAllTags();
 	}
 	
-	public void setSelectedTag(Tag selectedTag)
-	{
-		this.selectedTag = selectedTag;
-	}
-	public Tag getSelectedTag()
-	{
-		return selectedTag;
-	}
-	public List<Post> getPosts()
-	{
-		return posts;
-	}
 	public Post getNewPost()
 	{
 		return newPost;

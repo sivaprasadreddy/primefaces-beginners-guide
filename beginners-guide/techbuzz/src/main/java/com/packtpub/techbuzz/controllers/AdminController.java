@@ -19,7 +19,6 @@ import com.packtpub.techbuzz.entities.Post;
 import com.packtpub.techbuzz.entities.Role;
 import com.packtpub.techbuzz.entities.Tag;
 import com.packtpub.techbuzz.entities.User;
-import com.packtpub.techbuzz.services.PostService;
 import com.packtpub.techbuzz.services.TagService;
 import com.packtpub.techbuzz.services.UserService;
 import com.packtpub.techbuzz.utils.JSFUtils;
@@ -35,7 +34,6 @@ public class AdminController implements Serializable
 	private static final long serialVersionUID = 1L;
 	private transient UserService userService;
 	private transient TagService tagService;
-	private transient PostService postService;
 	
 	private List<User> users = null;
 	private List<Role> roles = null;
@@ -51,10 +49,7 @@ public class AdminController implements Serializable
 	public void setUserService(UserService userService) {
 		this.userService = userService;
 	}
-	@Autowired
-	public void setPostService(PostService postService) {
-		this.postService = postService;
-	}
+	
 	@Autowired
 	public void setTagService(TagService tagService) {
 		this.tagService = tagService;

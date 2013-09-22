@@ -1,5 +1,6 @@
 package com.packtpub.techbuzz.controllers;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -32,35 +33,30 @@ import com.packtpub.techbuzz.web.view.PostView;
  */
 @Component
 @Scope("view")
-public class BuzzController
+public class HomeController implements Serializable 
 {
+	private static final long serialVersionUID = 1L;
 	@Autowired private PostService postService;
 	@Autowired private TagService tagService;
 	
-	private List<Post> posts = null;
 	private List<PostView> postViews = null;
-	private List<Tag> tags = null;
-	private List<Tag> selectedTags = null;
 	private Tag selectedTag = new Tag();
 	private PostView selectedPostView;
 	
 	private static Random random = new Random();
 	private TagCloudModel model;
 	
-	private Post newPost = null;
-	public BuzzController()
+	public HomeController()
 	{
-		newPost = new Post();
 	}
 	
 	@PostConstruct
 	void init()
 	{
-		posts = postService.findAllPosts();
-		tags = tagService.findAllTags();
-		selectedTags = new ArrayList<Tag>();
+		List<Post> posts = postService.findAllPosts();
+		List<Tag> tags = tagService.findAllTags();
 		
-		initPostViews();
+		initPostViews(posts);
 		model = new DefaultTagCloudModel();  
 		for (Tag tag : tags)
 		{
@@ -75,23 +71,8 @@ public class BuzzController
 	{
 		return selectedTag;
 	}
-	public List<Post> getPosts()
-	{
-		return posts;
-	}
-	public Post getNewPost()
-	{
-		return newPost;
-	}
-	public void setNewPost(Post newPost)
-	{
-		this.newPost = newPost;
-	}
-	public List<Tag> getTags()
-	{
-		return tags;
-	}
-	public void initPostViews()
+	
+	public void initPostViews(List<Post> posts)
 	{
 		List<PostView> views = new ArrayList<PostView>();
 		if(posts != null && !posts.isEmpty())
@@ -130,60 +111,6 @@ public class BuzzController
 		JSFUtils.addInfoMsg("You rated:" +rate);
     } 
 	
-	public List<Tag> getSelectedTags()
-	{
-		if(selectedTags == null){
-			selectedTags = new ArrayList<Tag>();
-		}
-		return selectedTags;
-	}
-	public void setSelectedTags(List<Tag> selectedTags)
-	{
-		this.selectedTags = selectedTags;
-	}
-	
-	/*public List<Tag> completeTag(String query)
-	{
-		System.out.println("completeTag-------------->"+query);
-		if(query == null){
-			return new ArrayList<Tag>();
-		}
-		List<Tag> tags = new ArrayList<Tag>();
-		List<Tag> allTags = TagRepository.getTags();
-		System.out.println("---->"+allTags);
-		for (Tag tag : allTags)
-		{
-			if(tag.getLabel().toLowerCase().startsWith(query.toLowerCase())){
-				tags.add(tag);
-			}
-		}
-		return tags;
-	}
-	*/
-	public List<Tag> completeTags(String query)
-	{
-		if(query == null){
-			return new ArrayList<Tag>();
-		}
-		List<Tag> tags = new ArrayList<Tag>();
-		List<Tag> allTags = tagService.findAllTags();
-		for (Tag tag : allTags)
-		{
-			if(tag.getLabel().toLowerCase().startsWith(query.toLowerCase())){
-				tags.add(tag);
-			}
-		}
-		return tags;
-	}
-	
-	public void createPost()
-	{
-		System.out.println("#################################################");
-		newPost.setUserId(1);
-		postService.createPost(newPost);
-		JSFUtils.addInfoMsg("Post created successfully");
-
-	}
 	public TagCloudModel getModel() {  
         return model;  
     }  
@@ -193,8 +120,8 @@ public class BuzzController
         String label = item.getLabel();
         FacesMessage msg = new FacesMessage("Selected Tag: "+ item.getLabel());  
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        posts = postService.findPostsByTagLabel(label);
-        initPostViews();
+        List<Post> posts = postService.findPostsByTagLabel(label);
+        initPostViews(posts);
     }
 	private int getStrength(int low, int high)
 	{
