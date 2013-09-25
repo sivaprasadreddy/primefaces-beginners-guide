@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS posts_tags;
 DROP TABLE IF EXISTS comments;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS user_settings;
 DROP TABLE IF EXISTS users_roles;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS users;
@@ -24,6 +25,14 @@ CREATE TABLE users
   PRIMARY KEY (user_id),
   UNIQUE KEY username (username),
   UNIQUE KEY email_id (email_id)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE  user_settings (
+  user_id int(11) NOT NULL,
+  theme varchar(45) default NULL,
+  receive_email_feed tinyint(1) default NULL,
+  PRIMARY KEY  (user_id),
+  CONSTRAINT USER_SETTINGS_USER_ID FOREIGN KEY (user_id) REFERENCES users (user_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 CREATE TABLE roles (
@@ -115,6 +124,21 @@ values
 (15,'mandy','mandy@mcdonnell.com','Mandy','Mandy','Mcdonnell','Male','123-123-1234','2013-04-29 00:00:00',0,''),
 (16,'conrad','conrad@lanfear.com','Conrad','Conrad','Lanfear','Male','123-123-1234','2013-04-29 00:00:00',0,''),
 (17,'cyril','cyril@behen.com','Cyril','Cyril','Behen','Male','123-123-1234','2013-04-29 00:00:00',0,'');
+
+
+insert into user_settings(user_id, theme, receive_email_feed)
+values
+(1,'aristo',true),
+(2,'bootstrap',true),
+(3,'afterdark',true),
+(4,'bluesky',true),
+(5,'blitzer',true),
+(6,'home',true),
+(7,'sam',true),
+(8,'aristo',true),
+(9,'aristo',true),
+(10,'aristo',true);
+
 
 insert into users_roles(user_id,role_id)
 values

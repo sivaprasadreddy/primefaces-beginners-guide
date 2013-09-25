@@ -44,6 +44,18 @@
 						<p:menuitem value="Administration" url="administration.jsf" icon="ui-icon-gear"/>
 				        
 				        <f:facet name="options">
+				        	<p:themeSwitcher value="#{userSettingsController.selectedTheme}" style="width:180px" var="theme">  
+								<f:selectItem itemLabel="Select Theme" itemValue="" />  
+								<f:selectItems value="#{userSettingsController.themePojos}" var="t" 
+												itemLabel="#{t.name}" itemValue="#{t}"/>
+									<p:ajax listener="#{userSettingsController.saveUserTheme}"/>	  
+								<p:column>  
+									#{theme.name}  
+								</p:column>
+								<p:column>  
+									<p:graphicImage value="/resources/images/themes/#{theme.image}"/>  
+								</p:column>
+							</p:themeSwitcher>
 				        	<p:outputLabel value="Welcome #{userController.loginUser.emailId}! " rendered="#{userController.userLoggedin}"/>
 				        	<p:commandLink value=" Logout" action="#{userController.logout}" style="margin-right:10px" icon="ui-icon-extlink" rendered="#{userController.userLoggedin}"/>
 				        </f:facet>

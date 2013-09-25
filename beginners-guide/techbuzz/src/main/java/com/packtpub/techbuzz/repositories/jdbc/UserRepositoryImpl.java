@@ -2,6 +2,7 @@ package com.packtpub.techbuzz.repositories.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
@@ -9,11 +10,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.packtpub.techbuzz.entities.User;
+import com.packtpub.techbuzz.entities.UserSettings;
 import com.packtpub.techbuzz.repositories.UserRepository;
 import com.packtpub.techbuzz.repositories.rowmappers.UserRowMapper;
 
@@ -163,6 +166,55 @@ public class UserRepositoryImpl implements UserRepository
 			jdbcTemplate.update(sql, args);
 		}
 				
+	}
+
+	@Override
+	public void insertUserSettings(UserSettings settings)
+	{
+		
+		String SQL = "insert into user_settings(user_id, theme, receive_email_feed) values(?,?,?)";
+		jdbcTemplate.update(SQL, new Object[]{
+				settings.getUserId(),
+				settings.getTheme(),
+				settings.isReceiveEmailFeed()
+		});
+	}
+	
+	@Override
+	public void updateUserSettings(UserSettings settings)
+	{
+		
+		String SQL = "update user_settings set theme=?, receive_email_feed=? where user_id=? ";
+		jdbcTemplate.update(SQL, new Object[]{
+				settings.getTheme(),
+				settings.isReceiveEmailFeed(),
+				settings.getUserId()
+		});
+	}
+
+	@Override
+	public UserSettings getUserSettings(int userId)
+	{
+		String sql = "select * from user_settings where user_id=?";
+		List<UserSettings> results = jdbcTemplate.query(sql, new Object[]{userId}, new RowMapper<UserSettings>(){
+
+			@Override
+			public UserSettings mapRow(ResultSet rs, int rowNum)
+					throws SQLException
+			{
+				UserSettings settings = new UserSettings();
+				settings.setUserId(rs.getInt("user_id"));
+				settings.setTheme(rs.getString("theme"));
+				settings.setReceiveEmailFeed(rs.getBoolean("receive_email_feed"));
+				
+				return settings;
+			}
+			
+		});
+		if(results!= null && !results.isEmpty()){
+			return results.get(0);
+		}
+		return null;
 	}
 
 }

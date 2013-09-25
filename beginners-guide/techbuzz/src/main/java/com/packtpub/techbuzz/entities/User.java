@@ -24,6 +24,7 @@ public class User implements Serializable
 	private Date dob = new Date();
 	private String bio;
     private boolean disabled;
+    private UserSettings userSettings;
     private List<Role> roles = new ArrayList<Role>();
 
     public User() 
@@ -152,7 +153,20 @@ public class User implements Serializable
         this.disabled = disabled;
     }
 
-    public List<Role> getRoles() {
+    public UserSettings getUserSettings()
+	{
+    	if(userSettings == null){
+    		userSettings = new UserSettings();
+    	}
+		return userSettings;
+	}
+
+	public void setUserSettings(UserSettings userSettings)
+	{
+		this.userSettings = userSettings;
+	}
+
+	public List<Role> getRoles() {
     	if(roles == null){
     		roles = new ArrayList<Role>();
     	}

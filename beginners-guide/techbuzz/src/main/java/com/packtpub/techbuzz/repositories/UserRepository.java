@@ -6,6 +6,7 @@ package com.packtpub.techbuzz.repositories;
 import java.util.List;
 
 import com.packtpub.techbuzz.entities.User;
+import com.packtpub.techbuzz.entities.UserSettings;
 
 
 /**
@@ -24,5 +25,11 @@ public interface UserRepository extends GenericRepository<Integer, User>
 	int changePassword(String loginId, String oldPwd, String newPwd);
 
 	void updateUsersStatus(List<User> users, String status);
+	
+	void insertUserSettings(UserSettings settings);
+	
+	UserSettings getUserSettings(int userId);
+
+	void updateUserSettings(UserSettings settings);
 
 }

@@ -32,7 +32,8 @@ public class UserController implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 
-	private transient UserService userService;
+	@Autowired
+	private UserService userService;
 	
 	private User loginUser;
 	private User registerUser;
@@ -47,10 +48,6 @@ public class UserController implements Serializable
 		registerUser = new User();
 	}
 	
-	@Autowired
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
 	public String doLogin() 
 	{
 		User user = userService.login(loginUser.getEmailId(), loginUser.getPassword());

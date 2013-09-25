@@ -9,7 +9,7 @@
 		
 		<p:growl autoUpdate="true" showDetail="true"/>
 		
-		<p:tabView id="tabs">
+		<p:accordionPanel id="tabs">
 			<p:tab id="acctForm" title="User Details">
 			
 				<h:form id="myAccountForm">
@@ -43,8 +43,11 @@
 						<p:outputLabel for="bio" value="About Me"/>
 						<p:inputTextarea id="bio" value="#{userController.loginUser.bio}" cols="50" rows="5"
 								completeMethod="#{userController.completeBio}" minQueryLength="4" scrollHeight="100"
-								counter="counter" maxlength="50"/>
+								counterTemplate="{0} characters remaining" counter="counter" maxlength="50"/>
+						
+						<h:outputLabel value="" />						
 						<h:outputText id="counter" value="" />
+						
 						<p:commandButton value="Update" actionListener="#{userController.updateUser}" update="@form"/>
 						
 					</h:panelGrid>
@@ -81,7 +84,8 @@
 				
 				</h:form>
             </p:tab>
-            </p:tabView>
+            </p:accordionPanel>
+            
             
 	</ui:define>
 </ui:composition>

@@ -50,6 +50,7 @@ public class RoleRepositoryImpl implements RoleRepository
 		return role;
 	}
 	
+	@Override
 	public void insertUserRole(int userId, int roleId)
 	{
 		final String INSERT_SQL = "INSERT INTO users_roles (user_id, role_id) VALUES (?, ?)";

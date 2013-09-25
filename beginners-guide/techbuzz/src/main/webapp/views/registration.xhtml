@@ -7,7 +7,7 @@
 
 	<ui:define name="bodyContent">
 				
-		<p:panel header="Registration Form" style="width: 400px;">
+		<p:panel header="Registration Form" style="width: 400px; margin: 0 auto;">
 				<h:form id="registrationForm">
 				<p:messages />
 				<h:panelGrid columns="2">
@@ -41,9 +41,16 @@
 					<p:calendar value="#{userController.registerUser.dob}" id="dob">
 					</p:calendar>
 					
+					<ui:remove>
+						<p:outputLabel value="Captcha"/>
+						<p:captcha label="captcha"/>
+					</ui:remove>
+					
 					<p:outputLabel value=""/>
-					<p:commandButton action="#{userController.doRegister}" value="Register" update="@form"/>
+					<p:commandButton action="#{userController.doRegister}" ajax="false" value="Register" update="@form"/>
 				    
+				    <h:outputText value="Existing User?" />
+					<p:button value="Login" outcome="login"/>
 				</h:panelGrid>
 				</h:form>
 			</p:panel>

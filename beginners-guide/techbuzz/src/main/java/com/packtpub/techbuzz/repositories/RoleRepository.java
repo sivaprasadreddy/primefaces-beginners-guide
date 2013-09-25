@@ -19,4 +19,6 @@ public interface RoleRepository extends GenericRepository<Integer, Role>
 
 	void updateUserRoles(User user);
 
+	void insertUserRole(int userId, int roleId);
+
 }

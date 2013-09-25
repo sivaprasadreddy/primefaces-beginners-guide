@@ -135,21 +135,7 @@
         
         <dependency>
             <groupId>org.primefaces.themes</groupId>
-            <artifactId>afterwork</artifactId>
-            <version>${primefaces.theme.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.primefaces.themes</groupId>
-            <artifactId>bluesky</artifactId>
-            <version>${primefaces.theme.version}</version>
-            <scope>runtime</scope>
-        </dependency>
-        
-        <dependency>
-            <groupId>org.primefaces.themes</groupId>
-            <artifactId>bootstrap</artifactId>
+            <artifactId>all-themes</artifactId>
             <version>${primefaces.theme.version}</version>
             <scope>runtime</scope>
         </dependency>

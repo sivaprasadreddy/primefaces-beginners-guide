@@ -21,10 +21,23 @@
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
-    <!-- <context-param>
+    
+    <context-param>
         <param-name>primefaces.THEME</param-name>
-        <param-value>afterwork</param-value>
-    </context-param> -->
+        <param-value>#{userSettingsController.selectedTheme}</param-value>
+        <!-- <param-value>seablue</param-value> -->
+    </context-param>
+
+	
+	<context-param>
+		<param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+		<param-value>6LfD3-QSAAAAADtDVq4I2weALbuSR1-KehgvAMYW</param-value>
+	</context-param>
+	<context-param>
+		<param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+		<param-value>6LfD3-QSAAAAAKq31okWYrsN9yDpU97rzJoAq5Wm</param-value>
+	</context-param>
+	
 	
 	<!-- Java-based annotation-driven Spring container definition -->
 	<context-param>
