@@ -12,16 +12,27 @@
     
 	<ui:define name="bodyContent">
 		
-		<h:form>
-			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		<h:form id="form1">
+			<p:panel id="backNav">
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/>
+			<h3>Sticky Component</h3>
+			</p:panel>	    
 		</h:form>
-		<h2>Sticky Component</h2>
-	    <p:separator/>
-	    
-		<h:form style="width: 800px; margin: 0 auto;">
 		
-			
-			
+		<h:form style="width: 800px; margin: 0 auto;">
+			<p>
+				<p:graphicImage value="/resources/images/books/PFBG_Raw.jpg"></p:graphicImage>
+			</p>
+			<p>
+				<p:graphicImage value="/resources/images/books/PF_Cookbook.jpg"></p:graphicImage>
+			</p>
+			<p>
+				<p:graphicImage value="/resources/images/books/PF_Starter.jpg"></p:graphicImage>
+			</p>
+			<p>
+				<p:graphicImage value="/resources/images/books/JSF2_Cookbook.jpg"></p:graphicImage>
+			</p>
+			<p:sticky target=":form1:backNav"></p:sticky>
 		</h:form>
  
 	</ui:define>

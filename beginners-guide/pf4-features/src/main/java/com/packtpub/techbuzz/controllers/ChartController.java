@@ -18,6 +18,7 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import org.primefaces.model.chart.BarChartSeries;
 import org.primefaces.model.chart.BubbleChartModel;
 import org.primefaces.model.chart.BubbleChartSeries;
 import org.primefaces.model.chart.CartesianChartModel;
@@ -41,6 +42,8 @@ public class ChartController implements Serializable
 	private PieChartModel pieChartModel;
 	private DonutChartModel donutChartModel;
 	private BubbleChartModel bubbleChartModel;
+	
+	private CartesianChartModel combinedChartModel;
 			
 	public ChartController()
 	{
@@ -50,11 +53,10 @@ public class ChartController implements Serializable
 		initPieChartModel();
 		initDonutChartModel();
 		initBubbleChartModel();
+		initCombinedChartModel();
 		
 	}
 	
-	
-
 	private void initBubbleChartModel()
 	{
 		bubbleChartModel = new BubbleChartModel();
@@ -173,6 +175,34 @@ public class ChartController implements Serializable
 		linearChartModel.addSeries(jquerySeries);
 	}
 	
+
+
+	private void initCombinedChartModel() 
+	{
+
+		combinedChartModel = new CartesianChartModel();
+		
+		LineChartSeries primefacesSeries = new LineChartSeries();
+		primefacesSeries.setLabel("PrimeFaces");
+		primefacesSeries.set("2009", 150);
+		primefacesSeries.set("2010", 250);
+		primefacesSeries.set("2011", 300);
+		primefacesSeries.set("2012", 240);
+		primefacesSeries.set("2013", 400);
+		
+		BarChartSeries jquerySeries = new BarChartSeries();
+		jquerySeries.setLabel("jQuery");
+		jquerySeries.set("2009", 210);
+		jquerySeries.set("2010", 150);
+		jquerySeries.set("2011", 200);
+		jquerySeries.set("2012", 280);
+		jquerySeries.set("2013", 320);
+		
+		combinedChartModel.addSeries(jquerySeries);
+		combinedChartModel.addSeries(primefacesSeries);
+	
+	}
+	
 	public StreamedContent getJfreeChart()
 	{
 		StreamedContent content = null;
@@ -229,6 +259,12 @@ public class ChartController implements Serializable
 	{
 		return bubbleChartModel;
 	}
+	
+	public CartesianChartModel getCombinedChartModel() 
+	{
+		return combinedChartModel;
+	}
+	
 	public String  getHorizontalChartDatatipFormat()
 	{
 		return "<span>No. of Posts: %s</span>";

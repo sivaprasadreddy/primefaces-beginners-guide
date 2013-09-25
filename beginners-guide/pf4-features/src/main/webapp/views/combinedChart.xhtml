@@ -7,7 +7,7 @@
 	template="/templates/publicLayout.xhtml">
     
      <ui:define name="head">
-    	
+     	<h:outputScript library="js" name="jquery-plugins.js" />
     </ui:define>
     
 	<ui:define name="bodyContent">
@@ -17,12 +17,10 @@
 		</h:form>
 		<h2>Combined Chart Component</h2>
 	    <p:separator/>
-	    
-		<h:form style="width: 800px; margin: 0 auto;">
-		
 			
+			<p:lineChart id="line" value="#{chartController.combinedChartModel}" legendPosition="e"
+                         title="Combined Chart" style="height:300px;margin-top:30px"/>
 			
-		</h:form>
  
 	</ui:define>
 </ui:composition>
