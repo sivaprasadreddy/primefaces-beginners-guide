@@ -10,17 +10,16 @@
   <name>primefaces-beginners-guide</name>
   <url>http://maven.apache.org</url>
 
-	<properties>
+  <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version.source>1.6</java.version.source>
         <java.version.target>1.6</java.version.target>
         <primefaces.version>3.5</primefaces.version>
         <primefaces.theme.version>1.0.9</primefaces.theme.version>
         <jsf.version>2.1.13</jsf.version>
-    </properties>
+  </properties>
 	
-  <modules>
-    <module>techbuzz</module>
+  <modules>    
     <module>chapter01</module>
     <module>chapter02</module>
     <module>chapter03</module>
@@ -33,6 +32,8 @@
     <module>chapter10</module>
     <module>chapter11</module>
     <module>chapter12</module>
+    <module>pf4-features</module>
+    <module>techbuzz</module>
   </modules>
   
 	<repositories>
