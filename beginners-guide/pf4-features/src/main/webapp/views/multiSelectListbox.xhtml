@@ -20,7 +20,13 @@
 	    
 		<h:form style="width: 800px; margin: 0 auto;">
 		
-			
+			<p:multiSelectListbox value="#{multiSelectListboxBean.selection}" effect="slide">  
+        <f:selectItems value="#{multiSelectListboxBean.categories}" />  
+    </p:multiSelectListbox>  
+  
+    <p:commandButton value="Save" icon="ui-icon-check" update="out" style="margin:10px 0"/>  
+  
+    <h:outputText id="out" value="Value: #{multiSelectListboxBean.selection}" style="display:block"/>  
 			
 		</h:form>
  

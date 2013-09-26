@@ -7,8 +7,8 @@
 	template="/templates/publicLayout.xhtml">
     
      <ui:define name="head">
-    	
-    </ui:define>
+     	<h:outputScript library="js" name="jquery-plugins.js" />
+     </ui:define>
     
 	<ui:define name="bodyContent">
 		
@@ -17,10 +17,15 @@
 		</h:form>
 		<h2>Dialog Framework</h2>
 	    <p:separator/>
-	    
+            
+                
 		<h:form style="width: 800px; margin: 0 auto;">
 		
-			
+			 <p:commandButton value="View" icon="ui-icon-extlink" 
+                                          actionListener="#{dialogBean.viewUsers}" />  
+  
+                         <p:commandButton value="Options" icon="ui-icon-extlink" 
+                                          actionListener="#{dialogBean.viewUsersCustomized}" />
 			
 		</h:form>
  
