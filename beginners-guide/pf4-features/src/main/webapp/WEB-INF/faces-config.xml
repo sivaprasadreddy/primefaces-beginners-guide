@@ -17,6 +17,10 @@
             <var>msg</var>
         </resource-bundle>
         
+         <action-listener>org.primefaces.application.DialogActionListener</action-listener>
+        <navigation-handler>org.primefaces.application.DialogNavigationHandler</navigation-handler>
+        <view-handler>org.primefaces.application.DialogViewHandler</view-handler>
+       
         <system-event-listener>
 		    <system-event-listener-class>com.packtpub.techbuzz.config.ViewScopeCallbackRegistrar</system-event-listener-class>
 		    <system-event-class>javax.faces.event.PostConstructViewMapEvent</system-event-class>
