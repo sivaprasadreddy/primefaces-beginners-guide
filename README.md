@@ -1,102 +1,152 @@
-primefaces-beginners-guide
-==========================
-
 PrimeFaces Beginner's Guide Book Source Code
+============================================
 
 
 Chapter 1 : Introduction to PrimeFaces
 ---------------------------------------
 In this chapter we will learn about:
-	1) Installing and configuring PrimeFaces
-	2) Creating Simple Forms using PrimeFaces
-	3) Performing Form Validations
-	4) Partial Form Processing
+
+	1. Installing and configuring PrimeFaces
+	
+	2. Creating Simple Forms using PrimeFaces
+	
+	3. Performing Form Validations
+	
+	4. Partial Form Processing
+	
 
 Chapter 2 : Creating a Sample Application
 -----------------------------------------
 In this chapter we will learn about:
-	1) Sample application "TechBuzz"
-	2) Functional Requirements
-	3) Sample UI Screenshots
+
+	1. Sample application "TechBuzz"
+	
+	2. Functional Requirements
+	
+	3. Sample UI Screenshots
+	
 
 Chapter 3 : PrimeFaces Common Utility Components
 ------------------------------------------------
 In this chapter we will learn about:
-	1) Dialog, Tooltip
-	2) Growl, Messages, BlockUI
-	3) Button, CommandButton, CommandLink
-	4) Working with PrimeFaces Selectors and Events
+
+	1. Dialog, Tooltip
+	
+	2. Growl, Messages, BlockUI
+	
+	3. Button, CommandButton, CommandLink
+	
+	4. Working with PrimeFaces Selectors and Events
+	
 
 Chapter 4 : Introducing Primefaces Client Side Validations framework
 ---------------------------------------------------------------------
 In this chapter we will learn about:
-	1)Configuring and using Client Side Validation (CSV) Framework
-	2) Triggering client side validations based on events
-	3) Supporting I18N for validation messages
-	4) Extending CSV framework with custom JSF Converters and Validators
-	5) Using CSV framework with Bean Validation API
-	6) Extending CSV framework with custom Bean Validation annotations
+
+	1.Configuring and using Client Side Validation (CSV) Framework
+	
+	2. Triggering client side validations based on events
+	
+	3. Supporting I18N for validation messages
+	
+	4. Extending CSV framework with custom JSF Converters and Validators
+	
+	5. Using CSV framework with Bean Validation API
+	
+	6. Extending CSV framework with custom Bean Validation annotations
+	
 
 Chapter 5 : Text Input Components
 ---------------------------------
 In this chapter we will learn about:
-	1) InputText, InputTextarea, Password
-	2) InputMask, Editor
-	3) AutoComplete
+
+	1. InputText, InputTextarea, Password
+	
+	2. InputMask, Editor
+	
+	3. AutoComplete
+	
 
 Chapter 6 : Selection Input Components
 --------------------------------------
 In this chapter we will learn about:
-	1) BoolCheckbox, SelectManyCheckbox
-	2) SelectOneRadio 
-	3) SelectOneMenu, SelectOneListbox
-	4) SelectManyMenu
-	5) PickList
+
+	1. BoolCheckbox, SelectManyCheckbox
+	
+	2. SelectOneRadio 
+	
+	3. SelectOneMenu, SelectOneListbox
+	
+	4. SelectManyMenu
+	
+	5. PickList
+	
 
 Chapter 7 : Advanced Input Components
 --------------------------------------
 In this chapter we will learn about:
-	1) Calendar
-	2) File Upload
-	3) File Download
-	4) Rating, Spinner, Slider
-	5) Captcha
+
+	1. Calendar
+	
+	2. File Upload
+	
+	3. File Download
+	
+	4. Rating, Spinner, Slider
+	
+	5. Captcha
+	
 
 Chapter 8 : Data Components
 ----------------------------
 In this chapter we will learn about:
+
 	1. DataList
-		a) Unordered List
-		b) Ordered List
-		c) Pagination
+		a. Unordered List
+		
+		b. Ordered List
+		
+		c. Pagination
+		
 
 	2. DataTable
-		a) Simple
-		b) Header Footer
-		c) Pagination
-		d) Sorting
-		e) Filtering
-		f) Row Selection
-		g) Lazy Loading
-		h) Inline Row/Cell Editing
+		a. Simple
+		b. Header Footer
+		c. Pagination
+		d. Sorting
+		e. Filtering
+		f. Row Selection
+		g. Lazy Loading
+		h. Inline Row/Cell Editing
 
 	3. DataExporter
+	
 
 Chapter 9 - Advanced Data Visualization Components
 ---------------------------------------------------
 In this chapter we will learn about:
+
 	1. Carousel
+	
 	2. TagCloud
+	
 	3. Tree
+	
 	4. TreeTable
+	
 	5. Schedule
+	
 	
 Chapter 10 - Layout Components
 -------------------------------
 In this chapter we will learn about:
+
 	1. Panel components - Panel, PanelGrid, ScrollPanel
+	
 	2. Component layout styles -  Accordion, TabView, Wizard
+	
 	3. Creating Complex Layouts
+	
 	
 Chapter 11 - Navigation Components
 ------------------------------------
