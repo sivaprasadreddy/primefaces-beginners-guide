@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+	
+			<h:form>
+				<p:panel header="Chart Components">
+						<h:panelGrid columns="1" style="width: 800px; cellspacing: 5px;">
+						
+							<p><h:link outcome="lineChart.jsf" value="LineChart"/> </p>
+							<p><h:link outcome="areaChart.jsf" value="AreaChart"/> </p>
+							<p><h:link outcome="barChart.jsf" value="BarChart"/> </p>
+							<p><h:link outcome="pieChart.jsf" value="PieChart"/> </p>
+							<p><h:link outcome="donutChart.jsf" value="DonutChart"/> </p>
+							<p><h:link outcome="bubbleChart.jsf" value="BubbleChart"/> </p>
+							<p><h:link outcome="exportChart.jsf" value="Exporting Chart"/> </p>
+							<p><h:link outcome="jfreeChart.jsf" value="JFreeChart"/> </p>
+							 
+						</h:panelGrid>
+					</p:panel>
+			</h:form>
+
+	</ui:define>
+</ui:composition>

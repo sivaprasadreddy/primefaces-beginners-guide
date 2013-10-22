@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+								 
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h2>DataTable : Lazy Loading</h2>
+		<h:form>
+			
+			<p:panel header="DataTable : Lazy Loading">
+			
+				<p:dataTable id="usersTbl" var="user" value="#{adminController.lazyUserModel}" 
+						paginator="true" rows="5" lazy="true"> 
+					
+			        <p:column headerText="Id" sortBy="#{user.id}" >  
+			            <h:outputText value="#{user.id}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="FirstName" filterBy="#{user.firstName}" sortBy="#{user.firstName}">  
+			            <h:outputText value="#{user.firstName}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="LastName" sortBy="#{user.lastName}" filterBy="#{user.lastName}">  
+			            <h:outputText value="#{user.lastName}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="Disabled">  
+			            <h:outputText value="#{user.disabled}" />  
+			        </p:column>  
+			        
+			    </p:dataTable>
+		    
+			</p:panel>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

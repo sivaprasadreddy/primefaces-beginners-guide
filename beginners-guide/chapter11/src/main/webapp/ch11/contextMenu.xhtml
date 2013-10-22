@@ -1,0 +1,119 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>ContextMenu Component</h2>
+	    <p:separator/>
+	    
+	    <p:growl autoUpdate="true"/>
+		<h:form id="form" style="width: 800px; margin: 0 auto;">
+			
+		    <p:button id="myButton" value="ShowMenu"/>
+		   
+			<p:contextMenu for="myButton">
+				<p:submenu label="PrimeFaces">
+			        <p:menuitem value="Website" url="http://www.primefaces.org"/>  
+			        <p:menuitem value="Showcase" url="http://www.primefaces.org/showcase/ui/home.jsf"/>  
+			        <p:menuitem value="Forum" url="http://forum.primefaces.org/"/>  
+			        <p:menuitem value="IssueTracker" url="http://www.primefaces.org/issuetracker.html"/>  
+				</p:submenu>
+				<p:submenu label="jQuery">
+					<p:menuitem value="jQuery" url="http://jquery.com/"/>  
+			        <p:menuitem value="jQueryUI" url="http://jqueryui.com/"/>
+				</p:submenu>
+				<p:menuitem value="JSF" url="http://javaserverfaces.java.net/"/> 
+				
+		    </p:contextMenu>
+			
+			<br/> <br/>
+			
+			<p:contextMenu for="usersTbl">  
+		        <p:menuitem value="View" update="userDetails" icon="ui-icon-search" oncomplete="selectedUserDlg.show()"/>  
+		        <p:menuitem value="Disable" update="usersTbl" icon="ui-icon-close" actionListener="#{adminController.disableSelectedUser}"/>  
+		    </p:contextMenu>
+    
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" style="width: 300px;" 
+			 		paginator="true" rows="5"
+					selectionMode="single" selection="#{adminController.selectedUser}" rowKey="#{user.id}" >
+					
+				<f:facet name="header">
+					List of Users
+				</f:facet>
+		        <p:column headerText="Id" width="20px;">  
+		            <h:outputText value="#{user.id}" />
+		        </p:column>  
+		  
+		        <p:column headerText="Email" >
+		            <h:outputText value="#{user.emailId}" />
+		        </p:column>  
+		  
+		    </p:dataTable>
+		    
+		    <p:dialog widgetVar="selectedUserDlg">
+				<h:panelGrid id="userDetails" columns="2" >  
+		            
+		            <h:outputText value="Id:" />  
+		            <h:outputText value="#{adminController.selectedUser.id}" style="font-weight:bold"/>  
+		  
+		            <h:outputText value="Email:" />  
+		            <h:outputText value="#{adminController.selectedUser.emailId}" style="font-weight:bold"/>  
+		            
+		            <h:outputText value="FirstName:" />  
+		            <h:outputText value="#{adminController.selectedUser.firstName}" style="font-weight:bold"/>
+		            
+		            <h:outputText value="LastName:" />  
+		            <h:outputText value="#{adminController.selectedUser.lastName}" style="font-weight:bold"/>
+		  
+		        </h:panelGrid>
+			</p:dialog>
+		    
+		    
+		    <br/><br/>
+		    
+		    <h2>ContextMenu for Tree document/picture Node Types</h2>
+		    <p:dialog id="docNode" widgetVar="docNodeDlg" header="Selected Document Node">
+		    	<h:outputText value="#{treeController.selectedNode.data}" />
+		    </p:dialog>
+		    <p:dialog id="picNode" widgetVar="picNodeDlg" header="Selected Picture Node">
+		    	<h:outputText value="#{treeController.selectedNode.data}" />
+		    </p:dialog>
+		    <p:contextMenu for="docTree" nodeType="document">
+		    	<p:menuitem value="View Document" icon="ui-icon-search" oncomplete="docNodeDlg.show()"/>  
+		    </p:contextMenu>
+		    <p:contextMenu for="docTree" nodeType="pic">
+		    	<p:menuitem value="View Picture" icon="ui-icon-search" oncomplete="picNodeDlg.show()"/>  
+		    </p:contextMenu>
+	     	<p:tree id="docTree" value="#{treeController.rootx}" var="node" animate="true" style="width: 350px;"
+	     		selectionMode="single"  selection="#{treeController.selectedNode}">  
+	     		<p:ajax event="select" update=":form:docNode,:form:picNode" />
+		        <p:treeNode expandedIcon="ui-icon-folder-open"  
+		                    collapsedIcon="ui-icon-folder-collapsed">  
+		            <h:outputText value="#{node}"/>  
+		        </p:treeNode>  
+		  
+		        <p:treeNode type="document" icon="ui-icon-document">  
+		            <h:outputText value="#{node}" />  
+		        </p:treeNode>  
+		  
+		        <p:treeNode type="pic" icon="ui-icon-image">  
+		            <h:outputText value="#{node}" />  
+		        </p:treeNode>  
+		  
+		        <p:treeNode type="video" icon="ui-icon-video">  
+		            <h:outputText value="#{node}" />  
+		        </p:treeNode>  
+		    </p:tree>
+		    
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

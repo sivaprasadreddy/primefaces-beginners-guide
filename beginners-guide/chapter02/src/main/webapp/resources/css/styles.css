@@ -1,0 +1,24 @@
+
+body
+{
+	width: 800px;
+	margin: 0 auto;
+	background-color: #F8F8F8;
+}
+.ui-widget {
+    font-size: 12px !important;
+}
+
+.wrapper {
+	background-color: #FFF;
+}
+.header {
+    height:50px;
+    background:#F0F0F0;
+    border:1px solid #CCC;
+    margin:2px auto;
+}
+
+.table-valign td {
+    vertical-align: top;
+}

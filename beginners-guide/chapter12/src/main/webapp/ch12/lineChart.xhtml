@@ -1,0 +1,67 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+     <ui:define name="head">
+    	<script type="text/javascript">
+	    	function ext() 
+	    	{
+	    		//this = chart widget instance
+	    		//this.cfg = options
+	    		this.cfg.seriesDefaults.markerOptions = {
+	    				style: 'filledSquare'
+	    	    };
+	    		
+	    		this.cfg.grid= {
+	    				borderColor: '#A52A2A',
+	    	    		borderWidth: 2,
+	    	    		background: '#FAEBD7'
+	    	    };
+	    	}
+    	</script>
+    	<h:outputScript library="js" name="jquery-plugins.js"/>
+    </ui:define>
+    
+    
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>LineChart Component</h2>
+	    <p:separator/>
+	    
+		<h:form style="width: 800px; margin: 0 auto;">
+		
+			<h2>Simple Line Chart</h2>
+			<p:lineChart value="#{chartController.chartModel}" 
+							style="width: 400px; height: 250px;"
+							legendPosition="se" 
+							minY="0" maxY="1000"
+							extender="ext"/>
+			<br/><br/>
+			
+			<h2>Line Char with Animation, Zooming, Custom SeriesColrs</h2>
+			<p:lineChart value="#{chartController.chartModel}" 
+						style="width: 400px; height: 300px;"
+						title="Linear Chart" 
+						legendPosition="nw" 
+						xaxisLabel="Year" yaxisLabel="No. of Posts" 
+						xaxisAngle="45" yaxisAngle="45"
+						minY="0" maxY="1000"
+						breakOnNull="true" zoom="true" animate="true"
+						seriesColors="800000,006400"
+						legendCols="2"
+						datatipFormat="#{chartController.datatipFormat}"
+						/>
+			<br/><br/>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

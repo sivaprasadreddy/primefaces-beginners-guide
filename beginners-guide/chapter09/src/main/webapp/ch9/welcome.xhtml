@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+	
+			<h:form>
+				<p:panel header="Advanced Data Visualization Components">
+						<h:panelGrid columns="1" style="width: 800px; cellspacing: 5px;">
+							<p><h:link outcome="carousel.jsf" value="Carousel"/> </p>
+							<p><h:link outcome="tagCloud.jsf" value="TagCloud"/> </p>
+							<p><h:link outcome="tree.jsf" value="Tree"/> </p>
+							<p><h:link outcome="treeTable.jsf" value="TreeTable"/> </p>
+							<p><h:link outcome="schedule.jsf" value="Schedule"/> </p>
+						</h:panelGrid>
+					</p:panel>
+			</h:form>
+
+	</ui:define>
+</ui:composition>

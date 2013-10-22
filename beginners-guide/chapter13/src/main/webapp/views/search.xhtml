@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/masterLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h:form id="searchUserForm">
+			<p:panel header="Search Users">
+				<h:panelGrid columns="2">
+					
+					<p:outputLabel for="searchUser" value="Search Users By Email"/>
+					<p:autoComplete id="searchUser" value="#{userController.searchEmail}" 
+									completeMethod="#{userController.completeEmail}"/>
+							
+					<p:commandButton action="${userController.searchUsers()}" value="Submit" update="@form"/>
+				</h:panelGrid>
+			</p:panel>
+		
+        	<br/><br/>
+        	<p:panel header="User Details">
+	        <h:panelGrid columns="2" id="searchUserDetails">
+				<p:outputLabel for="emailId" value="EmailId"/>
+				<p:outputLabel id="emailId" value="#{userController.searchUser.emailId}"/>
+				
+				<p:outputLabel for="firstName" value="firstName"/>
+				<p:inputText id="firstName" value="#{userController.searchUser.firstName}" readonly="true"/>
+				
+				<p:outputLabel for="lastName" value="lastName"/>
+				<p:inputText id="lastName" value="#{userController.searchUser.lastName}" readonly="true"/>
+				
+				<p:outputLabel for="phone" value="phone"/>
+				<p:inputText id="phone" value="#{userController.searchUser.phone}" readonly="true"/>
+				
+				<p:outputLabel for="bio" value="About Me"/>
+				<p:inputTextarea id="bio" value="#{userController.searchUser.bio}" cols="50" rows="5" readonly="true"/>
+				
+			</h:panelGrid>
+			</p:panel>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

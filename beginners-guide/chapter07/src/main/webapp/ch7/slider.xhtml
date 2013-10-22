@@ -1,0 +1,92 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>Slider Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h:form id="form">
+
+		    <p:growl id="growl" showDetail="true" />
+			<p:panel header="Slider Component">
+		    <h3>Basic Slider</h3>
+		    <h:panelGrid columns="1" style="margin-bottom:10px">
+		        <p:inputText id="txt1" value="#{sliderController.number1}" />
+		        <p:slider for="txt1" animate="false"/>
+		    </h:panelGrid>
+		
+		    <h3>Slider with Display Value</h3>
+		    <h:panelGrid columns="1" style="margin-bottom:10px">
+				<h:outputText id="output" value="Value : #{sliderController.number2}" />
+				<h:inputHidden id="displaySlider" value="#{sliderController.number2}"/>
+				<p:slider for="displaySlider" display="output" style="width:150px" displayTemplate="Value : {value}"/>
+		    </h:panelGrid>
+		
+		    <h3>Slider with Step Factor 10</h3>
+		    <h:panelGrid columns="1" style="margin-bottom:10px">
+		        <p:inputText id="txt3" value="#{sliderController.number3}" onkeydown="return false;"/>
+		        <p:slider for="txt3" minValue="0" maxValue="50" step="10"/>
+		    </h:panelGrid>
+		
+		    <h3>Vertical Slider</h3>
+		    <h:panelGrid columns="1" style="margin-bottom:10px">
+		        <p:inputText id="txt4" value="#{sliderController.number4}"/>
+		        <p:slider for="txt4" type="vertical" />
+		    </h:panelGrid>
+		
+		    <h3>Ajax Slider</h3>
+		    <h:panelGrid columns="1" style="margin-bottom:10px">
+		        <p:inputText id="txt5" value="#{sliderController.number5}" />
+		        <p:slider for="txt5">
+		            <p:ajax event="slideEnd" listener="#{sliderController.onSlideEnd}" update="growl" />
+		        </p:slider>
+		    </h:panelGrid>
+		
+		    <h3>Range Slider</h3>
+		    <h:panelGrid columns="1" style="margin-bottom:10px">                    
+		        <h:outputText id="displayRange" value="Between #{sliderController.number6} and #{sliderController.number7}"/>                    
+		        <p:slider for="txt6,txt7" display="displayRange" style="width:300px" range="true" 
+		                  displayTemplate="Between {min} and {max}">
+		                 <p:ajax event="slideEnd" listener="#{sliderController.onSlideEnd}" update="growl" />
+		        </p:slider>
+		    <h:inputHidden id="txt6" value="#{sliderController.number6}" />
+		    <h:inputHidden id="txt7" value="#{sliderController.number7}" />
+		    </h:panelGrid>
+		
+		    <p:commandButton value="Submit" update="display" oncomplete="dialog.show()" />
+		
+		    <p:dialog header="Slider Values" widgetVar="dialog" 
+		              showEffect="bounce" hideEffect="fade" width="200">
+		
+		        <h:panelGrid id="display" columns="1" cellpadding="5">
+		            <h:outputText value="Number 1: #{sliderController.number1}" />
+		
+		            <h:outputText value="Number 2: #{sliderController.number2}" />
+		
+		            <h:outputText value="Number 3: #{sliderController.number3}" />
+		
+		            <h:outputText value="Number 4: #{sliderController.number4}" />
+		
+		            <h:outputText value="Number 5: #{sliderController.number5}" />
+		
+		             <h:outputText value="Range: [#{sliderController.number6},#{sliderController.number7}]" />
+		        </h:panelGrid>
+		
+		    </p:dialog>
+			
+			</p:panel>
+		</h:form>
+					
+		
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/masterLayout.xhtml">
+
+	<ui:define name="head">
+		<title>NotificationBar</title>
+		<script>
+		var timeoutID = null;
+		
+		function showNotifBar() {
+			notifBar.show();
+		  	timeoutID = window.setTimeout(hideNotifBar, 5000);
+		}
+		
+		function hideNotifBar()
+		{
+			notifBar.hide();
+			if(timeoutID != null)
+			{
+				window.clearTimeout(timeoutID);
+			}
+		}
+		
+		</script>
+	</ui:define>
+	<ui:define name="bodyContent">
+		<h2>NotificationBar Component</h2>
+	
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+		<p:notificationBar id="bar" widgetVar="notifBar" position="top" effect="slide" effectSpeed="slow" style="height: 20px; background-color: #8B0000;">
+			<h:outputText value="There are New Unread Emails in your MailBox." style="color:#FFF;font-size:20px;"/>
+		</p:notificationBar>
+		
+		<h:form>
+			<p:commandButton value="Show" onclick="notifBar.show()"/>
+			<p:commandButton value="Hide" onclick="notifBar.hide()"/>
+			
+			<p:commandButton value="Show &amp; Auto Hide" onclick="showNotifBar()"/>
+			
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

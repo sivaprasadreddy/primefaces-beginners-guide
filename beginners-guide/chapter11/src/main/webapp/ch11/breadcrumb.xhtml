@@ -1,0 +1,40 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>Breadcrumb Component</h2>
+	    <p:separator/>
+	    
+		<h:form id="form1" style="width: 800px; margin: 0 auto;">
+			
+			<h3>Static Breadcrumb Menu</h3>
+			<p:breadCrumb >  
+			    <p:menuitem value="PrimeFaces" url="http://www.primefaces.org/"/>  
+			    <p:menuitem value="Board index" url="http://forum.primefaces.org/index.php" />  
+			    <p:menuitem value="Java Server Faces" url="http://forum.primefaces.org/viewforum.php?f=19" />  
+			    <p:menuitem value="General" url="http://forum.primefaces.org/viewforum.php?f=3" />  
+			</p:breadCrumb>
+			
+			<br/><br/>
+			<h3>Programmatic Breadcrumb Menu</h3>
+			<p:breadCrumb model="#{menuController.breadcrumbMenuModel}"></p:breadCrumb>
+
+			<br/><br/>
+			<h3>AppNav Breadcrumb Menu</h3>
+			<p:breadCrumb id="bc" model="#{appNavController.navBreadCrumb}"/>
+			
+			<p:commandButton value="Page 1" actionListener="#{appNavController.setCurrentNavLevel(2)}" action="bc1.jsf"/>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

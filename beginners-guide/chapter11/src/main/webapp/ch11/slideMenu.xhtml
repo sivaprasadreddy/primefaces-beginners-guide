@@ -1,0 +1,60 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+   
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>SlideMenu Component</h2>
+	    <p:separator/>
+	    
+	     <p:growl autoUpdate="true"/>
+		<h:form style="width: 800px; margin: 0 auto;">
+		
+			<h3>Inline SlideMenu</h3>
+			<p:slideMenu style="width:180px">  
+				<p:submenu label="User Management" icon="ui-icon-person">
+					<p:submenu label="View Users">
+						<p:menuitem value="Moderators" url="#"/>
+						<p:menuitem value="Normal Users" actionListener="#{menuController.showUserManagement()}"/>
+					</p:submenu>
+					<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+				</p:submenu>
+				<p:submenu label="Tag Management" icon="tag-icon">
+					<p:menuitem value="View Tags" url="slideMenu.jsf"/>
+					<p:menuitem value="Tag Stistics" outcome="slideMenu"/>
+				</p:submenu>
+				<p:submenu label="System Config" icon="ui-icon-gear">
+					<p:menuitem value="View Configuration" outcome="slideMenu"/>
+				</p:submenu>
+			</p:slideMenu>
+			
+			<h3>Overlay SlideMenu</h3>
+		    <p:commandButton id="dynaButton" value="Show" type="button"/>  
+		    <p:slideMenu overlay="true" trigger="dynaButton" my="left top" at="right bottom">
+			    <p:submenu label="User Management" icon="ui-icon-person">
+						<p:submenu label="View Users">
+							<p:menuitem value="Moderators" url="#"/>
+							<p:menuitem value="Normal Users" actionListener="#{menuController.showUserManagement()}"/>
+						</p:submenu>
+						<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+					</p:submenu>
+					<p:submenu label="Tag Management" icon="tag-icon">
+						<p:menuitem value="View Tags" url="slideMenu.jsf"/>
+						<p:menuitem value="Tag Stistics" outcome="slideMenu"/>
+					</p:submenu>
+					<p:submenu label="System Config" icon="ui-icon-gear">
+						<p:menuitem value="View Configuration" outcome="slideMenu"/>
+					</p:submenu>
+				</p:slideMenu>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>SelectManyCheckbox Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+		<p:growl autoUpdate="true" escape="false"/>
+		<h:form id="form1" style="width:500px; margin: 0 auto;">  
+			<p:messages autoUpdate="true"  escape="false" />
+  			<p:panel header="SelectManyCheckBox">
+		    <h:panelGrid columns="2" style="margin-bottom:5px" cellpadding="1">  
+		  
+		        <h:outputText value="Favorite Tags: " />  
+		        <p:selectManyCheckbox value="#{selectionController.favoriteTags}">  
+		            <f:selectItem itemLabel="JSF" itemValue="jsf" />  
+		            <f:selectItem itemLabel="PrimeFaces" itemValue="primefaces" />  
+		            <f:selectItem itemLabel="Spring" itemValue="spring" />  
+		        </p:selectManyCheckbox>
+		        
+		        <h:outputText value="Popular Tags: " />  
+		        <p:selectManyCheckbox value="#{selectionController.selectedPopularTags}">   
+		            <f:selectItem itemLabel="Web2.0" itemValue="web20" />
+		            <f:selectItems value="#{selectionController.popularTags}" />  
+		        </p:selectManyCheckbox>
+		        
+		        <h:outputText value="Tags: " />  
+		        <p:selectManyCheckbox value="#{selectionController.selectedTags}"  
+		            				  layout="pageDirection" >  
+		            <f:selectItems value="#{selectionController.tags}" />  
+		        </p:selectManyCheckbox>
+		        
+		        <h:outputText value="Tags(Pojo): " />  
+		        <p:selectManyCheckbox value="#{selectionController.selectedTagsFromPojos}"  
+		            				  converter="#{tagConverter}">  
+		            <f:selectItems value="#{selectionController.tagPojos}" var="tag"  
+		            			itemLabel="#{tag.label}" itemValue="#{tag}"/>
+		        </p:selectManyCheckbox>
+		        
+		        
+		    </h:panelGrid>
+		    <p:commandButton value="Submit" update="@form" actionListener="#{selectionController.handleSelectMany}"/>
+		    </p:panel>
+		</h:form>
+		
+		<br/><br/>
+		
+	</ui:define>
+</ui:composition>

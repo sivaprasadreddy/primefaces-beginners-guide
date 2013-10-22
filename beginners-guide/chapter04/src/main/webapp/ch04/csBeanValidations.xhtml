@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b>
+			<br /><br />
+		</h:form>
+		<h2>CSV Framework with Bean Validation API</h2>
+
+		<h:form id="registrationForm" style="width: 600px; margin: 0 auto;">
+
+			<p:panel header="User Registration">
+				<h:panelGrid columns="3">
+					<p:outputLabel value="EmailId:" />
+					<p:inputText id="emailId"
+						value="#{userController.userBean.emailId}" label="EmailId">
+						<p:clientValidator event="blur" />
+					</p:inputText>
+					<p:message for="emailId" />
+
+					<p:outputLabel value="Password:*" />
+					<p:password id="password"
+						value="#{userController.userBean.password}" label="Password">
+					<p:clientValidator />
+					</p:password>
+					<p:message for="password" />
+
+					<p:outputLabel value="FirstName:*" />
+					<p:inputText id="firstName"
+						value="#{userController.userBean.firstName}" label="FirstName" />
+					<p:message for="firstName" />
+
+					<p:outputLabel value="LastName:" />
+					<p:inputText id="lastName"
+						value="#{userController.userBean.lastName}" />
+					<p:message for="lastName" />
+
+					<p:outputLabel value="Phone:" />
+					<p:inputText id="phone" value="#{userController.userBean.phone}" />
+					<p:message for="phone" />
+
+					<p:outputLabel value="DOB:" />
+					<p:inputText id="dob" value="#{userController.userBean.dob}"
+						label="DOB">
+						<f:convertDateTime pattern="MM/dd/yyyy" />
+					</p:inputText>
+					<p:message for="dob" />
+
+					<h:outputLabel for="agreeToTnc"
+						value="Agree to Terms and Conditions " />
+					<p:selectBooleanCheckbox id="agreeToTnc"
+						value="#{userController.userBean.agreeToTnc}" />
+					<p:message for="agreeToTnc" />
+
+					<p:commandButton action="#{userController.doRegister}"
+						value="Register" validateClient="true" update="registrationForm" />
+
+				</h:panelGrid>
+
+			</p:panel>
+		</h:form>
+		<br /> <br />
+	</ui:define>
+</ui:composition>

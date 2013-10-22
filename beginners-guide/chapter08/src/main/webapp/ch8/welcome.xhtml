@@ -1,0 +1,27 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+	
+			<h:form>
+					<h:panelGrid columns="1" style="width: 800px; cellspacing: 5px;">
+		
+						<p><h:link outcome="dataList.jsf" value="DataList"/> </p>
+						<p><h:link outcome="dataGrid.jsf" value="DataGrid"/> </p>
+						<p><h:link outcome="dataTable.jsf" value="DataTable"/> </p>
+						<p><h:link outcome="dataTableFilter.jsf" value="DataTable Filtering"/> </p>
+						<p><h:link outcome="dataTableRowSelection.jsf" value="DataTable Row Selection"/> </p>
+						<p><h:link outcome="dataTableRowSelectionRadioCheckbox.jsf" value="Row Selection Radio/Checkbox"/> </p>
+						<p><h:link outcome="dataTableRowExpansion.jsf" value="Row Expansion"/> </p>
+						<p><h:link outcome="dataTableRowCellEditor.jsf" value="Row/CellEditor"/> </p>
+						<p><h:link outcome="dataTableLazy.jsf" value="Lazy DataTable"/> </p>
+						<p><h:link outcome="dataExporter.jsf" value="DataExporter" /> </p>
+					</h:panelGrid>
+			</h:form>
+
+	</ui:define>
+</ui:composition>

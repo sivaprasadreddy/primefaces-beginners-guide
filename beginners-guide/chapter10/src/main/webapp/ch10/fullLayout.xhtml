@@ -1,0 +1,62 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>TechBuzz</title>
+        </f:facet>
+        <style>
+        	
+        	.ui-widget {
+				    font-size: 12px !important;
+				}
+				
+        </style>
+	</h:head>
+
+        <h:body>
+			<p:growl autoUpdate="true" showDetail="true"/>
+            <p:layout fullPage="true">
+				
+				<p:ajax event="toggle" listener="#{layoutController.handleLayoutToggle}"  />  
+    			<p:ajax event="close" listener="#{layoutController.handleLayoutClose}" />
+    			<p:ajax event="resize" listener="#{layoutController.handleLayoutResize}" />
+    
+                <p:layoutUnit position="north" size="80" resizable="true" closable="true" collapsible="true">
+                    <center><font size="6">TechBuzz</font></center>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="65" header="Footer" resizable="true" closable="true" collapsible="true">
+                    <center><h:outputText value="Copyright @ 2013" /></center> 
+                </p:layoutUnit>
+
+                <p:layoutUnit position="west" size="200" header="NavigationBar" resizable="true" closable="true" collapsible="true">
+                    <h:form>
+                    	<br/>
+	                    <h:link value="User Management" /><br/><br/>
+	                    <h:link value="Tag Config" /><br/><br/>
+	                    <h:link value="System Admin"/><br/>
+                    </h:form>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="east" size="200" header="Latest Buzz" resizable="true" closable="true" collapsible="true" effect="drop">
+                    <h:outputText value="PrimeFaces forum reached 98,000 posts." />
+                </p:layoutUnit>
+
+                <p:layoutUnit id="centerUnit" position="center">
+						<center><h:outputText value="FullPage Layout using PrimeFaves Layout Component." /></center>
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+    </f:view>
+    
+</html>
+

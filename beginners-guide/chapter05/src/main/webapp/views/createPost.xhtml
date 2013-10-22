@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/masterLayout.xhtml">
+
+	<ui:define name="bodyContent">
+
+	<h:form id="newPostForm" >
+				<p:growl autoUpdate="true"/>
+				<p:messages globalOnly="true"/>
+				<h:panelGrid columns="2">
+					<p:outputLabel for="title" value="Title"/>
+					<p:inputText id="title" value="#{postController.newPost.title}" 
+								 required="true" title="Title" size="75"/>
+					
+					<p:outputLabel for="description" value="Description"/>
+					<p:editor id="description" widgetVar="editor" value="#{postController.newPost.description}"
+						style="width: 410px;"/>
+					
+					<p:outputLabel for="newPostTags" value="Tags:" />
+					<p:autoComplete id="newPostTags" value="#{postController.selectedTags}" 
+									completeMethod="#{postController.completeTag}"
+									maxResults="10" minQueryLength="1" queryDelay="400" 
+									multiple="true"
+                    				var="t" itemLabel="#{t.label}" itemValue="#{t}" 
+                    				converter="#{tagConverter}" >
+                    		<p:ajax event="itemSelect" listener="#{postController.handleTagSelected}"/>	
+							<p:ajax event="itemUnselect" listener="#{postController.handleTagUnselected}"/>
+                    		
+                    		<f:facet name="itemtip">
+								<h:panelGrid columns="2" style="width: 400px; text-align: left">
+									<f:facet name="header">
+										Tag Details
+									</f:facet>
+									<h:outputText value="Label: " />
+									<h:outputText value="#{t.label}" />
+									<h:outputText value="Description " />
+									<h:outputText value="#{t.description}" />
+								</h:panelGrid>
+							</f:facet>
+                    				
+                    </p:autoComplete>
+                	
+					<p:commandButton action="#{postController.createPost()}" value="Submit" update="@form"/>
+				</h:panelGrid>
+			</h:form>
+                        
+	</ui:define>
+</ui:composition>

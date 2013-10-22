@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/masterLayout.xhtml">
+
+	<ui:define name="head">
+		<title>Tooltip</title>
+	</ui:define>
+	<ui:define name="bodyContent">
+	
+		<h2>Tooltip Component</h2>
+		<p:tooltip />
+		
+		<h:form title="Form with Home page link">
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+		<h:form title="Tooltip demo form">
+			<p:panel header="Form with Tooltips">
+			
+			<h:panelGrid columns="3">
+				<p:outputLabel value="EmailId:"/>
+				<p:inputText id="emailId" value=""/>
+				<p:tooltip for="emailId" value="Please enter Email Id (Ex: admin@gmail.com)"/>
+				
+				<p:outputLabel value="FirstName:"/>
+				<p:inputText id="firstName" value=""/>
+				<p:tooltip for="firstName" showEvent="focus" hideEvent="blur" value="Please enter FirstName"/>
+				
+				<p:outputLabel value="LastName:"/>
+				<p:inputText id="lastName" value=""/>
+				<p:tooltip for="lastName" showEffect="slide" hideEffect="explode" value="Please enter LastName"/>
+				
+				<p:commandLink id="photo" value="OptimusPrime"/>
+				<p:tooltip for="photo">
+					<p:graphicImage value="/resources/images/optimusprime.jpg"/>
+				</p:tooltip>
+				
+			</h:panelGrid>
+			
+			</p:panel>
+		</h:form>
+
+		
+	</ui:define>
+</ui:composition>

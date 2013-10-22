@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    template="/templates/masterTemplate.xhtml"> 
+
+<ui:define name="head">
+	
+	<script type="text/javascript">
+
+		function validateEmail() 
+		{
+			var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			var email = $.trim($(PrimeFaces.escapeClientId("registrationForm:email")).val());
+			if(email ==''){
+				$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).text("");
+				$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).attr("class", "");
+				return;
+			}
+			if( emailReg.test( email ) ) {
+				checkDuplicateEmail();
+			   //$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).text("Valid Email");		
+			   //$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).attr("class", "ui-messages-info ui-widget ui-corner-all ui-messages-info-summary");		   
+			} else {
+				$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).text("Invalid Email");
+				$(PrimeFaces.escapeClientId("registrationForm:emailMsg")).attr("class", "ui-message-error ui-widget ui-corner-all ui-message-error-detail");
+		   }
+		}
+		
+	</script>
+</ui:define>
+
+<ui:define name="bodyContent">
+	
+	<h:form id="registrationForm">
+		<h2>Invoking Server side logic from JavaScript using RemoteCommand component</h2>
+		<p>When you change the email value then first it will be validated by client side javascript function. 
+			If it is in valid format then invokes server side logic to check for whether email is already in use or not.
+		</p>
+		<p>Sample emails are <b>admin@gmail.com</b> and <b>test@gmail.com</b></p>
+		<p:panel header="RegistrationForm Form">	
+		<p:messages/>
+			<h:panelGrid columns="3">
+			
+				<p:outputLabel value="Email:"/>
+				<p:inputText id="email" value="#{userController.registrationUser.email}" onblur="validateEmail();" />
+				<p:message id="emailMsg" for="email"/>
+				
+				<p:commandButton type="button" value="Register" update="registrationForm"/>			
+				
+			</h:panelGrid>
+		</p:panel>
+		<p:remoteCommand name="checkDuplicateEmail" actionListener="#{userController.checkEmailExists()}" update="emailMsg"/>
+		
+		<p>
+			<h:link value="Back" outcome="welcome.jsf?faces-redirect=true" />
+		</p>
+		
+	</h:form>
+
+</ui:define>
+</ui:composition>

@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    template="/templates/masterTemplate.xhtml"> 
+
+<ui:define name="head">
+	
+	<script type="text/javascript">
+		/*
+		function validateEmail() 
+		{
+			var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			var email = $.trim($("#userForm\\:email").val());
+			if(email ==''){
+				$("#userForm\\:emailMsg").text("");
+				$("#userForm\\:emailMsg").attr("class", "");
+				return;
+			}
+		    if( emailReg.test( email ) ) {
+			   $("#userForm\\:emailMsg").text("Valid Email");		
+			   $("#userForm\\:emailMsg").attr("class", "ui-messages-info ui-widget ui-corner-all ui-messages-info-summary");		   
+			} else {
+			    $("#userForm\\:emailMsg").text("Invalid Email");
+			    $("#userForm\\:emailMsg").attr("class", "ui-message-error ui-widget ui-corner-all ui-message-error-detail");
+		   }
+		}
+		*/
+
+		function validateEmail() 
+		{
+			var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+			var email = $.trim($(PrimeFaces.escapeClientId("userForm:email")).val());
+			if(email ==''){
+				$(PrimeFaces.escapeClientId("userForm:emailMsg")).text("");
+				$(PrimeFaces.escapeClientId("userForm:emailMsg")).attr("class", "");
+				return;
+			}
+			if( emailReg.test( email ) ) {
+			   $(PrimeFaces.escapeClientId("userForm:emailMsg")).text("Valid Email");		
+			   $(PrimeFaces.escapeClientId("userForm:emailMsg")).attr("class", "ui-messages-info ui-widget ui-corner-all ui-messages-info-summary");		   
+			} else {
+				$(PrimeFaces.escapeClientId("userForm:emailMsg")).text("Invalid Email");
+				$(PrimeFaces.escapeClientId("userForm:emailMsg")).attr("class", "ui-message-error ui-widget ui-corner-all ui-message-error-detail");
+		   }
+		}
+		
+	</script>
+</ui:define>
+
+<ui:define name="bodyContent">
+
+	<h:form id="userForm">
+		<h2>Performing Client Side Validations</h2>
+		<p>When the email is changed client side validation is performed and adds error/info message</p>
+		<p:panel header="User Form">
+			<p:messages />
+			<h:panelGrid columns="3">
+				<p:outputLabel value="Email:" />
+				<p:inputText id="email" value="#{userController.loginUser.email}"
+					onchange="validateEmail();"/>
+				<p:message id="emailMsg" for="email" />
+			
+			</h:panelGrid>
+		</p:panel>
+		<p>
+			<h:link value="Back" outcome="welcome.jsf?faces-redirect=true" />
+		</p>
+	</h:form>
+
+</ui:define>
+</ui:composition>

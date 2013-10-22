@@ -1,0 +1,41 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html">
+<h:head>
+	<title>PrimeFaces Beginner's Guide : Chapter-01</title>
+	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
+</h:head> 
+<body> 
+	<h2>PrimeFaces Beginner's Guide : Chapter-01</h2>
+	<h:form>
+		
+		<p:panel header="PrimeFaces Beginner's Guide : Chapter-01 Demos" style="width: 800px;">
+			<h:panelGrid columns="1">
+				<p><h:link outcome="helloworld.jsf" value="Hello World"/> </p>
+				
+				<p><h:link outcome="registration.jsf" value="User Registration Form with PrimeFaces Components"/> </p>
+				
+				<p><h:link outcome="registrationWithVal.jsf" value="User Registration with Validations"/> </p>
+				
+				<p><h:link outcome="clientValidation.jsf" value="Client Side Validation"/> </p>
+				
+				<p><h:link outcome="userDetails.jsf" value="Partial Processing"/> </p>
+				
+				<p><h:link outcome="login.jsf" value="Updating View using Ajax"/> </p>
+				
+				<p><h:link outcome="viewAjaxListener.jsf" value="Updating View using Ajax Listener"/> </p>
+				
+				<p><h:link outcome="poll.jsf" value="Polling"/> </p>
+				
+				<p><h:link outcome="remoteCommand.jsf" value="Remote Command"/> </p>
+				
+			</h:panelGrid>
+		</p:panel>
+	</h:form>
+</body> 
+</f:view>
+</html>

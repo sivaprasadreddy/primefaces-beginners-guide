@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+    <ui:define name="head">
+        
+        <script type="text/javascript">
+            //<![CDATA[
+				function exportChart() {
+					$(PrimeFaces.escapeClientId('form1:output')).empty().append(chart.exportAsImage());
+				    dlg.show();
+				}
+            //]]>
+        </script>
+    </ui:define>
+	
+	<ui:define name="bodyContent">
+		
+		<h:form >
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>Exporting Chart as Image</h2>
+	    <p:separator/>
+	    
+			<h:form id="form1">
+				<p:lineChart widgetVar="chart" 
+							value="#{chartController.linearChartModel}" 
+							style="width:500px;height:300px" 
+							title="Linear Chart" 
+							legendPosition="ne"				
+							minY="0" maxY="600"/>
+	            
+	           	<p:commandButton type="button" value="Export" onclick="exportChart()"/>
+            
+	            <p:dialog widgetVar="dlg" showEffect="fade" modal="true" header="Chart as an Image">
+	                <p:outputPanel id="output" layout="block" style="width:500px;height:300px"/>
+	            </p:dialog>
+             
+             </h:form>
+             
+	</ui:define>
+</ui:composition>

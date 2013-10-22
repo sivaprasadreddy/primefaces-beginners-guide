@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="head">
+		<style type="text/css">
+            
+			.ui-datatable .ui-datatable-footer {
+                text-align:left;
+            }
+        </style>
+        
+	</ui:define>
+	<ui:define name="bodyContent">
+		
+		<h2>DataTable RowSelection using Radio/Checkbox</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+								 
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h:form id="form1">
+			<h:panelGrid columns="2" styleClass="table-valign" >
+			
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" style="width: 300px;" 
+					selection="#{adminController.selectedUser}" rowKey="#{user.id}" >
+					<p:column selectionMode="single" style="width:20px"/>
+				<f:facet name="header">
+					Select User to Disable
+				</f:facet>
+		        <p:column headerText="Id" width="20px;">  
+		            <h:outputText value="#{user.id}" />
+		        </p:column>  
+		  
+		        <p:column headerText="Email" >
+		            <h:outputText value="#{user.emailId}" />
+		        </p:column>  
+		        <f:facet name="footer">
+					<p:commandButton value="Disable" actionListener="#{adminController.disableSelectedUser}"/>
+				</f:facet>
+		  
+		    </p:dataTable>
+		    
+		   <p:dataTable id="usersTbl2" var="user" value="#{adminController.users}" style="width: 300px;" 
+					selection="#{adminController.selectedUsers}" rowKey="#{user.id}" >
+					<p:column selectionMode="multiple" style="width:20px"/>
+				<f:facet name="header">
+					Select Users to Disable
+				</f:facet>
+		        <p:column headerText="Id" width="20px;">  
+		            <h:outputText value="#{user.id}" />
+		        </p:column>  
+		  
+		        <p:column headerText="Email" >
+		            <h:outputText value="#{user.emailId}" />
+		        </p:column>  
+		  		<f:facet name="footer">
+					<p:commandButton value="Disable" actionListener="#{adminController.disableSelectedUsers}"/>
+				</f:facet>
+		    </p:dataTable>
+		   
+	        </h:panelGrid>
+			<br/>
+			
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

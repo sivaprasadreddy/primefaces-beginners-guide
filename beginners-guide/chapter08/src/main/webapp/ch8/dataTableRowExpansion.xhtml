@@ -1,0 +1,64 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="head">
+		<style type="text/css">
+			.grid td {
+                border: 0px none !important;
+            }
+            
+            .labels
+            {
+            	font-weight: bold;
+            }
+		</style>
+	</ui:define>
+	<ui:define name="bodyContent">
+		
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+								 
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h2>DataTable Row Expansion</h2>
+		<h:form style="width: 600px; margin: 0 auto;">
+			
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" >  
+				<p:column style="width:15px;">  
+		            <p:rowToggler />  
+		        </p:column>
+		        <p:column headerText="Id">  
+		            <h:outputText value="#{user.id}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="Email">  
+		            <h:outputText value="#{user.emailId}" />  
+		        </p:column>  
+		  		<p:rowExpansion>
+		  			
+		  			<h:panelGrid columns="2" columnClasses="labels" styleClass="grid" style="width:180px;">
+		  				<h:outputText  value="FirstName: " />
+		  				<h:outputText value="#{user.firstName}" />
+		  				
+				        <h:outputText  value="LastName: " />
+		  				<h:outputText value="#{user.lastName}" />
+				  		
+				  		<h:outputText  value="Disabled: " />
+				  		<h:outputText value="#{user.disabled}" />
+				        
+		  			</h:panelGrid>
+		  			
+		        </p:rowExpansion>
+		    </p:dataTable>
+		    
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

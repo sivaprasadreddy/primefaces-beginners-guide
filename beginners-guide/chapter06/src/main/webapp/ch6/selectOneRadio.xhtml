@@ -1,0 +1,47 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>SelectOneRadio Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+		<h:form id="form" style="width: 500px; margin: 0 auto;">  
+		    <p:panel header="SelectOneRadio">
+		    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">  
+		  
+		        <h:outputText value="Gender: " />  
+		        <p:selectOneRadio id="gender" value="#{selectionController.gender}" plain="true">  
+		            <f:selectItem itemLabel="Male" itemValue="M" />  
+		            <f:selectItem itemLabel="Female" itemValue="F" />  
+		        </p:selectOneRadio>  
+		  		
+		  		<h:outputText value="Favourite Server: " />  
+		        <p:selectOneRadio id="server" value="#{selectionController.selectedServer}" layout="pageDirection">  
+		            <f:selectItems value="#{selectionController.servers}"/>  
+		        </p:selectOneRadio>
+		        
+		        <h:outputText value="Favourite Tag: " />  
+		        <p:selectOneRadio id="tag" value="#{selectionController.selectedTag}" converter="#{tagConverter}">  
+		            <f:selectItems value="#{selectionController.tagPojos}" 
+		            		var="tag" itemLabel="#{tag.label}" itemValue="#{tag}"/>
+		        </p:selectOneRadio>
+		        
+		    </h:panelGrid>
+		    <p:commandButton value="Submit" update="@form"/>
+		    <p:separator/>
+		    <h:outputText value="Gender : #{selectionController.gender}, Server : #{selectionController.selectedServer}, Tag : #{selectionController.selectedTag.label} " />
+			</p:panel>
+		    </h:form>
+		
+		<br/><br/>
+		
+	</ui:define>
+</ui:composition>

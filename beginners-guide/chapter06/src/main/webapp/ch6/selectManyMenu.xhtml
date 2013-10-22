@@ -1,0 +1,51 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>SelectManyMenu Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b>
+			<br/><br/>
+		</h:form>
+		
+		<h:form>
+			<p:panel header="SelectManyMenu" style="width: 400px; margin: 0 auto;">
+		    <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+		
+		        <h:outputText value="Basic SelectManyMenu: " />
+		        <p:selectManyMenu  value="#{selectionController.numbers}">
+		            <f:selectItem itemLabel="One" itemValue="1" />
+		            <f:selectItem itemLabel="Two" itemValue="2" />
+		            <f:selectItem itemLabel="Three" itemValue="3" />
+		        </p:selectManyMenu >
+		
+				<h:outputText value="SelectManyMenu using POJO: " />  
+		        <p:selectManyMenu value="#{selectionController.selectedTagsFromPojos}" var="t" showCheckbox="true" converter="#{tagConverter}">  
+		            <f:selectItems value="#{selectionController.tagPojos}" var="tag" 
+		            itemLabel="#{tag.label}" itemValue="#{tag}"/>  
+		            <p:column>  
+		                #{t.label} - #{t.value}  
+		            </p:column>
+		        </p:selectManyMenu>
+        
+		    </h:panelGrid>
+		
+		    <p:commandButton value="Submit" update="display" />  
+		    <h:panelGrid id="display">
+		    	<h:outputText value="Basic: #{selectionController.numbers}" />  
+		    	<h:outputText value="POJO: #{selectionController.selectedTagsFromPojos}"/>
+		    </h:panelGrid>
+			
+			</p:panel>
+		</h:form>
+		
+		<br/><br/>
+		
+	</ui:define>
+</ui:composition>

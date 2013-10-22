@@ -1,0 +1,138 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+	
+   
+	<ui:define name="head">
+		<style type="text/css">
+			.loginPanelGrid tr, .loginPanelGrid td {
+			    border: none;
+			}
+		</style>
+    </ui:define>
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+	    <p:growl id="msg" autoUpdate="true"/>  
+		<h2>PanelGrid Component</h2>
+	    <p:separator/>
+		<h:form style="width: 800px; margin: 0 auto;">
+			<h2>Basic PanelGrid</h2>
+			<p:panelGrid columns="2" styleClass="loginPanelGrid">
+				<f:facet name="header">
+					<h:outputLabel value="User Login Form" />
+				</f:facet>
+				<h:outputLabel value="UserName:" />
+				<p:inputText value="#{userController.loginUser.emailId}"/>
+				
+				<h:outputLabel value="Password:" />
+				<p:password value="#{userController.loginUser.password}"/>
+				
+				<f:facet name="footer">
+					<p:commandButton value="Login" action="#{userController.doLogin()}"/>
+					<p:commandButton type="reset" value="Rest"/>
+				</f:facet>
+			</p:panelGrid>
+			
+			<br/><br/>
+			<h2>PanelGrid rowspan/colspan Example-1</h2>
+			<p:panelGrid>
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="5">
+							Posts Statistics By Tag
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column >Tag</p:column>
+						<p:column>Month</p:column>
+						<p:column>Posts</p:column>
+						<p:column>Total</p:column>
+					</p:row>
+				</f:facet>
+				<p:row>
+					<p:column rowspan="2">JSF</p:column>
+					<p:column>JAN</p:column>
+					<p:column>120</p:column>
+					<p:column rowspan="2">270</p:column>
+				</p:row>
+				<p:row>
+					<p:column>FEB</p:column>
+					<p:column>150</p:column>
+				</p:row>
+				
+				<p:row>
+					<p:column rowspan="2">PrimeFaces</p:column>
+					<p:column>JAN</p:column>
+					<p:column>220</p:column>
+					<p:column rowspan="2">570</p:column>
+				</p:row>
+				<p:row>
+					<p:column>FEB</p:column>
+					<p:column>350</p:column>
+				</p:row>
+				<f:facet name="footer">  
+					<p:row>
+						<p:column colspan="3" style="text-align: right;">Grand Total</p:column>
+						<p:column>840</p:column>
+					</p:row>
+				</f:facet>
+			</p:panelGrid>
+			
+			<br/><br/>
+			
+			<h2>PanelGrid rowspan/colspan Example-2</h2>
+			<p:panelGrid>
+				<f:facet name="header">
+					<p:row>
+						<p:column colspan="5">
+							Posts Statistics By Tag
+						</p:column>
+					</p:row>
+					<p:row>
+						<p:column>Tag</p:column>
+						<p:column>January</p:column>
+						<p:column>February</p:column>
+						<p:column>Total</p:column>
+						<p:column>Grand Total</p:column>
+					</p:row>
+				</f:facet>
+				<p:row>
+					<p:column>JSF</p:column>
+					<p:column>150</p:column>
+					<p:column>120</p:column>
+					<p:column>270</p:column>
+					<p:column rowspan="3"></p:column>
+				</p:row>
+				<p:row>
+					<p:column>PrimeFaces</p:column>
+					<p:column>250</p:column>
+					<p:column>320</p:column>
+					<p:column>570</p:column>
+				</p:row>
+				<p:row>
+					<p:column style="font-weight: bold;">Total</p:column>
+					<p:column>400</p:column>
+					<p:column>440</p:column>
+					<p:column></p:column>
+				</p:row>
+				<p:row>
+					<p:column colspan="4" style="font-weight: bold;">Grand Total</p:column>
+					<p:column>840</p:column>
+				</p:row>
+			</p:panelGrid>
+		
+		
+		
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>Menu Component</h2>
+	    <p:separator/>
+	    
+	    <p:growl autoUpdate="true"/>
+		<h:form style="width: 800px; margin: 0 auto;">
+		
+			<h3>Static Inline Menu</h3>
+			<p:menu>
+				<p:menuitem value="User Management" url="menu.jsf" icon="ui-icon-person"/>
+				<p:menuitem value="Tag Management" url="menu.jsf" icon="tag-icon"/>
+				<p:menuitem value="System Config" outcome="menu" icon="ui-icon-gear"/>
+			</p:menu>
+			
+			<h3>Overlay Menu</h3>  
+		    <p:commandButton id="overlayBtn" value="ShowMenu" type="button"/>  
+		    <p:menu overlay="true" trigger="overlayBtn" triggerEvent="click" my="left top" at="right bottom">
+		    	<p:menuitem value="System Config" outcome="menu"/>
+    			<p:submenu label="User Management" icon="ui-icon-person">
+					<p:menuitem value="View Users" actionListener="#{menuController.showUserManagement()}"/>
+					<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+				</p:submenu>
+				<p:submenu label="Tag Management">
+					<p:menuitem value="View Tags" url="menu.jsf"/>
+					<p:menuitem value="Tag Stistics" outcome="menu"/>
+				</p:submenu>
+			</p:menu>
+    		
+    		<br/><br/>
+    		
+			<h3>Menu with Menu Item Groups</h3>
+			<p:menu>
+				<p:menuitem value="System Config" outcome="menu" icon="ui-icon-gear"/>
+				<p:submenu label="User Management">
+					<p:menuitem value="View Users" icon="ui-icon-person" actionListener="#{menuController.showUserManagement()}"/>
+					<p:menuitem value="Monitor User Activity" actionListener="#{menuController.showUserActivity()}" ajax="false"/>
+				</p:submenu>
+				<p:submenu label="Tag Management" icon="ui-icon-tag">
+					<p:menuitem value="View Tags" url="menu.jsf"/>
+					<p:menuitem value="Tag Statistics" outcome="menu"/>
+				</p:submenu>				
+			</p:menu>
+			<br/><br/>
+			
+    		<h3>Dynamic Menu</h3>
+    		<p:menu model="#{menuController.simpleMenuModel}"></p:menu>
+    		<br/><br/>
+    		
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

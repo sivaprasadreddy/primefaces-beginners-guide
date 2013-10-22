@@ -1,0 +1,71 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>TechBuzz</title>
+        </f:facet>
+        <style>
+        	
+        	.ui-widget {
+				font-size: 12px !important;
+			}
+				
+        </style>
+	</h:head>
+
+        <h:body>
+            <p:layout fullPage="true">
+				
+                <p:layoutUnit position="north" size="80" resizable="true">
+                    <center><font size="6">TechBuzz</font></center>
+                </p:layoutUnit>
+
+                <p:layoutUnit position="south" size="50" resizable="true">
+                    <center><h:outputText value="Copyright @ 2013" /></center> 
+                </p:layoutUnit>
+				<p:layoutUnit position="east" size="200" header="Latest Buzz" resizable="true">
+                    <h:outputText value="PrimeFaces forum reached 98,000 posts." />
+                </p:layoutUnit>
+                
+                <p:layoutUnit position="west" size="150" header="NavigationBar" resizable="true">
+                    <h:form>
+                    	<br/>
+	                    <h:link value="User Management" /><br/><br/>
+	                    <h:link value="Tag Config" /><br/><br/>
+	                    <h:link value="System Admin"/><br/>
+                    </h:form>
+                </p:layoutUnit>
+                
+                <p:layoutUnit position="center">
+
+					<p:layout>
+						
+		                <p:layoutUnit position="north" size="50" resizable="true">
+		                    <font size="4">Tag Configuration</font>
+		                </p:layoutUnit>
+				                	
+		                <p:layoutUnit position="center">
+		                   <h:outputText value="List of Tags:" />
+		                   <p:dataList value="#{tagController.tags}" var="tag">
+		                   		<h:outputText value="#{tag}" />
+		                   </p:dataList>
+		                </p:layoutUnit>
+		
+		            </p:layout>
+
+                </p:layoutUnit>
+
+            </p:layout>
+
+        </h:body>
+    </f:view>
+    
+</html>
+

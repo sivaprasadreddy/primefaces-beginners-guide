@@ -1,0 +1,71 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+        
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>ClientSide Validations Framework</h2>
+	    
+		<h:form id="registrationForm" style="width: 600px; margin: 0 auto;">
+		
+           <p:panel header="User Registration">
+                  
+                  <h:panelGrid columns="3">
+                  		
+						<p:outputLabel value="EmailId:*"/>
+						<p:inputText id="email" value="#{userController.registerUser.emailId}" label="EmailId" 
+							required="true" validatorMessage="#{msg['invalid.email']}">
+							<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							<p:clientValidator />
+						</p:inputText>
+						<p:message for="email"/>
+						
+						<p:outputLabel value="Password:*"/>
+						<p:password id="password" value="#{userController.registerUser.password}" 
+							required="true" label="Password">
+							<f:validateLength minimum="4" maximum="12"/>
+							<p:clientValidator event="blur"/>
+						</p:password>
+						<p:message for="password"/>
+						
+						<p:outputLabel value="FirstName:*"/>
+						<p:inputText id="firstName" value="#{userController.registerUser.firstName}" 
+								required="true" label="FirstName">						
+						</p:inputText>
+						<p:message for="firstName"/>
+						
+						<p:outputLabel value="LastName:"/>
+						<p:inputText id="lastName" value="#{userController.registerUser.lastName}"/>
+						<p:message for="lastName"/>
+						
+						<p:outputLabel value="Phone:"/>
+						<p:inputText id="phone" value="#{userController.registerUser.phone}" validatorMessage="Invalid Phone. Phone number should be in 999-999-9999 format">
+							<f:validateRegex pattern="^\d{3}-\d{3}-\d{4}$"/>
+						</p:inputText>
+						<p:message for="phone"/>
+						
+						<p:outputLabel value="DOB:"/>
+						<p:inputText id="dob" value="#{userController.registerUser.dob}" label="DOB"
+							validatorMessage="Invalid DOB. Date should be in MM/dd/yyyy format">
+							<f:convertDateTime pattern="MM/dd/yyyy" />
+							<p:clientValidator event="keyup"/>
+						</p:inputText>
+						<p:message for="dob"/>
+						
+						<p:commandButton action="#{userController.doRegister}" value="Register" update="@form" validateClient="true" />
+					    
+					</h:panelGrid>
+		                 
+		          </p:panel>
+			</h:form>
+			<br/><br/>
+			
+	</ui:define>
+</ui:composition>

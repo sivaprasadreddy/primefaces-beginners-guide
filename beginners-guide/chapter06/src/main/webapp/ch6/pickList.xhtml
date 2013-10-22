@@ -1,0 +1,94 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>PickList Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+	    
+		<h:form>
+		
+		    <p:growl id="msg" escape="false" />
+		    
+		    <p:panel header="Basic PickList">
+		
+		    <p:pickList id="pickList" 
+		    			value="#{adminController.privileges}" 
+		    			var="privilege" 
+		                itemLabel="#{privilege}" 
+		                itemValue="#{privilege}">
+		          	<f:facet name="sourceCaption">Available Privileges</f:facet>
+		        	<f:facet name="targetCaption">Granted Privileges</f:facet>
+		    </p:pickList>
+		
+		    <p:commandButton id="privilegeSubmit" value="Submit" update="displayPrivileges" 
+		    				oncomplete="privilegesDialog.show()" style="margin-top:5px"/>
+		
+			</p:panel>
+			
+			<br/><br/>
+			
+			<p:panel header="PickList using POJOs">
+		    <p:pickList id="pojoPickList" value="#{adminController.roles}" var="role" effect="bounce"
+		                    itemValue="#{role}" itemLabel="#{role.roleName}" converter="#{roleConverter}"
+		                    showSourceControls="true" showTargetControls="true" showCheckbox="true"
+		                    showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" >
+		
+		        <f:facet name="sourceCaption">Available Roles</f:facet>
+		        <f:facet name="targetCaption">Assigned Roles</f:facet>
+		
+		        <p:ajax event="transfer" listener="#{adminController.onTransfer}" update="msg" />
+		
+		        <p:column style="width:100%">
+		            #{role.roleName}
+		        </p:column>
+		
+		    </p:pickList>
+		
+		    <p:commandButton id="pojoSubmit" value="Submit" update="displayRoles" 
+		    				oncomplete="roleDialog.show()" style="margin-top:5px"/>
+			</p:panel>
+			
+		    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="privilegesDialog">
+		        <h:panelGrid id="displayPrivileges" columns="2">
+		            <h:outputText value="Source: " style="font-weight:bold"/>
+		                <ui:repeat value="#{adminController.privileges.source}" var="item">
+		                <h:outputText value="#{item}" style="margin-right:5px" />
+		            </ui:repeat>
+		
+		            <h:outputText value="Target: " style="font-weight:bold"/>
+		            <ui:repeat value="#{adminController.privileges.target}" var="item">
+		                <h:outputText value="#{item}" style="margin-right:5px" />
+		            </ui:repeat>
+		        </h:panelGrid>
+		    </p:dialog>
+		
+		    <p:dialog modal="true" showEffect="fade" hideEffect="fade" widgetVar="roleDialog">
+		        <h:panelGrid id="displayRoles" columns="2">
+		            <h:outputText value="Source: " style="font-weight:bold"/>
+		            <ui:repeat value="#{adminController.roles.source}" var="role">
+		                <h:outputText value="#{role.roleName}" style="margin-right:5px" />
+		            </ui:repeat>
+		
+		            <h:outputText value="Target: " style="font-weight:bold"/>
+		            <ui:repeat value="#{adminController.roles.target}" var="role">
+		                <h:outputText value="#{role.roleName}" style="margin-right:5px" />
+		            </ui:repeat>
+		        </h:panelGrid>
+		    </p:dialog>
+		
+			
+		</h:form>
+		                    
+ 
+		<br/><br/>
+		
+	</ui:define>
+</ui:composition>

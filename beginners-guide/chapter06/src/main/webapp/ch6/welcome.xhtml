@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+	
+			<h:form>
+					<h:panelGrid columns="1" style="width: 800px; cellspacing: 5px;">
+		
+						<p><h:link outcome="selectBooleanButton.jsf" value="SelectBooleanButton"/> </p>
+						<p><h:link outcome="selectBooleanCheckbox.jsf" value="SelectBooleanCheckbox" /> </p>
+						<p><h:link outcome="selectManyCheckbox.jsf" value="SelectManyCheckbox"/> </p>
+						<p><h:link outcome="selectOneRadio.jsf" value="SelectOneRadio"/> </p>
+						
+						<p><h:link outcome="selectOneButton.jsf" value="SelectOneButton"/> </p>
+						<p><h:link outcome="selectManyButton.jsf" value="SelectManyButton" /> </p>
+						<p><h:link outcome="selectOneMenu.jsf" value="SelectOneMenu"/> </p>
+						<p><h:link outcome="selectOneListbox.jsf" value="SelectOneListbox"/> </p>
+						<p><h:link outcome="selectManyMenu.jsf" value="SelectManyMenu"/> </p>
+						<p><h:link outcome="selectCheckboxMenu.jsf" value="SelectCheckboxMenu" /> </p>
+						<p><h:link outcome="splitButton.jsf" value="SplitButton"/> </p>
+						<p><h:link outcome="pickList.jsf" value="PickList"/> </p>
+					</h:panelGrid>
+			</h:form>
+
+	</ui:define>
+</ui:composition>

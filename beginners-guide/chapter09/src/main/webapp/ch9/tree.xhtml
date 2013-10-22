@@ -1,0 +1,109 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+								 
+	    <p:growl id="msg" autoUpdate="true" showDetail="true" escape="false"/>  
+	    <h2>Tree Component</h2>
+	    
+		<h:form id="form" style="width: 800px; margin:0 auto;">
+			<p:growl id="messages" showDetail="true" escape="false"/>  
+			<h2>Basic Tree</h2>
+			<p:tree value="#{treeController.root}" var="node">  
+		        <p:treeNode>  
+		            <h:outputText value="#{node}"/>  
+		        </p:treeNode>  
+		    </p:tree>
+		    
+		    <br/><br/>
+		    <h2>Ajax Tree</h2>
+    		<p:tree value="#{treeController.root}" var="node" dynamic="true" cache="true">
+				<p:treeNode>
+					<h:outputText value="#{node}"/>
+				</p:treeNode>
+			</p:tree>
+				
+			<br/><br/>
+			<h2>Tree Events</h2>
+			<p:tree value="#{treeController.root}" var="node" dynamic="true" cache="false"  
+	            selectionMode="single"  selection="#{treeController.selectedNode}" id="treeevents">  
+	  
+		        <p:ajax event="expand" update=":form:messages" listener="#{treeController.onNodeExpand}" />  
+		        <p:ajax event="collapse" update=":form:messages" listener="#{treeController.onNodeCollapse}" />  
+		        <p:ajax event="select" update=":form:messages" listener="#{treeController.onNodeSelect}" />  
+		        <p:ajax event="unselect" update=":form:messages" listener="#{treeController.onNodeUnselect}" />  
+		  
+		        <p:treeNode>  
+		            <h:outputText value="#{node}" />  
+		        </p:treeNode>  
+		    </p:tree>
+	    
+		    <br/><br/>
+		    <h2>Single Selection</h2>
+		    <p:tree value="#{treeController.root}" var="node" dynamic="true" cache="false"  
+		            selectionMode="single"  selection="#{treeController.selectedNode}">  
+			        <p:treeNode>  
+			            <h:outputText value="#{node}" />  
+			        </p:treeNode>  
+		    </p:tree>
+	    	<p:commandButton value="Display Selected" update="messages" style="margin:20px 0 20px 0;"  
+                    actionListener="#{treeController.displaySelectedSingle}"/>
+                    
+	    	<br/><br/>
+		    <h2>Multiple Selection</h2>
+		    <p:tree value="#{treeController.root}" var="node" dynamic="true" cache="false"  
+		            selectionMode="checkbox"  selection="#{treeController.selectedNodes}">  
+		  		<p:ajax event="expand" update=":form:messages" listener="#{treeController.onNodeExpand}" />  
+		        <p:ajax event="collapse" update=":form:messages" listener="#{treeController.onNodeCollapse}" />  
+		        <p:ajax event="select" update=":form:messages" listener="#{treeController.onNodeSelect}" />  
+		        <p:ajax event="unselect" update=":form:messages" listener="#{treeController.onNodeUnselect}" />  
+		  
+			        <p:treeNode>  
+			            <h:outputText value="#{node}" />  
+			        </p:treeNode>  
+		    </p:tree>
+	    	<p:commandButton value="Display Selected" update="messages" style="margin:20px 0 20px 0;"  
+                    actionListener="#{treeController.displaySelectedMultiple}" id="btnDisplay2"/>
+	    
+	     <br/><br/>
+	     <h2>Horizontal Tree</h2>
+	     <p:tree value="#{treeController.root}" var="node" id="tree" orientation="horizontal">  
+		        <p:treeNode id="treeNode">  
+		            <h:outputText value="#{node}" id="lblNode"/>  
+		        </p:treeNode>  
+		    </p:tree>
+		<br/><br/>
+		
+	    <h2>Tree Icons</h2>
+	     <p:tree id="docTree" value="#{treeController.rootx}" var="node" animate="true" style="width: 350px;">  
+		        <p:treeNode expandedIcon="ui-icon-folder-open"  
+		                    collapsedIcon="ui-icon-folder-collapsed">  
+		            <h:outputText value="#{node}"/>  
+		        </p:treeNode>  
+		  
+		        <p:treeNode type="document" icon="ui-icon-document">  
+		            <h:outputText value="#{node}" />  
+		        </p:treeNode>  
+		  
+		        <p:treeNode type="pic" icon="ui-icon-image">  
+		            <h:outputText value="#{node}" />  
+		        </p:treeNode>  
+		  
+		        <p:treeNode type="video" icon="ui-icon-video">  
+		            <h:outputText value="#{node}" />  
+		        </p:treeNode>  
+		    </p:tree>
+    		
+    		<br/><br/>
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>
