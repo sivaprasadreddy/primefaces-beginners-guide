@@ -20,8 +20,6 @@ public interface UserRepository extends GenericRepository<Integer, User>
 	
 	User findByEmailId(String email);
 	
-	User findByUserName(String userName);
-
 	int changePassword(String loginId, String oldPwd, String newPwd);
 
 	void updateUsersStatus(List<User> users, String status);

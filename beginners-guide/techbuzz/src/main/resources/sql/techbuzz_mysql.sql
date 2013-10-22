@@ -1,4 +1,3 @@
-
 DROP TABLE IF EXISTS ratings;
 DROP TABLE IF EXISTS posts_tags;
 DROP TABLE IF EXISTS comments;
@@ -12,7 +11,6 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users 
 (
   user_id int(11) NOT NULL AUTO_INCREMENT,
-  username varchar(50) NOT NULL,
   email_id varchar(255) NOT NULL,
   password varchar(50) NOT NULL,
   firstName varchar(50) DEFAULT NULL,
@@ -23,7 +21,6 @@ CREATE TABLE users
   disabled tinyint(1) NULL,
   bio LONGTEXT NULL,
   PRIMARY KEY (user_id),
-  UNIQUE KEY username (username),
   UNIQUE KEY email_id (email_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -105,25 +102,25 @@ values
 (3,'Moderator','Moderator'),
 (4,'NormalUser','Normal User');
 
-insert  into users(user_id,username, email_id,password,firstName,lastName,gender,phone,dob,disabled,bio) 
+insert  into users(user_id,email_id,password,firstName,lastName,gender,phone,dob,disabled,bio) 
 values 
-(1,'admin','admin@gmail.com','admin','Mr','Administrator','Male',NULL,NULL,NULL,'I am the THE admin'),
-(2,'test','test@gmail.com','test','Mr','Test','Female',NULL,NULL,1,'I am a tester'),
-(3,'guest','guest@gmail.com','secret','Mr','Guest','Female','922221222545','2013-04-29 00:00:00',0,'Hey, this is Mr Guest'),
-(4,'essie','essie@vaill.com','Essie','Essie','Vaill','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(5,'cruz','cruz@roudabush.com','Cruz','Cruz','Roudabush','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(6,'billie','billie@tinnes.com','Billie','Billie','Tinnes','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(7,'zackary','zackary@mockus.com','Zackary','Zackary','Mockus','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(8,'rosemarie','rosemarie@fifield.com','Rosemarie','Rosemarie','Fifield','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(9,'bernard','bernard@laboy.com','Bernard','Bernard','Laboy','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(10,'sue','sue@haakinson.com','Sue','Sue','Haakinson','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(11,'valerie','valerie@pou.com','Valerie','Valerie','Pou','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(12,'lashawn','lashawn@hasty.com','Lashawn','Lashawn','Hasty','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(13,'marianne','marianne@earman.com','Marianne','Marianne','Earman','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(14,'justina','justina@dragaj.com','Justina','Justina','Dragaj','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(15,'mandy','mandy@mcdonnell.com','Mandy','Mandy','Mcdonnell','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(16,'conrad','conrad@lanfear.com','Conrad','Conrad','Lanfear','Male','123-123-1234','2013-04-29 00:00:00',0,''),
-(17,'cyril','cyril@behen.com','Cyril','Cyril','Behen','Male','123-123-1234','2013-04-29 00:00:00',0,'');
+(1,'admin@gmail.com','admin','Mr','Administrator','Male',NULL,NULL,NULL,'I am the THE admin'),
+(2,'test@gmail.com','test','Mr','Test','Female',NULL,NULL,1,'I am a tester'),
+(3,'guest@gmail.com','secret','Mr','Guest','Female','922221222545','2013-04-29 00:00:00',0,'Hey, this is Mr Guest'),
+(4,'essie@vaill.com','Essie','Essie','Vaill','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(5,'cruz@roudabush.com','Cruz','Cruz','Roudabush','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(6,'billie@tinnes.com','Billie','Billie','Tinnes','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(7,'zackary@mockus.com','Zackary','Zackary','Mockus','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(8,'rosemarie@fifield.com','Rosemarie','Rosemarie','Fifield','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(9,'bernard@laboy.com','Bernard','Bernard','Laboy','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(10,'sue@haakinson.com','Sue','Sue','Haakinson','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(11,'valerie@pou.com','Valerie','Valerie','Pou','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(12,'lashawn@hasty.com','Lashawn','Lashawn','Hasty','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(13,'marianne@earman.com','Marianne','Marianne','Earman','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(14,'justina@dragaj.com','Justina','Justina','Dragaj','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(15,'mandy@mcdonnell.com','Mandy','Mandy','Mcdonnell','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(16,'conrad@lanfear.com','Conrad','Conrad','Lanfear','Male','123-123-1234','2013-04-29 00:00:00',0,''),
+(17,'cyril@behen.com','Cyril','Cyril','Behen','Male','123-123-1234','2013-04-29 00:00:00',0,'');
 
 
 insert into user_settings(user_id, theme, receive_email_feed)

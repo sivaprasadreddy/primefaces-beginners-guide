@@ -14,7 +14,6 @@ public class User implements Serializable
     private static final long serialVersionUID = 1L;
     
     private Integer id;
-    private String userName;
     private String emailId;
     private String password;
     private String firstName;
@@ -35,19 +34,17 @@ public class User implements Serializable
         this.id = id;
     }
 
-    public User(Integer id, String userName, String emailId, String password)
+    public User(Integer id, String emailId, String password)
 	{
 		this.id = id;
-		this.userName = userName;
 		this.emailId = emailId;
 		this.password = password;
 	}
 
-	public User(Integer id, String userName, String emailId, String password,
+	public User(Integer id, String emailId, String password,
 			String firstName, String lastName, String phone, Date dob,
 			boolean disabled) {
 		this.id = id;
-		this.userName = userName;
 		this.emailId = emailId;
 		this.password = password;
 		this.firstName = firstName;
@@ -55,14 +52,6 @@ public class User implements Serializable
 		this.phone = phone;
 		this.dob = dob;
 		this.disabled = disabled;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
 	}
 
 	public Integer getId() {

@@ -14,15 +14,14 @@
   <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.6</java.version>
-        <primefaces.version>3.5</primefaces.version>
-        <primefaces.theme.version>1.0.9</primefaces.theme.version>
+        <primefaces.version>4.0</primefaces.version>
+        <primefaces.theme.version>1.0.10</primefaces.theme.version>
         <jsf.version>2.1.13</jsf.version>
-        <junit.version>4.8.2</junit.version>
+        <junit.version>4.11</junit.version>
         <spring.version>3.1.0.RELEASE</spring.version>
 		<aspectj.version>1.7.2</aspectj.version>
 		<cglib.version>2.2.2</cglib.version>
 		<log4j.version>1.2.17</log4j.version>
-        <ehcache.version>2.6.5</ehcache.version>
 		
 		<!-- Database access -->
         <commons-dbcp.version>1.4</commons-dbcp.version>
@@ -41,7 +40,7 @@
     </repositories>
     
     <build>
-    	
+    	<finalName>${project.artifactId}</finalName>
     	<plugins>
     		<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -258,7 +257,6 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>${log4j.version}</version>
-			
 		</dependency>
 		
 		<!-- Test -->
@@ -268,6 +266,7 @@
 			<version>${spring.version}</version>
 			<scope>test</scope>
 		</dependency>
+		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
