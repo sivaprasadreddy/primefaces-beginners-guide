@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/masterLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>DialogFramework </h2>
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+		<p:growl autoUpdate="true" showDetail="true"/>
+		
+		<h:form>
+			<p:commandButton value="Show Message" actionListener="#{dialogController.showFacesMessage()}" />
+		</h:form>		
+		<br/><br/>
+		<h:form id="form" style="width: 500px;">
+			<p:commandButton value="Search Users" actionListener="#{dialogController.showUserSearchForm}">  
+		        <p:ajax event="dialogReturn" listener="#{dialogController.handleSelectUser}" update=":userDetails"/>  
+		    </p:commandButton>
+		</h:form>
+		<h:panelGrid id="userDetails" columns="2">
+			<h:outputLabel value="EmailId:" />
+			<h:outputText value="#{dialogController.selectedUser.emailId}" />
+			
+			<h:outputLabel value="FirstName:" />
+			<h:outputText value="#{dialogController.selectedUser.firstName}" />
+			
+		</h:panelGrid>
+	</ui:define>
+</ui:composition>

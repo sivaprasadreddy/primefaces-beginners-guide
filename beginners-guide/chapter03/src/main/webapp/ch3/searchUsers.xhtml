@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html" locale="en">
+    <h:head>
+    	<title>Search Users</title>
+        <style>
+        	.ui-widget {
+			    font-size: 12px !important;
+			}
+        </style>
+    </h:head>
+    <h:body>
+    
+    	<h:form>  
+            <p:dataTable var="user" value="#{userController.users}">  
+                <p:column headerText="EmailId">  
+                    <h:outputText value="#{user.emailId}" />  
+                </p:column>  
+  
+                <p:column headerText="Name">  
+                    <h:outputText value="#{user.firstName}" />  
+                </p:column>  
+  
+                <p:column headerText="Select">  
+                    <p:commandButton icon="ui-icon-search" actionListener="#{dialogController.selectUserFromDialog(user)}" />  
+                </p:column>  
+            </p:dataTable>  
+        </h:form>  
+    	
+    </h:body>
+</f:view>
+</html>
+

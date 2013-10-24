@@ -3,6 +3,11 @@
  */
 package com.packtpub.techbuzz.controlers;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -27,11 +32,17 @@ public class UserController
 	
 	private User loginUser = new User();
 	private User registerUser = new User();
+	private List<User> users = new ArrayList<User>();
+	private User selectedUser = null;
 	
 	public UserController() 
 	{
 	}
-	
+	@PostConstruct
+	public void init()
+	{
+		users = this.userService.findAllUsers();
+	}
 	public User getLoginUser() {
 		return loginUser;
 	}
@@ -73,4 +84,22 @@ public class UserController
 		
 		return null;
 	}
+	public List<User> getUsers()
+	{
+		return users;
+	}
+	public void setUsers(List<User> users)
+	{
+		this.users = users;
+	}
+	public User getSelectedUser()
+	{
+		return selectedUser;
+	}
+	public void setSelectedUser(User selectedUser)
+	{
+		this.selectedUser = selectedUser;
+	}
+	
+	
 }

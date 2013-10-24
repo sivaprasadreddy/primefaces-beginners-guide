@@ -1,5 +1,8 @@
 package com.packtpub.techbuzz.controlers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -8,6 +11,7 @@ import javax.faces.context.FacesContext;
 import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.CloseEvent;
+import org.primefaces.event.SelectEvent;
 
 import com.packtpub.techbuzz.entities.User;
 
@@ -22,6 +26,9 @@ public class DialogController
 	private static final Logger logger = Logger.getLogger(DialogController.class);
 	
 	private User registerUser = new User();
+
+	private User selectedUser = null;
+	
 	public User getRegisterUser()
 	{
 		return registerUser;
@@ -57,5 +64,40 @@ public class DialogController
 		RequestContext.getCurrentInstance().addCallbackParam("registered", registered);
 	}
 
-
+	public void showUserSearchForm()
+	{
+		Map<String,Object> options = new HashMap<String, Object>();  
+        options.put("modal", true);  
+        options.put("draggable", false);  
+        options.put("resizable", false);  
+        options.put("contentHeight", 400);  
+          
+        RequestContext.getCurrentInstance().openDialog("searchUsers", options, null);
+	}
+	
+	public void handleSelectUser(SelectEvent event)
+	{  
+        User user = (User) event.getObject();  
+        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "User Selected", "User:" + user.getEmailId());  
+        FacesContext.getCurrentInstance().addMessage(null, message); 
+        this.setSelectedUser(user);
+    }  
+	
+	public void selectUserFromDialog(User user)
+	{
+		RequestContext.getCurrentInstance().closeDialog(user);
+	}
+	
+	public void showFacesMessage()
+	{
+		RequestContext.getCurrentInstance().showMessageInDialog(new FacesMessage("PrimeFaces 4.0" , "PrimeFaces rocks!!!"));
+	}
+	public User getSelectedUser()
+	{
+		return selectedUser;
+	}
+	public void setSelectedUser(User selectedUser)
+	{
+		this.selectedUser = selectedUser;
+	}
 }
