@@ -107,7 +107,7 @@
 			<h2>Accordion Panel Events</h2>
 			<p:accordionPanel onTabChange="tabChanged(panel)" onTabShow="tabShowed(panel)" >
 				<p:ajax event="tabChange" listener="#{tabController.onTabChange}"/> 
-			 	<!-- <p:ajax event="tabClose" listener="#{tabController.onTabClose}"/> -->
+			 	<p:ajax event="tabClose" listener="#{tabController.onTabClose}"/>
     			<p:tab id="personalDetails" title="Personal Details">
     				<h:outputText value="First Name : David" /><br/>
     				<h:outputText value="Last Name : Jr" />

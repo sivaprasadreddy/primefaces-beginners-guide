@@ -13,7 +13,8 @@
 					
 					<p:outputLabel for="searchUser" value="Search Users By Email"/>
 					<p:autoComplete id="searchUser" value="#{userController.searchEmail}" 
-									completeMethod="#{userController.completeEmail}"/>
+									completeMethod="#{userController.completeEmail}"
+									cache="true" cacheTimeout="3000"/>
 							
 					<p:commandButton action="${userController.searchUsers()}" value="Submit" update="@form"/>
 				</h:panelGrid>

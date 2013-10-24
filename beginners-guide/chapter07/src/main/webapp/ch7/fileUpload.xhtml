@@ -39,13 +39,14 @@
        
        <br/><br/>
        
-	    <p:panel header="FileUpload : Single File Restriction using jQuery">
+	    <p:panel header="FileUpload : Single File Limit">
 			<h:form enctype="multipart/form-data">
 			    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"
-			    		widgetVar="upload"
 						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
 						invalidFileMessage="Only gif, jpg or png type images are allowed"
 						sizeLimit="1048576"
+						fileLimit="1"
+						fileLimitMessage="Maximum one file can be uploaded at a time."
 						invalidSizeMessage="File size should not exceed 1MB"/>
 			</h:form> 
        </p:panel>
@@ -59,23 +60,7 @@
 		</h:form>
  		</p:panel>
  		
- 		<script type="text/javascript">
- 			//
- 			//Credit goes to BalusC
- 			//http://stackoverflow.com/questions/14881131/primefaces-upload-how-to-only-allow-one-upload-in-advance-mode
- 			// 
-			$(document).ready(function() {
-		    upload.buttonBar.find('input[type=file]').change(function() {
-		        if (this.value) {
-		            var files = upload.uploadContent.find('.files tr');
-		            if (files.length > 1) {
-		                $(files.get(0)).remove();
-		            }
-		        }
-		    });
-		});
-		
-		</script>
+ 		
 		
 		<br/><br/>
 		

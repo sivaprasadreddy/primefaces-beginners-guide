@@ -29,7 +29,7 @@
 			
 			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" 
 			scrollable="true" scrollHeight="150" 
-			rowStyleClass="#{user.disabled eq true ? 'colored' : null}">  
+			rowStyleClass="#{user.disabled eq true ? 'colored' : null}" stickyHeader="true">  
 				<f:facet name="header">
 					List of Users
 				</f:facet>
@@ -64,15 +64,15 @@
                  currentPageReportTemplate="( {startRecord} - {endRecord}) of {totalRecords} Records."
                  rowsPerPageTemplate="5,10,15" sortMode="single" sortBy="#{user.firstName}" sortOrder="descending"> 
 				
-		        <p:column headerText="Id" sortBy="#{user.id}" >  
+		        <p:column headerText="Id" sortBy="id" >  
 		            <h:outputText value="#{user.id}" />  
 		        </p:column>  
 		  
-		        <p:column headerText="FirstName" sortBy="#{user.firstName}" sortFunction="#{adminController.sortByFirstName}">  
+		        <p:column headerText="FirstName" sortBy="firstName" sortFunction="#{adminController.sortByFirstName}">  
 		            <h:outputText value="#{user.firstName}" />  
 		        </p:column>  
 		  
-		        <p:column headerText="LastName" sortBy="#{user.lastName}">  
+		        <p:column headerText="LastName" sortBy="lastName">  
 		            <h:outputText value="#{user.lastName}" />  
 		        </p:column>  
 		  

@@ -41,20 +41,20 @@
 		            <h:outputText value="#{user.id}" />
 		        </p:column>  
 		  
-		        <p:column headerText="Email" filterBy="#{user.emailId}" 
+		        <p:column headerText="Email" filterBy="emailId" 
 		        			footerText="contains" filterMatchMode="contains">
 		            <h:outputText value="#{user.emailId}" />
 		        </p:column>  
 		  
-		        <p:column headerText="FirstName" filterBy="#{user.firstName}" footerText="startsWith">  
+		        <p:column headerText="FirstName" filterBy="firstName" footerText="startsWith">  
 		            <h:outputText value="#{user.firstName}"/>  
 		        </p:column>  
 		  		
-		  		<p:column headerText="LastName" filterBy="#{user.lastName}" filterMatchMode="endsWith" footerText="endsWith">  
+		  		<p:column headerText="LastName" filterBy="lastName" filterMatchMode="endsWith" footerText="endsWith">  
 		            <h:outputText value="#{user.lastName}" />  
 		        </p:column>
 		        
-		        <p:column headerText="Disabled"  filterBy="#{user.disabled}" 
+		        <p:column headerText="Disabled"  filterBy="disabled" 
 		        		filterOptions="#{adminController.userStatusOptions}" filterMatchMode="exact" footerText="exact">  
 		            <h:outputText value="#{user.disabled}" />  
 		        </p:column>

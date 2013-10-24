@@ -176,7 +176,16 @@
     			</p:tab>  
     		</p:tabView>
 			<br/><br/>
-			
+			<h2>TabView DataModel Scrollable</h2>
+			<p:tabView value="#{tagController.tags}" var="tag" dynamic="true" cache="false" activeIndex="2" scrollable="true">
+				<p:ajax event="tabChange" listener="#{tabController.onTabChange}"/> 
+				<p:ajax event="tabClose" listener="#{tabController.onTabClose}"/>
+				
+				<p:tab title="#{tag.label}" closable="true">
+    				<h:outputText value="#{tag.description}" />
+    			</p:tab>  
+    		</p:tabView>
+			<br/><br/>
 		</h:form>
  
 	</ui:define>
