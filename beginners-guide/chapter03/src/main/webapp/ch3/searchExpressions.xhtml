@@ -1,0 +1,43 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/masterLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>Search Expressions</h2>
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+		<p:growl autoUpdate="true"/>
+		
+		<h:form widgetVar="registrationForm">	                
+			<p:panel id="panel" header="User Registration Form" style="margin-bottom:10px;">
+				<p:messages id="messages" />		
+				<h:panelGrid columns="3">
+					<h:outputLabel for="@next" value="EmailId: *" />
+					<p:inputText id="emailId" value="#{userController.registerUser.emailId}" required="true" label="EmailId"/>
+					<p:message for="@previous" />
+					
+					<h:outputLabel for="firstName" value="FirstName: *" />
+					<p:inputText id="firstName" value="#{userController.registerUser.firstName}" required="true" label="FirstName"/>			
+					<p:message for="firstName" />
+					
+					<h:outputLabel for="lastName" value="LastName: *" />
+					<p:inputText id="lastName" value="#{userController.registerUser.lastName}" required="true" label="LastName"/>
+					<p:message for="lastName" />                      
+				</h:panelGrid>
+			</p:panel>
+			<h:panelGrid columns="1">
+				<p:commandButton value="Process Form" process="@parent:@parent" update="@form"/>
+				<p:commandButton value="Process LastName" process="@form:@child(1):lastName" update="@all"/>
+				<p:commandButton value="Process RegistrationForm Widget" process="@widgetVar(registrationForm)" update="@form"/>
+			</h:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

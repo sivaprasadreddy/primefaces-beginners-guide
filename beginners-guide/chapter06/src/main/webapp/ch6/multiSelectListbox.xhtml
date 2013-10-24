@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>MultiSelectListbox Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h:form>		
+			<p:multiSelectListbox value="#{catalogController.selectedCategory}" effect="slide">
+				<f:selectItems value="#{catalogController.categories}" />
+			</p:multiSelectListbox>
+			<p:commandButton value="Show Products" update="selectedCategory"/>
+			<h:outputText id="selectedCategory" value="Selected Category: #{catalogController.selectedCategory}"/>
+		</h:form>
+		<br/><br/>
+		
+	</ui:define>
+</ui:composition>

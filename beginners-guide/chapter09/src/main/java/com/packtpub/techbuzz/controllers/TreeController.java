@@ -9,8 +9,11 @@ import org.primefaces.event.NodeCollapseEvent;
 import org.primefaces.event.NodeExpandEvent;
 import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.event.NodeUnselectEvent;
+import org.primefaces.event.TreeDragDropEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
+
+import com.packtpub.techbuzz.utils.JSFUtils;
 
 /**
  * @author K. Siva Prasad Reddy
@@ -22,10 +25,11 @@ public class TreeController
 {
 	
 	private TreeNode root;
+	private TreeNode root1;
 	private TreeNode rootx;
 	
 	private TreeNode selectedNode;
-
+	private TreeNode selectedNode1;
 	private TreeNode[] selectedNodes;
 
 	@SuppressWarnings("unused")
@@ -54,6 +58,12 @@ public class TreeController
 		
 		TreeNode nov2011Post1 = new DefaultTreeNode("PrimeUI 0.9 Released", nov2011);
 		
+		root1 = new DefaultTreeNode("Root1", null);
+		
+		TreeNode root1Node2013 = new DefaultTreeNode("2013", root1);
+		TreeNode root1jan2013Post1 = new DefaultTreeNode("PrimeFaces Elite 4 Released", root1Node2013);
+		TreeNode root1Node2012 = new DefaultTreeNode("2012", root1);
+		TreeNode root1nov2011Post1 = new DefaultTreeNode("PrimeUI 1.0 Released", root1Node2012);
 		
 		//Tree with Icons
 		rootx = new DefaultTreeNode("Root", null);
@@ -84,6 +94,10 @@ public class TreeController
 	public TreeNode getRoot() {
 		return root;
 	}
+	public TreeNode getRoot1()
+	{
+		return root1;
+	}
 	public TreeNode getRootx()
 	{
 		return rootx;
@@ -104,6 +118,16 @@ public class TreeController
 		this.selectedNode = selectedNode;
 	}
 	
+	public TreeNode getSelectedNode1()
+	{
+		return selectedNode1;
+	}
+
+	public void setSelectedNode1(TreeNode selectedNode1)
+	{
+		this.selectedNode1 = selectedNode1;
+	}
+
 	public void onNodeExpand(NodeExpandEvent event) {
 		FacesMessage message = new FacesMessage("Expanded :"+ event.getTreeNode().toString());
 		FacesContext.getCurrentInstance().addMessage(null, message);
@@ -143,5 +167,15 @@ public class TreeController
             FacesContext.getCurrentInstance().addMessage(null, message);
         }
 	}
+	
+	public void handleDragDrop(TreeDragDropEvent event) 
+	{  
+		TreeNode dragNode = event.getDragNode();  
+		TreeNode dropNode = event.getDropNode();  
+		int dropIndex = event.getDropIndex();  
+		String msg = "Dragged " + dragNode.getData()+ " and Dropped on " + dropNode.getData() + " at " + dropIndex;
+		JSFUtils.addInfoMsg(msg);
+	}
+
 
 }
