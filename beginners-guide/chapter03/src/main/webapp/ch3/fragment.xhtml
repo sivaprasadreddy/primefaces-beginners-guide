@@ -1,0 +1,85 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/masterLayout.xhtml">
+
+	
+	<ui:define name="bodyContent">
+		<h2>Fragment Component</h2>
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<p:growl autoUpdate="true"/>
+				
+		<h:form style="width: 800px; margin: 0 auto;">
+			<p:panel header="User Account" style="width: 500px; margin: 0 auto;">
+			<p:fragment autoUpdate="true"> 
+				<p:fieldset legend="User Details"> 
+				<h:panelGrid columns="3">  
+					<h:outputLabel for="emailId" value="EmailId:" />  
+					<p:inputText id="emailId" value="#{fragmentController.emailId}" 
+								required="true" label="emailId"/>
+					<p:message for="emailId" display="icon"/>
+					
+					<h:outputLabel for="firstName" value="FirstName:" />  
+					<p:inputText id="firstName" value="#{fragmentController.firstName}" 
+							required="true" label="FirstName"/>
+					<p:message for="firstName" display="icon"/>
+					
+					<h:outputLabel for="lastName" value="LastName:" />  
+					<p:inputText id="lastName" value="#{fragmentController.lastName}" />
+					<p:message for="lastName" display="icon"/>
+					
+					<p:commandButton value="Save" 
+							actionListener="#{fragmentController.updateUserDetails()}"/>  
+				</h:panelGrid>  
+				</p:fieldset>
+			</p:fragment>
+			
+			<p:fragment autoUpdate="true">  
+			 <p:fieldset legend="Contact Details"> 
+				<h:panelGrid columns="3">  
+					<h:outputLabel for="phone" value="Phone:" />  
+					<p:inputText id="phone" value="#{fragmentController.phone}" 
+							required="true" label="Phone"/>
+					<p:message for="phone" display="icon"/>
+					
+					<h:outputLabel for="fax" value="Fax:" />  
+					<p:inputText id="fax" value="#{fragmentController.fax}" />
+					<p:message for="fax" display="icon"/>
+					  
+					<p:commandButton value="Save" 
+						actionListener="#{fragmentController.updateContactDetails()}"/>  
+				</h:panelGrid> 
+				 </p:fieldset>
+			</p:fragment>
+			
+			<p:fragment autoUpdate="true">  
+				<p:fieldset legend="Change Password"> 
+				<h:panelGrid columns="3">  
+					<h:outputLabel for="password" value="Password:" />  
+					<p:password id="password" value="#{fragmentController.password}" 
+							required="true" label="Password"/>
+					<p:message for="password" display="icon"/>
+					
+					<h:outputLabel for="confPassword" value="Confirm Password:" />  
+					<p:password id="confPassword" value="#{fragmentController.confPassword}" 
+							required="true" label="Confirm Password"/>
+					<p:message for="confPassword" display="icon"/>
+					
+					<p:commandButton value="Change Password" 
+						actionListener="#{fragmentController.updatePassword()}"/>  
+				</h:panelGrid>  
+				 </p:fieldset>
+			</p:fragment>
+			</p:panel>
+		</h:form>
+
+		
+		<br/><br/>
+		
+		
+	</ui:define>
+</ui:composition>

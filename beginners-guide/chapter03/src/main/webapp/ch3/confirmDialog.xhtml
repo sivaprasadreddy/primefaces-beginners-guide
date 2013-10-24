@@ -30,7 +30,26 @@
 			</p:confirmDialog>
 			
 		</h:form>
+		<br/><br/>
+		<p:growl autoUpdate="true"/>
+		<h:form>
 		
+			<p:commandButton value="Delete User" actionListener="#{confirmDialogController.deleteUser()}">
+				<p:confirm header="Confirmation" message="Are you sure to delete User?" icon="ui-icon-alert"/>
+			</p:commandButton> 
+			
+			<p:commandButton value="Delete Tag" actionListener="#{confirmDialogController.deleteTag()}">
+				<p:confirm header="Confirmation" message="Are you sure to delete Tag?" icon="ui-icon-alert"/>
+			</p:commandButton>
+		
+		</h:form>
+		
+		<h:form>
+			<p:confirmDialog global="true">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+			</p:confirmDialog>
+		</h:form>
 		
 	</ui:define>
 </ui:composition>
