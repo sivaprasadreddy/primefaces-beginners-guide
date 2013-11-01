@@ -1,193 +1,130 @@
-PrimeFaces Beginner's Guide Book Source Code
-============================================
+## PrimeFaces Beginner's Guide Book Source Code
+
+### K. Siva Prasad Reddy
 
 
-Chapter 1 : Introduction to PrimeFaces
----------------------------------------
+#### Chapter 1 : Introduction to PrimeFaces
 In this chapter we will learn about:
 
-	1. Installing and configuring PrimeFaces
+* Installing and configuring PrimeFaces	
+* Creating Simple Forms using PrimeFaces	
+* Performing Form Validations	
+* Partial Form Processing
 	
-	2. Creating Simple Forms using PrimeFaces
-	
-	3. Performing Form Validations
-	
-	4. Partial Form Processing
-	
-
-Chapter 2 : Creating a Sample Application
------------------------------------------
+#### Chapter 2 : Introducing Sample Application TechBuzz
 In this chapter we will learn about:
 
-	1. Sample application "TechBuzz"
+* Sample application "TechBuzz"
+* Functional Requirements
+* Sample UI Screenshots
 	
-	2. Functional Requirements
-	
-	3. Sample UI Screenshots
-	
-
-Chapter 3 : PrimeFaces Common Utility Components
-------------------------------------------------
+#### Chapter 3 : Using PrimeFaces Common Utility Components
 In this chapter we will learn about:
 
-	1. Dialog, Tooltip
-	
-	2. Growl, Messages, BlockUI
-	
-	3. Button, CommandButton, CommandLink
-	
-	4. Working with PrimeFaces Selectors and Events
-	
+* Dialog, Tooltip
+* Growl, Messages, BlockUI
+* Button, CommandButton, CommandLink
+* Working with PrimeFaces Selectors and Events
 
-Chapter 4 : Introducing Primefaces Client Side Validations framework
----------------------------------------------------------------------
+#### Chapter 4 : Introducing Primefaces Client Side Validations framework
+
 In this chapter we will learn about:
 
-	1.Configuring and using Client Side Validation (CSV) Framework
+* Configuring and using Client Side Validation (CSV) Framework
+* Triggering client side validations based on events
+* Supporting I18N for validation messages
+* Extending CSV framework with custom JSF Converters and Validators
+* Using CSV framework with Bean Validation API
+* Extending CSV framework with custom Bean Validation annotations
 	
-	2. Triggering client side validations based on events
-	
-	3. Supporting I18N for validation messages
-	
-	4. Extending CSV framework with custom JSF Converters and Validators
-	
-	5. Using CSV framework with Bean Validation API
-	
-	6. Extending CSV framework with custom Bean Validation annotations
-	
-
-Chapter 5 : Text Input Components
----------------------------------
+#### Chapter 5 : Introducing Text Input Components
 In this chapter we will learn about:
 
-	1. InputText, InputTextarea, Password
+* InputText, InputTextarea, Password
+* InputMask, Editor
+* AutoComplete
 	
-	2. InputMask, Editor
-	
-	3. AutoComplete
-	
-
-Chapter 6 : Selection Input Components
---------------------------------------
+#### Chapter 6 : Working with Selection Input Components
 In this chapter we will learn about:
 
-	1. BoolCheckbox, SelectManyCheckbox
+* BoolCheckbox, SelectManyCheckbox
+* SelectOneRadio 
+* SelectOneMenu, SelectOneListbox
+* SelectManyMenu
+* PickList
 	
-	2. SelectOneRadio 
-	
-	3. SelectOneMenu, SelectOneListbox
-	
-	4. SelectManyMenu
-	
-	5. PickList
-	
-
-Chapter 7 : Advanced Input Components
---------------------------------------
+#### Chapter 7 : Introducing Advanced Input Components
 In this chapter we will learn about:
 
-	1. Calendar
+* Calendar
+* File Upload
+* File Download
+* Rating, Spinner, Slider
+* Captcha
 	
-	2. File Upload
-	
-	3. File Download
-	
-	4. Rating, Spinner, Slider
-	
-	5. Captcha
-	
-
-Chapter 8 : Data Components
-----------------------------
+#### Chapter 8 : Working with Data Components
 In this chapter we will learn about:
 
-	1. DataList
-		a. Unordered List
+* DataList (Unordered List, Ordered List, Pagination)
+* DataTable (Simple, Header Footer, Pagination, Sorting, Filtering, Row Selection, Lazy Loading, Inline Row/Cell Editing)
+* DataExporter
+
+#### Chapter 9 - Introducing Advanced Data Visualization Components
+In this chapter we will learn about:
+
+* Carousel
+* TagCloud
+* Tree
+* TreeTable
+* Schedule
+	
+#### Chapter 10 - Working with Layout Components
+In this chapter we will learn about:
+
+* Panel components - Panel, PanelGrid, ScrollPanel
+* Component layout styles -  Accordion, TabView, Wizard
+* Creating Complex Layouts
+	
+#### Chapter 11 - Introducing Navigation Components
+In this chapter we will learn about:
+	
+* Menu
+* MenuButton
+* TieredMenu
+* SlideMenu
+* Menubar
+* MegaMenu
+* TabMenu
+* PanelMenu
+* ContextMenu
+* BreadCrumb
+	
+##### Chapter 12 - Drawing Charts
+In this chapter we will learn about:
+	
+* Line Chart 
+* Area Chart
+* Bar Chart
+* Pie Chart
+* Donut Chart
+* Exporting Charts as Images
+* Creating charts using JFreeChart API
+* Handling itemSelect Ajax event
+
+#### Chapter 13 - Using PrimeFaces Themes
+In this chapter we will learn about:
+	
+* Using built-in Themes
+* ThemeSwitcher
+* Custom Themes
+	
+Installing seablue theme in local maven repository:
+
+1. Rename seablue-1.10.3.zip to seablue-1.10.3.jar
+2. Install seablue-1.10.3.jar into local maven repo using the following command
+
+	mvn install:install-file -Dfile=c:\dev\seablue-1.10.3.jar -DgroupId=org.primefaces.themes -DartifactId=seablue -Dversion=1.10.3 -Dpackaging=jar
 		
-		b. Ordered List
-		
-		c. Pagination
-		
-
-	2. DataTable
-		a. Simple
-		b. Header Footer
-		c. Pagination
-		d. Sorting
-		e. Filtering
-		f. Row Selection
-		g. Lazy Loading
-		h. Inline Row/Cell Editing
-
-	3. DataExporter
-	
-
-Chapter 9 - Advanced Data Visualization Components
----------------------------------------------------
-In this chapter we will learn about:
-
-	1. Carousel
-	
-	2. TagCloud
-	
-	3. Tree
-	
-	4. TreeTable
-	
-	5. Schedule
-	
-	
-Chapter 10 - Layout Components
--------------------------------
-In this chapter we will learn about:
-
-	1. Panel components - Panel, PanelGrid, ScrollPanel
-	
-	2. Component layout styles -  Accordion, TabView, Wizard
-	
-	3. Creating Complex Layouts
-	
-	
-Chapter 11 - Navigation Components
-------------------------------------
-In this chapter we will learn about:
-	
-	1. Menu
-	2. MenuButton
-	3. TieredMenu
-	4. SlideMenu
-	5. Menubar
-	6. MegaMenu
-	7. TabMenu
-	8. PanelMenu
-	9. ContextMenu
-	10. BreadCrumb
-	
-Chapter 12 - Drawing Charts
------------------------------
-In this chapter we will learn about:
-	
-	1. Line Chart 
-	2. Area Chart
-	3. Bar Chart
-	4. Pie Chart
-	5. Donut Chart
-	6. Exporting Charts as Images
-	7. Creating charts using JFreeChart API
-	8. Handling itemSelect Ajax event
-
-Chapter 13 - Theming
-----------------------
-In this chapter we will learn about:
-	
-	1. Using built-in Themes
-	2. ThemeSwitcher
-	3. Custom Themes
-	
-	Installing seablue theme in local maven repository:
-	1. Rename seablue-1.10.3.zip to seablue-1.10.3.jar
-	2. Install seablue-1.10.3.jar into local maven repo using the following command	
-		mvn install:install-file -Dfile=c:\dev\seablue-1.10.3.jar -DgroupId=org.primefaces.themes -DartifactId=seablue -Dversion=1.10.3 -Dpackaging=jar
-		
-	Note: If you want to use different groupId and artifactId you can chane using -DgroupId and -DartifactId options. And don't forget to change the groupId and artifactId in pom.xml accordingly.
+Note: If you want to use different groupId and artifactId you can chane using -DgroupId and -DartifactId options. 
+And don't forget to change the groupId and artifactId in pom.xml accordingly.
 	
