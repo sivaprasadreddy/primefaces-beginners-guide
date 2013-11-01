@@ -106,7 +106,7 @@ public class PostRepositoryImpl implements PostRepository
 	public List<Post> findPostsByTagLabel(String label)
 	{
 		String sql = "SELECT p.* FROM tags t LEFT OUTER JOIN posts_tags pt on t.tag_id=pt.tag_id " +
-				 " LEFT OUTER JOIN posts p on pt.post_id=p.post_id where t.label=?";
+				 " JOIN posts p on pt.post_id=p.post_id where t.label=?";
 	
 		return jdbcTemplate.query(sql,new Object[]{label}, new PostRowMapper());
 	}

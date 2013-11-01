@@ -121,6 +121,7 @@ public class HomeController implements Serializable
         FacesMessage msg = new FacesMessage("Selected Tag: "+ item.getLabel());  
         FacesContext.getCurrentInstance().addMessage(null, msg);
         List<Post> posts = postService.findPostsByTagLabel(label);
+        System.out.println("-->"+posts.size());
         initPostViews(posts);
     }
 	private int getStrength(int low, int high)
