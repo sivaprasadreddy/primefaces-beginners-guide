@@ -20,7 +20,7 @@
 		<p:growl autoUpdate="true"/>
 		<h:panelGrid columns="2" styleClass="table-align-top" columnClasses="postsPanel">
 			
-			<p:dataList value="#{homeController.postViews}" var="postView" id="posts" paginator="true" rows="5" type="none">  
+			<p:dataList value="#{homeController.postViews}" var="postView" id="posts" paginator="true" rows="5" type="none" emptyMessage="No Posts">  
 	            <h:outputText value="#{postView.post.title}" style="margin-left:0px; font-size:7; font-weight:bold" /><br />
 	            <h:outputText value="#{postView.post.description}" escape="false" style="margin-left:0px" /><br />
 	            <h:outputText value="Tags: #{postView.post.tagsAsString}" style="margin-left:0px" /><br />
