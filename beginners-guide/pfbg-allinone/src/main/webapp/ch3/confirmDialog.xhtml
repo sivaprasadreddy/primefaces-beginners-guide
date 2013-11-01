@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="head">
+		<title>ConfirmDialog</title>
+	</ui:define>
+	<ui:define name="bodyContent">
+		<h2>ConfirmDialog Component</h2>		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+		<h:form id="form1" style="width: 300px; margin-left: 5px;">
+			<p:growl/>
+			<p:messages/>
+			<p:panel header="User Form">
+				<h:panelGrid columns="2">
+					<h:outputText value="EmailId:" />
+					<p:inputText value="admin@gmail.com"/>			
+					<p:commandButton value="Delete" onclick="cnfDlg.show()" />
+				</h:panelGrid>
+			</p:panel>
+			<p:confirmDialog widgetVar="cnfDlg" header="Confirmation" message="Are you sure to delete?" >
+				<p:commandButton value="Yes" actionListener="#{confirmDialogController.handleDelete}" oncomplete="cnfDlg.hide();" update="form1"/>
+				<p:commandButton value="No" onclick="cnfDlg.hide();"/>				
+			</p:confirmDialog>
+			
+		</h:form>
+		
+		
+	</ui:define>
+</ui:composition>

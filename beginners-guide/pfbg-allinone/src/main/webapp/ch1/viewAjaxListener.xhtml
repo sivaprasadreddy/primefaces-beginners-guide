@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    template="/templates/publicLayout.xhtml"> 
+
+<ui:define name="bodyContent">
+
+	<h:form id="registrationForm">
+		<h2>Updating specific view components without page refresh using PrimeFaces Ajax Listeners</h2>
+		<p>As you type in the Email field it will be validated and adds error message if the EmailId is already in use.</p>
+		<p>Try with <b>admin@gmail.com</b> or <b>test@gmail.com</b></p>
+	
+	<p:panel header="Registration Form">
+	<p:messages/>
+	<h:panelGrid columns="3">
+		<p:outputLabel value="EmailId:*"/>
+		<p:inputText id="emailId" value="#{mockUserController.registrationUser.emailId}" required="true" label="EmailId">
+			<p:ajax event="keyup" listener="#{mockUserController.checkEmailExists()}"  update="emailIdMsg"/>
+		</p:inputText>
+		<p:message id="emailIdMsg" for="emailId"/>
+		
+		<p:outputLabel value="Password:*"/>
+		<p:password id="password" value="#{mockUserController.registrationUser.password}" required="true" label="Password"/>				
+		<p:message id="passwordMsg" for="password"/>
+		
+		<p:outputLabel value="FirstName:*"/>
+		<p:inputText id="firstName" value="#{mockUserController.registrationUser.firstName}" required="true" label="FirstName"/>
+		<p:message id="firstNameMsg" for="firstName"/>		
+		
+		<p:commandButton action="#{mockUserController.register}" value="Register" update="registrationForm"/>		
+		
+	</h:panelGrid>
+	</p:panel>
+	
+	<p><h:link value="Back" outcome="welcome.jsf?faces-redirect=true"/></p>
+	
+</h:form>
+
+</ui:define>
+</ui:composition>

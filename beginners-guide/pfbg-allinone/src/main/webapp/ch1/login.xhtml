@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    template="/templates/publicLayout.xhtml"> 
+
+<ui:define name="bodyContent">
+	<h:form id="loginForm">
+	<h2>Updating specific view components without page refresh using PrimeFaces Ajax</h2>
+	<p:panel header="Login Form" >	
+		<h:panelGrid columns="2">
+			<p:outputLabel value="EmailId"/>
+			<p:inputText value="#{mockUserController.loginUser.emailId}"/>
+			
+			<p:outputLabel value="Password"/>
+			<p:password value="#{mockUserController.loginUser.password}"/>
+			
+			<p:commandButton action="#{mockUserController.login}" value="Login" update="loginStatusMsg"/>
+			<p:commandButton type="reset" value="Reset"/>
+			
+			<p:outputLabel value="#{mockUserController.loginStatus}" id="loginStatusMsg"/>
+		</h:panelGrid>
+	</p:panel>
+	
+	<p><h:link value="Back" outcome="welcome.jsf?faces-redirect=true"/></p>
+</h:form>
+
+</ui:define>
+</ui:composition>

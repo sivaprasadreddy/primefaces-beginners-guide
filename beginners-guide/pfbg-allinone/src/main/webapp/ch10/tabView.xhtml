@@ -1,0 +1,183 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+	<ui:define name="head">
+		<style type="text/css">
+			.label
+			{
+				font-weight: bold;
+				text-align: right;
+			}	
+		</style>
+		<script type="text/javascript">
+		
+			function tabChanged(index)
+			{
+				alert("Tab Changed:"+index);
+			}
+
+			function tabShowed(index)
+			{
+				alert("Tab Show:"+index);
+			}
+			
+		</script>
+    </ui:define>
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>  
+		<h2>TabView Component</h2>
+	    <p:separator/>
+	    
+		<h:form>
+			
+			<h2>Basic TabView</h2>
+			<p:tabView>
+				<p:tab title="My Profile">
+					<p:panel header="Personal Info">
+						<h:panelGrid columns="2" columnClasses="label">
+		    				<p:outputLabel value="First Name : " />
+		    				<h:outputText value=" David" />
+		    				<h:outputLabel value="Last Name :" />
+		    				<h:outputText value="Jr" />
+		    				<h:outputLabel value="Email : " />
+		    				<h:outputText value="david@gmail.com" />
+		    				<h:outputLabel value="Phone : " />
+		    				<h:outputText value="123-456-7890" />
+	    				</h:panelGrid>
+    				</p:panel>
+    			</p:tab>  
+    			<p:tab title="Change Password">
+    				<h:form id="changePwdForm">
+		            		<p:messages id="messages" severity="error" showDetail="true" autoUpdate="true"/>  
+							<p:panel header="Change Password">
+							<h:panelGrid columns="2">
+								
+								<p:outputLabel for="oldPwd" value="Current Password"/> 
+								<p:password id="oldPwd" value="#{userController.changePwd.currentPwd}"  required="true"/>
+								
+								<p:outputLabel for="newPwd" value="New Password"/>
+								<p:password id="newPwd" value="#{userController.changePwd.newPwd}" 
+											feedback="true" 
+											promptLabel="Enter New Password"
+											weakLabel="Weak Password"
+											goodLabel="Good Password"
+											strongLabel="Strong Password"
+											match="confPwd"  required="true"/>
+								
+								<p:outputLabel for="confPwd" value="Confirm Password"/>
+								<p:password id="confPwd" value="#{userController.changePwd.newPwd}" required="true"/>
+								
+								<p:commandButton value="Submit" actionListener="#{userController.changePassword}" update="@form"/>
+								
+							</h:panelGrid>
+							</p:panel>
+						
+						</h:form>
+				
+    			</p:tab>  
+    			<p:tab title="My Buzz">
+    				<p:dataList value="#{postController.posts}" var="post" id="posts" paginator="true" rows="10" type="none">  
+				            <h:outputText value="#{post.title}" style="margin-left:10px; font-size:7; font-weight:bold" /><br />
+				            <h:outputText value="#{post.description}" style="margin-left:10px" escape="false"/><br /><br />
+				            <p:separator/>
+				    </p:dataList>
+    			</p:tab> 
+			</p:tabView>
+			<br/><br/>
+			
+			<h2>TabView Dynamic Loading</h2>
+			<p:tabView dynamic="true" cache="false">
+    			<p:tab title="PrimeFaces">
+    				<h:outputText value="#{tabController.tab1Content}" />
+    			</p:tab>  
+    			<p:tab title="JSF">
+    				<h:outputText value="#{tabController.tab2Content}" />
+    			</p:tab>  
+    			<p:tab title="JavaEE">
+    				<h:outputText value="#{tabController.tab3Content}" />
+    			</p:tab>  
+    		</p:tabView>
+			<br/><br/>
+			
+			<h2>TabView Events</h2>
+			<p:tabView onTabChange="tabChanged(index)" onTabShow="tabShowed(this.getActiveIndex())" >
+				<p:ajax event="tabChange" listener="#{tabController.onTabChange}"/> 
+			 	<!-- <p:ajax event="tabClose" listener="#{tabController.onTabClose}"/> -->
+			 	
+    			<p:tab id="personalDetails" title="Personal Details">
+    				<h:outputText value="First Name : David" /><br/>
+    				<h:outputText value="Last Name : Jr" />
+    			</p:tab>  
+    			<p:tab id="contactInfo" title="Contact Info">
+    				<h:outputText value="Email : david@gmail.com" /><br/>
+    				<h:outputText value="Phone : 123-456-7890" />
+    			</p:tab>  
+    			<p:tab id="addressDetails" title="Address Details">
+    				<h:outputText value="City : Chicago" /><br/>
+    				<h:outputText value="State : Illinois" />
+    			</p:tab>  
+    		</p:tabView>
+			<br/><br/>
+			
+			<h2>Closable TabView</h2>
+			<p:tabView>
+				<p:ajax event="tabClose" listener="#{tabController.onTabClose}"/>
+    			<p:tab title="Personal Details" closable="true">
+    				<h:outputText value="First Name : David" /><br/>
+    				<h:outputText value="Last Name : Jr" />
+    			</p:tab>  
+    			<p:tab title="Contact Info" closable="true">
+    				<h:outputText value="Email : david@gmail.com" /><br/>
+    				<h:outputText value="Phone : 123-456-7890" />
+    			</p:tab>  
+    			<p:tab title="Address Details" closable="true">
+    				<h:outputText value="City : Chicago" /><br/>
+    				<h:outputText value="State : Illinois" />
+    			</p:tab>
+			</p:tabView>
+			<br/><br/>
+			
+			<h2>TabView Orientation</h2>
+			<!-- orientation="top|bottom|left|right" -->
+			<p:tabView orientation="bottom">
+				<p:tab title="Personal Details">
+    				<h:outputText value="First Name : David" /><br/>
+    				<h:outputText value="Last Name : Jr" />
+    			</p:tab>  
+    			<p:tab title="Contact Info">
+    				<h:outputText value="Email : david@gmail.com" /><br/>
+    				<h:outputText value="Phone : 123-456-7890" />
+    			</p:tab>  
+    			<p:tab title="Address Details">
+    				<h:outputText value="City : Chicago" /><br/>
+    				<h:outputText value="State : Illinois" />
+    			</p:tab>
+			</p:tabView>
+			<br/><br/>
+			
+			
+			<h2>TabView DataModel</h2>
+			<p:tabView value="#{tagController.tags}" var="tag" dynamic="true" cache="false" activeIndex="2" scrollable="true">
+				<p:ajax event="tabChange" listener="#{tabController.onTabChange}"/> 
+				<p:ajax event="tabClose" listener="#{tabController.onTabClose}"/>
+				
+				<p:tab title="#{tag.label}" closable="true">
+    				<h:outputText value="#{tag.description}" />
+    			</p:tab>  
+    		</p:tabView>
+			<br/><br/>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

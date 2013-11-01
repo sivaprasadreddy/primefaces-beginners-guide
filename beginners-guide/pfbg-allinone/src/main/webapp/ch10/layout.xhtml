@@ -1,0 +1,53 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/>
+		</h:form>
+		<br/><br/>
+       		
+       	<h2>Element-based Layout</h2>
+       	<p:separator/>
+       		
+       	<h:panelGrid columns="2" styleClass="table-align-top" style="width: 100%">
+       		
+       		<p:panel header="Sample Form">
+       			<h:form>
+       			<h:panelGrid columns="2">
+       				<h:outputLabel value="UserName" />
+       				<p:inputText value="admin"/>
+       				<h:outputLabel value="Email" />
+       				<p:inputText value="admin@gmail.com"/>
+       				
+       			</h:panelGrid>
+       			</h:form>
+       		</p:panel>
+        
+       		<p:layout style="min-width:250px;min-height:220px;" id="layout">
+       			<p:layoutUnit position="west" resizable="true" size="100">  
+       				West
+			    </p:layoutUnit>  
+			  	
+			    <p:layoutUnit position="north">  
+       				North
+			    </p:layoutUnit>
+			    <p:layoutUnit position="south" >  
+       				South
+			    </p:layoutUnit>
+			    
+			    <p:layoutUnit position="center">  
+			        <center>Center</center>
+			    </p:layoutUnit> 
+       		</p:layout>
+       		
+       	</h:panelGrid>
+ 
+</ui:define>
+</ui:composition>
+				

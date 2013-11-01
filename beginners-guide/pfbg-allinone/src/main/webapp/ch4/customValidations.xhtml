@@ -1,0 +1,84 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+    
+    <ui:define name="head">
+
+        <script type="text/javascript">
+        
+            //<![CDATA[
+
+				PrimeFaces.converter['creditCardConverter'] = {
+					pattern: /\d{4} \d{4} \d{4} \d{4}/,
+					convert: function(element, value) {
+				        if(!this.pattern.test(value)) {
+				            throw {
+				                summary: 'Conversion Error',
+				                detail: value + ' can not be converted into CreditCard Number'
+				            }
+				        }
+				        return value;
+				    }
+				};
+			
+				PrimeFaces.validator['CreditCard'] = {					    
+						pattern: /\d{4} \d{4} \d{4} \d{4}/,					            
+					    MESSAGE_ID: 'com.packtpub.techbuzz.validation.creditcard.invalid',					    
+					    validate: function(element, value) {
+					        var vc = PrimeFaces.util.ValidationContext;
+					        if(!this.pattern.test(value)) {
+					             var msgStr = element.data('cc-msg');
+					             var msg = msgStr ? {summary:msgStr, detail: msgStr} : vc.getMessage(this.MESSAGE_ID);
+					            throw msg;
+					        }
+					    }
+					};
+            //]]>
+        </script>
+    </ui:define>
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>Extending CSV Framework</h2>
+			
+			<h:form>
+                <p:growl showDetail="true"/>
+                
+                <p:panel header="Custom Validators">
+                    <h:panelGrid columns="4" cellpadding="5">
+                    	
+                        <h:outputLabel for="cc" value="CreditCard: (JSF Custom Validator)" />
+                        <p:inputText id="cc" value="#{userController.userBean.cc}">
+                            <f:validator validatorId="creditCardValidator" />
+                        </p:inputText>
+                        <p:message for="cc"  />
+                        <h:outputText value="#{userController.userBean.cc}" />
+                        
+                        <h:outputLabel for="creditCardBean" value="CreditCard: (JSF Custom Validator and Converter)" />
+                        <p:inputText id="creditCardBean" value="#{userController.userBean.creditCardBean}">
+                        	<f:converter converterId="creditCardConverter"/>
+                            <f:validator validatorId="creditCardValidator" />
+                        </p:inputText>
+                        <p:message for="creditCardBean"  />
+                        <h:outputText value="#{userController.userBean.creditCardBean}" />
+                        
+                        <h:outputLabel for="creditCard" value="CreditCard: (Custom Bean Validation Annotation)" />
+                        <p:inputText id="creditCard" value="#{userController.userBean.creditCard}" />
+                        <p:message for="creditCard" />
+                        <h:outputText value="#{userController.userBean.creditCard}" />
+                        
+                    </h:panelGrid>
+
+                    <p:commandButton value="Save" ajax="false" icon="ui-icon-check" validateClient="true"/>
+                </p:panel>
+			</h:form>
+	</ui:define>
+</ui:composition>

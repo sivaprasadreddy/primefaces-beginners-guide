@@ -1,0 +1,139 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="appResources">
+        <h:outputScript library="js" name="calendarLocales.js" />
+    </ui:define>
+    
+	<ui:define name="head">
+		<style type="text/css">
+				.myCalendar{
+					font-size: 15px;
+					background-color: #D3D3D3;
+				}
+		</style>
+		
+		<script type="text/javascript">
+			PrimeFaces.locales['tr'] = {
+                closeText: 'kapat',
+                prevText: 'geri',
+                nextText: 'ileri',
+                currentText: 'bugün',
+                monthNames: ['Ocak','Subat','Mart','Nisan','Mayis','Haziran','Temmuz','Agustos','Eylül','Ekim','Kasim','Aralik'],
+                monthNamesShort: ['Oca','Sub','Mar','Nis','May','Haz', 'Tem','Agu','Eyl','Eki','Kas','Ara'],
+                dayNames: ['Pazar','Pazartesi','Sali','Çarsamba','Persembe','Cuma','Cumartesi'],
+                dayNamesShort: ['Pz','Pt','Sa','Ça','Pe','Cu','Ct'],
+                dayNamesMin: ['Pz','Pt','Sa','Ça','Pe','Cu','Ct'],
+                weekHeader: 'Hf',
+                firstDay: 1,
+                isRTL: false,
+                showMonthAfterYear: false,
+                yearSuffix: '',
+                timeOnlyTitle: 'Zaman Seçiniz',
+                timeText: 'Zaman',
+                hourText: 'Saat',
+                minuteText: 'Dakika',
+                secondText: 'Saniye',
+                ampm: false,
+                month: 'Ay',
+                week: 'Hafta',
+                day: 'Gün',
+                allDayText : 'Tüm Gün'
+            };
+		
+		function disableSatSunDays(date) 
+		{
+			var day = date.getDay();
+			return [(day != 0 &amp;&amp; day != 6), 'myCalendar'];
+		}
+		
+		</script>
+	</ui:define>
+	<ui:define name="bodyContent">
+		
+		<h2>Calendar Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+								 
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h:form>
+			<p:panel header="Calendar Demo" style="margin: 0 auto;">
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+			
+		  		<h:outputText value="Date (Popup, Navigator): " />
+				<p:calendar value="#{calendarController.dob1}" 
+							showOn="button" 
+							navigator="true" 
+							pattern="EEE, dd MMM, yyyy"/> 
+
+				
+				<h:outputText value="Date (Locale, MultiPage, Inline): " />
+				<p:calendar value="#{calendarController.dob2}" mode="inline" locale="fr" pages="3">
+					<p:ajax event="dateSelect" listener="#{calendarController.handleDobSelect}"/>
+				</p:calendar>
+								
+				<h:outputText value="Date(Range): " />
+				<p:calendar value="#{calendarController.dob3}" 
+							pattern="dd-MM-yyyy"
+							mindate="#{calendarController.dobMinDate}" 
+							maxdate="#{calendarController.dobMaxDate}"
+							showButtonPanel="true"
+							showWeek="true" 
+							showOtherMonths="true" 
+							selectOtherMonths="false" 
+							effect="slideDown"
+							/>
+				
+				<h:outputText value="Date(Adv. Customization): " />
+				<p:calendar value="#{calendarController.dob4}" beforeShowDay="disableSatSunDays"/>
+				
+				<h:outputText value="Date(Time Picker): " />
+				<p:calendar value="#{calendarController.dob5}" pattern="MM/dd/yyyy HH:mm:ss a"  
+							stepHour="2" stepMinute="5" stepSecond="10"				
+				            minHour="9" maxHour="18"/>
+				
+				
+				<p:commandButton value="Submit" update="@form"/>
+				
+			</h:panelGrid>  
+			<p:separator/>
+			<h:panelGrid columns="2" id="display">
+					<h:outputText value="Date1:" />  
+		            <h:outputText value="#{calendarController.dob1}" id="inlineDate">  
+		                <f:convertDateTime pattern="d/MM/yyyy" />  
+		            </h:outputText>  
+		              
+		            <h:outputText value="Date2:" />  
+		            <h:outputText value="#{calendarController.dob2}" id="popupDate">  
+		                <f:convertDateTime pattern="MM/d/yyyy" />  
+		            </h:outputText>  
+		              
+		            <h:outputText value="Date3: " />  
+		            <h:outputText value="#{calendarController.dob3}" id="popupButtonDate">  
+		                <f:convertDateTime pattern="d/MM/yyyy" timeZone="#{calendarController.timeZone}"/>  
+		            </h:outputText>
+		            
+		            <h:outputText value="Date4:" />  
+		            <h:outputText value="#{calendarController.dob4}" id="localeDate">  
+		                <f:convertDateTime pattern="MM/d/yyyy" />  
+		            </h:outputText>
+		            
+		            <h:outputText value="Date5:" />  
+		            <h:outputText value="#{calendarController.dob5}"/>  
+		            
+				</h:panelGrid>
+				
+			</p:panel>
+		</h:form>
+ 
+		<br/><br/>
+		
+	</ui:define>
+</ui:composition>

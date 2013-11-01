@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    template="/templates/publicLayout.xhtml"> 
+
+<ui:define name="bodyContent">
+
+<h:form id="userDetailsForm">
+	<h2>Partial Rendering and Processing</h2>
+	<ul>
+		<li>When you click on Update button then UserId, EmailId,Password and FirstName fields will be validated</li>
+		<li>When you click on Delete button only UserId will be processed and validated</li>
+	</ul>
+	<p:panel header="User Details Form">
+		<p:messages/>
+		<h:panelGrid columns="3">
+		
+			<p:outputLabel value="UserId:*"/>
+			<p:inputText id="userId" value="#{mockUserController.loginUser.id}" required="true" label="UserId" />
+			<p:message id="userIdMsg" for="userId"/>
+			
+			<p:outputLabel value="EmailId:*"/>
+			<p:inputText id="emailId" value="#{mockUserController.loginUser.emailId}" required="true" label="EmailId" />			
+			<p:message id="emailIdMsg" for="emailId"/>
+			
+			<p:outputLabel value="Password:*"/>
+			<p:password id="password" value="#{mockUserController.loginUser.password}" required="true" label="Password"/>
+			<p:message id="passwordMsg" for="password"/>
+			
+			<p:outputLabel value="FirstName:*"/>
+			<p:inputText id="firstName" value="#{mockUserController.loginUser.firstName}" required="true" label="FirstName"/>
+			<p:message id="firstNameMsg" for="firstName"/>
+			
+			<p:commandButton value="Update" action="#{mockUserController.updateUser()}" update="userDetailsForm"/>		
+			<p:commandButton value="Delete" process="@this,userId" partialSubmit="true"
+					action="#{mockUserController.deleteUser()}" update="userDetailsForm"/>
+						
+		</h:panelGrid>
+	</p:panel>
+	<p>
+		<h:link value="Back" outcome="welcome.jsf?faces-redirect=true" />
+	</p>
+</h:form>
+
+</ui:define>
+</ui:composition>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+<f:view contentType="text/html" locale="en">
+    <h:head>
+    	<title>#{msg['app.title']}</title>
+        <f:facet name="first">
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+            <meta http-equiv="pragma" content="no-cache"/>
+            <meta http-equiv="cache-control" content="no-cache"/>
+            <meta http-equiv="expires" content="0"/>
+        </f:facet>
+        
+		<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
+        <ui:insert name="head"/>
+    </h:head>
+    <h:body>
+    	<p:tooltip />
+    	<div class="wrapper">
+    		
+			<div class="ui-panel-titlebar ui-widget-header ui-helper-clearfix ui-corner-all" style="height: 80px; margin-bottom: 2px;">
+				<h1>PrimeFaces Beginners Guide</h1>
+			</div>
+			<div id="mainMenu" style=" margin-bottom: 2px;">
+				<h:form id="mainMenuForm">
+				
+				<p:menubar>
+				        
+				        <f:facet name="options">
+				        	<p:themeSwitcher value="#{userSettingsController.selectedTheme}" style="width:180px" var="theme">  
+								<f:selectItem itemLabel="Select Theme" itemValue="" />  
+								<f:selectItems value="#{userSettingsController.themePojos}" var="t" 
+												itemLabel="#{t.name}" itemValue="#{t}"/>
+									<p:ajax listener="#{userSettingsController.saveUserTheme}"/>	  
+								<p:column>  
+									#{theme.name}  
+								</p:column>
+								<p:column>  
+									<p:graphicImage value="/resources/images/themes/#{theme.image}"/>  
+								</p:column>
+							</p:themeSwitcher>
+				        	<p:outputLabel value="Welcome #{userController.loginUser.emailId}! " rendered="#{userController.userLoggedin}"/>
+				        	<p:commandLink value=" Logout" action="#{userController.logout}" style="margin-right:10px" icon="ui-icon-extlink" rendered="#{userController.userLoggedin}"/>
+				        </f:facet>
+				    </p:menubar>
+				    </h:form>
+			</div>
+			<div class="ui-panel ui-widget ui-widget-content ui-corner-all" style="margin-bottom: 3px; min-height: 500px;">
+				
+				<h:form style="width: 800px; margin: 0 auto;">
+		
+						<h:panelGrid columns="1">
+						
+							<p><h:link id="ch01" outcome="ch1/welcome.jsf" value="Chapter1: Introduction to PrimeFaces"/></p>
+							<p><h:link id="ch02" outcome="ch2/welcome.jsf" value="Chapter2: Sample Application TechBuzz"/></p>
+							<p><h:link id="ch03" outcome="ch3/welcome.jsf" value="Chapter3: PrimeFaces Common Utility Components"/></p>
+							<p><h:link id="ch04" outcome="ch4/welcome.jsf" value="Chapter4: Introducing PrimeFaces Client Side Validations Framework"/></p>
+							<p><h:link id="ch05" outcome="ch5/welcome.jsf" value="Chapter5: Text Input Components"/></p>
+							<p><h:link id="ch06" outcome="ch6/welcome.jsf" value="Chapter6: Selection Input Components"/></p>
+							<p><h:link id="ch07" outcome="ch7/welcome.jsf" value="Chapter7: Advanced Input Components"/></p>
+							<p><h:link outcome="ch8/welcome.jsf" value="Chapter8: Data Components" title="Describes DataList , DataGrid, DataTable, DataExporter etc"/></p>
+							<p><h:link outcome="ch9/welcome.jsf" value="Chapter9: Advanced Data Visualization Components"  title="Describes Tree, TreeTable, TagCloud, Carousel etc"/></p>
+							<p><h:link outcome="ch10/welcome.jsf" value="Chapter10: Layout Components" title="Describes Panel, PanelGrid, ScrollPanel, Accordion, TabView, Wizard, Complex Layouts etc"/></p>
+							<p><h:link outcome="ch11/welcome.jsf" value="Chapter11: Navigation Components" title="Describes Navigation Menus, Multi-level menus using Menu, Menubar, MegaMenu, TieredMenu, TabMenu, BreadCrumb etc"/></p>
+							<p><h:link outcome="ch12/welcome.jsf" value="Chapter12: Drawing Charts" title="Describes Line, Bar, Pie charts"/></p>
+							<p><h:link outcome="ch13/welcome.jsf" value="Chapter13: PrimeFaces Themes" title="Describes how to use built-in Using PrimeFaces Themes,  using  ThemeSwitcher and creating custom theme"/></p>
+							
+						</h:panelGrid>
+						
+						 <p:tooltip for="ch01"> <strong>Introduction to</strong>  
+						        <p:graphicImage value="/resources/images/primefaces.jpg" height="35px"/>  
+						 </p:tooltip>
+						 <p:tooltip for="ch02" value="Overview of TechBuzz sample application" showEffect="slide" hideEffect="slide" />
+						 <p:tooltip for="ch03" value="Describes PrimeFaces Common Utility Components such as Growl, Messages, BlockUI, Dialog, Tooltip etc" showEffect="fade" hideEffect="fade" />
+						 <p:tooltip for="ch04" value="Describes PrimeFaces Client Side Validations (CSV) Framework" showEffect="fade" hideEffect="fade" />
+						 <p:tooltip for="ch05" value="Describes InputText, InputTextarea, Password, InputMask, Editor, AutoComplete etc" showEffect="slide" hideEffect="slide" />
+						 <p:tooltip for="ch06" value="Describes SelectOneMenu, SelectOneListbox, SelectManyMenu, PickList etc" showEffect="clip" hideEffect="explode" />
+						 <p:tooltip for="ch07" value="Describes Calendar, FileUpload, FileDownload, Rating, Spinner, Slider, Captcha etc" showEffect="slide" hideEffect="slide" />
+						   
+  
+				</h:form>
+				
+			</div>
+    		
+        </div>
+    </h:body>
+</f:view>
+</html>

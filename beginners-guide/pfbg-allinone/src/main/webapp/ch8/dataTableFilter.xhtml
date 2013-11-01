@@ -1,0 +1,70 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="head">
+		<style type="text/css">
+            .ui-datatable table {
+                table-layout: fixed;
+            }
+            
+            .ui-datatable .ui-datatable-header {
+                text-align: right !important;
+            }
+        </style>
+	</ui:define>
+	<ui:define name="bodyContent">
+		
+		<h2>DataTable Filtering</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+								 
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h:form style="width: 800px; margin: 0 auto;">
+			
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" widgetVar="userTable" 
+				filteredValue="#{adminController.filteredUsers}" emptyMessage="No Users found for the given Filters">  
+				<f:facet name="header">  
+		            <p:outputPanel>  
+		                <h:outputText value="Search all Columns: " />  
+		                <p:inputText id="globalFilter" onkeyup="userTable.filter()" style="width:150px" />  
+		            </p:outputPanel>  
+		        </f:facet> 
+		        <p:column headerText="Id" style="width:30px">  
+		            <h:outputText value="#{user.id}" />
+		        </p:column>  
+		  
+		        <p:column headerText="Email" filterBy="emailId" 
+		        			footerText="contains" filterMatchMode="contains">
+		            <h:outputText value="#{user.emailId}" />
+		        </p:column>  
+		  
+		        <p:column headerText="FirstName" filterBy="firstName" footerText="startsWith">  
+		            <h:outputText value="#{user.firstName}"/>  
+		        </p:column>  
+		  		
+		  		<p:column headerText="LastName" filterBy="lastName" filterMatchMode="endsWith" footerText="endsWith">  
+		            <h:outputText value="#{user.lastName}" />  
+		        </p:column>
+		        
+		        <p:column headerText="Disabled"  filterBy="disabled" 
+		        		filterOptions="#{adminController.userStatusOptions}" filterMatchMode="exact" footerText="exact">  
+		            <h:outputText value="#{user.disabled}" />  
+		        </p:column>
+		       
+		    </p:dataTable>
+		    
+			
+			<br/>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

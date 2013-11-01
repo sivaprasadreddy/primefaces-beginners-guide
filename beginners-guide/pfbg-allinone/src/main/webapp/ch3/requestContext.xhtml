@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+<ui:define name="head">
+	<script type="text/javascript">  
+		function handleComplete(xhr, status, args) {  
+		    if(args.validationFailed) {
+		    	alert("Validation Failed");  
+		    }   
+		    else {
+			    var text =  "Email Id :"+ args.emailId + "\n"+
+			    			"FirstName :"+args.user.firstName + "\n"+
+			    			"LastName "+args.user.lastName;
+		        alert(text);
+		    }  
+		}  
+	</script>
+</ui:define>
+	<ui:define name="bodyContent">
+
+		<h2>RequestContext Utility</h2>
+		<h:form>
+			
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+ 		<h:form id="form1">
+		
+ 			<p:panel header="User Search Form">
+ 			
+				<h:panelGrid columns="2">
+					<h:outputLabel value="EmailId" />
+					<p:inputText id="emailId" value="#{requestContextController.emailId}" required="true"/>
+					
+					<p:commandButton id="submitBtn" value="Submit" actionListener="#{requestContextController.doSearch}" 
+					oncomplete="handleComplete(xhr, status, args)"/>
+				</h:panelGrid>
+	 			<h:outputText value="You have Entered : #{requestContextController.emailId}" />
+			</p:panel>
+			<p:dialog header="Information" widgetVar="dlg" closeOnEscape="true" modal="true" width="300px" height="50px">
+				You have Entered : #{requestContextController.emailId}
+			</p:dialog>
+ 		</h:form>
+ 		<br/><br/>
+ 		<h:form id="form2">
+ 			<p:commandButton value="Scroll To Sample Panel" actionListener="#{requestContextController.scroll}"/> 		
+ 		</h:form>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p>Text Text Text Text Text Text</p>
+ 		<p:panel id="panel" header="Sample Panel">
+ 			<h:outputText value="Scrolling to this Panel using RequestContext.scrollTo()" />
+ 		</p:panel>
+	</ui:define>
+</ui:composition>

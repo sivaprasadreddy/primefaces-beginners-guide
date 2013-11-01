@@ -1,0 +1,46 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+     <ui:define name="appResources">
+<!--         <h:outputScript library="js" name="jquery-plugins.js" />
+ -->    </ui:define>
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>PanelMenu Component</h2>
+	    <p:separator/>
+	    
+		<p:growl autoUpdate="true"/>
+		<h:form style="width: 800px; margin: 0 auto;">
+			
+			<h3>PanelMenu</h3>
+			<p:panelMenu style="width:200px">  
+				<p:submenu label="User Management">
+					<p:submenu label="View Users" icon="ui-icon-person">
+						<p:menuitem value="Moderators" url="#"  />
+						<p:menuitem value="Normal Users" actionListener="#{menuController.showUserManagement()}"/>
+					</p:submenu>
+				</p:submenu>
+				<p:submenu label="Tag Management">
+					<p:menuitem value="View Tags" url="panelMenu.jsf" icon="ui-icon-tag"/>
+					<p:menuitem value="Tag Stistics" outcome="panelMenu" icon="ui-icon-image"/>
+				</p:submenu>
+				<p:submenu label="System Config" >
+					<p:menuitem value="View Configuration" outcome="panelMenu" icon="ui-icon-gear"/>
+				</p:submenu>
+			</p:panelMenu>
+			
+			<br/>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

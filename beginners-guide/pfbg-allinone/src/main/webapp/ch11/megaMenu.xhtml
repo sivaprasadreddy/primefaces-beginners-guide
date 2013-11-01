@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>MegaMenu Component</h2>
+	    <p:separator/>
+	    
+	    <p:growl autoUpdate="true"/>
+		<h:form style="width: 800px; margin: 0 auto;">
+			
+			<h3>Mega Menu</h3>
+			
+			<p:megaMenu>
+				<p:submenu label="Users">
+					<p:column>
+						<p:submenu label="Normal Users">
+							<p:menuitem value="View Users" url="#"/>
+							<p:menuitem value="User Activity" url="#"/>
+						</p:submenu>
+						<p:submenu label="Inactive Users">
+							<p:menuitem value="View Inactive Users" url="#"/>
+							<p:menuitem value="Unlock Users" url="#"/>
+						</p:submenu>
+					</p:column>
+					<p:column>
+						<p:submenu label="Moderators">
+							<p:menuitem value="View Moderators" url="#"/>
+							<p:menuitem value="Deleted Buzz" url="#"/>
+						</p:submenu>
+					</p:column>			
+				</p:submenu>
+				
+				<p:submenu label="Tags">
+					<p:column>
+						<p:submenu label="Tag Management">
+							<p:menuitem value="View Tags" url="#"/>
+							<p:menuitem value="Create Tags" url="#"/>
+						</p:submenu>
+					</p:column>
+					<p:column>
+						<p:submenu label="Tag Usage">
+							<p:menuitem value="Tags Statistics" url="#"/>
+							<p:menuitem value="Tags usage By User" url="#"/>
+						</p:submenu>
+					</p:column>					
+				</p:submenu>
+				
+				<p:submenu label="Configuration">
+					<p:column>
+						<p:submenu label="Global Settings">
+							<p:menuitem value="Cache Settings" url="#"/>
+							<p:menuitem value="User Lock Policy" url="#"/>
+						</p:submenu>
+						<p:submenu label="Email Server Settings">
+							<p:menuitem value="SMTP Settings" url="#"/>
+							<p:menuitem value="POP3 Settings" url="#"/>
+						</p:submenu>
+					</p:column>					
+				</p:submenu>
+				
+			</p:megaMenu>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

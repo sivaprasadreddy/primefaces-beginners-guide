@@ -1,0 +1,127 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+	    <p:growl id="msg" autoUpdate="true"/>  
+		<h2>Wizard Component</h2>
+	    <p:separator/>
+	    
+		<h:form>
+			<p:wizard widgetVar="wiz" flowListener="#{wizardController.onFlowProcess}">
+					
+					<p:tab id="personal" title="Personal">
+
+                        <p:panel header="Personal Details">
+
+                            <p:messages />
+
+                            <h:panelGrid columns="2">
+                                <h:outputText value="Firstname: *" />
+                                <p:inputText value="#{wizardController.user.firstName}" required="true" label="Firstname"/>
+
+                                <h:outputText value="Lastname: *" />
+                                <p:inputText value="#{wizardController.user.lastName}" required="true" label="Lastname"/>
+
+
+                                <h:outputText value="Skip to last: " />
+                                <h:selectBooleanCheckbox value="#{wizardController.skip}" />
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                    
+					<p:tab id="address" title="Address">
+                        <p:panel header="Address Details">
+
+                            <p:messages />
+
+                            <h:panelGrid columns="2">  
+			                    <h:outputText value="Street: " />  
+			                    <p:inputText value="#{wizardController.user.address.street}" />  
+			                    
+			                    <h:outputText value="City: " />  
+			                    <p:inputText value="#{wizardController.user.address.city}" />  
+			                    
+			                    <h:outputText value="ZipCode: " />  
+			                    <p:inputText value="#{wizardController.user.address.zip}" />  
+			                    
+			                    <h:outputText value="Country: " />  
+			                    <p:inputText value="#{wizardController.user.address.country}" />  
+			                      
+			                    <h:outputText value="Skip to last: " />  
+			                    <h:selectBooleanCheckbox value="#{wizardController.skip}" />  
+			                </h:panelGrid> 
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="contact" title="Contact">
+                        <p:panel header="Contact Information">
+
+                            <p:messages />
+
+                            <h:panelGrid columns="2">
+								<h:outputText value="Phone*: " />
+                                <p:inputText value="#{wizardController.user.phone}"  required="true" label="Phone"/>
+								<h:outputText value="EmailId: " />
+                                <p:inputText value="#{wizardController.user.emailId}"/>
+                                
+								<h:outputText value="Skip to last: " />  
+			                    <h:selectBooleanCheckbox value="#{wizardController.skip}" />
+			                    
+                            </h:panelGrid>
+							
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="confirm" title="Confirmation">
+                        <p:panel header="Confirmation">
+
+                            <h:panelGrid id="confirmation" >
+                                
+                                <h:panelGrid columns="2">
+                                    <h:outputText value="Firstname: " />
+                                    <h:outputText value="#{wizardController.user.firstName}"/>
+
+                                    <h:outputText value="Lastname: " />
+                                    <h:outputText value="#{wizardController.user.lastName}"/>
+                                </h:panelGrid>
+								<br/>
+								<h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="Street: " />
+                                    <h:outputText value="#{wizardController.user.address.street}"/>
+									<h:outputText value="City: " />
+                                    <h:outputText value="#{wizardController.user.address.city}"/>
+									<h:outputText value="State: " />
+                                    <h:outputText value="#{wizardController.user.address.state}"/>
+									<h:outputText value="ZipCode: " />
+                                    <h:outputText value="#{wizardController.user.address.zip}"/>
+									<h:outputText value="Country: " />
+                                    <h:outputText value="#{wizardController.user.address.country}"/>
+                                </h:panelGrid>
+                                <br/>
+                               <h:panelGrid columns="2">
+                                    <h:outputText value="EmailId: " />
+                                    <h:outputText value="#{wizardController.user.emailId}"/>
+
+                                    <h:outputText value="Phone: " />
+                                    <h:outputText value="#{wizardController.user.phone}"/>
+                                </h:panelGrid>
+
+                            </h:panelGrid>
+                            <p:commandButton value="Submit" actionListener="#{wizardController.save}" process="@this"/>
+
+                        </p:panel>
+                    </p:tab>
+
+                </p:wizard>
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

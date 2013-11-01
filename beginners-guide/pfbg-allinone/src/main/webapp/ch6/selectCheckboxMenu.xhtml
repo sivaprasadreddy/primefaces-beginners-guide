@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>SelectCheckboxMenu Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h:form>
+			<p:panel header="SelectCheckboxMenu" style="width: 400px; height: 200px; margin: 0 auto;">
+			<p:messages autoUpdate="true"/>  
+			<h:panelGrid style="margin-bottom:5px" cellpadding="3">
+		  		<p:selectCheckboxMenu value="#{selectionController.selectedSearchInOptions}" 
+		  				label="Search In" filter="true" filterText="Filter" filterMatchMode="startsWith" 
+		  				panelStyle="width:220px">  
+			        <f:selectItems value="#{selectionController.searchInOptions}" />  
+			    </p:selectCheckboxMenu>
+
+			</h:panelGrid>  
+			<p:commandButton value="Submit" update="display"/>
+				<h:outputText id="display" value="Value : #{selectionController.selectedSearchInOptions}" /> 
+			</p:panel>
+		</h:form>
+ 
+		<br/><br/>
+		
+	</ui:define>
+</ui:composition>

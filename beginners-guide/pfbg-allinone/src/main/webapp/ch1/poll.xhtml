@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    template="/templates/publicLayout.xhtml"> 
+
+<ui:define name="bodyContent">
+
+	<h:form id="form1">
+		<h2>Perform tasks periodically using Poll component</h2>
+		<p:outputLabel value="Current Time:" />
+		<p:outputLabel id="currentTime" value="#{serverTimeBean.time}" />
+		<p:poll interval="1" listener="#{serverTimeBean.updateTime()}"
+			update="currentTime" />
+		
+	</h:form>
+	
+	<br/>
+	
+	<h:form id="form2">
+		<h2>Start/Stop Poll component manually</h2>
+		<p:outputLabel value="Current Time:" /> <p:outputLabel id="currentTime1" value="#{serverTimeBean.time}"/>
+		<p:poll interval="1"  listener="#{serverTimeBean.updateTime()}" update="currentTime1" widgetVar="currentTimePoller" autoStart="false"/> <br/>
+		<p:button value="Start" onclick="currentTimePoller.start()"  href="#" />
+		<p:button value="Stop" onclick="currentTimePoller.stop()" href="#"/><br/>
+		
+		<p>
+			<h:link value="Back" outcome="welcome.jsf?faces-redirect=true" />
+		</p>
+		
+	</h:form>
+
+</ui:define>
+</ui:composition>

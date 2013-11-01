@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>AreaChart using LineChart Component</h2>
+	    <p:separator/>
+	    
+		<h:form style="width: 800px; margin: 0 auto;">
+			<h2>Stacked Area Chart</h2>
+			<p:lineChart title="Area Chart" value="#{chartController.areaChartModel}" 
+				legendPosition="nw"
+				style="width: 400px; height: 300px;"
+				xaxisLabel="Year" yaxisLabel="No. of Posts" 
+				xaxisAngle="45" yaxisAngle="45"
+				minY="0" maxY="1000"
+				fill="true" stacked="true"/>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>TabMenu Component</h2>
+	    <p:separator/>
+	    
+		<h:form style="width: 800px; margin: 0 auto;">
+			<h3>Static TabMenu</h3>
+			<p:tabMenu activeIndex="0">
+				<p:menuitem value="Home" url="tabMenu.jsf" icon="ui-icon-home"/>  
+				<p:menuitem value="Post Buzz" outcome="tabMenu"   icon="ui-icon-document"/>  
+				<p:menuitem value="Search" action="#{menuController.showSearchPage}" ajax="false" icon="ui-icon-search" />  
+				<p:menuitem value="My Account" actionListener="#{menuController.showMyAccount()}" icon="ui-icon-person" />  
+			</p:tabMenu>
+
+			<br/><br/>
+			<h2>Dynamic TabMenu using actionListener and action</h2>
+			<p:tabMenu id="mytabmenu" activeIndex="#{menuController.activeIndex}">
+				<p:menuitem value="Home" actionListener="#{menuController.setActiveIndex(0)}" action="#{menuController.showPage('Home')}" update="mytabmenu" icon="ui-icon-home"/>  
+				<p:menuitem value="Post Buzz" actionListener="#{menuController.setActiveIndex(1)}" action="#{menuController.showPage('New Post')}" update="mytabmenu"  icon="ui-icon-document"/>  
+				<p:menuitem value="Search" actionListener="#{menuController.setActiveIndex(2)}" action="#{menuController.showPage('Search')}" update="mytabmenu"  icon="ui-icon-search" />  
+				<p:menuitem value="My Account" actionListener="#{menuController.setActiveIndex(3)}" action="#{menuController.showPage('MyAccount')}" update="mytabmenu"  icon="ui-icon-person" />
+			</p:tabMenu>
+			
+			<h2>Dynamic TabMenu using Template</h2>
+			<h3>Home Page</h3>
+			<ui:include file="/ch10/tabMenuTemplate.xhtml">
+			    <ui:param name="activeIndex" value="0" />
+			</ui:include>
+			<h3>Post Buzz Page</h3>
+			<ui:include file="/ch10/tabMenuTemplate.xhtml">
+			    <ui:param name="activeIndex" value="1" />
+			</ui:include>
+			<h3>Search Page</h3>
+			<ui:include file="/ch10/tabMenuTemplate.xhtml">
+			    <ui:param name="activeIndex" value="2" />
+			</ui:include>
+			<h3>My Account Page</h3>
+			<ui:include file="/ch10/tabMenuTemplate.xhtml">
+			    <ui:param name="activeIndex" value="3" />
+			</ui:include>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

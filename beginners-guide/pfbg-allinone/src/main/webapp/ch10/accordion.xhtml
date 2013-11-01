@@ -1,0 +1,137 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="head">
+		
+		<script type="text/javascript">
+		
+			function tabChanged(panel)
+			{
+				alert("Tab Changed");
+			}
+
+			function tabShowed(panel)
+			{
+				$(panel).effect( "highlight", {color:"#669966"}, 3000 );
+			}
+			
+		</script>
+    </ui:define>
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/>
+		</h:form>
+	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>
+	    
+		<h2>AccordionPanel Component</h2>
+	    <p:separator/>
+		<h:form style="width: 800px; margin: 0 auto;">
+			<h2>Basic Accordion Panel</h2>
+			<p:accordionPanel widgetVar="accordion1">  
+				<p:tab title="PrimeFaces">
+    				<h:outputText value="PrimeFaces is an open source JSF component library with 100+ Rich UI Components support. 
+    								It has built-in Ajax support based on standard JSF 2.0 Ajax APIs." />
+    			</p:tab>
+    			<p:tab title="JSF">
+    				<h:outputText value="JavaServer Faces is a Java specification for building component-based 
+    					user interfaces for web applications. It was formalized as a standard through 
+    					the Java Community Process and is part of the Java Platform, Enterprise Edition." />
+    			</p:tab>
+    			<p:tab title="JavaEE">
+    				<h:outputText value="Java Platform, Enterprise Edition (Java EE) is the standard in community-driven 
+    				enterprise software. Java EE is developed using the Java Community Process, 
+    				with contributions from industry experts, commercial and open source organizations, 
+    				Java User Groups, and countless individuals." />
+    			</p:tab>  
+    		</p:accordionPanel>
+    		<br/>
+    		<p:commandButton value="Select PrimeFaces Tab" onclick="accordion1.select(0);"/> 
+    		<p:commandButton value="Unselect PrimeFaces Tab" onclick="accordion1.unselect(0);"/><br/>
+    		<p:commandButton value="Select JSF Tab" onclick="accordion1.select(1);"/> 
+    		<p:commandButton value="Unselect JSF Tab" onclick="accordion1.unselect(1);"/><br/>
+    		<p:commandButton value="Select JavaEE Tab" onclick="accordion1.select(2);"/> 
+    		<p:commandButton value="Unselect JavaEE Tab" onclick="accordion1.unselect(2);"/>
+    		
+			<br/><br/>
+			
+			<h2>Multiple Selection Accordion Panel</h2>
+			<p:accordionPanel multiple="true">  
+    			<p:tab title="PrimeFaces">
+    				<h:outputText value="PrimeFaces is an open source JSF component library with 100+ Rich UI Components support. 
+    								It has built-in Ajax support based on standard JSF 2.0 Ajax APIs." />
+    			</p:tab>
+    			<p:tab title="JSF">
+    				<h:outputText value="Java Server Faces (JSF) is a Java specification for building component-based 
+    					user interfaces for web applications. It was formalized as a standard through 
+    					the Java Community Process and is part of the Java Platform, Enterprise Edition." />
+    			</p:tab>
+    			<p:tab title="JavaEE">
+    				<h:outputText value="Java Platform, Enterprise Edition (Java EE) is the standard in community-driven 
+    				enterprise software. Java EE is developed using the Java Community Process, 
+    				with contributions from industry experts, commercial and open source organizations, 
+    				Java User Groups, and countless individuals." />
+    			</p:tab>
+    		</p:accordionPanel>
+			<br/><br/>
+			
+			<h2>Accordion Panel Dynamic Loading</h2>
+			<p:ajaxStatus style="width:16px;height:16px;" id="ajaxStatusPanel">  
+		    <f:facet name="start">  
+		        <h:graphicImage value="/resources/images/ajax-loader.gif" />  
+		    </f:facet>  
+		      
+		    <f:facet name="complete">  
+		        <h:outputText value="Done" />  
+		    </f:facet>  
+		</p:ajaxStatus>
+			<p:accordionPanel dynamic="true" cache="true">
+    			<p:tab title="PrimeFaces">
+    				<h:outputText value="#{tabController.tab1Content}" />
+    			</p:tab>  
+    			<p:tab title="JSF">
+    				<h:outputText value="#{tabController.tab2Content}" />
+    			</p:tab>  
+    			<p:tab title="JavaEE">
+    				<h:outputText value="#{tabController.tab3Content}" />
+    			</p:tab>  
+    		</p:accordionPanel>
+			<br/><br/>
+			
+			<h2>Accordion Panel Events</h2>
+			<p:accordionPanel onTabChange="tabChanged(panel)" onTabShow="tabShowed(panel)" >
+				<p:ajax event="tabChange" listener="#{tabController.onTabChange}"/> 
+			 	<p:ajax event="tabClose" listener="#{tabController.onTabClose}"/>
+    			<p:tab id="personalDetails" title="Personal Details">
+    				<h:outputText value="First Name : David" /><br/>
+    				<h:outputText value="Last Name : Jr" />
+    			</p:tab>  
+    			<p:tab id="contactInfo" title="Contact Info" disabled="true">
+    				<h:outputText value="Email : david@gmail.com" /><br/>
+    				<h:outputText value="Phone : 123-456-7890" />
+    			</p:tab>  
+    			<p:tab id="addressDetails" title="Address Details">
+    				<h:outputText value="City : Chicago" /><br/>
+    				<h:outputText value="State : Illinois" />
+    			</p:tab>  
+    		</p:accordionPanel>
+			<br/><br/>
+			
+			<h2>Accordion Panel DataModel</h2>
+			<p:accordionPanel value="#{tagController.tags}" var="tag" activeIndex="2">
+				<p:tab title="#{tag.label}">
+    				<h:outputText value="#{tag.description}" />
+    			</p:tab>  
+    		</p:accordionPanel>
+			<br/><br/>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

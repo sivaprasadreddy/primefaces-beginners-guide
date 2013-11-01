@@ -1,0 +1,65 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="head">
+		
+	</ui:define>
+	<ui:define name="bodyContent">
+		
+		<h2>FileUpload Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+	    <p:panel header="FileUpload Advanced Mode">
+			<h:form enctype="multipart/form-data">
+			    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"
+						allowTypes="/(\.|\/)(gif|jpe?g|png)$/" 
+						invalidFileMessage="Only gif, jpg or png type images are allowed"
+						sizeLimit="1048576"
+						invalidSizeMessage="File size should not exceed 1MB"/>
+			</h:form> 
+       </p:panel>
+       
+       <br/><br/>
+       
+	    <p:panel header="FileUpload : Auto Upload">
+			<h:form enctype="multipart/form-data">
+			    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"
+			    		auto="true"/>
+			</h:form> 
+       </p:panel>
+       
+       <br/><br/>
+       
+	    <p:panel header="FileUpload : Single File Restriction">
+			<h:form enctype="multipart/form-data">
+			    <p:fileUpload fileUploadListener="#{fileUploadController.handleFileUpload}"
+						fileLimit="1"
+						fileLimitMessage="Only one file can be upload at a time"						
+						invalidFileMessage="Only gif, jpg or png type images are allowed"
+						sizeLimit="1048576"
+						invalidSizeMessage="File size should not exceed 1MB"/>
+			</h:form> 
+       </p:panel>
+       
+ 		<br/><br/>
+ 
+ 		<p:panel header="FileUpload : Simple mode">
+ 		<h:form enctype="multipart/form-data">
+		    <p:fileUpload value="#{fileUploadController.file}" mode="simple"/>
+			<p:commandButton value="Submit" ajax="false" action="#{fileUploadController.uploadFile}"/>
+		</h:form>
+ 		</p:panel>
+		
+		<br/><br/>
+		
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,73 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+	    <p:growl id="msg" autoUpdate="true"/>  
+		<h2>ScrollPanel Component</h2>
+	    <p:separator/>
+	    
+		<h:form style="width: 800px; margin: 0 auto;">
+		
+			<h2>ScrollBar with Theme aware Scrollbars</h2>
+			<p:scrollPanel style="width:295px;height:250px">  
+				<p:dataTable var="user" value="#{adminController.users}">  
+					<f:facet name="header">
+						List of Users
+					</f:facet>
+			        <p:column headerText="Id">  
+			            <h:outputText value="#{user.id}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="Email">  
+			            <h:outputText value="#{user.emailId}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="FirstName">  
+			            <h:outputText value="#{user.firstName}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="Disabled">  
+			            <h:outputText value="#{user.disabled}" />  
+			        </p:column>  
+			    </p:dataTable>
+				
+			</p:scrollPanel>
+			
+			<br/><br/>
+			<h2>ScrollBar with browser native Scrollbars</h2>
+			<p:scrollPanel style="width:295px;height:250px" mode="native">  
+				<p:dataTable var="user" value="#{adminController.users}">  
+					<f:facet name="header">
+						List of Users
+					</f:facet>
+			        <p:column headerText="Id">  
+			            <h:outputText value="#{user.id}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="Email">  
+			            <h:outputText value="#{user.emailId}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="FirstName">  
+			            <h:outputText value="#{user.firstName}" />  
+			        </p:column>  
+			  
+			        <p:column headerText="Disabled">  
+			            <h:outputText value="#{user.disabled}" />  
+			        </p:column>  
+			    </p:dataTable>
+			</p:scrollPanel>
+			<br/><br/>
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

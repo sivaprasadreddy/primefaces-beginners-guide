@@ -1,0 +1,25 @@
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"> 
+<f:view contentType="text/html">
+<h:head>
+	<title>PrimeFaces HelloWorld</title>
+	<style>
+		/*To reduce PrimeFaces components deffault size */
+		.ui-widget {
+		    font-size: 12px !important;
+		}
+	</style>
+</h:head> 
+<body> 
+	<h:form>
+		<h2>Hello PrimeFaces</h2>
+		<p:editor value="Hello World, PrimeFaces Rocks!!" width="400" height="150"/>
+		<p><h:link value="Back" outcome="welcome.jsf?faces-redirect=true"/></p>
+	</h:form>
+</body> 
+</f:view>
+</html>

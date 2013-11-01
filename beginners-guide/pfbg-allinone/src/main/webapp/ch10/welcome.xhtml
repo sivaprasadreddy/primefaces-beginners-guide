@@ -1,0 +1,30 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+	
+			<h:form>
+				<p:panel header="Layout Components">
+						<h:panelGrid columns="1" style="width: 800px; cellspacing: 5px;">
+						
+							<p><h:link outcome="panel.jsf" value="Panel"/> </p>
+							<p><h:link outcome="panelGrid.jsf" value="PanelGrid"/> </p>
+							<p><h:link outcome="scrollPanel.jsf" value="ScrollPanel"/> </p>
+							<p><h:link outcome="accordion.jsf" value="Accordion"/> </p>
+							<p><h:link outcome="tabView.jsf" value="TabView"/> </p>
+							<p><h:link outcome="wizard.jsf" value="Wizard"/> </p>
+							<p><h:link outcome="layout.jsf" value="Layout"/> </p>
+							<p><h:link outcome="fullLayout.jsf" value="Full Layout"/> </p>
+							<p><h:link outcome="nestedLayout.jsf" value="Nested Layout"/> </p>
+							<p><h:link outcome="dashboard.jsf" value="DashBoard"/> </p>
+							
+						</h:panelGrid>
+					</p:panel>
+			</h:form>
+
+	</ui:define>
+</ui:composition>

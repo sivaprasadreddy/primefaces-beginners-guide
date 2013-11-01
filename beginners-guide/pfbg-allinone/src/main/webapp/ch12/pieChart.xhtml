@@ -1,0 +1,66 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+    <ui:define name="head">
+    	<script type="text/javascript">
+	    	function ext() 
+	    	{
+	    		//this = chart widget instance
+	    		//this.cfg = options    		
+	    		this.cfg.grid= {
+	    				borderColor: '#A52A2A',
+	    	    		borderWidth: 2,
+	    	    		background: '#FAEBD7'
+	    	    };
+	    	}
+    	</script>
+    </ui:define>
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>PieChart Component</h2>
+	    <p:separator/>
+		<h:form style="width: 800px; margin: 0 auto;">
+		
+		    <p:growl id="growl" showDetail="true"/>
+		    
+		    <h2>Simple Pie Chart with "itemSelect" event listener support.</h2>
+		    <p:pieChart value="#{chartController.pieChartModel}"
+				style="width: 350px; height: 250px;"
+				legendPosition="ne">
+				<p:ajax event="itemSelect" listener="#{chartController.itemSelect}" update="growl"/>
+			</p:pieChart>
+			<br/><br/>
+			
+			<h2>Pie Chart with jqPlot extender options support.</h2>
+			<p:pieChart value="#{chartController.pieChartModel}"
+				style="width: 350px; height: 250px;"
+				legendPosition="ne"
+				extender="ext">
+			</p:pieChart>
+			<br/><br/>
+			
+			<h2>Pie Chart with custom diameter,sliceMargin, fill, dataFormat options.</h2>
+			<p:pieChart value="#{chartController.pieChartModel}"
+						style="width: 350px; height: 250px;"
+						title="Post Statistics By Tag"
+						legendPosition="ne" 
+						legendCols="2"
+						showDataLabels="true"
+						diameter="150"
+						sliceMargin="5"
+						fill="false"
+						dataFormat="value">
+			</p:pieChart>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

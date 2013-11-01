@@ -1,0 +1,76 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+
+    
+	<ui:define name="head">
+		<style type="text/css">
+			
+			.ui-dashboard-column {
+				width:200px;
+			}
+		</style>
+    </ui:define>
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+	    <p:growl id="msg" showDetail="true" autoUpdate="true"/>  
+		<h2>DashBoard Component</h2>
+	    
+		<h:form >
+			<p:dashboard id="board" model="#{dashboardController.model}" disabled="false">  
+		        <p:ajax event="reorder" listener="#{dashboardController.handleReorder}" />  
+		  
+		        <p:panel id="twitter" widgetVar="twitterPanel" header="Twitter" closable="true" toggleable="true">    
+		        	<f:facet name="options">  
+					   <p:menu>  
+						   <p:submenu label="Settings">  
+							   <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="twitterPanel.toggle()"/>  
+							   <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="twitterPanel.close()"/>  
+						   </p:submenu>  
+					   </p:menu>  
+				   </f:facet>
+		            <h:outputText value="Twitter feed" />
+		        </p:panel>  
+		  
+		        <p:panel id="facebook" header="Facebook">  
+		            <h:outputText value="Facebook feed" />  
+		        </p:panel>  
+		  
+		        <p:panel id="youtube" header="YouTube">  
+		            <h:outputText value="YouTube Videos"  />  
+		        </p:panel>  
+		  
+		  		<p:panel id="linkedIn" header="LinkedIn">  
+		            <h:outputText value="LinkedIn Content" />  
+		        </p:panel>
+		        
+		        <p:panel id="dzone" header="DZone">  
+		            <h:outputText value="DZone Posts" />  
+		        </p:panel>  
+		  
+		        <p:panel id="jcg" header="Java Code Geeks">  
+		            <h:outputText value="JavaCodeGeeks Posts" />  
+		        </p:panel>  
+		        
+		    </p:dashboard>
+		    
+		    <div style="clear:both" />
+			<ui:remove>
+				<p:panel id="newwidget" header="NewWidget">
+					<h:outputText value="New Widget" />
+				</p:panel>
+				<p:draggable for="newwidget" helper="clone" dashboard="board" />
+			</ui:remove>	
+
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+	
+			<h:form>
+					<h:panelGrid columns="1" style="width: 800px; cellspacing: 5px;">
+		
+						<p><h:link outcome="messages.jsf" value="Messages"/> </p>
+						<p><h:link outcome="growl" value="Growl" /> </p>
+						<p><h:link outcome="tooltip.jsf" value="Tooltip"/> </p>
+						<p><h:link outcome="dialog.jsf" value="Dialog"/> </p>
+						<p><h:link outcome="confirmDialog.jsf" value="ConfirmDialog"/> </p>
+						<p><h:link outcome="notificationbar.jsf" value="NotificationBar"/> </p>
+						<p><h:link outcome="blockui.jsf" value="BlockUI"/> </p>
+						<p><h:link outcome="requestContext.jsf" value="RequestContext"/> </p>
+						<p><h:link outcome="selectors.jsf" value="jQuery Selector API"/> </p>
+					</h:panelGrid>
+			</h:form>
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,78 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="appResources">
+       <!--  <h:outputScript library="js" name="jquery-plugins.js" /> -->
+    </ui:define>
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+	    <p:growl id="msg" autoUpdate="true"/>  
+		<h2>Panel Component</h2>
+	    
+		<h:form>
+			<p:panel id="panel1" header="Simple Panel" footer="PrimeFaces Rocks!!!">
+				<p:outputLabel value="PrimeFaces is an open source JSF component suite with 100+ Components."/>
+			</p:panel>
+			
+			<br/><br/>
+			
+			<p:panel id="panel2" closable="true" toggleable="true">
+				<p:ajax event="close" listener="#{tabController.handleClose}" />  
+				<p:ajax event="toggle" listener="#{tabController.handleToggle}"/> 
+				<f:facet name="header">
+					Closable and Toggleable Panel
+				</f:facet>
+				<f:facet name="footer">
+					PrimeFaces Rocks!!!
+				</f:facet>
+				<p:outputLabel value="PrimeFaces is an open source JSF component suite with 100+ Components."/>
+			</p:panel>
+			<br/><br/>
+			
+			<p:panel widgetVar="panel" header="Panel with Popup Menu" closable="true" toggleable="true" toggleOrientation="horizontal">		
+				<f:facet name="options">  
+				   <p:menu>  
+					   <p:submenu label="Settings">  
+						   <p:menuitem value="Toggle" url="#" icon="ui-icon-newwin" onclick="panel.toggle()"/>  
+						   <p:menuitem value="Remove" url="#" icon="ui-icon-close" onclick="panel.close()"/>  
+					   </p:submenu>  
+				   </p:menu>  
+			   </f:facet>
+				<p:outputLabel value="PrimeFaces is an open source JSF component suite with 100+ Components."/>
+			</p:panel>
+			
+			<br/><br/>
+			<p:dialog widgetVar="helpWidget" header="PrimeFaces Help">
+				<p>Forum: http://forum.primefaces.org/ </p>
+			</p:dialog>
+			
+			<p:panel id="panel4" widgetVar="panel4" header="Panel with Custom Actions" footer="PrimeFaces Rocks!!!">
+						
+		       <f:facet name="actions">  
+		            <h:outputLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"  value="javascript:void(0)" onclick="helpWidget.show()">  
+		                <h:outputText styleClass="ui-icon ui-icon-help" />  
+		            </h:outputLink>
+		            
+		            <h:outputLink styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default"  value="welcome.jsf?faces-redirect=true">  
+		                <h:outputText styleClass="ui-icon ui-icon-home" />  
+		            </h:outputLink>
+		           
+		        </f:facet>  
+				<p:outputLabel value="PrimeFaces is an open source JSF component suite with 100+ Components."/>
+			</p:panel>
+			
+			<br/><br/>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

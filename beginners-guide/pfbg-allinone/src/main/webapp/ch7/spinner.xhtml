@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+		
+		<h2>Spinner Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h:form>
+
+                <p:panel header="Spinner Component">
+                    <h:panelGrid id="grid" columns="2" cellpadding="5">
+
+                        <h:outputLabel for="spinnerStep" value="Price:" />
+                        <p:spinner id="spinnerStep" value="#{spinnerController.price}" prefix="$" stepFactor="0.25"/>
+
+                        <h:outputLabel for="minmax" value="Discount: " />
+                        <p:spinner id="minmax" value="#{spinnerController.discount}" suffix="%" min="0" max="10" onkeydown="return false;"/>
+
+                    </h:panelGrid>
+                </p:panel>
+
+                <br />
+                <p:commandButton value="Submit" update="display"/>
+
+               <h:panelGrid id="display" columns="2" cellpadding="5">
+                   <h:outputText value="Price: " />
+                   <h:outputText value="#{spinnerController.price}" />
+
+                   <h:outputText value="Discount: " />
+                   <h:outputText value="#{spinnerController.discount}" />
+
+               </h:panelGrid>
+
+            </h:form>
+ 
+		<br/><br/>
+		
+	</ui:define>
+</ui:composition>

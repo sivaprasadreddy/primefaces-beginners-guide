@@ -1,0 +1,56 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	template="/templates/publicLayout.xhtml">
+    
+	<ui:define name="bodyContent">
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+		<h2>BarChart Component</h2>
+	    <p:separator/>
+	    
+	    <p:growl autoUpdate="true" showDetail="true"/>
+		<h:form style="width: 800px; margin: 0 auto;">
+			
+			<h2>Simple Bar Chart</h2>
+			<p:barChart value="#{chartController.chartModel}" 
+						style="width: 400px; height: 250px;">
+			</p:barChart>
+			<br/><br/>
+			
+			<h2>Bar Chart with custom bar margin and padding and "itemSelect" event listener.</h2>
+			<p:barChart value="#{chartController.chartModel}" 
+						barMargin="15" barPadding="10" 
+						style="width: 400px; height: 250px;">
+				<p:ajax event="itemSelect" listener="#{chartController.itemSelect}"/>
+			</p:barChart>
+			<br/><br/>
+			
+			<h2>Horizontal Bar Chart with Animation, custom Series Colors and custom DataTip Format</h2>
+			<p:barChart value="#{chartController.chartModel}" 
+						style="width: 400px; height: 250px;"
+						xaxisLabel="No. of Posts" yaxisLabel="Year" 
+						xaxisAngle="45" 
+						datatipFormat="#{chartController.horizontalChartDatatipFormat}"
+						legendPosition="se" barMargin="5" barPadding="4" seriesColors="A52A2A, 1E90FF"
+						orientation="horizontal" animate="true" />
+			<br/><br/>
+			
+			<h2>Stacked Bar Chart</h2>
+			<p:barChart value="#{chartController.chartModel}" 
+						style="width: 400px; height: 250px;"
+						animate="true" 
+						legendPosition="nw" 
+						stacked="true" 
+						seriesColors="A52A2A, 1E90FF" />
+			<br/><br/>
+			
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

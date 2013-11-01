@@ -1,0 +1,35 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="bodyContent">
+		
+		<h2>DataGrid Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+								 
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h:form style="width: 550px; margin: 0 auto;">
+			<p:dataGrid var="user" value="#{adminController.users}" 
+				columns="3" rows="5" paginator="true"  
+		        rowsPerPageTemplate="5,10,15">  
+		  
+		        <p:panel header="#{user.firstName} #{user.lastName}" 
+		        		style="text-align:center">  
+		            <h:panelGrid columns="1">  
+		                <h:outputText value="#{user.id} : #{user.emailId}" />  
+		            </h:panelGrid>  
+		        </p:panel>
+		  
+		    </p:dataGrid>
+		    
+		</h:form>
+ 
+	</ui:define>
+</ui:composition>

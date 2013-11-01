@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+
+	<ui:define name="bodyContent">
+
+		<p:tabView id="tabView">
+
+			<p:tab id="tab1" title="Home">
+				<p:dataList value="#{postController.posts}" var="post" id="posts"  
+			        	paginator="true" rows="5" type="none">  
+			  
+			            <h:outputText value="#{post.title}" style="margin-left:0px; font-size:7; font-weight:bold" /><br />
+			            <h:outputText value="#{post.description}" style="margin-left:0px" escape="false"/><br /><br />
+			            <p:separator/>
+			    </p:dataList>
+			</p:tab>
+
+			<p:tab id="tab2" title="Post Buzz">
+
+			</p:tab>
+
+			<p:tab id="tab3" title="Search">
+
+			</p:tab>
+			
+			<p:tab id="tab4" title="MyAccount">
+
+			</p:tab>
+
+		</p:tabView>
+
+	</ui:define>
+</ui:composition>

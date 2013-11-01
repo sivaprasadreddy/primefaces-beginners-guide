@@ -1,0 +1,130 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/templates/publicLayout.xhtml">
+	
+	<ui:define name="appResources">
+        <h:outputScript library="js" name="calendarLocales.js" />
+    </ui:define>
+
+	<ui:define name="bodyContent">
+		
+		<h2>DataExporter Component</h2>
+		
+		<h:form>
+			<b><h:commandLink action="welcome.jsf?faces-redirect=true" value="Back" /> </b><br/><br/>
+		</h:form>
+								 
+	    <p:growl id="msg" autoUpdate="true"/>  
+	    
+		<h:form>
+		  <p:panel header="DataExporter Demo" style="margin: 0 auto;">
+			<p:dataTable id="usersTbl" var="user" value="#{adminController.users}" 
+					rowKey="#{user.id}"  paginator="true" rows="10"
+					selectionMode="multiple" selection="#{adminController.selectedUsersArray}" >  
+				
+		        <p:column headerText="Id" width="15px;"> 
+		        	<f:facet name="header">  
+			            <h:outputText value="Id" />  
+			        </f:facet> 
+		            <h:outputText value="#{user.id}" />  
+		        </p:column>  
+		  
+		        <p:column>  
+		        	<f:facet name="header">  
+			            <h:outputText value="Email" />  
+			        </f:facet>
+		            <h:outputText value="#{user.emailId}" />  
+		        </p:column>  
+		  
+		        <p:column headerText="FirstName">
+		        	<f:facet name="header">  
+			            <h:outputText value="FirstName" />  
+			        </f:facet>  
+		            <h:outputText value="#{user.firstName}" />  
+		        </p:column>  
+		  
+		        <p:column exportable="false"> 
+		        	<f:facet name="header">  
+			            <h:outputText value="Disabled" />  
+			        </f:facet> 
+		            <h:outputText value="#{user.disabled}" />  
+		        </p:column>   
+		    
+		    </p:dataTable>
+		    
+		    <h:panelGrid columns="3">
+	    		<p:panel header="Export All Data">
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/excel.png"/>
+		            	<p:dataExporter type="xls" target="usersTbl" fileName="users" postProcessor="#{adminController.postProcessXLS}" />
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/pdf.png"/>
+		            	<p:dataExporter type="pdf" target="usersTbl" fileName="users" preProcessor="#{adminController.preProcessPDF}"/>
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/csv.png"/>
+		            	<p:dataExporter type="csv" target="usersTbl" fileName="users" />
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/xml.png"/>
+		            	<p:dataExporter type="xml" target="usersTbl" fileName="users"/>
+		        	</h:commandLink>
+				</p:panel>
+				
+				<p:panel header="Export Page Data">
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/excel.png"/>
+		            	<p:dataExporter type="xls" target="usersTbl" fileName="users" pageOnly="true" />
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/pdf.png"/>
+		            	<p:dataExporter type="pdf" target="usersTbl" fileName="users" pageOnly="true"/>
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/csv.png"/>
+		            	<p:dataExporter type="csv" target="usersTbl" fileName="users" pageOnly="true"/>
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/xml.png"/>
+		            	<p:dataExporter type="xml" target="usersTbl" fileName="users" pageOnly="true"/>
+		        	</h:commandLink>
+				</p:panel>
+				
+				<p:panel header="Export Selected Rows Data">
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/excel.png"/>
+		            	<p:dataExporter type="xls" target="usersTbl" fileName="users" selectionOnly="true" />
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/pdf.png"/>
+		            	<p:dataExporter type="pdf" target="usersTbl" fileName="users" selectionOnly="true"/>
+		        	</h:commandLink>
+		        	<!-- 
+		        	Note: DataExporter with selectionONly attribute is not working with List<User> for any of the formats.
+		        	But working fine with User[] for PDF and XLS exporting only. Seems like there is a bug.
+		        	-->
+		        	<!-- 
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/csv.png"/>
+		            	<p:dataExporter type="csv" target="usersTbl" fileName="users" selectionOnly="true"/>
+		        	</h:commandLink>
+					<h:commandLink>  
+		            	<p:graphicImage value="/resources/images/export/xml.png"/>
+		            	<p:dataExporter type="xml" target="usersTbl" fileName="users" selectionOnly="true"/>
+		        	</h:commandLink>
+		        	 -->
+				</p:panel>
+				
+			</h:panelGrid>
+			
+			</p:panel>
+		</h:form>
+ 
+		<br/><br/>
+		
+	</ui:define>
+</ui:composition>
