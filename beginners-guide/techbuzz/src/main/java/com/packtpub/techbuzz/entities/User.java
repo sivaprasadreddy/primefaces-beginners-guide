@@ -146,6 +146,7 @@ public class User implements Serializable
 	{
     	if(userSettings == null){
     		userSettings = new UserSettings();
+    		userSettings.setUserId(id);
     	}
 		return userSettings;
 	}

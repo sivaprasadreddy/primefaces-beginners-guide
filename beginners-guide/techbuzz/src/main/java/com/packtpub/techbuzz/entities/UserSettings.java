@@ -10,7 +10,7 @@ public class UserSettings implements Serializable
 {
 	private static final long serialVersionUID = 1L;
 	private int userId;
-	private String theme;
+	private String theme = "aristo";
 	private boolean receiveEmailFeed;
 	public int getUserId()
 	{
