@@ -61,11 +61,11 @@ public class AppConfig
     public DataSourceInitializer getDataSourceInitializer() 
    	{
         DataSourceInitializer dataSourceInitializer = new DataSourceInitializer();
-        String dbInitializationEnabled = env.getProperty("jdbc.init-db", "false");
+        String dbInitializationEnabled = env.resolvePlaceholders("${jdbc.init-db}");
         dataSourceInitializer.setEnabled(Boolean.parseBoolean(dbInitializationEnabled));
         dataSourceInitializer.setDataSource(dataSource());
         ResourceDatabasePopulator databasePopulator = new ResourceDatabasePopulator();
-        String dbInitScriptLocation = env.getProperty("jdbc.initLocation");
+        String dbInitScriptLocation = env.resolvePlaceholders("${jdbc.initLocation}");
         if(StringUtils.isNotEmpty(dbInitScriptLocation))
         {
         	databasePopulator.setScripts(new Resource[]{

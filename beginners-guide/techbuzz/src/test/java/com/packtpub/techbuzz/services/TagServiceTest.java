@@ -69,7 +69,7 @@ public class TagServiceTest
 	public void deleteTag()
 	{
 		logger.debug("----------------deleteTag -----------------");
-		Integer tagId = 1;
+		Integer tagId = 4;
 		tagService.deleteTag(tagId);
 		Tag tag = tagService.findTagById(tagId);
 		assertNull(tag);

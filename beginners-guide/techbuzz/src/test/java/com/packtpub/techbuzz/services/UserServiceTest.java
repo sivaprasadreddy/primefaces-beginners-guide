@@ -27,7 +27,7 @@ public class UserServiceTest
 	@Test
 	public void testLogin()
 	{
-		User user = userService.login("admin", "admin");
+		User user = userService.login("admin@gmail.com", "admin");
 		assertNotNull(user);
 		user = userService.login("blah", "blah");
 		assertNull(user);

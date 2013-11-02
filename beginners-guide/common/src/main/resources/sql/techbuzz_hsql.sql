@@ -77,6 +77,7 @@ CREATE TABLE posts (
 CREATE TABLE posts_tags (
   post_id integer NOT NULL,
   tag_id integer NOT NULL,
+   PRIMARY KEY (post_id, tag_id),
   CONSTRAINT FK95F5DD05D9C91C81 FOREIGN KEY (post_id) REFERENCES posts (post_id),
   CONSTRAINT FK95F5DD05F448AFD3 FOREIGN KEY (tag_id) REFERENCES tags (tag_id)
 );
@@ -192,7 +193,7 @@ values
 
 insert  into posts_tags(post_id,tag_id) 
 values 
-(1,3),(1,2),(1,3),
+(1,1),(1,2),(1,3),
 (2,1),(2,9),(2,6),
 (3,3),(3,6),(3,9),
 (4,3),(4,6),(4,9);

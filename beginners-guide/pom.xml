@@ -28,6 +28,7 @@
 		<!-- Database access -->
         <commons-dbcp.version>1.4</commons-dbcp.version>
         <hsqldb.version>2.2.9</hsqldb.version>
+        <h2database.version>1.3.174</h2database.version>
 		<mysql.version>5.1.22</mysql.version>
 		
     </properties>
@@ -209,7 +210,13 @@
                <artifactId>hsqldb</artifactId>
                <scope>runtime</scope>
          </dependency>
-           
+            
+         <dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
          <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
@@ -382,7 +389,11 @@
                <version>${hsqldb.version}</version>
                <scope>runtime</scope>
          </dependency>
-           
+         <dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2database.version}</version>
+		</dependency>
          <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
