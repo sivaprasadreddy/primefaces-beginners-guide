@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Logger;
 import org.primefaces.context.RequestContext;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -32,7 +33,8 @@ import com.packtpub.techbuzz.web.view.UserBean;
 public class UserController implements Serializable
 {
 	private static final long serialVersionUID = 1L;
-
+	private Logger logger = Logger.getLogger(getClass());
+	
 	@Autowired
 	private UserService userService;
 	
@@ -160,7 +162,6 @@ public class UserController implements Serializable
 	{
 		try
 		{
-			System.out.println(loginUser.getEmailId());
 			boolean success = userService.changePassword(loginUser.getEmailId(), changePwd.getCurrentPwd(), changePwd.getNewPwd());
 			if(!success){
 				JSFUtils.addErrorMsg("changePwdForm","Current password is incorrect");
@@ -245,17 +246,17 @@ public class UserController implements Serializable
 	}
 	
 	public void handleFirstNameSave(){
-		System.out.println("-----------handleFirstNameSave------");
+		logger.debug("-----------handleFirstNameSave------");
 	}
 	public void handleFirstNameCancel(){
-		System.out.println("-----------handleFirstNameCancel------");
+		logger.debug("-----------handleFirstNameCancel------");
 	}
 	
 	public StreamedContent getUserPic() 
     {  
-    	System.out.println("Downloading File....");
+		logger.debug("Downloading File....");
     	
-    	// To downloaf files which are under classpath
+    	// To download files which are under classpath
 		//InputStream stream = this.getClass().getResourceAsStream("/Sample.pdf");
 		//StreamedContent file = new DefaultStreamedContent(stream, "application/pdf", "Sample.pdf"); 
 		

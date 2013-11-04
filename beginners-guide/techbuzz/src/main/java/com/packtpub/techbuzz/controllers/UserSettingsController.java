@@ -150,13 +150,12 @@ public class UserSettingsController implements Serializable
 			selectedTheme = "aristo";
 			logger.debug("Default user theme: "+selectedTheme);
 		}
-		System.out.println(selectedTheme);
 		return selectedTheme;
 	}
 	public void saveUserTheme()
 	{
 		String theme = getSelectedTheme();
-		System.out.println("Save user Theme: "+theme);
+		logger.debug("Save user Theme: "+theme);
 		UserSettings settings = JSFUtils.getLoggedinUser().getUserSettings();
 		settings.setTheme(theme);
 		userService.updateUserSettings(settings);

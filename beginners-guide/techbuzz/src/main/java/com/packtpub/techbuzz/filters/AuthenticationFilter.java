@@ -34,7 +34,6 @@ public class AuthenticationFilter implements Filter
 		String requestURI = httpRequest.getRequestURI();
 		String contextPath = httpRequest.getContextPath();
 		String requestPath = requestURI.substring(contextPath.length()+1);
-		//System.out.println(requestPath);
 		User loggedinUser = (User) httpRequest.getSession().getAttribute("LOGIN_USER");
 		
 		if (!isPublicUrl(requestPath) && loggedinUser == null)

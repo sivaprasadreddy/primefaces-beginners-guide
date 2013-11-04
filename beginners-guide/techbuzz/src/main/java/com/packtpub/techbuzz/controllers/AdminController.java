@@ -133,10 +133,6 @@ public class AdminController implements Serializable
 			JSFUtils.addInfoMsg("No users selected.");
 			return;
 		}
-		for (User user : selectedUsers) 
-		{
-			System.out.println("Disabling "+user.getEmailId());
-		}
 		this.userService.disableUsers(selectedUsers);
 		JSFUtils.addInfoMsg("Disabled successfully");
 		selectedUsers = new ArrayList<User>();
@@ -149,10 +145,7 @@ public class AdminController implements Serializable
 			JSFUtils.addInfoMsg("No users selected.");
 			return;
 		}
-		for (User user : selectedUsers) 
-		{
-			System.out.println("Enabling "+user.getEmailId());
-		}
+		
 		this.userService.enableUsers(selectedUsers);
 		JSFUtils.addInfoMsg("Enabled successfully");
 		selectedUsers = new ArrayList<User>();

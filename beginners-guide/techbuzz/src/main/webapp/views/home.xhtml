@@ -43,7 +43,7 @@
 		    <p:dialog widgetVar="postDlg" header="Post Detail">
 		    	<h:panelGrid id="postViewDetails" columns="1"  style="width: 500px;">
 			    	<h:outputLabel value="#{homeController.selectedPostView.post.title}" />
-		    		<h:outputText value="#{homeController.selectedPostView.post.description}" />
+		    		<h:outputText value="#{homeController.selectedPostView.post.description}" escape="false"/>
 		    		<p:rating  value="#{homeController.selectedPostView.rating.rate}" 
 		    				readonly="#{homeController.selectedPostView.alreadyRated}">
 		    			<p:ajax event="rate" listener="#{homeController.handlePostRating}" />  

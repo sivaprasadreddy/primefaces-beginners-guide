@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.log4j.Logger;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
 
@@ -17,7 +18,8 @@ import org.primefaces.model.UploadedFile;
 @ManagedBean
 @RequestScoped
 public class FileUploadController {
-
+	
+	private Logger logger = Logger.getLogger(getClass());
 	private UploadedFile file;
 	
 	public UploadedFile getFile()
@@ -31,7 +33,6 @@ public class FileUploadController {
 	
 	public void uploadFile()
 	{
-		System.out.println("File "+file.getFileName()+" uploaded successfully.");
 		FacesMessage msg = new FacesMessage(file.getFileName()+ " is uploaded successfully.");  
         FacesContext.getCurrentInstance().addMessage(null, msg);  
 	}
@@ -41,8 +42,8 @@ public class FileUploadController {
 		UploadedFile uploadedFile = event.getFile();
 		String fileName = uploadedFile.getFileName();
 		String contentType = uploadedFile.getContentType();
-		System.out.println("FileName:"+fileName);
-		System.out.println("ContentType:"+contentType);
+		logger.debug("FileName:"+fileName);
+		logger.debug("ContentType:"+contentType);
 		/*
 		byte[] contents = uploadedFile.getContents();
 		FileOutputStream fos = new FileOutputStream(new File(System.getProperty("java.io.tmpdir")));

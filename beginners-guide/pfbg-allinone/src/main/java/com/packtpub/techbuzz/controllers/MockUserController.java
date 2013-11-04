@@ -105,7 +105,6 @@ public class MockUserController
 	public void checkEmailExists()
 	{
 		String email = this.registrationUser.getEmailId();
-		System.out.println("email : "+email);
 		if("admin@gmail.com".equals(email) || "test@gmail.com".equals(email))
 		{
 			String msg = "Email ["+email+"] already in use.";

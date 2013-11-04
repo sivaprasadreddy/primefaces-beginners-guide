@@ -68,11 +68,11 @@ public class UserController implements Serializable
 		{
 			userService.register(registerUser);
 			JSFUtils.addInfoMsg("User Registered successfully");
+			FacesContext.getCurrentInstance().getExternalContext().getFlash().setKeepMessages(true);
 			registerUser = new User();
 			return "login.jsf?faces-redirect=true";
 		} catch (Exception e)
 		{
-			e.printStackTrace();
 			JSFUtils.addErrorMsg("registrationForm",e.getMessage());
 		}
 		return null;

@@ -26,7 +26,6 @@ public class UserServiceTest
 	@Test
 	public void login()
 	{
-		System.out.println(userService);
 		User user = userService.login("invalid", "invalid");
 		Assert.assertNull(user);
 		

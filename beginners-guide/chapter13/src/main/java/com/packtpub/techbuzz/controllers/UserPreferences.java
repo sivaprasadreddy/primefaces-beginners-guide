@@ -7,6 +7,8 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
+import org.apache.log4j.Logger;
+
 import com.packtpub.techbuzz.web.view.Theme;
 
 /**
@@ -18,6 +20,8 @@ import com.packtpub.techbuzz.web.view.Theme;
 public class UserPreferences implements Serializable
 {
 	private static final long serialVersionUID = 1L;
+	private Logger logger = Logger.getLogger(getClass());
+	
 	private String selectedTheme = "aristo";
 	private List<String> themes;
 	private List<Theme> themePojos;
@@ -116,7 +120,7 @@ public class UserPreferences implements Serializable
 	
 	public void setSelectedTheme(String selectedTheme)
 	{
-		System.out.println("Changed Theme to : "+selectedTheme);
+		logger.debug("Changed Theme to : "+selectedTheme);
 		this.selectedTheme = selectedTheme;
 	}
 	
@@ -134,7 +138,7 @@ public class UserPreferences implements Serializable
 	}
 	public void saveUserTheme()
 	{
-		System.out.println("Save user Theme: "+getSelectedTheme());
+		logger.debug("Save user Theme: "+getSelectedTheme());
 	}
 	public List<String> getThemes()
 	{

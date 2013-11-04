@@ -56,7 +56,6 @@ public class Role implements Serializable
 		} else if (!id.equals(other.id))
 			return false;
 		
-		System.out.println(true);
 		return true;
 	}
 

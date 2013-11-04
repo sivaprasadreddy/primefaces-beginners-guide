@@ -31,8 +31,8 @@
 					<p:password id="password" value="#{userController.loginUser.password}" label="Password" 
 								required="true" requiredMessage="Password is required"/>
 
-					<p:commandButton value="Login" action="#{userController.doLogin}"/>
-					<p:commandButton value="Reset" type="reset"/>
+					<p:outputLabel value=""/>
+					<p:commandButton value="Login" action="#{userController.doLogin}" validateClient="true"/>
 					
 					<h:outputText value="New User?" />
 					<p:button value="Register" outcome="registration"/>
