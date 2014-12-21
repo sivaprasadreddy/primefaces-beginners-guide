@@ -38,26 +38,13 @@
 		<h:form style="width: 800px; margin: 0 auto;">
 		
 			<h2>Simple Line Chart</h2>
-			<p:lineChart value="#{chartController.chartModel}" 
-							style="width: 400px; height: 250px;"
-							legendPosition="se" 
-							minY="0" maxY="1000"
-							extender="ext"/>
-			<br/><br/>
 			
-			<h2>Line Char with Animation, Zooming, Custom SeriesColrs</h2>
-			<p:lineChart value="#{chartController.chartModel}" 
-						style="width: 400px; height: 300px;"
-						title="Linear Chart" 
-						legendPosition="nw" 
-						xaxisLabel="Year" yaxisLabel="No. of Posts" 
-						xaxisAngle="45" yaxisAngle="45"
-						minY="0" maxY="1000"
-						breakOnNull="true" zoom="true" animate="true"
-						seriesColors="800000,006400"
-						legendCols="2"
-						datatipFormat="#{chartController.datatipFormat}"
-						/>
+			<p:chart type="line" model="#{chartController.lineModel1}" style="height:300px;"/>
+ 
+ 			<h2>Line Char with Animation, Zooming, Custom SeriesColrs</h2>
+			<p:chart type="line" model="#{chartController.lineModel2}" style="height:300px;"/>
+
+			
 			<br/><br/>
 			
 		</h:form>

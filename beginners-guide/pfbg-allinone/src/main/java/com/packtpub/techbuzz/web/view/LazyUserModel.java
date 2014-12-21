@@ -42,7 +42,7 @@ public class LazyUserModel extends LazyDataModel<User>
       return car.getEmailId();  
   }  
 	@Override  
-    public List<User> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,String> filters) {  
+    public List<User> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String,Object> filters) {  
         List<User> data = new ArrayList<User>();  
         //filter  
         for(User user : datasource) {  
@@ -51,7 +51,7 @@ public class LazyUserModel extends LazyDataModel<User>
             for(Iterator<String> it = filters.keySet().iterator(); it.hasNext();) {  
                 try {  
                     String filterProperty = it.next();  
-                    String filterValue = filters.get(filterProperty);  
+                    String filterValue = (String) filters.get(filterProperty);  
                     Field field = user.getClass().getDeclaredField(filterProperty);
             		field.setAccessible(true);
             		String fieldValue = String.valueOf(field.get(user));

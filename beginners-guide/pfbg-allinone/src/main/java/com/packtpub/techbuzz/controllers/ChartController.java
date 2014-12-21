@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -18,11 +19,15 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
+import org.primefaces.model.chart.Axis;
+import org.primefaces.model.chart.AxisType;
 import org.primefaces.model.chart.BubbleChartModel;
 import org.primefaces.model.chart.BubbleChartSeries;
 import org.primefaces.model.chart.CartesianChartModel;
+import org.primefaces.model.chart.CategoryAxis;
 import org.primefaces.model.chart.ChartSeries;
 import org.primefaces.model.chart.DonutChartModel;
+import org.primefaces.model.chart.LineChartModel;
 import org.primefaces.model.chart.LineChartSeries;
 import org.primefaces.model.chart.PieChartModel;
 
@@ -37,12 +42,16 @@ public class ChartController implements Serializable
 	private static final long serialVersionUID = 1L;
 	private CartesianChartModel chartModel;
 	private CartesianChartModel linearChartModel;
-	private CartesianChartModel areaChartModel;
+	private LineChartModel areaChartModel;
 	private PieChartModel pieChartModel;
 	private DonutChartModel donutChartModel;
 	private BubbleChartModel bubbleChartModel;
-			
-	public ChartController()
+	
+	private LineChartModel lineModel1;
+    private LineChartModel lineModel2;
+		
+    @PostConstruct
+	public void init()
 	{
 		initChartModel();
 		initLinearChartModel();
@@ -51,9 +60,99 @@ public class ChartController implements Serializable
 		initDonutChartModel();
 		initBubbleChartModel();
 		
+		createLineModels();
+		
 	}
 	
-	
+    public LineChartModel getLineModel1() {
+        return lineModel1;
+    }
+ 
+    public LineChartModel getLineModel2() {
+        return lineModel2;
+    }
+     
+    private void createLineModels() {
+        lineModel1 = initLinearModel();
+        lineModel1.setTitle("Linear Chart");
+        lineModel1.setLegendPosition("se");
+        lineModel1.setExtender("ext");
+        Axis yAxis = lineModel1.getAxis(AxisType.Y);
+        yAxis.setMin(0);
+        yAxis.setMax(10);
+         
+        lineModel2 = initCategoryModel();
+        lineModel2.setTitle("Category Chart");
+        lineModel2.setLegendPosition("nw");
+        lineModel2.setShowPointLabels(true);
+        lineModel2.setAnimate(true);
+        lineModel2.setZoom(true);
+        lineModel2.setLegendCols(2);
+        lineModel2.setBreakOnNull(true);
+        lineModel2.setSeriesColors("800000,006400");
+        lineModel2.setDatatipFormat(getDatatipFormat());
+        
+        
+        lineModel2.getAxes().put(AxisType.X, new CategoryAxis("Years"));
+        yAxis = lineModel2.getAxis(AxisType.Y);
+        yAxis.setLabel("Births");
+        yAxis.setMin(0);
+        yAxis.setMax(200);
+        yAxis.setTickAngle(45);
+        
+    }
+     
+    private LineChartModel initLinearModel() {
+    	LineChartModel model = new LineChartModel();
+ 
+        LineChartSeries series1 = new LineChartSeries();
+        series1.setLabel("Series 1");
+ 
+        series1.set(1, 2);
+        series1.set(2, 1);
+        series1.set(3, 3);
+        series1.set(4, 6);
+        series1.set(5, 8);
+ 
+        LineChartSeries series2 = new LineChartSeries();
+        series2.setLabel("Series 2");
+ 
+        series2.set(1, 6);
+        series2.set(2, 3);
+        series2.set(3, 2);
+        series2.set(4, 7);
+        series2.set(5, 9);
+ 
+        model.addSeries(series1);
+        model.addSeries(series2);
+         
+        return model;
+    }
+     
+    private LineChartModel initCategoryModel() {
+        LineChartModel model = new LineChartModel();
+ 
+        ChartSeries boys = new ChartSeries();
+        boys.setLabel("Boys");
+        boys.set("2004", 120);
+        boys.set("2005", 100);
+        boys.set("2006", 44);
+        boys.set("2007", 150);
+        boys.set("2008", 25);
+ 
+        ChartSeries girls = new ChartSeries();
+        girls.setLabel("Girls");
+        girls.set("2004", 52);
+        girls.set("2005", 60);
+        girls.set("2006", 110);
+        girls.set("2007", 90);
+        girls.set("2008", 120);
+ 
+        model.addSeries(boys);
+        model.addSeries(girls);
+         
+        return model;
+    }
 
 	private void initBubbleChartModel()
 	{
@@ -100,18 +199,20 @@ public class ChartController implements Serializable
 	private void initAreaChartModel()
 	{
 
-		areaChartModel = new CartesianChartModel();
+		areaChartModel = new LineChartModel();
 		
-		ChartSeries jquerySeries = new ChartSeries();
+		LineChartSeries jquerySeries = new LineChartSeries();
 		jquerySeries.setLabel("jQuery");
+		jquerySeries.setFill(true);
 		jquerySeries.set("2009", 80);
 		jquerySeries.set("2010", 180);
 		jquerySeries.set("2011", 160);
 		jquerySeries.set("2012", 320);
 		jquerySeries.set("2013", 280);
 		
-		ChartSeries primefacesSeries = new ChartSeries();
+		LineChartSeries primefacesSeries = new LineChartSeries();
 		primefacesSeries.setLabel("PrimeFaces");
+		primefacesSeries.setFill(true);
 		primefacesSeries.set("2009", 150);
 		primefacesSeries.set("2010", 250);
 		primefacesSeries.set("2011", 300);
@@ -121,6 +222,19 @@ public class ChartController implements Serializable
 		areaChartModel.addSeries(jquerySeries);
 		areaChartModel.addSeries(primefacesSeries);
 	
+        areaChartModel.setTitle("Area Chart");
+        areaChartModel.setLegendPosition("ne");
+        areaChartModel.setStacked(true);
+        areaChartModel.setShowPointLabels(true);
+        
+        Axis xAxis = new CategoryAxis("Years");
+        areaChartModel.getAxes().put(AxisType.X, xAxis);
+        Axis yAxis = areaChartModel.getAxis(AxisType.Y);
+        yAxis.setLabel("Births");
+       // yAxis.setMin(0);
+       // yAxis.setMax(300);
+        
+                
 	}
 
 	void initChartModel()
@@ -217,7 +331,8 @@ public class ChartController implements Serializable
 	{
 		return linearChartModel;
 	}
-	public CartesianChartModel getAreaChartModel()
+	
+	public LineChartModel getAreaChartModel()
 	{
 		return areaChartModel;
 	}
@@ -235,7 +350,7 @@ public class ChartController implements Serializable
 	}
 	public String getDatatipFormat()
 	{
-		return "<span style=\"display:none\">%s</span><span>No. of Posts: %s</span>";
+		return "<span style='display:none'>%s</span><span>No. of Posts: %s</span>";
 	}
 	public PieChartModel getPieChartModel()
 	{
